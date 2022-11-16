@@ -9,8 +9,8 @@
 
 <channel>
 	<title>manvitech &#8211; siti internet e social marketing</title>
-	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
-	<link>./../../index.html</link>
+	<atom:link href="https://manvitech.it/en/feed/" rel="self" type="application/rss+xml" />
+	<link>https://manvitech.it/</link>
 	<description></description>
 	<lastBuildDate>Tue, 12 Jul 2022 06:43:14 +0000</lastBuildDate>
 	<language>en-US</language>
@@ -21,9 +21,9 @@
 	<generator>https://wordpress.org/?v=6.1.1</generator>
 
 <image>
-	<url>./../../wp-content/uploads/2020/12/manvitech-round-75x75.png</url>
+	<url>https://manvitech.it/wp-content/uploads/2020/12/manvitech-round-75x75.png</url>
 	<title>manvitech &#8211; siti internet e social marketing</title>
-	<link>./../../index.html</link>
+	<link>https://manvitech.it/</link>
 	<width>32</width>
 	<height>32</height>
 </image> 

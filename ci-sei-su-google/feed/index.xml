@@ -8,8 +8,8 @@
 <channel>
 	<title>
 	Commenti a: Ci sei su Google?	</title>
-	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
-	<link>./../index.html</link>
+	<atom:link href="https://manvitech.it/ci-sei-su-google/feed/" rel="self" type="application/rss+xml" />
+	<link>https://manvitech.it/ci-sei-su-google/</link>
 	<description></description>
 	<lastBuildDate>Fri, 18 Dec 2020 13:34:03 +0000</lastBuildDate>
 	<sy:updatePeriod>

@@ -8,8 +8,8 @@
 <channel>
 	<title>
 	Commenti a: Struttura del sito	</title>
-	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
-	<link>./../index.html</link>
+	<atom:link href="https://manvitech.it/struttura-sito/feed/" rel="self" type="application/rss+xml" />
+	<link>https://manvitech.it/struttura-sito/</link>
 	<description></description>
 	<lastBuildDate>Fri, 18 Dec 2020 13:32:44 +0000</lastBuildDate>
 	<sy:updatePeriod>

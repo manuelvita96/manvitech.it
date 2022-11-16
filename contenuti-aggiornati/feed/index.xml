@@ -8,8 +8,8 @@
 <channel>
 	<title>
 	Commenti a: Contenuti aggiornati	</title>
-	<atom:link href="./index.html" rel="self" type="application/rss+xml" />
-	<link>./../index.html</link>
+	<atom:link href="https://manvitech.it/contenuti-aggiornati/feed/" rel="self" type="application/rss+xml" />
+	<link>https://manvitech.it/contenuti-aggiornati/</link>
 	<description></description>
 	<lastBuildDate>Fri, 18 Dec 2020 13:34:24 +0000</lastBuildDate>
 	<sy:updatePeriod>
