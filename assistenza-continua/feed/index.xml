@@ -16,8 +16,6 @@
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.2</generator>
+	
 </channel>
 </rss>
-
-<!-- Comet Cache is NOT caching this page, because `[current IP address]` === `$_SERVER[&#039;SERVER_ADDR&#039;]`; i.e. a self-serve request. DEVELOPER TIP: if you are testing on a localhost installation, please add `define(&#039;LOCALHOST&#039;, TRUE);` to your `/wp-config.php` file while you run tests :-) Remove it (or set it to a `FALSE` value) once you go live on the web. -->

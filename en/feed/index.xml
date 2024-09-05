@@ -12,13 +12,13 @@
 	<atom:link href="https://manvitech.it/en/feed/" rel="self" type="application/rss+xml" />
 	<link>https://manvitech.it/</link>
 	<description></description>
-	<lastBuildDate>Mon, 05 Feb 2024 07:59:45 +0000</lastBuildDate>
+	<lastBuildDate>Thu, 05 Sep 2024 16:11:00 +0000</lastBuildDate>
 	<language>en-US</language>
 	<sy:updatePeriod>
 	hourly	</sy:updatePeriod>
 	<sy:updateFrequency>
 	1	</sy:updateFrequency>
-	<generator>https://wordpress.org/?v=6.5.2</generator>
+	
 
 <image>
 	<url>https://manvitech.it/wp-content/uploads/2020/12/manvitech-round-75x75.png</url>
@@ -29,5 +29,3 @@
 </image> 
 </channel>
 </rss>
-
-<!-- Comet Cache is NOT caching this page, because `[current IP address]` === `$_SERVER[&#039;SERVER_ADDR&#039;]`; i.e. a self-serve request. DEVELOPER TIP: if you are testing on a localhost installation, please add `define(&#039;LOCALHOST&#039;, TRUE);` to your `/wp-config.php` file while you run tests :-) Remove it (or set it to a `FALSE` value) once you go live on the web. -->
