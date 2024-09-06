@@ -1,0 +1,86 @@
+// Up
+@keyframes fadeUp {
+    0% {
+        opacity: .2;
+        transform: translateY($fade-move);
+    }
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+// Down
+@keyframes fadeDown {
+    0% {
+        opacity: .2;
+        transform: translateY(-$fade-move);
+    }
+    100% {
+        transform: translateY(0%);
+        opacity: 1;
+    }
+}
+// Left
+@keyframes fadeLeft {
+    0% {
+        opacity: 0;
+        transform: translateX($fade-move);
+    }
+    100% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+// Right
+@keyframes fadeRight {
+    0% {
+        opacity: .2;
+        transform: translateX(-$fade-move);
+    }
+    100% {
+        transform: translateX(0%);
+        opacity: 1;
+    }
+}
+
+
+.fade-up, .fade-down, .fade-left, .fade-right {
+    &.show {
+        animation-duration: 0.4s;
+		animation-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+		animation-fill-mode: both;
+    }
+}
+.fade-up {
+    &.show {
+        animation-name: fadeUp;
+    }
+}
+.fade-down {
+    &.show {
+        animation-name: fadeDown;
+    }
+}
+.fade-left {
+    &.show {
+        animation-name: fadeLeft;
+    }
+}
+.fade-right {
+    &.show {
+        animation-name: fadeRight;
+    }
+}
+
+.collapse {
+    &:not(.show) {
+        display: none;
+    }
+}
+
+.collapsing {
+    position: relative;
+    height: 0;
+    overflow: hidden;
+    @include transition($transition-collapse);
+}
