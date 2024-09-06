@@ -1,0 +1,47 @@
+# Translation of Plugins - Simple Revisions Delete - Development (trunk) in French (France)
+# This file is distributed under the same license as the Plugins - Simple Revisions Delete - Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-04-12 21:02:13+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/3.0.0-alpha.2\n"
+"Language: fr\n"
+"Project-Id-Version: Plugins - Simple Revisions Delete - Development (trunk)\n"
+
+#. Author of the plugin
+msgid "Brice CAPOBIANCO"
+msgstr "Brice CAPOBIANCO"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "http://b-website.com/"
+msgstr "http://b-website.com/"
+
+#: wp-simple-revisions-delete.php:64
+msgid "Donate to this plugin &#187;"
+msgstr "Faire un don à cette extension &#187;"
+
+#: wp-simple-revisions-delete-once.php:61
+msgid "Deleted"
+msgstr "Supprimé"
+
+#: wp-simple-revisions-delete-once.php:24
+msgid "Delete"
+msgstr "Supprimer"
+
+#: wp-simple-revisions-delete-functions.php:107
+msgid "Dismiss"
+msgstr "Ignorer"
+
+#: wp-simple-revisions-delete-once.php:68
+#: wp-simple-revisions-delete-single.php:33
+#: wp-simple-revisions-delete-gutenberg.php:34
+msgid "Something went wrong"
+msgstr "Quelque chose s’est mal passé"
+
+#. Plugin Name of the plugin
+msgid "Simple Revisions Delete by bweb"
+msgstr "Simple Revisions Delete par bweb"

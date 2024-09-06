@@ -1,0 +1,3194 @@
+# Translation of Plugins - The SEO Framework – Fast, Automated, Effortless. - Stable (latest release) in French (France)
+# This file is distributed under the same license as the Plugins - The SEO Framework – Fast, Automated, Effortless. - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2023-02-21 02:54:30+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/4.0.0-alpha.3\n"
+"Language: fr\n"
+"Project-Id-Version: Plugins - The SEO Framework – Fast, Automated, Effortless. - Stable (latest release)\n"
+
+#: inc/views/settings/metaboxes/description.php:96
+msgid "Learn how this works."
+msgstr "Découvrez comment ça fonctionne."
+
+#: inc/views/settings/metaboxes/description.php:84
+msgid "HTML parsing method:"
+msgstr "Méthode d’analyse HTML :"
+
+#: inc/views/settings/metaboxes/description.php:61
+msgid "Thorough (max. 12 passes)"
+msgstr "Approfondie (12 passages max.)"
+
+#: inc/views/settings/metaboxes/description.php:60
+msgid "Accurate (max. 6 passes)"
+msgstr "Précise (6 passages max.)"
+
+#: inc/views/settings/metaboxes/description.php:59
+msgid "Fast (max. 2 passes)"
+msgstr "Rapide (2 passages max.)"
+
+#: inc/views/settings/metaboxes/description.php:49
+msgid "The HTML content of your pages can be used to generate descriptions. The generator processes this HTML in passing layers to understand the layout. If the HTML is complex, not all layers may be processed, and you might find spaces missing between sentences. Increasing the maximum number of passes reduces the chance of this happening, but at the cost of performance."
+msgstr "Le contenu HTML de vos pages peut être utilisé pour générer des descriptions. Le générateur parcourt le HTML plusieurs fois pour comprendre la mise en page. Si le HTML est complexe, certaines couches pourraient être ignorées et il pourrait manquer des espaces entre des phrases. Augmenter le nombre de passages réduit les risques d’erreur, mais a une incidence sur la performance."
+
+#: inc/views/settings/metaboxes/description.php:46
+msgid "Advanced Generation Settings"
+msgstr "Réglages avancés de génération"
+
+#: inc/views/settings/metaboxes/description.php:40
+msgid "Open Graph and Twitter require descriptions. So, it's best to leave description generation enabled."
+msgstr "Open Graph et Twitter nécessitent des descriptions. Aussi, il est préférable de laisser activée la génération automatique des descriptions."
+
+#: inc/views/settings/metaboxes/description.php:18
+msgid "The meta description suggests text to be used under the title on search engine results pages."
+msgstr "Les moteurs de recherche peuvent utiliser la méta-description sous les titres dans les pages de résultats du moteur de recherche."
+
+#. translators: 1: SEO plugin name(s), 2: link to guide, in Markdown!
+#: bootstrap/upgrade.php:518
+msgid "The SEO Framework detected metadata from %1$s. Whenever you are set, read our [migration guide](%2$s)."
+msgstr "The SEO Framework a détecté des données issues de %1$s. Une fois la configuration terminée, vous pouvez lire notre [guide de migration](%2$s)."
+
+#: inc/views/templates/settings/settings.php:69
+msgid "Site titles are removed globally, so this option won't work."
+msgstr "Les titres sur le site sont déjà supprimés, donc cette option n’aura aucun effet."
+
+#: inc/views/settings/metaboxes/title.php:281
+msgid "Site Title Removal"
+msgstr "Suppression du titre du site"
+
+#: inc/views/settings/metaboxes/title.php:242
+msgid "This option does not affect titles displayed directly on your website."
+msgstr "Cette option n’a pas d’effet sur les titres affichés sur votre site."
+
+#. translators: %s = Documentation URL in markdown
+#: inc/views/settings/metaboxes/sitemaps.php:137
+msgid "A multilingual plugin has been detected, so your site may have multiple sitemaps. [Learn more](%s)."
+msgstr "Une extension de multilangue a été détectée, donc votre site a peut-être plusieurs plans de site. [En savoir plus](%s)."
+
+#: inc/views/settings/metaboxes/post-type-archive.php:119
+msgid "This post type is excluded, so settings won't have any effect."
+msgstr "Ce type de publication est exclu, ces réglages n’auront aucun effet."
+
+#: inc/views/settings/metaboxes/post-type-archive.php:109
+msgid "View archive"
+msgstr "Voir l’archive"
+
+#. translators: 1 = Post Type Archive name
+#: inc/views/settings/metaboxes/post-type-archive.php:102
+msgid "Archive of %s"
+msgstr "Archive de %s"
+
+#: inc/views/settings/metaboxes/post-type-archive.php:41
+msgid "Select post type:"
+msgstr "Sélectionner un type de publication :"
+
+#: inc/classes/builders/seobar/page.class.php:1007
+msgid "Visitors and crawlers may view this page once published."
+msgstr "Les visiteurs et les robots peuvent voir cette page si elle est publiée."
+
+#: inc/classes/builders/seobar/page.class.php:998
+msgid "Visitors and crawlers may view this page."
+msgstr "Les visiteurs et les robots peuvent voir cette page."
+
+#: inc/classes/builders/seobar/page.class.php:385
+#: inc/classes/builders/seobar/term.class.php:369
+msgid "Found repeated words."
+msgstr "Mots dupliqués trouvés."
+
+#: inc/classes/bridges/seosettings.class.php:117
+msgid "Post Type Archive Settings"
+msgstr "Réglages pour les archives de ce type de publication"
+
+#: inc/compat/plugin-woocommerce.php:274
+msgid "WooCommerce recommends not indexing this dynamic page."
+msgstr "WooCommerce recommande de ne pas indexer cette page."
+
+#: inc/classes/builders/seobar/page.class.php:187
+msgid "It's built from the page title."
+msgstr "Généré en utilisant le titre de la page."
+
+#: inc/views/edit/seo-settings-singular.php:164
+#: inc/views/edit/seo-settings-singular.php:171
+#: inc/views/edit/seo-settings-tt.php:158
+#: inc/views/settings/metaboxes/post-type-archive.php:211
+msgid "Remove the site title?"
+msgstr "Retirer le nom du site ?"
+
+#: inc/views/settings/metaboxes/robots.php:370
+msgid "These settings apply to other globally registered content types."
+msgstr "Ces réglages s’appliquent à tous les autres types de contenus disponibles."
+
+#: inc/views/settings/metaboxes/robots.php:369
+msgid "Global Settings"
+msgstr "Réglages généraux"
+
+#: inc/views/settings/metaboxes/robots.php:339
+msgid "These settings apply to the taxonomies of post types. When taxonomies have all their bound post types' options checked, they will inherit their status."
+msgstr "Ces réglages s’appliquent aux taxonomies des différents types de publications. Quand les taxonomies ont leur propre type de publication, elles en hériteront l’état."
+
+#: inc/views/settings/metaboxes/robots.php:338
+msgid "Taxonomy Settings"
+msgstr "Réglages des taxonomies"
+
+#. translators: PLURAL. 1 = noindex/nofollow/noarchive, 2 = Archives, Posts,
+#. Pages, etc.
+#: inc/views/settings/metaboxes/robots.php:296
+msgctxt "plural"
+msgid "Apply %1$s to %2$s?"
+msgstr "Appliquer %1$s à %2$s ?"
+
+#. translators: SINGULAR. 1 = noindex/nofollow/noarchive, 2 = The entire site
+#: inc/views/settings/metaboxes/robots.php:294
+msgctxt "singular"
+msgid "Apply %1$s to %2$s?"
+msgstr "Appliquer %1$s à %2$s ?"
+
+#: inc/views/settings/metaboxes/social.php:371
+msgid "LinkedIn displays the post's featured image in embeds. Check this option if you want to replace it with the social image."
+msgstr "LinkedIn affiche l’image mise en avant dans les contenus embarqués. Cocher cette case pour utiliser l’image pour les réseaux sociaux."
+
+#: inc/views/settings/metaboxes/social.php:370
+msgid "Use social image?"
+msgstr "Utiliser l’image pour les réseaux sociaux ?"
+
+#: inc/views/settings/metaboxes/social.php:363
+msgid "Only custom social images that are selected via the Media Library are considered."
+msgstr "Seules les images pour réseaux sociaux sélectionnées dans la médiathèque sont utilisées."
+
+#: inc/views/settings/metaboxes/social.php:358
+msgid "Check this option if you want to replace page titles with Open Graph titles in embeds."
+msgstr "Cocher cette case pour remplacer les titres des pages par les titres de l’Open Graph dans les contenus embarqués."
+
+#: inc/views/settings/metaboxes/social.php:357
+msgid "Use Open Graph title?"
+msgstr "Utiliser le titre de l’Open Graph ?"
+
+#: inc/views/settings/metaboxes/social.php:125
+msgid "Remove site title from generated social titles?"
+msgstr "Supprimer le nom du site des titres générés pour les réseaux sociaux ?"
+
+#: inc/views/settings/metaboxes/social.php:117
+msgid "When you provide a custom Open Graph or Twitter title, the site title will be omitted automatically."
+msgstr "Quand vous fournissez un titre pour Twitter ou pour l’Open Graph, le nom du site sera omis automatiquement."
+
+#: inc/views/settings/metaboxes/social.php:114
+msgid "Most social sites and third-party services automatically include the website URL inside their embeds. When the site title is described well in the site URL, including it in the social title will be redundant."
+msgstr "La plupart des réseaux sociaux et des services tiers incluent automatiquement l’URL du site dans leurs contenus embarqués. Quand le nom du site est explicite dans son URL, l’inclure dans le titre sur les réseaux sociaux peut être redondant."
+
+#: inc/views/settings/metaboxes/social.php:113
+msgid "Social Title Settings"
+msgstr "Réglages du titre pour les réseaux sociaux"
+
+#: inc/views/settings/metaboxes/sitemaps.php:371
+msgid "Show logo next to sitemap header title?"
+msgstr "Afficher le logo à côté du titre dans l’en-tête ?"
+
+#: inc/views/settings/metaboxes/sitemaps.php:366
+msgid "Header Title Logo"
+msgstr "Logo du titre de l’en-tête"
+
+#: inc/views/settings/metaboxes/sitemaps.php:321
+msgid "Optimized Sitemap Styling Settings"
+msgstr "Réglages de l’apparence du plan de site optimisé"
+
+#: inc/views/settings/metaboxes/sitemaps.php:289
+msgid "Only enable prerendering when generating the sitemap takes over 60 seconds."
+msgstr "Si le plan de site n’est pré-rendu qu’au moment de sa génération, cela prendra plus de 60 secondes."
+
+#: inc/views/settings/metaboxes/sitemaps.php:285
+msgid "This mitigates timeouts some search engines may experience when waiting for the sitemap to render. Transient caching for the sitemap must be enabled for this to work."
+msgstr "Ceci permet d’éviter les erreurs d’expiration de délais que certain moteurs de recherche peuvent rencontrer quand ils attendent qu’un plan de site s’affiche. Le cache transient pour le plan de site doit être activé."
+
+#: inc/views/settings/metaboxes/sitemaps.php:283
+msgid "Prerender optimized sitemap before pinging via cron?"
+msgstr "Précharger le plan de site avant de notifier avec le cron ?"
+
+#: inc/views/settings/metaboxes/sitemaps.php:155
+msgid "This setting affects how many pages are requested from the database per query."
+msgstr "Ce réglage modifie le nombre de pages demandées lors des requêtes à la base de données."
+
+#: inc/views/settings/metaboxes/sitemaps.php:122
+msgid "View the sitemap index."
+msgstr "Voir l’index du plan de site."
+
+#: inc/views/settings/metaboxes/sitemaps.php:95
+msgid "This sitemap is processed quicker by search engines."
+msgstr "Le plan de site est traité plus rapidement par les moteurs de recherche."
+
+#: inc/views/settings/metaboxes/sitemaps.php:93
+msgid "Output optimized sitemap?"
+msgstr "Générer un plan de site optimisé ?"
+
+#. translators: %s = Learn more URL. Markdown!
+#: inc/views/settings/metaboxes/sitemaps.php:70
+msgid "The sitemap does not contribute to ranking; [it can only help with indexing](%s). Search engines process smaller, less complicated sitemaps quicker, which shortens the time required for indexing pages."
+msgstr "Le plan de site ne change rien à votre classement dans les résultats de recherche ; [cela peut aider l’indexation](%s). Plus les plans de site sont simples et légers, plus le temps d’indexation des pages par les moteurs de recherche sera court."
+
+#. translators: 1: Option label, 2: [?] option info note, 3: Optional warning
+#: inc/views/settings/metaboxes/homepage.php:448
+#: inc/views/settings/metaboxes/homepage.php:464
+#: inc/views/settings/metaboxes/homepage.php:480
+msgctxt "robots setting"
+msgid "%1$s %2$s %3$s"
+msgstr "%1$s %2$s %3$s"
+
+#: inc/views/settings/metaboxes/description.php:27
+msgid "Learn how this feature works."
+msgstr "En savoir plus sur cette fonctionnalité."
+
+#: inc/views/settings/metaboxes/title.php:324
+msgid "Remove term type prefixes from generated archive titles?"
+msgstr "Retirer le préfixe des termes des titres des pages d’archives générés automatiquement ?"
+
+#: inc/views/settings/metaboxes/title.php:293
+msgid "Remove site title from the title?"
+msgstr "Retirer le nom du site dans le titre ?"
+
+#: inc/views/settings/metaboxes/title.php:285
+msgid "Always brand your titles. Search engines may ignore your titles with this feature enabled."
+msgstr "Prenez soin de vos titres. Les moteurs de recherche peuvent ignorer vos titres si cette fonctionnalité est activée."
+
+#: inc/views/settings/metaboxes/title.php:235
+msgid "Site Title"
+msgstr "Titre du site"
+
+#: inc/views/settings/metaboxes/title.php:253
+msgid "Site Title Location"
+msgstr "Emplacement du titre du site"
+
+#: inc/views/settings/metaboxes/title.php:250
+msgid "This option does not affect the homepage; it uses a different one."
+msgstr "Cette option ne change pas votre page d’accueil ; elle en utilise une autre."
+
+#. translators: %s = HTML tag example
+#: inc/views/settings/metaboxes/title.php:213
+msgid "This strips HTML tags, like %s, from the title. Disable this option to display generated HTML tags as plain text in meta titles."
+msgstr "Cette option supprime les balises HTML, comme %s, des titres. Désactivez cette option pour afficher les balises HTML telles quelles dans les métadonnées de titres."
+
+#. translators: 1: Extension name, 2: Extension link. Markdown!
+#: inc/views/settings/metaboxes/title.php:124
+msgid "The current theme doesn't support a feature that allows predictable output of titles. Consider installing [%1$s](%2$s) when you notice the title output in the browser-tab isn't as you have configured."
+msgstr "Le thème actuel ne prend pas en charge la fonction qui permet de déterminer précisément la manière dont les titres apparaîtront. Installez [%1$s](%2$s) si vous remarquez que le titre affiché par votre navigateur ne correspond pas à ce que vous avez configuré."
+
+#. translators: %s = title-tag
+#: inc/views/settings/metaboxes/title.php:116
+msgid "Theme %s Support Missing"
+msgstr "%s non supporté par votre thème."
+
+#: inc/views/settings/metaboxes/title.php:76
+msgid "Example Archive Title Output"
+msgstr "Exemple de titre d’archive généré automatiquement"
+
+#: inc/views/settings/metaboxes/title.php:59
+msgid "Example Page Title Output"
+msgstr "Exemple de titre de page généré automatiquement"
+
+#: inc/views/settings/metaboxes/title.php:29
+msgid "Example Post"
+msgstr "Exemple de publication"
+
+#: inc/views/settings/metaboxes/general.php:396
+msgid "When taxonomies have all their bound post types excluded, they will inherit their exclusion status."
+msgstr "Quand des taxonomies ont leur type de publications liées exclues, elles en hériteront les réglages d’exclusion."
+
+#: inc/views/settings/metaboxes/general.php:395
+msgid "Select taxonomies which should be excluded."
+msgstr "Sélectionnez les taxonomies à exclure."
+
+#: inc/views/settings/metaboxes/general.php:394
+msgid "Taxonomy Exclusions"
+msgstr "Taxonomies exclues"
+
+#: inc/views/settings/metaboxes/general.php:364
+msgid "Select post types which should be excluded."
+msgstr "Sélectionnez les types de publications à exclure."
+
+#: inc/views/settings/metaboxes/general.php:363
+msgid "Post Type Exclusions"
+msgstr "Types de publications exclues"
+
+#: inc/views/settings/metaboxes/general.php:358
+msgid "Default post types and taxonomies can not be excluded."
+msgstr "Les types de publications et les taxonomies par défaut ne peuvent être exclues."
+
+#. translators: backticks are code wraps. Markdown!
+#: inc/views/settings/metaboxes/general.php:354
+msgid "These options should not need changing when post types and taxonomies are registered correctly. When they aren't, consider applying `noindex` to purge them from search engines, instead."
+msgstr "Ces options ne devraient pas être modifiées quand les types de publications et les taxonomies sont correctement configurées. Quand ce n’est pas le cas, envisagez plutôt d’appliquer `noindex` pour les supprimer des moteurs de recherche."
+
+#: inc/views/settings/metaboxes/general.php:350
+msgid "When checked, these options will remove meta optimizations, SEO suggestions, and sitemap inclusions for the selected post types and taxonomies. This will allow search engines to crawl the post type and taxonomies without advanced restrictions or directions."
+msgstr "Quand ces options sont activées, elles suppriment les optimisations des métadonnées, les conseils de SEO et l’inclusion au plan de site des types de publications et des taxonomies sélectionnés. Ceci permettra aux moteurs de recherche d’inclure les types de publications et les taxonomies sans indications ou restrictions précises."
+
+#: inc/views/settings/metaboxes/general.php:349
+msgid "Exclusion Settings"
+msgstr "Réglages d’exclusion"
+
+#: inc/views/settings/metaboxes/sitemaps.php:172
+msgid "Enable optimized sitemap generation cache?"
+msgstr "Activer le cache pour le plan de site généré ?"
+
+#: inc/views/settings/metaboxes/general.php:42
+msgid "Exclusions"
+msgstr "Exclusions"
+
+#: inc/views/templates/settings/settings.php:59
+msgid "This taxonomy inherited the state from the post type, so this option won't have any effect."
+msgstr "Cette taxonomie hérite ses propriétés du type de publications, donc cette option n’aura aucun effet."
+
+#: inc/views/templates/settings/settings.php:49
+msgid "The site title is already removed from meta titles, so this option only affects the homepage."
+msgstr "Le titre du site est déjà retiré des métadonnées de titre, donc cette option n’affectera que la page d’accueil."
+
+#: inc/views/templates/settings/settings.php:39
+msgid "This taxonomy's post types are also excluded, so this option won't have any effect."
+msgstr "Les taxonomies de ce type de publications sont aussi exclues, donc l’option n’aura aucun effet."
+
+#: inc/views/templates/settings/settings.php:29
+msgid "This taxonomy is excluded, so this option won't work."
+msgstr "Ce type de taxonomie est exclue, donc l’option n’aura aucun effet."
+
+#. translators: %s: Taxonomy singular name.
+#: inc/classes/bridges/listedit.class.php:407
+#: inc/classes/bridges/scripts.class.php:512
+#: inc/classes/generate-title.class.php:949
+#: inc/classes/generate-title.class.php:985
+#: inc/classes/internal/deprecated.class.php:1564
+msgctxt "taxonomy term archive title prefix"
+msgid "%s:"
+msgstr "%s :"
+
+#: inc/classes/generate-title.class.php:941
+#: inc/classes/generate-title.class.php:995
+msgctxt "post type archive title prefix"
+msgid "Archives:"
+msgstr "Archives :"
+
+#: inc/classes/generate-title.class.php:917
+msgctxt "date archive title prefix"
+msgid "Day:"
+msgstr "Jour :"
+
+#: inc/classes/generate-title.class.php:914
+msgctxt "date archive title prefix"
+msgid "Month:"
+msgstr "Mois :"
+
+#: inc/classes/generate-title.class.php:911
+msgctxt "date archive title prefix"
+msgid "Year:"
+msgstr "Année :"
+
+#: inc/classes/generate-title.class.php:907
+#: inc/classes/generate-title.class.php:992
+msgctxt "author archive title prefix"
+msgid "Author:"
+msgstr "Auteur :"
+
+#: inc/classes/generate-title.class.php:904
+#: inc/classes/generate-title.class.php:980
+msgctxt "tag archive title prefix"
+msgid "Tag:"
+msgstr "Étiquette :"
+
+#: inc/classes/generate-title.class.php:901
+#: inc/classes/generate-title.class.php:977
+#: inc/views/settings/metaboxes/title.php:33
+msgctxt "category archive title prefix"
+msgid "Category:"
+msgstr "Catégorie :"
+
+#. translators: 1: Title prefix. 2: Title.
+#: inc/classes/generate-title.class.php:853
+#: inc/classes/internal/deprecated.class.php:1562
+#: inc/views/settings/metaboxes/title.php:41
+msgctxt "archive title"
+msgid "%1$s %2$s"
+msgstr "%1$s %2$s"
+
+#. translators: %s = number
+#: inc/classes/interpreters/form.class.php:144
+msgid "Characters: %s"
+msgstr "Signes : %s"
+
+#: inc/classes/builders/seobar/term.class.php:398
+msgid "It's built from the term SEO meta input."
+msgstr "Généré à partir des méta SEO renseignées sur le terme."
+
+#: inc/classes/builders/seobar/term.class.php:396
+msgid "Obtained from the term SEO meta input."
+msgstr "Obtenu à partir des méta SEO renseignées sur le terme."
+
+#: inc/classes/builders/seobar/term.class.php:196
+msgid "It's built from the term name."
+msgstr "Généré en utilisant le nom du terme."
+
+#. translators: %s = timestamp
+#: inc/classes/builders/sitemap/base.class.php:187
+msgid "Sitemap is prerendered on %s"
+msgstr "Le plan de site est prérendu à %s"
+
+#: inc/classes/builders/seobar/page.class.php:414
+msgid "It's built from the page SEO meta input."
+msgstr "Généré à partir des méta SEO renseignées sur la page."
+
+#: inc/classes/builders/seobar/page.class.php:412
+msgid "Obtained from the page SEO meta input."
+msgstr "Obtenu à partir des méta SEO renseignées sur la page."
+
+#: inc/classes/builders/seobar/page.class.php:381
+#: inc/classes/builders/seobar/term.class.php:365
+msgid "Markup syntax was found that isn't transformed. Consider rewriting the custom description."
+msgstr "De la syntaxe Markup a été détectée mais elle n’a pas été prise en compte. Vérifiez que la description personnalisée vous convient."
+
+#: inc/classes/builders/seobar/page.class.php:378
+msgid "It's built from the page excerpt field."
+msgstr "Généré en utilisant le contenu du champ Extrait de la page."
+
+#: inc/classes/builders/seobar/page.class.php:376
+msgid "A page builder is used that renders content dynamically, so no description can be generated for performance and privacy reasons. Consider providing a custom description."
+msgstr "Un constructeur de page est utilisé pour générer le contenu dynamiquement, donc aucune description ne peut être générée, à la fois pour des raisons de performance et de confidentialité. Envisagez de rédiger une description personnalisée."
+
+#: inc/classes/builders/seobar/page.class.php:172
+#: inc/classes/builders/seobar/term.class.php:181
+msgid "Markup syntax was found that isn't transformed. Consider rewriting the custom title."
+msgstr "De la syntaxe Markup a été détectée mais elle n’a pas été prise en compte. Vérifiez que le titre personnalisé vous convient."
+
+#: inc/classes/builders/seobar/page.class.php:167
+#: inc/classes/builders/seobar/term.class.php:176
+msgid "It's not branded. Search engines may ignore your title. Consider adding back the site title."
+msgstr "Ce n’est pas marqué. Les moteurs de recherche peuvent ignorer votre titre. Pensez à remettre le titre du site."
+
+#. translators: 1: Method or Property name, 2: The SEO Framework class. 3:
+#. Message
+#: inc/classes/internal/debug.class.php:249
+msgid "%1$s is not accessible in %2$s. %3$s"
+msgstr "%1$s n’est pas accessible dans %2$s. %3$s"
+
+#. translators: 1 = 'Assessment(s)', 2 = A list of assessments.
+#: inc/classes/interpreters/seobar.class.php:373
+msgctxt "assessment list"
+msgid "%1$s: %2$s"
+msgstr "%1$s : %2$s"
+
+#. translators: 1 = Assessment number (mind the %d (D)), 2 = Assessment
+#. explanation
+#: inc/classes/interpreters/seobar.class.php:371
+msgctxt "assessment enumeration"
+msgid "%1$d: %2$s"
+msgstr "%1$d : %2$s"
+
+#. translators: 1 = SEO Bar type title, 2 = Status reason. 3 = Assessments
+#: inc/classes/interpreters/seobar.class.php:326
+msgctxt "SEO Bar ARIA assessment enumeration"
+msgid "%1$s: %2$s %3$s"
+msgstr "%1$s : %2$s %3$s"
+
+#. translators: %s = Link, markdown.
+#: bootstrap/upgrade.php:450
+msgid "To take full advantage of all SEO features, please follow our [5-minute setup guide](%s)."
+msgstr "Pour tirer pleinement profit des fonctionnalités SEO, veuillez suivre notre guide [de configuration en 5 minutes](%s)."
+
+#: bootstrap/upgrade.php:446
+msgid "The SEO Framework automatically optimizes your website for search engines and social media."
+msgstr "The SEO Framework optimise automatiquement votre site pour les moteurs de recherche et pour les réseaux sociaux."
+
+#. translators: %1$s = New, lower version number, surrounded in
+#. markdown-backticks. %2$s = Old, higher version number, surrounded in
+#. markdown-backticks.
+#: bootstrap/upgrade.php:366
+msgid "Your website has been downgraded successfully to use The SEO Framework at database version `%1$s` from `%2$s`."
+msgstr "Votre site a bien été rétrogradé pour utiliser The SEO Framework dans la version « %1$s » à « %2$s » de la base de données."
+
+#: inc/views/settings/metaboxes/title.php:208
+msgid "Some titles may have HTML tags inserted by the author for styling."
+msgstr "Des balises HTML peuvent être insérées dans certains titres à des fins de customisation."
+
+#: inc/views/settings/metaboxes/title.php:207
+msgid "A title is generated for every page."
+msgstr "Un titre est généré pour chaque page."
+
+#: inc/views/settings/metaboxes/social.php:308
+msgid "However, for now, these fields seem to have no discernible effect."
+msgstr "Cependant, pour l’instant, ces champs ne semblent pas avoir d’effets."
+
+#: inc/views/settings/metaboxes/social.php:307
+msgid "Twitter claims users will be able to follow and view the profiles of attributed accounts directly from the card when these fields are filled in."
+msgstr "D’après Twitter, les utilisateurs pourront suivre et accéder aux profils de ces comptes directement depuis les cartes où ces champs apparaissent."
+
+#: inc/views/settings/metaboxes/social.php:305
+msgid "Card and Content Attribution"
+msgstr "Attribution des contenus et des cartes."
+
+#: inc/views/settings/metaboxes/social.php:290
+msgid "Learn more about this card."
+msgstr "En savoir plus à propos de cette carte."
+
+#: inc/classes/bridges/plugintable.class.php:69
+msgctxt "Plugin pricing"
+msgid "Pricing"
+msgstr "Prix"
+
+#: inc/compat/plugin-bbpress.php:176
+msgid "View: %s"
+msgstr "Voir : %s"
+
+#: inc/compat/plugin-bbpress.php:168
+msgid "Edit %s's Profile"
+msgstr "Modifier le profil de %s"
+
+#: inc/compat/plugin-bbpress.php:163
+msgid "Edit Your Profile"
+msgstr "Modifier votre profil"
+
+#. translators: user's display name
+#: inc/compat/plugin-bbpress.php:154
+msgid "%s's Profile"
+msgstr "Profil de %s"
+
+#: inc/compat/plugin-bbpress.php:150
+msgid "Your Profile"
+msgstr "Votre profil"
+
+#. translators: user's display name
+#: inc/compat/plugin-bbpress.php:144
+msgid "%s's Subscriptions"
+msgstr "Abonnements de %s"
+
+#: inc/compat/plugin-bbpress.php:140
+msgid "Your Subscriptions"
+msgstr "Vos abonnements"
+
+#. translators: user's display name
+#: inc/compat/plugin-bbpress.php:134
+msgid "%s's Favorites"
+msgstr "Favoris de %s"
+
+#: inc/compat/plugin-bbpress.php:130
+msgid "Your Favorites"
+msgstr "Vos favoris"
+
+#. translators: user's display name
+#: inc/compat/plugin-bbpress.php:124
+msgid "%s's Replies"
+msgstr "Réponses de %s"
+
+#: inc/compat/plugin-bbpress.php:120
+msgid "Your Replies"
+msgstr "Vos réponses"
+
+#. translators: user's display name
+#: inc/compat/plugin-bbpress.php:114
+msgid "%s's Topics"
+msgstr "Sujets de %s"
+
+#: inc/compat/plugin-bbpress.php:110
+msgid "Your Topics"
+msgstr "Vos sujets"
+
+#: inc/compat/plugin-bbpress.php:97
+msgid "Topic Tag: %s"
+msgstr "Étiquettes du sujet : %s"
+
+#: inc/compat/plugin-bbpress.php:88
+msgid "Topic: %s"
+msgstr "Sujet : %s"
+
+#: inc/compat/plugin-bbpress.php:83
+msgid "Forum: %s"
+msgstr "Forum : %s"
+
+#: inc/compat/plugin-bbpress.php:76
+msgid "Topic Tag Edit: %s"
+msgstr "Modifier les étiquettes du sujet : %s"
+
+#: inc/compat/plugin-bbpress.php:71
+msgid "Reply Edit: %s"
+msgstr "Modifier la réponse : %s"
+
+#: inc/compat/plugin-bbpress.php:66
+msgid "Topic Edit: %s"
+msgstr "Modifier le sujet : %s"
+
+#: inc/compat/plugin-bbpress.php:61
+msgid "Forum Edit: %s"
+msgstr "Modifier le forum : %s"
+
+#: inc/views/settings/metaboxes/robots.php:118
+msgid "Enable advanced query protection?"
+msgstr "Activer la protection avancée"
+
+#: inc/views/settings/metaboxes/robots.php:113
+msgid "Some URL queries can cause WordPress to show faux archives. When search engines spot these, they will crawl and index them, which may cause a drop in ranking. Advanced query protection will prevent robots from indexing these archives."
+msgstr "Certaines requêtes d’URL peuvent forcer WordPress à afficher de fausses pages d’archives. Quand les moteurs de recherche les repèrent, ils vont les parcourir et les indexer. Ceci peut nuire à votre référencement. La protection avancée va empêcher les robots d’indexer ces pages d’archives."
+
+#: inc/views/settings/metaboxes/robots.php:112
+msgid "Advanced Query Protection"
+msgstr "Protection avancée contre les requêtes"
+
+#: inc/views/settings/metaboxes/feed.php:32
+msgid "If this site publishes podcasts, enable this option. Otherwise, leave it disabled. Indexing feeds can cause search engines to crawl and index new pages slower; however, some podcast services require feeds to be indexable."
+msgstr "Si votre site publie des podcasts, activez cette option. Sinon, laissez-la désactivée. Indexer des flux peut ralentir l’indexation des nouvelles pages, mais certains services de podcasts en ont besoin pour fonctionner."
+
+#: inc/views/settings/metaboxes/feed.php:31
+msgid "Allow indexing of feeds?"
+msgstr "Autoriser l’indexation de flux ?"
+
+#: inc/views/settings/metaboxes/webmaster.php:55
+msgid "Get the Baidu verification code."
+msgstr "Obtenir le code de vérification Baidu."
+
+#. translators: literal translation from '百度搜索资源平台'-Code
+#: inc/views/settings/metaboxes/webmaster.php:53
+msgid "Baidu Search Resource Platform Code"
+msgstr "Plateforme de ressources pour développeurs de Baidu"
+
+#. translators: %s = Learn more URL. Markdown!
+#: inc/views/settings/metaboxes/schema.php:298
+msgid "These settings are marked for removal. When you clear a field, it will be hidden forever. [Learn more](%s)."
+msgstr "Ces réglages vont être supprimés. Si vous effacez ces champs, vous ne pourrez les retrouver. [En savoir plus](%s)."
+
+#: inc/views/settings/metaboxes/homepage.php:437
+msgctxt "Bear with me: the homepage can be edited globally, or via its page. Thus \"homepage page\"."
+msgid "Edit homepage page settings"
+msgstr "Modifier les réglages pour la page d’accueil"
+
+#: inc/views/settings/metaboxes/social.php:380
+msgid "Discord shows the page author's name above the sharing embed. Check this option if you find this undesirable."
+msgstr "Discord affiche le nom de l’auteur de la page au dessus du contenu embarqué partagé. Désactivez ces options si vous ne pouvez le tolérer."
+
+#: inc/views/settings/metaboxes/social.php:379
+msgid "Remove author name?"
+msgstr "Retirer le nom de l’auteur ?"
+
+#: inc/views/settings/metaboxes/social.php:348
+msgid "Some social sharing services and clients, like WordPress, LinkedIn, and Discord, obtain the linked page information via oEmbed."
+msgstr "Certains services de partages ou certains outils, comme WordPress, LinkedIn, et Discord, obtiennent des informations sur la page partagée grâce à oEmbed."
+
+#: inc/views/settings/metaboxes/social.php:347
+msgid "oEmbed Settings"
+msgstr "Réglages de oEmbed"
+
+#: inc/views/settings/metaboxes/social.php:264
+msgid "Twitter Integration Settings"
+msgstr "Réglages de l’intégration de Twitter"
+
+#: inc/views/settings/metaboxes/social.php:198
+msgid "Facebook Integration Settings"
+msgstr "Réglages de l’intégration Facebook"
+
+#: inc/views/settings/metaboxes/social.php:168
+msgid "Theme Color"
+msgstr "Couleur du thème"
+
+#: inc/views/settings/metaboxes/social.php:164
+msgid "Discord styles embeds with the theme color. The theme color can also affect the tab-color in some browsers."
+msgstr "Discord utilise la couleur du thème lorsqu’il affiche des liens. La couleur du thème est aussi affichée par certains navigateurs."
+
+#: inc/views/settings/metaboxes/social.php:163
+msgid "Theme Color Settings"
+msgstr "Réglage de la couleur du thème"
+
+#: inc/views/settings/metaboxes/social.php:106
+msgid "WordPress, Discord, Drupal, Squarespace, and many other clients can make use of these scripts."
+msgstr "WordPress, Discord, Drupal, Squarespace et d’autres sites peuvent utiliser ces balises."
+
+#: inc/views/settings/metaboxes/social.php:105
+msgid "Output oEmbed scripts?"
+msgstr "Utiliser les scripts oEmbed ?"
+
+#: inc/views/templates/settings/settings.php:19
+msgid "This post type is excluded, so this option won't work."
+msgstr "Ce type de publication est exclu, donc l’option n’aura aucun effet."
+
+#: inc/classes/bridges/plugintable.class.php:103
+msgid "Get support"
+msgstr "Obtenir de l’aide"
+
+#: inc/classes/builders/seobar/page.class.php:178
+#: inc/classes/builders/seobar/page.class.php:387
+#: inc/classes/builders/seobar/term.class.php:187
+#: inc/classes/builders/seobar/term.class.php:371
+msgid "Found markup syntax."
+msgstr "Syntaxe Markup trouvée."
+
+#: inc/views/settings/metaboxes/social.php:84
+msgid "Output various meta tags targeted at Facebook."
+msgstr "Génère des méta pour Facebook."
+
+#: inc/views/settings/metaboxes/robots.php:242
+msgctxt "quanity: zero"
+msgid "None, still image only"
+msgstr "Aucun, image fixe uniquement"
+
+#: inc/views/settings/metaboxes/robots.php:198
+msgid "This directive also imposes a limit on meta descriptions and structured data, which unintentionally restricts the amount of information you can share. Therefore, it's best to use at least a 320 character limit."
+msgstr "Ce réglage s’applique aussi aux méta descriptions et aux données structurées, ce qui peut limiter la quantité d’informations partageables. Par conséquent, il est préférable de le fixer à 320 caractères au minimum."
+
+#: inc/views/list/bulk-post.php:71
+#: inc/views/settings/metaboxes/post-type-archive.php:439
+msgid "Default (unknown)"
+msgstr "Par défaut (inconnu)"
+
+#: inc/views/list/bulk-post.php:70
+msgid "&mdash; No Change &mdash;"
+msgstr "&mdash; Aucune modification &mdash;"
+
+#: inc/views/edit/seo-settings-tt.php:349
+msgid "These directives may urge robots not to display, follow links on, or create a cached copy of this term."
+msgstr "Ces réglages vont demander aux robots de ne pas afficher, ni suivre des liens, ni créer une copie en cache de ce terme."
+
+#: inc/views/edit/seo-settings-tt.php:321 inc/views/list/bulk-post.php:57
+#: inc/views/list/quick-post.php:94 inc/views/list/quick-term.php:94
+msgid "Visibility SEO Settings"
+msgstr "Réglage SEO de la visibilité"
+
+#: inc/views/edit/seo-settings-tt.php:204
+msgid "Social SEO Settings"
+msgstr "Réglages SEO pour les réseaux sociaux"
+
+#: inc/views/edit/seo-settings-tt.php:99 inc/views/list/quick-post.php:57
+#: inc/views/list/quick-term.php:57
+msgid "General SEO Settings"
+msgstr "Réglages SEO généraux"
+
+#: inc/views/edit/seo-settings-singular.php:380
+msgid "Exclude this page from all archive queries on this site."
+msgstr "Exclure cette page des pages d’archives sur ce site."
+
+#: inc/views/edit/seo-settings-singular.php:371
+msgid "Exclude this page from all search queries on this site."
+msgstr "Exclure cette page des résultats de recherche sur ce site."
+
+#. translators: %s = default option value
+#: inc/views/edit/seo-settings-singular.php:331
+#: inc/views/edit/seo-settings-singular.php:339
+#: inc/views/edit/seo-settings-tt.php:365
+#: inc/views/edit/seo-settings-tt.php:374 inc/views/list/quick-post.php:114
+#: inc/views/list/quick-term.php:114
+#: inc/views/settings/metaboxes/post-type-archive.php:446
+msgid "Default (%s)"
+msgstr "Par défaut (%s)"
+
+#: inc/views/edit/seo-settings-singular.php:303
+msgid "Note: A non-default selection here will overwrite the global homepage SEO settings."
+msgstr "Note : modifier les réglages par défaut écrasera les réglages SEO de la page d’accueil."
+
+#: inc/views/edit/seo-settings-singular.php:289
+msgid "These directives may urge robots not to display, follow links on, or create a cached copy of this page."
+msgstr "Ces réglages vont demander aux robots de ne pas afficher, ni suivre des liens, ni créer une copie en cache de cette page."
+
+#: inc/views/edit/seo-settings-singular.php:246
+#: inc/views/edit/seo-settings-tt.php:75 inc/views/list/bulk-post.php:29
+#: inc/views/list/quick-post.php:29
+#: inc/views/settings/metaboxes/post-type-archive.php:392
+msgid "Link following"
+msgstr "Suivi de lien"
+
+#: inc/views/edit/seo-settings-singular.php:166
+msgid "For the homepage, this option must be managed on the SEO Settings page."
+msgstr "Pour la page d’accueil, cette option doit être gérée depuis la page des réglages SEO."
+
+#: inc/views/settings/metaboxes/title.php:182
+msgid "If the title consists of multiple parts, then the separator will go in-between them."
+msgstr "Si le titre se compose de plusieurs parties, le séparateur ira entre eux."
+
+#: inc/views/settings/metaboxes/feed.php:73
+msgid "View the main feed."
+msgstr "Afficher le flux principal."
+
+#. translators: %s = Reading Settings URL. Links are in Markdown!
+#: inc/views/settings/metaboxes/feed.php:60
+msgid "Note: The feed is already converted into an excerpt through the [Reading Settings](%s)."
+msgstr "Note : le flux est déjà converti en extrait par le biais des [Réglages de lecture](%s)."
+
+#. translators: the backticks are Markdown! Preserve them as-is!
+#: inc/views/settings/metaboxes/social.php:408
+msgid "Add `article:modified_time` to posts?"
+msgstr "Ajouter `article:modified_time` aux publications ?"
+
+#. translators: the backticks are Markdown! Preserve them as-is!
+#: inc/views/settings/metaboxes/social.php:399
+msgid "Add `article:published_time` to posts?"
+msgstr "Ajouter `article:published_time` aux articles ?"
+
+#: inc/views/settings/metaboxes/social.php:274
+msgid "The Twitter Card type may have the image highlighted, either small at the side or large above."
+msgstr "Le type de carte Twitter peut influer la manière dont les images sont affichées, soit petites à côté du texte, soit grandes, au dessus du texte."
+
+#: inc/views/settings/metaboxes/social.php:265
+msgid "Twitter post sharing works mostly through Twitter Cards, and may fall back to use Open Graph. However, you can also link your Business and Personal Twitter pages, among various other options."
+msgstr "Le partage de publications Twitter fonctionne principalement via les cartes Twitter. En leur absence, les options de l’Open Graph seront utilisées. Cependant, vous pouvez lier votre profil Twitter personnel ou celui de votre entreprise, entre autres options."
+
+#: inc/views/settings/metaboxes/social.php:148
+msgid "When no image is available from the page or term, this fallback image will be used instead."
+msgstr "Lorsqu’aucune image n’est disponible à partir de la page ou du terme, cette image par défaut sera utilisée."
+
+#: inc/views/settings/metaboxes/social.php:140
+msgid "This enables users to select any image attached to the page shared on social networks, like Facebook."
+msgstr "Cette option permet aux utilisateurs de sélectionner l’image qu’ils souhaitent parmi celles présentes sur la page, lors du partage sur les réseaux sociaux, et notamment Facebook."
+
+#: inc/views/settings/metaboxes/social.php:139
+msgid "Output multiple Open Graph image tags?"
+msgstr "Générer plusieurs méta images Open Graph ?"
+
+#. translators: %s = Homepage URL markdown
+#: inc/views/settings/metaboxes/homepage.php:522
+msgid "Note: These options may be overwritten by the [page settings](%s)."
+msgstr "Note : ces options peuvent être remplacées par les [réglages de page](%s)."
+
+#: inc/views/edit/seo-settings-singular.php:299
+#: inc/views/settings/metaboxes/homepage.php:494
+msgid "Warning: No public site should ever apply \"noindex\" or \"nofollow\" to the homepage."
+msgstr "Avertissement : aucun site public ne devrait appliquer « noindex » ou « nofollow » à la page d’accueil."
+
+#. translators: the backticks are Markdown! Preserve them as-is!
+#: inc/views/settings/metaboxes/homepage.php:483
+msgid "Apply `noarchive` to the homepage?"
+msgstr "Appliquer `noarchive` à la page d’accueil ?"
+
+#. translators: the backticks are Markdown! Preserve them as-is!
+#: inc/views/settings/metaboxes/homepage.php:467
+msgid "Apply `nofollow` to the homepage?"
+msgstr "Appliquer `nofollow` à la page d’accueil ?"
+
+#. translators: the backticks are Markdown! Preserve them as-is!
+#: inc/views/settings/metaboxes/homepage.php:451
+msgid "Apply `noindex` to the homepage?"
+msgstr "Appliquer `noindex` à la page d’accueil ?"
+
+#: inc/views/settings/metaboxes/homepage.php:438
+msgid "Overwritten by page settings"
+msgstr "Écrasé par les réglages de page"
+
+#: inc/views/edit/seo-settings-singular.php:567
+#: inc/views/edit/seo-settings-tt.php:301
+#: inc/views/settings/metaboxes/homepage.php:399
+#: inc/views/settings/metaboxes/post-type-archive.php:338
+msgid "The social image URL can be used by search engines and social networks alike. It's best to use an image with a 1.91:1 aspect ratio that is at least 1200px wide for universal support."
+msgstr "L’URL d’image à destination des réseaux sociaux peut être utilisée par les moteurs de recherche et les réseaux sociaux. Il est préférable d’utiliser une image avec un ratio de 1.91:1, et d’au moins 1200px de large."
+
+#: inc/views/settings/metaboxes/homepage.php:107
+msgid "Note: The input value of this field may be used to describe the name of the site elsewhere."
+msgstr "Note : le contenu de ce champ peut être utilisé pour décrire le nom du site."
+
+#: inc/views/settings/metaboxes/sitemaps.php:322
+msgid "You can style the optimized sitemap to give it a more personal look for your visitors. Search engines do not use these styles."
+msgstr "Vous pouvez personnaliser l’apparence du plan de site pour vos visiteurs. Les moteurs de recherche, eux, n’en tiendront pas compte."
+
+#: inc/views/settings/metaboxes/sitemaps.php:275
+msgid "This speeds up post and term saving processes, by offsetting pinging to a later time."
+msgstr "Cela accélère l’enregistrement des publications et des termes, en décalant le ping à plus tard."
+
+#: inc/views/settings/metaboxes/sitemaps.php:273
+msgid "Use cron for pinging?"
+msgstr "Utiliser le cron pour notifier les moteurs de recherche ?"
+
+#. translators: the backticks are Markdown! Preserve them as-is!
+#: inc/views/settings/metaboxes/sitemaps.php:255
+msgid "Add `<lastmod>` to the sitemap?"
+msgstr "Ajouter `<lastmod>` au sitemap ?"
+
+#: inc/views/settings/metaboxes/sitemaps.php:248
+msgid "The modified time suggests to search engines where to look for content changes first."
+msgstr "La date d’édition indique aux moteurs de recherche le contenu à analyser en priorité."
+
+#: inc/views/settings/metaboxes/sitemaps.php:240
+msgid "View the robots.txt output."
+msgstr "Voir le contenu de robots.txt."
+
+#: inc/views/settings/metaboxes/sitemaps.php:223
+msgid "Sitemap Hinting"
+msgstr "Emplacement du sitemap"
+
+#: inc/views/settings/metaboxes/sitemaps.php:217
+msgid "The robots.txt output is the first thing search engines look for before crawling your site. If you add the sitemap location in that output, then search engines may automatically access and index the sitemap."
+msgstr "Le robots.txt est la première chose que les moteurs de recherche utilisent avant de scanner votre site. Si vous y ajoutez l’emplacement du sitemap, les moteurs de recherche peuvent y accéder automatiquement et l’indexer."
+
+#. translators: 1 = Link to settings, Markdown. 2 = example input, also
+#. markdown! Preserve the Markdown as-is!
+#: inc/views/settings/metaboxes/sitemaps.php:205
+msgid "Change your [Permalink Settings](%1$s). Recommended structure: `%2$s`."
+msgstr "Modifier vos [Réglages des permaliens](%1$s). Structure recommandée : `%2$s`."
+
+#: inc/views/settings/metaboxes/sitemaps.php:199
+msgid "Note: You're using the plain permalink structure; so, no robots.txt file can be generated."
+msgstr "Note : votre structure de permaliens est simple ; aucun fichier robots.txt ne peut être généré."
+
+#: inc/views/settings/metaboxes/sitemaps.php:110
+msgid "View the base sitemap."
+msgstr "Voir le sitemap de base du site."
+
+#: inc/views/settings/metaboxes/sitemaps.php:64
+msgid "The sitemap is an XML file that lists indexable pages of your website along with optional metadata. It helps search engines find new and updated content quickly."
+msgstr "Le plan de site est un fichier XML qui répertorie les pages indexables de votre site ainsi que des métadonnées. Cela permet aux moteurs de recherche de trouver vos nouveaux contenus et les mises à jour, et d’en tenir compte plus rapidement."
+
+#: inc/views/settings/metaboxes/schema.php:271
+msgid "Tumblr Blog"
+msgstr "Blog Tumblr"
+
+#: inc/views/settings/metaboxes/schema.php:264
+msgid "SoundCloud Profile"
+msgstr "Profil SoundCloud"
+
+#: inc/views/settings/metaboxes/schema.php:257
+msgid "Pinterest Profile"
+msgstr "Profil Pinterest"
+
+#: inc/views/settings/metaboxes/schema.php:246
+msgid "LinkedIn Profile"
+msgstr "Profil LinkedIn"
+
+#: inc/views/settings/metaboxes/schema.php:239
+msgid "Youtube Profile"
+msgstr "Votre profil YouTube"
+
+#: inc/views/settings/metaboxes/schema.php:232
+msgid "Instagram Profile"
+msgstr "Profil Instagram"
+
+#: inc/views/settings/metaboxes/schema.php:225
+msgctxt "Google+ is dead. &#8224; is a cross, indicating that."
+msgid "Google+ Profile&#8224;"
+msgstr "Profil Google &#8224;"
+
+#: inc/views/settings/metaboxes/schema.php:211
+msgid "Facebook Page"
+msgstr "Page Facebook"
+
+#: inc/views/settings/metaboxes/schema.php:292
+msgid "Add links that lead directly to the connected social pages of this website."
+msgstr "Ajoutez des liens qui mènent directement aux pages des réseaux sociaux de ce site."
+
+#: inc/views/settings/metaboxes/robots.php:279
+msgid "This may limit the video preview length for all videos on this site."
+msgstr "Cela peut limiter la longueur de prévisualisation vidéo pour toutes les vidéos de votre site."
+
+#: inc/views/settings/metaboxes/robots.php:275
+msgid "Maximum video preview length"
+msgstr "Longueur maximale de l’aperçu vidéo"
+
+#. translators: %d = number
+#: inc/views/settings/metaboxes/robots.php:246
+msgid "%d second"
+msgid_plural "%d seconds"
+msgstr[0] "%d seconde"
+msgstr[1] "%d secondes"
+
+#: inc/views/settings/metaboxes/robots.php:241
+msgid "Full video preview"
+msgstr "Aperçu de la vidéo entière"
+
+#: inc/views/settings/metaboxes/robots.php:231
+msgid "This may limit the image preview size for all images from this site."
+msgstr "Cela peut limiter la taille des aperçus d’image pour toutes les images de ce site."
+
+#: inc/views/settings/metaboxes/robots.php:227
+msgid "Maximum image preview size"
+msgstr "Taille maximale des aperçus d’image"
+
+#: inc/views/settings/metaboxes/robots.php:209
+msgid "Large or full size"
+msgstr "Grande ou pleine taille"
+
+#: inc/views/settings/metaboxes/robots.php:208
+msgid "Thumbnail or standard size"
+msgstr "Miniature ou taille standard"
+
+#: inc/views/settings/metaboxes/robots.php:207
+msgctxt "quanity: zero"
+msgid "None, disallow preview"
+msgstr "Aucune, pas d’aperçu"
+
+#: inc/views/settings/metaboxes/robots.php:194
+msgid "This may limit the text snippet length for all pages on this site."
+msgstr "Cela peut limiter la longueur de l’extrait textuel pour toutes les pages de ce site."
+
+#: inc/views/settings/metaboxes/robots.php:190
+msgid "Maximum text snippet length"
+msgstr "Longueur maximale de l’extrait textuel"
+
+#: inc/views/settings/metaboxes/robots.php:167
+#: inc/views/settings/metaboxes/robots.php:253
+msgid "Granular directive"
+msgstr "Directive Granulaire"
+
+#: inc/views/settings/metaboxes/robots.php:166
+#: inc/views/settings/metaboxes/robots.php:252
+msgid "Standard directive"
+msgstr "Directive standard"
+
+#. translators: %d = number
+#: inc/views/settings/metaboxes/robots.php:160
+msgid "%d character"
+msgid_plural "%d characters"
+msgstr[0] "%d caractère"
+msgstr[1] "%d caractères"
+
+#: inc/views/settings/metaboxes/robots.php:156
+msgctxt "quanity: zero"
+msgid "None, disallow snippet"
+msgstr "Aucun, interdire les extraits."
+
+#: inc/views/settings/metaboxes/robots.php:155
+msgid "Unlimited"
+msgstr "Illimité"
+
+#: inc/views/settings/metaboxes/robots.php:149
+msgid "Specify aggregator copyright compliance directives?"
+msgstr "Spécifier les directives de conformité au droit d’auteur de l’agrégateur ?"
+
+#: inc/views/settings/metaboxes/robots.php:144
+msgid "Some search engines allow you to control copyright directives on the content they aggregate. It's best to allow some content to be taken by these aggregators, as that can improve contextualized exposure via snippets and previews. When left unspecified, regional regulations may apply. It is up to the aggregator to honor these requests."
+msgstr "Certains moteurs de recherche vous permettent de contrôler les directives sur le droit d’auteur sur le contenu qu’ils agrègent. Il est préférable de permettre à certains contenus d’être agrégés, car cela peut améliorer l’affichage des résultats via des extraits et des aperçus. Lorsqu’elles ne sont pas précisées, les règlements régionaux peuvent s’appliquer. C’est à l’agrégateur d’honorer ces demandes."
+
+#: inc/views/settings/metaboxes/robots.php:143
+msgid "Copyright Directive Settings"
+msgstr "Réglages de la directive sur le droit d’auteur"
+
+#: inc/views/settings/metaboxes/robots.php:24
+msgid "Date archives"
+msgstr "Archives par date"
+
+#: inc/views/settings/metaboxes/robots.php:20
+msgid "Author pages"
+msgstr "Pages d’auteurs"
+
+#: inc/views/settings/metaboxes/general.php:365
+#: inc/views/settings/metaboxes/robots.php:306
+msgid "These settings apply to the post type pages and their terms. When terms are shared between post types, all their post types should be checked for this to have an effect."
+msgstr "Ces réglages sont appliqués aux types de publications et à leurs termes. Lorsque des termes sont communs à plusieurs types de publications, tous les types de publications doivent être cochés pour que cela ait un effet."
+
+#. translators: %s = HTTP or HTTPS
+#: inc/views/settings/metaboxes/general.php:248
+msgid "Detect automatically (%s)"
+msgstr "Détecter automatiquement (%s)"
+
+#: inc/views/settings/metaboxes/general.php:238
+msgid "If your website is accessible via both HTTP as HTTPS, you may want to set this to HTTPS if not detected automatically. Secure connections are preferred by search engines."
+msgstr "Si votre site Web est accessible via HTTP et via HTTPS, et qu’HTTPS n’est pas détecté automatiquement, veillez à le sélectionner. Les moteurs de recherche favorisent les connexions sécurisées."
+
+#: inc/views/settings/metaboxes/general.php:149
+msgctxt "Perform query alteration: On the site"
+msgid "On the site"
+msgstr "Sur le site"
+
+#: inc/views/settings/metaboxes/general.php:148
+msgctxt "Perform query alteration: In the database"
+msgid "In the database"
+msgstr "Dans la base de données"
+
+#: inc/views/settings/metaboxes/general.php:81
+msgid "If you have difficulty discerning colors, this may help you spot issues more easily."
+msgstr "Si vous avez des difficultés à discerner les couleurs, cela peut vous aider à repérer les problèmes plus facilement."
+
+#: inc/views/settings/metaboxes/general.php:80
+msgid "Use symbols for warnings?"
+msgstr "Utiliser des symboles pour les avertissements ?"
+
+#. translators: %s = term name
+#: inc/views/templates/inpost/primary-term-selector.php:31
+msgid "The buttons below are for primary %s selection."
+msgstr "Les boutons ci-dessous permettent de choisir %s en catégorie principale."
+
+#: inc/classes/admin-init.class.php:319
+msgid "Far too long."
+msgstr "Beaucoup trop long."
+
+#: inc/classes/admin-init.class.php:316
+msgid "Far too short."
+msgstr "Beaucoup trop court."
+
+#: inc/classes/admin-init.class.php:315
+msgctxt "The string is empty"
+msgid "Empty."
+msgstr "Vide."
+
+#: inc/classes/interpreters/form.class.php:141
+msgid "Click to change the counter type"
+msgstr "Cliquez pour modifier le type de compteur"
+
+#: inc/classes/admin-pages.class.php:362 inc/views/notice/persistent.php:29
+msgid "Dismiss this notice"
+msgstr "Ignorer cet avertissement"
+
+#: inc/classes/admin-pages.class.php:278
+msgid "An unknown error occurred saving SEO settings."
+msgstr "Une erreur inconnue s’est produite en enregistrant les réglages de SEO."
+
+#: inc/classes/admin-pages.class.php:273
+msgid "SEO settings are reset, and the caches have been flushed."
+msgstr "Les réglages SEO sont réinitialisés et les caches ont été vidés."
+
+#: inc/classes/admin-pages.class.php:268
+msgid "No SEO settings were changed, but the caches have been flushed."
+msgstr "Aucun réglage SEO n’a été modifié, mais les caches ont été vidés."
+
+#: inc/classes/admin-pages.class.php:263
+msgid "SEO settings are saved, and the caches have been flushed."
+msgstr "Les réglages SEO sont enregistrés, et les caches ont été vidés."
+
+#: inc/classes/interpreters/seobar.class.php:375
+msgid "Assessments"
+msgstr "Évaluations"
+
+#: inc/classes/interpreters/seobar.class.php:374
+msgid "Assessment"
+msgstr "Évaluation"
+
+#: inc/classes/builders/seobar/term.class.php:941
+msgid "Term redirects visitors."
+msgstr "Le terme redirige les visiteurs."
+
+#: inc/classes/builders/seobar/term.class.php:925
+msgid "Term does not redirect visitors."
+msgstr "Le terme ne redirige pas les visiteurs."
+
+#: inc/classes/builders/seobar/term.class.php:833
+msgid "Term may not be archived."
+msgstr "Le terme n’a pas de page d’archive dédiée."
+
+#: inc/classes/builders/seobar/term.class.php:824
+msgid "Term may be archived."
+msgstr "Le terme a une page d’archive dédiée."
+
+#: inc/classes/builders/seobar/term.class.php:814
+msgid "The term may not be indexed, this may also discourage archiving."
+msgstr "Ce terme n’est pas indexable, ceci peut aussi éviter la création d’une page d’archive liée."
+
+#: inc/classes/builders/seobar/term.class.php:813
+msgid "The term SEO meta input overrides the archiving state."
+msgstr "Les réglages SEO du terme l’emportent sur l’état d’archivage."
+
+#: inc/classes/builders/seobar/term.class.php:812
+msgid "Archiving is discouraged for this taxonomy at the SEO Settings screen."
+msgstr "L’archivage de cette taxonomie est désactivée dans l’écran des réglages SEO."
+
+#: inc/classes/builders/seobar/term.class.php:811
+msgid "Archiving is discouraged for all bound post types to this term at the SEO Settings screen."
+msgstr "La création de page d’archive pour toutes les étiquettes de ce type de publication est interdite dans l’écran des Réglages SEO."
+
+#: inc/classes/builders/seobar/term.class.php:716
+msgid "Term links may not be followed."
+msgstr "Les liens du terme ne peuvent pas être suivis."
+
+#: inc/classes/builders/seobar/term.class.php:707
+msgid "Term links may be followed."
+msgstr "Les liens du terme peuvent être suivis."
+
+#: inc/classes/builders/seobar/term.class.php:697
+msgid "The term may not be indexed, this may also discourage link following."
+msgstr "Le terme ne peut pas être indexé, ce qui peut également empêcher le suivi de lien."
+
+#: inc/classes/builders/seobar/term.class.php:696
+msgid "The term SEO meta input overrides the link following state."
+msgstr "Les options SEO de ce terme l’emportent sur les options de suivi de liens."
+
+#: inc/classes/builders/seobar/term.class.php:695
+msgid "Link following is discouraged for this taxonomy at the SEO Settings screen."
+msgstr "Le suivi de lien est désactivé pour cette taxonomie dans les réglages SEO."
+
+#: inc/classes/builders/seobar/term.class.php:694
+msgid "Link following is discouraged for all bound post types to this term at the SEO Settings screen."
+msgstr "Le suivi de lien est désactivé pour tous les types de publication liés à ce terme dans les réglages SEO."
+
+#: inc/classes/builders/seobar/term.class.php:570
+msgid "Term may not be indexed."
+msgstr "Le terme ne peut pas être indexé."
+
+#: inc/classes/builders/seobar/term.class.php:561
+msgid "Term may be indexed."
+msgstr "Le terme peut être indexé."
+
+#: inc/classes/builders/seobar/term.class.php:553
+msgid "The term is empty yet still indexed."
+msgstr "Le terme est vide mais toujours indexé."
+
+#: inc/classes/builders/seobar/term.class.php:552
+msgid "The term is empty."
+msgstr "Le terme est vide."
+
+#: inc/classes/builders/seobar/term.class.php:547
+msgid "No posts are attached to this term, so indexing should be disabled."
+msgstr "Aucun article n’est lié à ce terme, donc l’indexation doit être désactivée."
+
+#: inc/classes/builders/seobar/term.class.php:546
+msgid "No posts are attached to this term, so indexing is disabled."
+msgstr "Aucun article n’est lié à ce terme, donc l’indexation est désactivée."
+
+#: inc/classes/builders/seobar/term.class.php:545
+msgid "The term SEO meta input overrides the indexing state."
+msgstr "La méta SEO sur ce terme l’emporte sur la consigne d’indexation."
+
+#: inc/classes/builders/seobar/term.class.php:544
+msgid "Indexing is discouraged for this taxonomy at the SEO Settings screen."
+msgstr "L’indexation de cette taxonomie est désactivée dans les réglages SEO."
+
+#: inc/classes/builders/seobar/term.class.php:543
+msgid "Indexing is discouraged for all bound post types to this term at the SEO Settings screen."
+msgstr "L’indexation est désactivée pour les étiquettes liées à ce type de publication dans les réglages SEO."
+
+#: inc/classes/builders/seobar/term.class.php:389
+msgid "No term description is set."
+msgstr "Ce terme n’a aucune description."
+
+#: inc/classes/builders/seobar/term.class.php:380
+msgid "It's built from the term description field."
+msgstr "Généré en utilisant la description du terme."
+
+#: inc/classes/builders/seobar/term.class.php:362
+msgid "No description could be generated."
+msgstr "Aucune description n’a pu être générée."
+
+#: inc/classes/builders/seobar/term.class.php:205
+msgid "It's built from term SEO meta input."
+msgstr "Généré à partir des méta SEO renseignées sur le terme."
+
+#: inc/classes/builders/seobar/term.class.php:203
+msgid "Obtained from term SEO meta input."
+msgstr "Obtenu à partir des options SEO renseignées sur le terme."
+
+#: inc/classes/builders/seobar/term.class.php:174
+msgid "A term label prefix is automatically added which increases the length."
+msgstr "Un préfixe d’étiquette est automatiquement ajouté, ce qui augmente la longueur."
+
+#: inc/classes/builders/seobar/page.class.php:1019
+#: inc/classes/builders/seobar/term.class.php:943
+msgid "All visitors and crawlers are being redirected. So, no other SEO enhancements are effective."
+msgstr "Les visiteurs et les robots d’explorations seront redirigés. De fait, aucune amélioration SEO n’aura d’effet."
+
+#: inc/classes/builders/seobar/page.class.php:1017
+msgid "Page redirects visitors."
+msgstr "La page redirige les visiteurs."
+
+#: inc/classes/builders/seobar/term.class.php:927
+msgid "All visitors and crawlers may access this page."
+msgstr "Tous les visiteurs et les crawlers peuvent accéder à cette page."
+
+#: inc/classes/builders/seobar/page.class.php:996
+msgid "Page does not redirect visitors."
+msgstr "Cette page ne redirige pas les visiteurs."
+
+#: inc/classes/builders/seobar/page.class.php:994
+#: inc/classes/builders/seobar/page.class.php:1015
+#: inc/classes/builders/seobar/term.class.php:923
+#: inc/classes/builders/seobar/term.class.php:939
+msgid "Redirection"
+msgstr "Redirection"
+
+#: inc/classes/builders/seobar/page.class.php:942
+msgid "Archiving is discouraged for the homepage at the SEO Settings screen."
+msgstr "L’archivage de la page d’accueil est désactivée dans les réglages SEO."
+
+#: inc/classes/builders/seobar/page.class.php:890
+#: inc/classes/builders/seobar/term.class.php:835
+msgid "The robots meta tag does not allow archiving."
+msgstr "La méta « robots » ne permet pas l’archivage."
+
+#: inc/classes/builders/seobar/page.class.php:888
+msgid "Page may not be archived."
+msgstr "La page ne sera pas archivée."
+
+#: inc/classes/builders/seobar/page.class.php:881
+#: inc/classes/builders/seobar/term.class.php:826
+msgid "The robots meta tag allows archiving."
+msgstr "La méta « robots » permet l’archivage."
+
+#: inc/classes/builders/seobar/page.class.php:879
+msgid "Page may be archived."
+msgstr "La page peut être archivée."
+
+#: inc/classes/builders/seobar/page.class.php:876
+#: inc/classes/builders/seobar/page.class.php:885
+#: inc/classes/builders/seobar/page.class.php:894
+#: inc/classes/builders/seobar/term.class.php:821
+#: inc/classes/builders/seobar/term.class.php:830
+msgctxt "Archiving"
+msgid "A"
+msgstr "Un"
+
+#: inc/classes/builders/seobar/page.class.php:868
+msgid "The page may not be indexed, this may also discourage archiving."
+msgstr "La page peut ne pas être indexée, ce qui peut également empêcher son archivage."
+
+#: inc/classes/builders/seobar/page.class.php:867
+msgid "The page SEO meta input overrides the archiving state."
+msgstr "Les options SEO de la page l’emportent sur l’état d’archivage."
+
+#: inc/classes/builders/seobar/page.class.php:866
+msgid "Archiving is discouraged for this post type at the SEO Settings screen."
+msgstr "L’archivage est déconseillé pour ce type de publication dans les réglages SEO."
+
+#: inc/classes/builders/seobar/page.class.php:865
+#: inc/classes/builders/seobar/term.class.php:810
+msgid "Archiving is discouraged for the whole site at the SEO Settings screen."
+msgstr "L’archivage est déconseillé pour l’ensemble du site dans les réglages SEO."
+
+#: inc/classes/builders/seobar/page.class.php:811
+msgid "Link following is discouraged for the homepage at the SEO Settings screen."
+msgstr "Le suivi des liens sur la page d’accueil est désactivé dans les réglages SEO."
+
+#: inc/classes/builders/seobar/page.class.php:759
+#: inc/classes/builders/seobar/term.class.php:718
+msgid "The robots meta tag does not allow link following."
+msgstr "La méta « robots » ne permet pas le suivi de lien."
+
+#: inc/classes/builders/seobar/page.class.php:757
+msgid "Page links may not be followed."
+msgstr "Les liens de page ne peuvent pas être suivis."
+
+#: inc/classes/builders/seobar/page.class.php:750
+#: inc/classes/builders/seobar/term.class.php:709
+msgid "The robots meta tag allows link following."
+msgstr "La méta « robots » permet le suivi de lien."
+
+#: inc/classes/builders/seobar/page.class.php:748
+msgid "Page links may be followed."
+msgstr "Les liens de page peuvent être suivis."
+
+#: inc/classes/builders/seobar/page.class.php:745
+#: inc/classes/builders/seobar/page.class.php:754
+#: inc/classes/builders/seobar/page.class.php:763
+#: inc/classes/builders/seobar/term.class.php:704
+#: inc/classes/builders/seobar/term.class.php:713
+msgctxt "Following"
+msgid "F"
+msgstr "F"
+
+#: inc/classes/builders/seobar/page.class.php:737
+msgid "The page may not be indexed, this may also discourage link following."
+msgstr "La page peut ne pas être indexée, ce qui peut également empêcher de suivre le lien."
+
+#: inc/classes/builders/seobar/page.class.php:736
+msgid "The page SEO meta input overrides the link following state."
+msgstr "Les réglages SEO de cette page écrasent le statut de suivi des liens."
+
+#: inc/classes/builders/seobar/page.class.php:735
+msgid "Link following is discouraged for this post type at the SEO Settings screen."
+msgstr "Le suivi de lien pour ce type de contenu est désactivé dans les réglages SEO."
+
+#: inc/classes/builders/seobar/page.class.php:734
+#: inc/classes/builders/seobar/term.class.php:693
+msgid "Link following is discouraged for the whole site at the SEO Settings screen."
+msgstr "Sur ce site, le suivi des liens est désactivé dans les réglages SEO."
+
+#: inc/classes/builders/seobar/page.class.php:669
+msgid "Indexing is discouraged for the homepage at the SEO Settings screen."
+msgstr "L’indexation de la page d’accueil est désactivée dans les réglages SEO."
+
+#: inc/classes/builders/seobar/page.class.php:614
+#: inc/classes/builders/seobar/page.class.php:768
+#: inc/classes/builders/seobar/page.class.php:899
+msgid "This page isn't published and can't be found publicly."
+msgstr "Cette page n’est pas publiée et ne peut pas être trouvée publiquement."
+
+#: inc/classes/builders/seobar/page.class.php:612
+#: inc/classes/builders/seobar/page.class.php:766
+#: inc/classes/builders/seobar/page.class.php:897
+msgid "Page is invisible."
+msgstr "La page est invisible."
+
+#: inc/classes/builders/seobar/page.class.php:605
+#: inc/classes/builders/seobar/term.class.php:572
+msgid "The robots meta tag does not allow indexing."
+msgstr "La méta « robots » ne permet pas l’indexation."
+
+#: inc/classes/builders/seobar/page.class.php:603
+msgid "Page may not be indexed."
+msgstr "La page ne peut pas être indexée."
+
+#: inc/classes/builders/seobar/page.class.php:596
+#: inc/classes/builders/seobar/term.class.php:563
+msgid "The robots meta tag allows indexing."
+msgstr "La méta « robots » permet l’indexation."
+
+#: inc/classes/builders/seobar/page.class.php:594
+msgid "Page may be indexed."
+msgstr "La page peut être indexée."
+
+#: inc/classes/builders/seobar/page.class.php:591
+#: inc/classes/builders/seobar/page.class.php:600
+#: inc/classes/builders/seobar/page.class.php:609
+#: inc/classes/builders/seobar/term.class.php:558
+#: inc/classes/builders/seobar/term.class.php:567
+msgctxt "Indexing"
+msgid "I"
+msgstr "I"
+
+#: inc/classes/builders/seobar/page.class.php:587
+#: inc/classes/builders/seobar/term.class.php:554
+msgid "The canonical URL points to another page."
+msgstr "L’URL canonique indique une autre page."
+
+#: inc/classes/builders/seobar/page.class.php:586
+#: inc/classes/builders/seobar/page.class.php:741
+#: inc/classes/builders/seobar/page.class.php:872
+msgid "The page is not published."
+msgstr "La page n’est pas publiée."
+
+#: inc/classes/builders/seobar/page.class.php:585
+msgid "The page is protected."
+msgstr "La page est protégée."
+
+#: inc/classes/builders/seobar/page.class.php:584
+#: inc/classes/builders/seobar/page.class.php:740
+#: inc/classes/builders/seobar/page.class.php:871
+#: inc/classes/builders/seobar/term.class.php:551
+#: inc/classes/builders/seobar/term.class.php:700
+#: inc/classes/builders/seobar/term.class.php:817
+msgid "WordPress overrides the robots directive."
+msgstr "WordPress l’emporte sur les directives pour les robots."
+
+#: inc/classes/builders/seobar/page.class.php:581
+#: inc/classes/builders/seobar/term.class.php:548
+msgid "A custom canonical URL is set that points to another page."
+msgstr "Une URL canonique personnalisée pointe vers une autre page."
+
+#: inc/classes/builders/seobar/page.class.php:580
+msgid "The page SEO meta input overrides the indexing state."
+msgstr "Les propriétés SEO de la page l’emportent sur l’état d’indexation."
+
+#: inc/classes/builders/seobar/page.class.php:579
+msgid "The page is protected, so indexing is discouraged."
+msgstr "La page est protégée, l’indexation est donc désactivée."
+
+#: inc/classes/builders/seobar/page.class.php:578
+msgid "Indexing is discouraged for this post type at the SEO Settings screen."
+msgstr "L’indexation est désactivée pour ce type de publication à partir de l’écran des réglages SEO."
+
+#: inc/classes/builders/seobar/page.class.php:577
+#: inc/classes/builders/seobar/term.class.php:542
+msgid "Indexing is discouraged for the whole site at the SEO Settings screen."
+msgstr "L’indexation de l’ensemble du site est déconseillée à partir de l’écran des réglages SEO."
+
+#: inc/classes/builders/seobar/page.class.php:576
+#: inc/classes/builders/seobar/page.class.php:733
+#: inc/classes/builders/seobar/page.class.php:864
+#: inc/classes/builders/seobar/term.class.php:541
+#: inc/classes/builders/seobar/term.class.php:692
+#: inc/classes/builders/seobar/term.class.php:809
+msgid "WordPress discourages crawling via the Reading Settings."
+msgstr "WordPress empêche l’indexation via les réglages de lecture."
+
+#: inc/classes/builders/seobar/page.class.php:575
+#: inc/classes/builders/seobar/page.class.php:732
+#: inc/classes/builders/seobar/page.class.php:863
+#: inc/classes/builders/seobar/term.class.php:540
+#: inc/classes/builders/seobar/term.class.php:691
+#: inc/classes/builders/seobar/term.class.php:808
+msgid "The robots.txt file is nonstandard, and may still direct search engines differently."
+msgstr "Le fichier robots.txt n’est pas standard et peut toujours diriger les moteurs de recherche différemment."
+
+#. translators: 1: Word found, 2: Occurrences
+#: inc/classes/builders/seobar/page.class.php:496
+#: inc/classes/builders/seobar/term.class.php:461
+msgid "&#8220;%1$s&#8221; is used %2$d times."
+msgstr "&#8220;%1$s&#8221; est utilisé %2$d fois."
+
+#: inc/classes/builders/seobar/page.class.php:435
+msgid "The description inputted at the Edit Page screen is used."
+msgstr "La description saisie sur la page d’édition est utilisée."
+
+#: inc/classes/builders/seobar/page.class.php:433
+msgid "The description inputted at the SEO Settings screen is used."
+msgstr "La description utilisée est celle saisie sur la page des réglages SEO."
+
+#: inc/classes/builders/seobar/page.class.php:405
+msgid "No page description is set."
+msgstr "Aucune description de page."
+
+#: inc/classes/builders/seobar/page.class.php:396
+msgid "It's built from the page content."
+msgstr "Construit en utilisant le contenu de la page."
+
+#: inc/classes/builders/seobar/page.class.php:392
+#: inc/classes/builders/seobar/term.class.php:376
+msgid "Description, generated"
+msgstr "Description (générée) :"
+
+#: inc/classes/builders/seobar/page.class.php:391
+#: inc/classes/builders/seobar/term.class.php:375
+msgctxt "Description Generated"
+msgid "DG"
+msgstr "DG"
+
+#: inc/classes/builders/seobar/page.class.php:386
+#: inc/classes/builders/seobar/term.class.php:370
+msgid "Found too many repeated words."
+msgstr "Trop de mots dupliqués trouvés."
+
+#: inc/classes/builders/seobar/page.class.php:384
+#: inc/classes/builders/seobar/page.class.php:403
+#: inc/classes/builders/seobar/term.class.php:368
+#: inc/classes/builders/seobar/term.class.php:387
+msgid "Empty."
+msgstr "Vide."
+
+#. translators: %s = list of repeated words
+#: inc/classes/builders/seobar/page.class.php:380
+#: inc/classes/builders/seobar/term.class.php:364
+msgid "Found repeated words: %s"
+msgstr "Mots dupliqués trouvés : %s"
+
+#: inc/classes/builders/seobar/page.class.php:377
+msgid "The page is protected, so no description is generated."
+msgstr "La page est protégée, donc aucune description n’est générée."
+
+#: inc/classes/builders/seobar/page.class.php:375
+msgid "There is no usable content, so no description could be generated."
+msgstr "Il n’y a pas de contenu exploitable, donc aucune description n’a pu être générée."
+
+#: inc/classes/builders/seobar/page.class.php:217
+msgid "The title inputted at the Edit Page screen is used."
+msgstr "Le titre entré à l’écran de la page d’édition est utilisé."
+
+#: inc/classes/builders/seobar/page.class.php:215
+msgid "The title inputted at the SEO Settings screen is used."
+msgstr "Le titre entré dans les Réglages SEO est utilisé."
+
+#: inc/classes/builders/seobar/page.class.php:196
+msgid "It's built from page SEO meta input."
+msgstr "Généré à partir de la méta SEO."
+
+#: inc/classes/builders/seobar/page.class.php:194
+msgid "Obtained from page SEO meta input."
+msgstr "Obtenu à partir des options SEO renseignées sur la page."
+
+#: inc/classes/builders/seobar/page.class.php:234
+msgid "It's built using the site title."
+msgstr "Généré en utilisant le titre du site."
+
+#: inc/classes/builders/seobar/page.class.php:185
+#: inc/classes/builders/seobar/page.class.php:394
+#: inc/classes/builders/seobar/term.class.php:194
+#: inc/classes/builders/seobar/term.class.php:378
+msgid "Automatically generated."
+msgstr "Généré automatiquement."
+
+#: inc/classes/builders/seobar/page.class.php:183
+#: inc/classes/builders/seobar/term.class.php:192
+msgid "Title, generated"
+msgstr "Titre, généré"
+
+#: inc/classes/builders/seobar/page.class.php:182
+#: inc/classes/builders/seobar/term.class.php:191
+msgctxt "Title Generated"
+msgid "TG"
+msgstr "TG"
+
+#: inc/classes/builders/seobar/page.class.php:177
+#: inc/classes/builders/seobar/term.class.php:186
+msgid "Not branded."
+msgstr "Le nom du site n’est pas ajouté."
+
+#: inc/classes/builders/seobar/page.class.php:176
+#: inc/classes/builders/seobar/term.class.php:185
+msgid "The branding is repeated."
+msgstr "Le nom du site est présent plusieurs fois."
+
+#: inc/classes/builders/seobar/page.class.php:175
+#: inc/classes/builders/seobar/term.class.php:184
+msgid "Incomplete."
+msgstr "Incomplet."
+
+#: inc/classes/builders/seobar/page.class.php:171
+#: inc/classes/builders/seobar/term.class.php:180
+msgid "The site title is found multiple times."
+msgstr "Le nom du site a été trouvé à plusieurs endroits."
+
+#: inc/classes/builders/seobar/page.class.php:169
+#: inc/classes/builders/seobar/term.class.php:178
+msgid "It's automatically branded."
+msgstr "Nom du site inclus automatiquement."
+
+#: inc/classes/builders/seobar/page.class.php:168
+#: inc/classes/builders/seobar/term.class.php:177
+msgid "It's manually branded."
+msgstr "Le nom du site a été intégré manuellement."
+
+#: inc/classes/builders/seobar/page.class.php:165
+msgid "A page protection state is added which increases the length."
+msgstr "Une protection de page est ajoutée qui augmente la longueur de chaîne."
+
+#. translators: %s = "Untitled"
+#: inc/classes/builders/seobar/page.class.php:162
+#: inc/classes/builders/seobar/term.class.php:171
+msgid "No title could be fetched, \"%s\" is used instead."
+msgstr "Aucun titre n’a pu être récupéré, « %s » sera utilisé."
+
+#: inc/classes/builders/seobar/page.class.php:159
+#: inc/classes/builders/seobar/term.class.php:168
+msgid "No title could be fetched."
+msgstr "Aucun titre n’a pu être récupéré."
+
+#: inc/classes/builders/seobar/page.class.php:156
+#: inc/classes/builders/seobar/page.class.php:367
+#: inc/classes/builders/seobar/term.class.php:165
+#: inc/classes/builders/seobar/term.class.php:354
+msgid "Estimated from the number of characters found. The pixel counter asserts the true length."
+msgstr "Déduit d’après le nombre de caractères trouvés. Le compteur de pixels affiche la longueur réelle."
+
+#. translators: 1 = An assessment, 2 = Disclaimer, e.g. "take it with a grain
+#. of salt"
+#: inc/classes/builders/seobar/page.class.php:155
+#: inc/classes/builders/seobar/page.class.php:366
+#: inc/classes/builders/seobar/term.class.php:164
+#: inc/classes/builders/seobar/term.class.php:353
+msgid "%1$s (%2$s)"
+msgstr "%1$s (%2$s)"
+
+#: bootstrap/upgrade.php:782
+msgid "The positions in the \"Meta Title Additions Location\" setting for the homepage have been reversed, left to right, but the output has not been changed. If you must downgrade for some reason, remember to switch the location back again."
+msgstr "Les positions pour l’emplacement des ajouts de métadonnées de titre ont été inversées, de gauche à droite, mais le résultat final n’a pas changé. Si vous devez revenir à une version antérieure de l’extension, n’oubliez pas de modifier ce réglage."
+
+#: bootstrap/upgrade.php:769
+msgid "A cronjob is now used to ping search engines, and it alerts them to changes in your sitemap."
+msgstr "Un cron est maintenant utilisé pour avertir les moteurs de recherche, et il les alerte des changements dans votre sitemap."
+
+#. translators: %s = Version number, surrounded in markdown-backticks.
+#: bootstrap/upgrade.php:418
+msgid "Thank you for updating The SEO Framework! Your website has been upgraded successfully to use The SEO Framework at database version `%s`."
+msgstr "Merci d’avoir mis à jour The SEO Framework ! Votre site a bien été mis à niveau pour utiliser The SEO Framework pour la version de base de données `%s`."
+
+#. Author of the plugin
+msgid "The SEO Framework Team"
+msgstr "L’équipe de The SEO Framework"
+
+#: inc/classes/bridges/plugintable.class.php:125
+msgctxt "Extension Manager is a product name; do not translate it."
+msgid "Get Extension Manager"
+msgstr "Obtenir Extension Manager"
+
+#: inc/classes/bridges/plugintable.class.php:117
+msgid "View API docs"
+msgstr "Voir la documentation API"
+
+#: inc/classes/bridges/plugintable.class.php:110
+msgid "View documentation"
+msgstr "Accéder à la documentation"
+
+#. translators: %s = term name
+#: inc/classes/bridges/scripts.class.php:765
+msgid "Select Primary %s"
+msgstr "Choisir %s en tant que terme principal"
+
+#. translators: URLs are in Markdown.
+#: inc/views/sitemap/xsl/footer.php:18
+msgid "Generated by [The SEO Framework](https://theseoframework.com/)"
+msgstr "Généré par [The SEO Framework](https://theseoframework.com/)"
+
+#: inc/views/profile/author.php:47
+msgid "This may be shown publicly."
+msgstr "Peut être visible par tous."
+
+#: inc/views/settings/metaboxes/webmaster.php:22
+msgid "Google Search Console Verification Code"
+msgstr "Code de vérification de Google Search Console"
+
+#: inc/views/settings/metaboxes/title.php:313
+msgid "Archive Title Prefixes"
+msgstr "Préfixe des titres des pages d’archive"
+
+#: inc/views/settings/metaboxes/title.php:228
+msgid "Tip: It is a bad practice to style page titles with HTML as inconsistent behavior might occur."
+msgstr "Astuce : évitez d’appliquer des styles HTML à vos titres de pages, ceci peut avoir des effets indésirables."
+
+#: inc/views/settings/metaboxes/title.php:222
+msgid "Strip HTML tags from generated titles?"
+msgstr "Supprimer les méta HTML des titres générés ?"
+
+#: inc/views/settings/metaboxes/social.php:238
+msgid "Facebook Author Fallback Page"
+msgstr "Page Facebook de l’auteur (au cas où)"
+
+#: inc/views/settings/metaboxes/social.php:226
+msgid "Only Facebook Business Pages are accepted."
+msgstr "Seul les pages Facebook d’entreprises sont acceptées."
+
+#: inc/views/settings/metaboxes/social.php:222
+msgid "Facebook Publisher page"
+msgstr "Page Facebook Publisher"
+
+#: inc/views/settings/metaboxes/social.php:193
+msgctxt "Example Facebook Business URL"
+msgid "https://www.facebook.com/YourBusinessProfile"
+msgstr "https://www.facebook.com/PageDeVotreEnteprise"
+
+#: inc/views/settings/metaboxes/social.php:99
+msgid "Note: Another Twitter Card plugin has been detected. These meta tags might conflict."
+msgstr "Note : une autre extension gérant les cartes Twitter a été détectée. Il peut y avoir un conflit."
+
+#: inc/views/settings/metaboxes/social.php:77
+msgid "Note: Another Open Graph plugin has been detected. These meta tags might conflict."
+msgstr "Note : une autre extension gérant les balises Open Graph a été détectée. Il peut y avoir un conflit."
+
+#: inc/views/settings/metaboxes/sitemaps.php:323
+msgid "Note: Changes may not appear to have an effect directly because the stylesheet is cached in the browser for 30 minutes."
+msgstr "Note : ces modifications peuvent mettre du temps à s’afficher, car la feuille de style est mise en cache dans votre navigateur pendant 30 minutes."
+
+#: inc/views/settings/metaboxes/sitemaps.php:188
+msgid "Note: A robots.txt file has been detected in the root folder of your website. This means these settings have no effect."
+msgstr "Note : Un fichier robots.txt a été détecté à la racine du dossier de votre site. Ces réglages n’auront aucun effet."
+
+#: inc/views/settings/metaboxes/sitemaps.php:162
+msgid "Consider lowering this value when the sitemap shows a white screen or notifies you of memory exhaustion."
+msgstr "Si votre sitemap affiche un écran blanc ou vous notifie d’un manque de mémoire, baissez la valeur de ce réglage."
+
+#: inc/views/settings/metaboxes/sitemaps.php:151
+msgid "Sitemap Query Limit"
+msgstr "Limiter le nombre de requêtes lors de la mise à jour du sitemap"
+
+#: inc/views/settings/metaboxes/sitemaps.php:80
+msgid "Note: Another active sitemap plugin has been detected. This means that the sitemap functionality has been superseded and these settings have no effect."
+msgstr "Note : une autre extension de gestion de sitemap a été détectée. Les fonctionnalités liées au sitemap ont été désactivées, et ces réglages n’auront aucune incidence."
+
+#: inc/views/settings/metaboxes/sitemaps.php:33
+msgid "Metadata"
+msgstr "Métadonnées"
+
+#: inc/views/settings/metaboxes/schema.php:22
+msgid "Another Schema.org plugin has been detected. These markup settings might conflict."
+msgstr "Une autre extension de gestion du Schema.org a été détectée. Ces options peuvent donc entrer en conflit avec cette autre extension."
+
+#: inc/views/settings/metaboxes/robots.php:310
+msgid "Warning: No site should enable these options for Posts and Pages."
+msgstr "Avertissement : aucun site ne devrait activer ces options pour les articles et les pages."
+
+#: inc/views/settings/metaboxes/robots.php:391
+msgid "Warning: No public site should ever enable this option."
+msgstr "Avertissement : aucun site public ne devrait jamais activer cette option."
+
+#: inc/views/settings/metaboxes/homepage.php:228
+msgid "Add Meta Title Additions to the homepage title?"
+msgstr "Ajouter des méta au titre de la page d’accueil ?"
+
+#: inc/views/settings/metaboxes/homepage.php:238
+msgid "Meta Title Additions Location"
+msgstr "Emplacement des ajouts de méta de titre"
+
+#: inc/views/settings/metaboxes/homepage.php:171
+#: inc/views/settings/metaboxes/homepage.php:344
+#: inc/views/settings/metaboxes/homepage.php:385
+msgid "Note: The description placeholder is fetched from the Page SEO Settings on the homepage."
+msgstr "Note : le texte indicatif de la description utilise les réglages SEO de la page d’accueil."
+
+#: inc/views/settings/metaboxes/homepage.php:110
+#: inc/views/settings/metaboxes/homepage.php:324
+#: inc/views/settings/metaboxes/homepage.php:365
+msgid "Note: The title placeholder is fetched from the Page SEO Settings on the homepage."
+msgstr "Note : le texte indicatif du titre utilise les réglages SEO de la page d’accueil."
+
+#: inc/views/settings/metaboxes/homepage.php:216
+msgid "Meta Title Additions"
+msgstr "Ajouts de méta de titre"
+
+#: inc/views/settings/metaboxes/robots.php:305
+msgid "Post Type Settings"
+msgstr "Réglage de type de publication"
+
+#: inc/views/settings/metaboxes/description.php:34
+msgid "Automatically generate descriptions?"
+msgstr "Générer automatiquement des descriptions ?"
+
+#: inc/views/edit/seo-settings-tt.php:92
+#: inc/views/settings/metaboxes/post-type-archive.php:409
+msgid "This tells search engines not to save a cached copy of this term."
+msgstr "Ceci demande aux moteurs de recherche de ne pas enregistrer une copie en cache de ce terme."
+
+#: inc/views/edit/seo-settings-tt.php:79
+#: inc/views/settings/metaboxes/post-type-archive.php:397
+msgid "This tells search engines not to follow links on this term."
+msgstr "Cela indique aux moteurs de recherche de ne pas suivre les liens sur ce terme."
+
+#: inc/views/edit/seo-settings-tt.php:66
+#: inc/views/settings/metaboxes/post-type-archive.php:385
+msgid "This tells search engines not to show this term in their search results."
+msgstr "Cela indique aux moteurs de recherche de ne pas afficher ce terme dans leurs résultats de recherche."
+
+#: inc/views/edit/seo-settings-singular.php:563
+#: inc/views/edit/seo-settings-tt.php:297
+#: inc/views/settings/metaboxes/homepage.php:396
+#: inc/views/settings/metaboxes/post-type-archive.php:335
+msgid "Social Image URL"
+msgstr "Lien de l’image pour les réseaux sociaux"
+
+#: inc/views/edit/seo-settings-singular.php:394
+#: inc/views/edit/seo-settings-tt.php:386 inc/views/list/quick-post.php:127
+#: inc/views/list/quick-term.php:127
+#: inc/views/settings/metaboxes/post-type-archive.php:457
+msgid "301 Redirect URL"
+msgstr "URL de redirection 301"
+
+#: inc/views/edit/seo-settings-singular.php:264
+#: inc/views/edit/seo-settings-tt.php:328 inc/views/list/quick-post.php:97
+#: inc/views/list/quick-term.php:97
+#: inc/views/settings/metaboxes/post-type-archive.php:360
+msgid "Canonical URL"
+msgstr "URL canonique"
+
+#: inc/views/edit/seo-settings-singular.php:173
+#: inc/views/edit/seo-settings-tt.php:160
+#: inc/views/settings/metaboxes/post-type-archive.php:203
+msgid "Use this when you want to rearrange the title parts manually."
+msgstr "Utilisez cela quand vous souhaitez organiser manuellement les parties de titre."
+
+#: inc/views/edit/seo-settings-singular.php:119
+#: inc/views/edit/seo-settings-tt.php:122
+#: inc/views/settings/metaboxes/homepage.php:70
+#: inc/views/settings/metaboxes/post-type-archive.php:156
+msgid "The meta title can be used to determine the title used on search engine result pages."
+msgstr "La méta titre peut être utilisée pour déterminer le titre utilisé sur les pages de résultats des moteurs de recherche."
+
+#: inc/views/edit/seo-settings-singular.php:115
+#: inc/views/edit/seo-settings-tt.php:118 inc/views/list/quick-post.php:60
+#: inc/views/list/quick-term.php:60
+#: inc/views/settings/metaboxes/homepage.php:66
+#: inc/views/settings/metaboxes/post-type-archive.php:152
+msgid "Meta Title"
+msgstr "Méta titre"
+
+#: inc/views/profile/author.php:21
+msgid "Twitter profile name"
+msgstr "Votre pseudo sur Twitter"
+
+#. translators: %s: Page number.
+#: inc/classes/generate-title.class.php:1275
+msgid "Page %s"
+msgstr "Page %s"
+
+#. translators: %s: search phrase
+#: inc/classes/generate-title.class.php:1158
+msgid "Search Results for &#8220;%s&#8221;"
+msgstr "Résultats de recherche pour &#8220;%s&#8221;"
+
+#. translators: %s = Blog page title. Front-end output.
+#: inc/classes/generate-description.class.php:762
+msgid "Latest posts: %s"
+msgstr "Derniers articles : %s"
+
+#: inc/classes/admin-pages.class.php:299
+msgid "Multiple SEO tools have been detected. You should only use one."
+msgstr "De nombreux outils SEO ont été détectés. Vous devriez n’en utiliser qu’un seul."
+
+#: inc/classes/bridges/seosettings.class.php:137
+msgid "Schema.org Settings"
+msgstr "Réglages Schema.org"
+
+#: inc/classes/admin-init.class.php:310
+msgid "Too long"
+msgstr "Trop long"
+
+#: inc/classes/admin-init.class.php:309
+msgid "Too short"
+msgstr "Trop court"
+
+#: inc/classes/admin-init.class.php:307
+msgctxt "The string is empty"
+msgid "Empty"
+msgstr "Vide"
+
+#: inc/classes/admin-init.class.php:303
+msgid "It's too long and it will get truncated in search."
+msgstr "C’est trop long, et les moteurs de recherche n’afficheront pas tout durant la recherche."
+
+#: inc/classes/admin-init.class.php:302
+msgid "It's long and it might get truncated in search."
+msgstr "C’est long, et les moteurs de recherche pourraient ne pas en afficher la totalité."
+
+#: inc/classes/admin-init.class.php:301
+msgid "It's short and it could have more information."
+msgstr "C’est court et il pourrait y avoir plus d’informations."
+
+#: inc/classes/admin-init.class.php:300
+msgid "It's too short and it should have more information."
+msgstr "C’est trop court et il devrait y avoir plus d’informations."
+
+#: inc/classes/admin-init.class.php:299
+msgid "There's no content."
+msgstr "Il n’y a pas de contenu."
+
+#: inc/views/settings/metaboxes/schema.php:293
+msgid "These settings do not affect sharing behavior with the social networks."
+msgstr "Ces réglages n’affectent pas le comportement de partage sur les réseaux sociaux."
+
+#: inc/views/edit/seo-settings-singular.php:533
+#: inc/views/edit/seo-settings-tt.php:282
+#: inc/views/settings/metaboxes/homepage.php:372
+#: inc/views/settings/metaboxes/post-type-archive.php:320
+msgid "Twitter Description"
+msgstr "Description Twitter"
+
+#: inc/views/edit/seo-settings-singular.php:514
+#: inc/views/edit/seo-settings-tt.php:265
+#: inc/views/settings/metaboxes/homepage.php:352
+#: inc/views/settings/metaboxes/post-type-archive.php:307
+msgid "Twitter Title"
+msgstr "Titre Twitter"
+
+#: inc/views/edit/seo-settings-singular.php:497
+#: inc/views/edit/seo-settings-tt.php:250
+#: inc/views/settings/metaboxes/homepage.php:331
+#: inc/views/settings/metaboxes/post-type-archive.php:292
+msgid "Open Graph Description"
+msgstr "Description Open Graph"
+
+#: inc/views/edit/seo-settings-singular.php:478
+#: inc/views/edit/seo-settings-tt.php:233
+#: inc/views/settings/metaboxes/homepage.php:311
+#: inc/views/settings/metaboxes/post-type-archive.php:279
+msgid "Open Graph Title"
+msgstr "Titre Open Graph"
+
+#: inc/views/profile/author.php:30
+msgid "Authorial Info"
+msgstr "Informations de l’auteur"
+
+#: inc/views/settings/metaboxes/title.php:180
+msgid "Title Separator"
+msgstr "Séparateur de titre"
+
+#: inc/views/settings/metaboxes/social.php:388
+msgid "Some social sites output the shared post's publishing and modified data in the sharing snippet."
+msgstr "Certains sites sociaux affichent la date publiée et la date de modification dans l’extrait de partage."
+
+#: inc/views/settings/metaboxes/social.php:329
+msgid "Twitter Author Fallback Profile"
+msgstr "Profil de secours de l’auteur Twitter"
+
+#: inc/views/settings/metaboxes/social.php:313
+msgid "Website Twitter Profile"
+msgstr "Lien vers le profil Twitter"
+
+#: inc/views/settings/metaboxes/social.php:248
+#: inc/views/settings/metaboxes/social.php:339
+msgid "Authors can override this option on their profile page."
+msgstr "Les auteurs peuvent passer outre cette option sur leur page de profil."
+
+#: inc/views/settings/metaboxes/schema.php:317
+msgid "View your profile."
+msgstr "Voir votre profil."
+
+#: inc/views/settings/metaboxes/schema.php:290
+msgid "Connected Social Pages"
+msgstr "Pages de réseaux sociaux connectées"
+
+#: inc/views/settings/metaboxes/schema.php:176
+#: inc/views/settings/metaboxes/sitemaps.php:387
+msgid "Setting a logo requires JavaScript."
+msgstr "Pour définir un logo, JavaScript est nécessaire."
+
+#: inc/views/settings/metaboxes/schema.php:173
+#: inc/views/settings/metaboxes/sitemaps.php:384
+msgid "Logo URL"
+msgstr "URL du logo"
+
+#: inc/views/settings/metaboxes/schema.php:164
+msgid "Enable logo?"
+msgstr "Activer le logo ?"
+
+#: inc/views/settings/metaboxes/schema.php:155
+msgid "These options are used when this site represents an organization. When no logo is outputted, search engine will look elsewhere."
+msgstr "Ces options sont utilisées lorsque ce site représente une organisation. Quand aucun logo n’est indiqué, le moteur de recherche cherchera ailleurs."
+
+#: inc/views/settings/metaboxes/schema.php:91
+msgctxt "Sitelinks Searchbox is a Product name"
+msgid "Enable Sitelinks Searchbox?"
+msgstr "Activer Sitelinks Searchbox"
+
+#: inc/views/settings/metaboxes/schema.php:64
+#: inc/views/settings/metaboxes/schema.php:84
+#: inc/views/settings/metaboxes/schema.php:103
+#: inc/views/settings/metaboxes/schema.php:157
+msgid "Learn how this data is used."
+msgstr "Découvrez comment ces données sont utilisées."
+
+#: inc/views/settings/metaboxes/general.php:338
+msgid "This outputs the complete date including hours, minutes, and timezone."
+msgstr "Ceci affiche la date complète incluant les heures, les minutes et le fuseau horaire."
+
+#: inc/views/settings/metaboxes/general.php:327
+msgid "This outputs the complete date."
+msgstr "Ceci affiche la date complète."
+
+#: inc/views/settings/metaboxes/general.php:318
+msgid "This setting determines how specific the timestamp is."
+msgstr "Ce réglage détermine la précision de l’horodatage."
+
+#: inc/views/settings/metaboxes/general.php:312
+msgid "Timestamps help indicate when a page has been published and modified."
+msgstr "Les horodatages indiquent quand une page a été publiée et modifiée."
+
+#: inc/views/settings/metaboxes/general.php:311
+msgid "Timestamp Settings"
+msgstr "Réglages d’horodatage"
+
+#: inc/views/settings/metaboxes/general.php:117
+msgid "Display character counters?"
+msgstr "Afficher les compteurs de caractères ?"
+
+#: inc/views/settings/metaboxes/general.php:112
+msgid "Display pixel counters?"
+msgstr "Afficher les compteurs de pixels ?"
+
+#: inc/views/settings/metaboxes/general.php:103
+msgid "The character counter is based on guidelines."
+msgstr "Le compteur de caractères est basé sur des directives."
+
+#: inc/views/settings/metaboxes/general.php:97
+msgid "The pixel counter computes whether the input will fit on search engine result pages."
+msgstr "Le compteur de pixels calcule si l’entrée tiendra sur les pages de résultats du moteur de recherche."
+
+#: inc/views/settings/metaboxes/general.php:94
+msgid "Counter Settings"
+msgstr "Réglages du compteur"
+
+#: inc/views/edit/seo-settings-singular.php:268
+#: inc/views/edit/seo-settings-tt.php:332
+#: inc/views/settings/metaboxes/post-type-archive.php:364
+msgid "This urges search engines to go to the outputted URL."
+msgstr "Cela incite les moteurs de recherche à aller à l’URL affichée."
+
+#: bootstrap/upgrade.php:677
+msgid "The previous sitemap timestamp settings have been converted into new global timestamp settings."
+msgstr "Les réglages d’horodatage de sitemap précédents ont été convertis en nouveaux réglages d’horodatage."
+
+#: inc/views/settings/metaboxes/schema.php:218
+msgid "Twitter Profile"
+msgstr "Profil Twitter"
+
+#: inc/views/profile/author.php:14
+msgid "Facebook profile page"
+msgstr "Votre profil Facebook"
+
+#: inc/classes/bridges/postsettings.class.php:74
+msgid "The SEO Settings may take precedence over these settings."
+msgstr "Les réglages SEO peuvent prendre le pas sur ces réglages."
+
+#: inc/classes/bridges/postsettings.class.php:72
+#: inc/classes/bridges/postsettings.class.php:80
+msgid "Homepage SEO Settings"
+msgstr "Réglages SEO de la page d’accueil"
+
+#: inc/classes/bridges/plugintable.class.php:57
+msgid "Settings"
+msgstr "Réglages"
+
+#: inc/classes/bridges/scripts.class.php:627
+msgctxt "Frame title"
+msgid "Select Logo"
+msgstr "Sélectionner le logo"
+
+#: inc/classes/bridges/scripts.class.php:625
+msgid "Remove Logo"
+msgstr "Retirer le logo"
+
+#: inc/classes/bridges/scripts.class.php:624
+msgid "Change Logo"
+msgstr "Modifier le logo"
+
+#: inc/classes/bridges/scripts.class.php:622
+#: inc/classes/internal/deprecated.class.php:413
+#: inc/views/settings/metaboxes/schema.php:196
+#: inc/views/settings/metaboxes/sitemaps.php:407
+msgid "Select Logo"
+msgstr "Sélectionner le logo"
+
+#. translators: Pixel counter. 1: number (value), 2: number (guideline)
+#: inc/classes/bridges/scripts.class.php:877
+msgid "%1$d out of %2$d pixels are used."
+msgstr "%1$d sur %2$d pixels sont utilisés."
+
+#. translators: %s = term name
+#: inc/classes/bridges/scripts.class.php:772
+msgid "Primary %s"
+msgstr " %s principal"
+
+#. translators: %s = term name
+#: inc/classes/bridges/scripts.class.php:770
+msgid "Make primary %s"
+msgstr "Faire des %s principales"
+
+#: inc/views/settings/metaboxes/general.php:221
+msgid "This allows you to exclude pages from on-site archive listings."
+msgstr "Cela vous permet d’exclure des pages des listes d’archives sur site."
+
+#: inc/views/settings/metaboxes/general.php:220
+msgid "Enable archive query alteration?"
+msgstr "Activer l’altération de la requête d’archive ?"
+
+#: inc/views/settings/metaboxes/general.php:208
+msgid "This allows you to exclude pages from on-site search results."
+msgstr "Cela vous permet d’exclure des pages des résultats de recherche sur site."
+
+#: inc/views/settings/metaboxes/general.php:207
+msgid "Enable search query alteration?"
+msgstr "Activer l’altération de la requête de recherche ?"
+
+#: inc/views/settings/metaboxes/general.php:179
+msgid "Perform alteration:"
+msgstr "Effectuer l’altération :"
+
+#: inc/views/settings/metaboxes/general.php:142
+msgid "Altering the query on the site is much faster, but can lead to inconsistent pagination. It can also lead to 404 error messages if all queried pages have been excluded."
+msgstr "La modification de la requête sur le site est beaucoup plus rapide, mais peut conduire à une pagination incohérente. Ceci peut également entraîner des erreurs 404 si toutes les pages interrogées ont été exclues."
+
+#: inc/views/settings/metaboxes/general.php:140
+msgid "Altering the query in the database is more accurate, but can increase database query time."
+msgstr "La modification de la requête dans la base de données est plus précise, mais peut augmenter le temps de requête de la base de données."
+
+#: inc/views/settings/metaboxes/general.php:136
+msgid "If your website has thousands of pages, these options can greatly affect database performance."
+msgstr "Si votre site Web contient des milliers de pages, ces options peuvent affecter considérablement les performances de la base de données."
+
+#: inc/views/settings/metaboxes/general.php:134
+msgid "Altering the query allows for more control of the site's hierarchy."
+msgstr "La modification de la requête permet un meilleur contrôle de la hiérarchie du site."
+
+#: inc/views/settings/metaboxes/general.php:132
+msgid "Query Alteration Settings"
+msgstr "Réglages d’altération de requête"
+
+#: inc/views/settings/metaboxes/general.php:127
+msgid "Depending on your server's configuration, adjusting these settings can affect performance."
+msgstr "Selon la configuration de votre serveur, le réglage de ces réglages peut affecter les performances."
+
+#: inc/classes/bridges/ajax.class.php:159
+#: inc/classes/bridges/ajax.class.php:166
+#: inc/classes/bridges/ajax.class.php:247
+msgid "Image could not be processed."
+msgstr "L’image n’a pas pu être traitée."
+
+#: inc/views/edit/seo-settings-singular.php:362
+msgid "Archive Settings"
+msgstr "Réglages d’archivage"
+
+#: inc/classes/admin-init.class.php:81
+msgid "No Archive"
+msgstr "Aucune archive"
+
+#: inc/classes/bridges/plugintable.class.php:64 inc/views/settings/wrap.php:25
+#: inc/views/settings/wrap.php:31
+msgctxt "Plugin extensions"
+msgid "Extensions"
+msgstr "Extensions"
+
+#. translators: %s = Redirect URL markdown
+#: inc/classes/admin-init.class.php:392
+msgid "There has been an error redirecting. Refresh the page or follow [this link](%s)."
+msgstr "Une erreur est survenue lors de la redirection. Rafraîchissez la page ou suivez [ce lien](%s)."
+
+#: inc/views/settings/metaboxes/homepage.php:392
+msgid "A social image can be displayed when your homepage is shared. It is a great way to grab attention."
+msgstr "Une image spécifique pour les réseaux sociaux peut être affichée lorsque votre page d’accueil est partagée. C’est un bon moyen d’attirer l’attention."
+
+#: inc/views/settings/metaboxes/social.php:177
+msgid "The shortlink tag can be manually used for microblogging services like Twitter, but it has no SEO value whatsoever."
+msgstr "La méta shortlink peut être utilisé pour des services de microblogging comme Twitter, mais elle n’a aucune valeur SEO."
+
+#: inc/views/settings/metaboxes/sitemaps.php:194
+msgid "Note: robots.txt files can't be generated or used on subdirectory installations."
+msgstr "Aucun fichier robots.txt ne peut être généré dans les installations de sous-répertoire."
+
+#: inc/views/settings/metaboxes/feed.php:28
+msgid "Add link to source below the feed entry content?"
+msgstr "Ajouter un lien vers la source sous le contenu de l’entrée de flux ?"
+
+#: inc/views/edit/seo-settings-singular.php:34
+#: inc/views/settings/metaboxes/homepage.php:41
+#: inc/views/settings/metaboxes/post-type-archive.php:71
+msgid "Social"
+msgstr "Réseaux sociaux"
+
+#: inc/views/edit/seo-settings-singular.php:39
+#: inc/views/settings/metaboxes/post-type-archive.php:77
+msgid "Visibility"
+msgstr "Visibilité"
+
+#: bootstrap/upgrade.php:652
+msgid "Twitter Photo Cards have been deprecated. Your site now uses Summary Cards when applicable."
+msgstr "Les cartes photos Twitter ont été abandonnées. Votre site utilise maintenant des cartes récapitulatives, le cas échéant."
+
+#: inc/classes/bridges/scripts.class.php:618
+msgctxt "Frame title"
+msgid "Select Social Image"
+msgstr "Sélectionner l’image pour les réseaux sociaux"
+
+#: inc/views/settings/metaboxes/social.php:147
+msgid "Social Image Fallback URL"
+msgstr "URL de l’image de secours pour les réseaux sociaux"
+
+#: inc/views/settings/metaboxes/social.php:134
+msgid "A social image can be displayed when your website is shared. It is a great way to grab attention."
+msgstr "Une image sociale peut être affichée lorsque votre site est partagé. C’est un excellent moyen d’attirer l’attention."
+
+#: inc/views/settings/metaboxes/homepage.php:391
+#: inc/views/settings/metaboxes/social.php:133
+msgid "Social Image Settings"
+msgstr "Réglages de l’image pour les réseaux sociaux"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://theseoframework.com/"
+msgstr "https://theseoframework.com/"
+
+#: inc/views/sitemap/xsl/table.php:25
+msgid "Last Updated"
+msgstr "Dernière mise à jour"
+
+#: inc/views/sitemap/xsl/table.php:19
+msgid "URL"
+msgstr "URL"
+
+#. translators: URLs are in Markdown. Don't localize this URL.
+#: inc/views/sitemap/xsl/description.php:73
+msgid "You can find more information on XML sitemaps at [sitemaps.org](https://www.sitemaps.org/)."
+msgstr "Vous pouvez trouver plus d’informations sur les sitemaps XML sur [sitemaps.org](https://www.sitemaps.org/)."
+
+#. translators: URLs are in Markdown. Don't forget to localize the URLs.
+#: inc/views/sitemap/xsl/description.php:62
+msgid "This is a generated XML Sitemap, meant to be consumed by search engines like [Google](https://www.google.com/) or [Bing](https://www.bing.com/)."
+msgstr "Il s’agit d’un plan de site XML généré, destiné à être utilisé par les moteurs de recherche tels que [Google](https://www.google.com/) ou [Bing](https://www.bing.com/)."
+
+#: inc/views/sitemap/xsl/description.php:52 inc/views/sitemap/xsl/title.php:12
+msgid "XML Sitemap"
+msgstr "Plan de site XML"
+
+#: inc/views/settings/metaboxes/sitemaps.php:357
+msgid "Sitemap Title and Lines Color"
+msgstr "Titre du plan de site et couleur des lignes"
+
+#: inc/views/settings/metaboxes/sitemaps.php:348
+msgid "Sitemap Header Background Color"
+msgstr "Couleur d’arrière-plan de l’en-tête du plan de site"
+
+#: inc/views/settings/metaboxes/sitemaps.php:332
+msgid "This makes the sitemap more readable for humans."
+msgstr "Cela rend le sitemap plus lisible pour les humains."
+
+#: inc/views/settings/metaboxes/sitemaps.php:332
+msgid "Style sitemap?"
+msgstr "Modifier l’apparence du plan de site ?"
+
+#: inc/views/settings/metaboxes/sitemaps.php:327
+msgid "Enable Styling"
+msgstr "Activer la modification de l’apparence"
+
+#: inc/views/settings/metaboxes/sitemaps.php:43
+msgid "Style"
+msgstr "Style"
+
+#: inc/views/settings/metaboxes/schema.php:110
+msgid "Output Authorized Presence?"
+msgstr "Afficher les éléments de vérification ?"
+
+#: inc/views/settings/metaboxes/schema.php:100
+msgid "The authorized presence Schema.org output helps search engine users find ways to interact with this website."
+msgstr "La vérification par le biais du Schema.org permet aux utilisateurs de mieux interagir avec votre site depuis les résultats de recherche."
+
+#: inc/views/settings/metaboxes/schema.php:99
+msgid "Authorized Presence Options"
+msgstr "Options de vérification"
+
+#: inc/views/settings/metaboxes/schema.php:56
+msgid "For example, search engines display your pages' URLs when listed in the search results. These options allow you to enhance those URLs output."
+msgstr "Par exemple, les moteurs de recherche affichent les URL de vos pages dans les résultats de recherche. Ces options vous permettent d’améliorer l’apparence des ces URL."
+
+#: inc/views/settings/metaboxes/schema.php:55
+msgid "The site structure Schema.org output allows search engines to gain knowledge on how your website is built."
+msgstr "La structure du site au standard Schema.org permet au moteurs de recherche de comprendre comment le site est construit."
+
+#: inc/views/settings/metaboxes/schema.php:54
+msgid "Site Structure Options"
+msgstr "Options de structure du site"
+
+#: inc/views/settings/metaboxes/schema.php:37
+msgid "Presence"
+msgstr "Présence"
+
+#: inc/views/settings/metaboxes/schema.php:32
+msgid "Structure"
+msgstr "Structure"
+
+#: inc/views/settings/metaboxes/schema.php:26
+msgid "This is also known as the \"Knowledge Graph\" and \"Structured Data\", which is under heavy active development by several search engines. Therefore, the usage of the outputted markup is not guaranteed."
+msgstr "Ceci est également connu sous le nom de « Knowledge Graph » et « Structured Data », qui est activement développé par plusieurs moteurs de recherche. Par conséquent, l’utilisation du balisage généré n’est pas garantie."
+
+#. translators: %s = Homepage URL markdown
+#: inc/views/settings/metaboxes/homepage.php:122
+#: inc/views/settings/metaboxes/homepage.php:185
+msgid "A plugin has been detected that suggests to maintain this option on the [homepage](%s)."
+msgstr "Une extension a été détectée et elle suggère de conserver cette option sur la page [Page d’accueil](%s)."
+
+#: inc/views/settings/metaboxes/general.php:240
+msgctxt "= Detect Automatically, HTTPS, HTTP"
+msgid "Preferred canonical URL scheme:"
+msgstr "Schéma d’URL canonique préféré :"
+
+#: inc/views/settings/metaboxes/general.php:237
+msgid "Scheme Settings"
+msgstr "Réglages du schéma"
+
+#: inc/views/settings/metaboxes/general.php:233
+msgid "If the canonical URL meta tag represents the visited page, then the search engine will crawl the visited page. Otherwise, the search engine may go to the outputted URL."
+msgstr "Si la méta de l’URL canonique indique la page visitée, le moteur de recherche explorera cette page-là. Sinon, le moteur de recherche se rendra à l’URL indiquée."
+
+#: inc/views/settings/metaboxes/general.php:232
+msgid "The canonical URL meta tag urges search engines to go to the outputted URL."
+msgstr "La méta d’URL canonique incite les moteurs de recherche à s’y rendre."
+
+#: inc/views/settings/metaboxes/general.php:231
+msgid "Canonical URL Settings"
+msgstr "Réglages d’URL canonique"
+
+#: inc/views/settings/metaboxes/general.php:75
+msgid "Display the SEO Bar in the SEO Settings meta box?"
+msgstr "Afficher la barre de référencement dans la boîte méta Réglages SEO ?"
+
+#: inc/views/settings/metaboxes/general.php:70
+msgid "Display the SEO Bar in overview tables?"
+msgstr "Afficher la barre SEO dans les pages de vue d’ensemble ?"
+
+#: inc/views/settings/metaboxes/general.php:65
+msgid "SEO Bar Settings"
+msgstr "Réglages de la barre SEO"
+
+#: inc/views/settings/metaboxes/general.php:60
+msgid "SEO hints can be visually displayed throughout the dashboard."
+msgstr "Les astuces SEO peuvent être affichées visuellement dans le Tableau de bord."
+
+#: inc/views/settings/metaboxes/general.php:59
+msgid "Administrative Layout Settings"
+msgstr "Réglages de mise en page de l’administration"
+
+#: inc/views/settings/metaboxes/sitemaps.php:173
+msgid "Generating the sitemap can use a lot of server resources."
+msgstr "La génération du sitemap peut utiliser beaucoup de ressources serveur."
+
+#: inc/views/settings/metaboxes/sitemaps.php:166
+msgid "Transient Cache Settings"
+msgstr "Réglages du cache transitoire"
+
+#: inc/views/settings/metaboxes/sitemaps.php:167
+msgid "To improve performance, generated output can be stored in the database as transient cache."
+msgstr "Pour améliorer les performances, la sortie SEO générée peut être stockée dans la base de données en tant que cache transitoire."
+
+#: inc/views/settings/metaboxes/general.php:126
+msgid "Performance Settings"
+msgstr "Réglages de performance"
+
+#: inc/views/settings/metaboxes/general.php:32
+msgid "Canonical"
+msgstr "Lien canonique"
+
+#: inc/views/settings/metaboxes/general.php:22
+msgid "Layout"
+msgstr "Mise en page"
+
+#: inc/views/settings/metaboxes/general.php:27
+msgid "Performance"
+msgstr "Performance"
+
+#: inc/classes/bridges/scripts.class.php:619
+#: inc/classes/bridges/scripts.class.php:628
+msgid "Use this image"
+msgstr "Utiliser cette image"
+
+#: inc/classes/bridges/scripts.class.php:616
+msgid "Remove Image"
+msgstr "Retirer l’image"
+
+#: inc/classes/bridges/scripts.class.php:615
+msgid "Change Image"
+msgstr "Changer l’image"
+
+#: inc/classes/bridges/scripts.class.php:613
+#: inc/classes/interpreters/form.class.php:235
+msgid "Select Image"
+msgstr "Sélectionner l’image"
+
+#: inc/classes/internal/debug.class.php:201
+msgid "incorrectly"
+msgstr "incorrectement"
+
+#. translators: 1: Function name, 2: 'Incorrectly', 3: Error message 4: Plugin
+#. Version notification
+#: inc/classes/internal/debug.class.php:199
+msgid "%1$s was called %2$s. %3$s %4$s"
+msgstr "%1$s est appelé %2$s. %3$s %4$s"
+
+#. translators: 1: Function name, 2: 'Deprecated', 3: Plugin Version
+#. notification
+#: inc/classes/internal/debug.class.php:142
+msgid "%1$s is %2$s since version %3$s of The SEO Framework with no alternative available."
+msgstr "%1$s est %2$s depuis la version %3$s de The SEO Framework sans alternative valable."
+
+#: inc/classes/internal/debug.class.php:135
+#: inc/classes/internal/debug.class.php:144
+msgid "deprecated"
+msgstr "obsolète"
+
+#. translators: 1: Function name, 2: 'Deprecated', 3: Plugin Version
+#. notification, 4: Replacement function
+#: inc/classes/internal/debug.class.php:133
+msgid "%1$s is %2$s since version %3$s of The SEO Framework! Use %4$s instead."
+msgstr "%1$s est %2$s depuis la version %3$s de The SEO Framework ! Utiliser %4$s plutôt."
+
+#: inc/classes/bridges/seosettings.class.php:78
+msgid "General Settings"
+msgstr "Réglages généraux"
+
+#: inc/views/settings/metaboxes/schema.php:154
+msgid "Website logo"
+msgstr "Logo du site"
+
+#: inc/views/settings/metaboxes/homepage.php:487
+msgid "This tells search engines not to save a cached copy of this page."
+msgstr "Indiquer aux moteurs de recherche de ne pas enregistrer une copie de cette page dans le cache."
+
+#. Description of the plugin
+msgid "An automated, advanced, accessible, unbranded and extremely fast SEO solution for your WordPress website."
+msgstr "Une solution de référencement automatisée, avancée, accessible, sans marque et extrêmement rapide pour tout site WordPress."
+
+#: inc/views/settings/metaboxes/schema.php:71
+msgid "Enable Breadcrumbs?"
+msgstr "Activer les fils d’Ariane ?"
+
+#: inc/views/settings/metaboxes/schema.php:61
+msgid "Breadcrumb trails indicate page positions in the site's hierarchy. Using the following option will show the hierarchy within the search results when available."
+msgstr "Les fils d’Ariane permettent d’en savoir plus sur l’arborescence de votre site. Utiliser l’option suivante permettra d’afficher ce fil d’Ariane dans les moteurs de recherche qui le prennent en charge."
+
+#: inc/views/settings/metaboxes/schema.php:60
+msgid "Breadcrumbs"
+msgstr "Fils d’Ariane"
+
+#: inc/views/settings/metaboxes/schema.php:81
+msgid "When Search users search for your brand name, the following option allows them to search through this website directly from the search results."
+msgstr "Lorsque des gens font des recherches sur votre organisation, l’option suivante leur permet de rechercher sur ce site directement à partir des résultats de recherche."
+
+#: inc/views/settings/metaboxes/schema.php:79
+msgctxt "Product name"
+msgid "Sitelinks Searchbox"
+msgstr "Recherche des liens sur le site"
+
+#: inc/views/settings/metaboxes/schema.php:25
+msgid "When your web pages include structured data markup, search engines can use that data to index your content better, present it more prominently in search results, and use it in several different applications."
+msgstr "Quand vos pages web contiennent des méta de données structurées, les moteurs de recherche peuvent utiliser ces données pour mieux indexer votre contenu, le mettre en avant dans les résultats de recherche, et les utiliser dans différentes applications."
+
+#: inc/views/settings/metaboxes/schema.php:24
+msgid "The Schema.org markup is a standard way of annotating structured data for search engines. This markup is represented within hidden scripts throughout the website."
+msgstr "Le balisage Schema.org est un moyen standardisé d’ajouter des données structurées à destination des moteurs de recherche. Ce balisage est intégré via des scripts présents sur le site."
+
+#: inc/views/settings/metaboxes/schema.php:19
+msgid "Schema.org Output Settings"
+msgstr "Réglages de sortie de Schema.org"
+
+#: inc/views/settings/metaboxes/general.php:317
+msgid "Timestamp Format Settings"
+msgstr "Réglages de format d’horodatage"
+
+#: inc/views/settings/metaboxes/schema.php:203
+msgctxt "No spaces. E.g. https://facebook.com/RelatedProfile"
+msgid "RelatedProfile"
+msgstr "VotreProfil"
+
+#: inc/views/settings/metaboxes/webmaster.php:44
+msgid "Get the Yandex verification code."
+msgstr "Obtenir le code de vérification Yandex."
+
+#: inc/views/settings/metaboxes/webmaster.php:42
+msgid "Yandex Webmaster Verification Code"
+msgstr "Code de vérification Yandex Webmaster"
+
+#. translators: the backticks are Markdown! Preserve them as-is!
+#: inc/views/settings/metaboxes/general.php:298
+msgid "Add `rel` link tags to the homepage?"
+msgstr "Ajouter des méta de lien `rel` à la page d’accueil ?"
+
+#: inc/views/settings/metaboxes/social.php:60
+msgid "Social Meta Tags Settings"
+msgstr "Réglages des méta réseaux sociaux"
+
+#. translators: the backticks are Markdown! Preserve them as-is!
+#: inc/views/settings/metaboxes/homepage.php:542
+msgid "Apply `noindex` to every second or later page on the homepage?"
+msgstr "Appliquer `noindex` à toutes les pages paginées à partir de la page suivant la page d’accueil ?"
+
+#: inc/views/settings/metaboxes/homepage.php:535
+msgid "If your homepage is paginated and outputs content that's also found elsewhere on the website, enabling this option may prevent duplicate content."
+msgstr "Si votre page d’accueil est paginée et qu’elle contient du contenu présent ailleurs sur le site, activer cette option peut empêcher la duplication de contenu."
+
+#: inc/views/settings/metaboxes/homepage.php:534
+msgid "Homepage Pagination Robots Settings"
+msgstr "Réglages de pagination de la page d’accueil pour les robots"
+
+#: inc/views/settings/metaboxes/homepage.php:46
+msgid "Robots"
+msgstr "Robots"
+
+#: inc/views/settings/metaboxes/robots.php:33
+msgctxt "...for the entire site"
+msgid "the entire site"
+msgstr "pour tout le site"
+
+#: inc/views/settings/metaboxes/description.php:24
+msgid "Automated Description Settings"
+msgstr "Réglages de description automatisée"
+
+#: inc/views/settings/metaboxes/title.php:317
+msgid "The prefix helps visitors and search engines determine what kind of page they're visiting."
+msgstr "Le préfixe aide les visiteurs et les moteurs de recherche à déterminer le type de page qu’ils visitent."
+
+#: inc/views/settings/metaboxes/title.php:308
+msgid "For archives, a descriptive prefix may be added to generated titles."
+msgstr "Pour les archives, un préfixe descriptif peut être ajouté aux titres générés."
+
+#: inc/views/settings/metaboxes/title.php:307
+msgid "Title Prefix Options"
+msgstr "Options de préfixes du titre"
+
+#: inc/views/settings/metaboxes/title.php:36
+msgid "Example Category"
+msgstr "Catégorie d’exemple"
+
+#: inc/views/settings/metaboxes/title.php:157
+msgid "Prefixes"
+msgstr "Préfixes"
+
+#: inc/views/settings/metaboxes/homepage.php:36
+#: inc/views/settings/metaboxes/title.php:146
+msgid "Additions"
+msgstr "Ajouts"
+
+#: inc/views/settings/metaboxes/title.php:53
+msgid "The page title is prominently shown within the browser tab as well as within the search engine results pages."
+msgstr "Le titre de la page est mis en évidence dans votre navigateur ainsi que dans les pages de résultats du moteur de recherche."
+
+#: inc/views/settings/metaboxes/title.php:206
+msgid "Automated Title Settings"
+msgstr "Réglages de titre automatisés"
+
+#: inc/views/edit/seo-settings-singular.php:399
+#: inc/views/edit/seo-settings-tt.php:390
+#: inc/views/settings/metaboxes/post-type-archive.php:461
+msgid "This will force visitors to go to another URL."
+msgstr "Cela forcera les visiteurs à aller vers une autre URL."
+
+#. translators: 1: plugin version
+#: inc/classes/internal/debug.class.php:195
+msgid "(This message was added in version %s of The SEO Framework.)"
+msgstr "(Ce message a été ajouté dans la version %s de The SEO Framework)"
+
+#: inc/classes/admin-init.class.php:312
+msgid "Good"
+msgstr "Bien"
+
+#. translators: %s = timestamp
+#: inc/classes/builders/sitemap/base.class.php:189
+msgid "Sitemap is generated on %s"
+msgstr "Le sitemap a été généré le %s"
+
+#: inc/views/sitemap/xml-sitemap.php:34
+msgid "Sitemap is served from cache"
+msgstr "Le sitemap est servi depuis le cache"
+
+#: inc/views/sitemap/xml-sitemap.php:32
+msgid "Sitemap is generated for this view"
+msgstr "Le sitemap est généré pour cette vue"
+
+#: inc/views/settings/metaboxes/feed.php:29
+msgid "This link will not be followed by search engines."
+msgstr "Ce lien ne sera pas suivi par les moteurs de recherche."
+
+#: inc/views/settings/metaboxes/feed.php:26
+msgid "By default the excerpt will be at most 400 characters long."
+msgstr "Par défaut, l’extrait aura au plus 400 caractères."
+
+#: inc/views/settings/metaboxes/feed.php:25
+msgid "Convert feed entries into excerpts?"
+msgstr "Convertir des entrées de flux en extraits ?"
+
+#: inc/views/settings/metaboxes/feed.php:24
+msgid "Change Feed Settings"
+msgstr "Modifier les réglages de flux"
+
+#: inc/views/settings/metaboxes/feed.php:19
+msgid "Adding a backlink below the feed entries will also let the visitors know where the content came from."
+msgstr "L’ajout d’un backlink sous les entrées de flux permettra également aux visiteurs de savoir d’où vient le contenu."
+
+#: inc/views/settings/metaboxes/feed.php:18
+msgid "Sometimes, your content can get stolen by robots through the WordPress feeds. This can cause duplicate content issues. To prevent this from happening, it's recommended to convert the feed's content into an excerpt."
+msgstr "Parfois, votre contenu peut être volé par des robots à travers les flux WordPress. Cela peut causer des problèmes de contenu en double. Pour éviter que cela ne se produise, il est recommandé de convertir le contenu du flux en un extrait."
+
+#: inc/views/settings/metaboxes/feed.php:17
+msgid "Content Feed Settings"
+msgstr "Réglages du flux de contenu"
+
+#: inc/views/settings/metaboxes/sitemaps.php:83
+msgid "Note: A sitemap has been detected in the root folder of your website. This means that these settings have no effect."
+msgstr "Note : Un sitemap a été détecté à la racine du dossier de votre site. Ces réglages n’auront aucun effet."
+
+#: inc/views/settings/metaboxes/webmaster.php:65
+msgid "Get the Pinterest verification code."
+msgstr "Obtenir le code de vérification Pinterest."
+
+#: inc/views/settings/metaboxes/webmaster.php:63
+msgid "Pinterest Analytics Verification Code"
+msgstr "Code de vérification de Pinterest Analytics"
+
+#: inc/views/settings/metaboxes/social.php:182
+msgid "Output shortlink tag?"
+msgstr "Générer une méta lien court ?"
+
+#: inc/views/settings/metaboxes/title.php:301
+msgid "Note: Only use this option if you are aware of its SEO effects."
+msgstr "N’utilisez cette option que si vous connaissez ses effets SEO."
+
+#: inc/views/edit/seo-settings-singular.php:68
+#: inc/views/edit/seo-settings-tt.php:105
+msgid "Doing it Right"
+msgstr "Fait de la bonne manière"
+
+#: inc/classes/render.class.php:1273
+msgid "by Sybre Waaijer"
+msgstr "par Sybre Waaijer"
+
+#: inc/classes/bridges/feed.class.php:151
+msgctxt "The content source"
+msgid "Source"
+msgstr "Source"
+
+#: inc/classes/bridges/seosettings.class.php:177
+msgid "Feed Settings"
+msgstr "Paramétres de flux"
+
+#. translators: %s: Private post title.
+#: inc/classes/bridges/scripts.class.php:670
+#: inc/classes/generate-title.class.php:1336
+msgid "Private: %s"
+msgstr "Privé:% s"
+
+#. translators: %s: Protected post title.
+#: inc/classes/bridges/scripts.class.php:672
+#: inc/classes/generate-title.class.php:1318
+msgid "Protected: %s"
+msgstr "Protégé&nbsp;: %s"
+
+#. Plugin Name of the plugin
+msgid "The SEO Framework"
+msgstr "The SEO Framework"
+
+#. translators: %s = Google
+#: inc/views/settings/metaboxes/sitemaps.php:310
+msgid "Notify %s about sitemap changes?"
+msgstr "Notifier %s des modifications du sitemap ?"
+
+#: inc/views/settings/metaboxes/sitemaps.php:299
+msgid "Notify Search Engines"
+msgstr "Notifier les moteurs de recherche"
+
+#: inc/views/settings/metaboxes/sitemaps.php:267
+msgid "By default this will happen at most once an hour."
+msgstr "Par défaut, cela n’arrivera pas plus d’une fois par heure."
+
+#: inc/views/settings/metaboxes/sitemaps.php:266
+msgid "Notifying search engines of a sitemap change is helpful to get your content indexed as soon as possible."
+msgstr "Informer les moteurs de recherche d’un changement de sitemap est utile pour que votre contenu soit indexé dès que possible."
+
+#: inc/views/settings/metaboxes/sitemaps.php:265
+msgid "Ping Settings"
+msgstr "Réglages du Ping"
+
+#: inc/views/settings/metaboxes/sitemaps.php:247
+msgid "Timestamps Settings"
+msgstr "Réglages d’horodatage"
+
+#: inc/views/settings/metaboxes/sitemaps.php:227
+msgid "Add sitemap location to robots.txt?"
+msgstr "Ajouter l’emplacement du sitemap dans le fichier robots.txt ?"
+
+#: inc/views/settings/metaboxes/sitemaps.php:218
+msgid "If you do not add the sitemap location to the robots.txt output, you should notify search engines manually through webmaster-interfaces provided by the search engines."
+msgstr "Si vous n’ajoutez pas l’emplacement du sitemap au fichier robots.txt, vous devez aviser manuellement les moteurs de recherche via les interfaces webmaster fournies par ces derniers."
+
+#: inc/views/settings/metaboxes/sitemaps.php:184
+msgid "Robots.txt Settings"
+msgstr "Réglages Robots.txt"
+
+#: inc/views/settings/metaboxes/sitemaps.php:88
+msgid "Sitemap Output"
+msgstr "Générer le sitemap"
+
+#: inc/views/settings/metaboxes/sitemaps.php:63
+msgid "Sitemap Integration Settings"
+msgstr "Réglages d’intégration du sitemap"
+
+#: inc/views/settings/metaboxes/sitemaps.php:38
+msgctxt "Ping or notify search engine"
+msgid "Ping"
+msgstr "Notifier"
+
+#: inc/views/settings/metaboxes/general.php:37
+msgid "Timestamps"
+msgstr "Horodatage"
+
+#: inc/views/settings/metaboxes/schema.php:291
+msgid "Don't have a page at a site or is the profile only privately accessible? Leave that field empty. Unsure? Fill it in anyway."
+msgstr "Vous n’avez pas de page sur un site ou votre profil est privé ? Laissez ce champ vide. Si vous n’en êtes pas sûr, remplissez-le quand même."
+
+#: inc/views/settings/metaboxes/schema.php:146
+msgid "The organization or personal name"
+msgstr "Soit votre nom, soit celui de votre organisation"
+
+#: inc/views/settings/metaboxes/schema.php:127
+msgid "A Person"
+msgstr "Une personne"
+
+#: inc/views/settings/metaboxes/schema.php:126
+msgid "An Organization"
+msgstr "Une organisation"
+
+#: inc/views/settings/metaboxes/schema.php:120
+msgctxt "...Organization or Person."
+msgid "This website represents:"
+msgstr "Ce site représente :"
+
+#: inc/views/settings/metaboxes/schema.php:118
+msgid "About this website"
+msgstr "À propos de ce site"
+
+#: inc/views/settings/metaboxes/webmaster.php:34
+msgid "Get the Bing verification code."
+msgstr "Obtenir le code de vérification Bing."
+
+#: inc/views/settings/metaboxes/webmaster.php:32
+msgid "Bing Webmaster Verification Code"
+msgstr "Code de vérification Bing Webmaster"
+
+#: inc/views/settings/metaboxes/webmaster.php:24
+msgid "Get the Google verification code."
+msgstr "Obtenir le code de vérification Google."
+
+#: inc/views/settings/metaboxes/webmaster.php:75
+msgid "Verifying your website has no SEO value whatsoever. But you might gain added benefits such as search ranking insights to help you improve your website's content."
+msgstr "La vérification de votre site n’a aucune valeur SEO. Mais vous pourriez obtenir des avantages supplémentaires, tels que des informations sur les classements de recherche pour vous aider à améliorer le contenu de votre site Web."
+
+#: inc/views/settings/metaboxes/webmaster.php:74
+msgid "When adding your website to Google, Bing and other Webmaster Tools, you'll be asked to add a code or file to your website for verification purposes. These options will help you easily integrate those codes."
+msgstr "Lorsque vous ajoutez votre site Web à Google, à Bing et à d’autres outils pour les webmasters, il vous sera demandé d’ajouter un code ou un fichier à votre site Web à des fins de vérification. Ces options vous aideront à intégrer facilement ces codes."
+
+#: inc/views/settings/metaboxes/webmaster.php:73
+msgid "Webmaster Integration Settings"
+msgstr "Réglages d’intégration Webmaster"
+
+#. translators: the backticks are Markdown! Preserve them as-is!
+#: inc/views/settings/metaboxes/general.php:288
+msgid "Add `rel` link tags to archives?"
+msgstr "Ajouter des méta de lien `rel` aux pages d’archives ?"
+
+#. translators: the backticks are Markdown! Preserve them as-is!
+#: inc/views/settings/metaboxes/general.php:278
+msgid "Add `rel` link tags to posts and pages?"
+msgstr "Ajouter des méta de liens `rel` aux articles et aux pages ?"
+
+#: inc/views/settings/metaboxes/general.php:272
+msgid "It's recommended to turn these options on for better SEO consistency and to prevent duplicated content issues."
+msgstr "Il est recommandé d’activer ces options pour une meilleure cohérence SEO et afin d’éviter les problèmes de contenu dupliqué."
+
+#: inc/views/settings/metaboxes/general.php:271
+msgid "Some search engines look for relations between the content of your pages. If you have pagination on a post or page, or have archives indexed, these options will help search engines look for the right page to display in the search results."
+msgstr "Certains moteurs de recherche recherchent des relations entre le contenu de vos pages. Si certaines de vos pages ou de vos publications sont paginées, ou si vous avez demandé l’indexation de vos pages d’archive, ces options aideront les moteurs de recherche à identifier la bonne page à afficher dans les résultats de recherche."
+
+#: inc/views/settings/metaboxes/general.php:270
+msgid "Link Relationship Settings"
+msgstr "Réglages de relation des Liens"
+
+#: inc/views/settings/metaboxes/social.php:387
+msgid "Post Date Settings"
+msgstr "Réglages de la date de publication"
+
+#: inc/views/settings/metaboxes/social.php:317
+#: inc/views/settings/metaboxes/social.php:333
+msgid "Find your @username."
+msgstr "Trouvez votre @nomdutilisateur."
+
+#: inc/views/settings/metaboxes/social.php:271
+msgid "Twitter Card Type"
+msgstr "Type de carte Twitter"
+
+#: inc/views/profile/author.php:23 inc/views/settings/metaboxes/social.php:260
+msgctxt "Twitter @username"
+msgid "@your-personal-username"
+msgstr "@votre-pseudo"
+
+#: inc/views/settings/metaboxes/social.php:257
+msgctxt "Twitter @username"
+msgid "@your-site-username"
+msgstr "@le-pseudo-de-votre-site"
+
+#: inc/views/settings/metaboxes/social.php:210
+msgid "Get Facebook App ID."
+msgstr "Obtenez l’ID de l’application Facebook."
+
+#: inc/views/settings/metaboxes/social.php:206
+msgid "Facebook App ID"
+msgstr "ID de l’application Facebook"
+
+#: inc/views/settings/metaboxes/social.php:242
+msgid "Your Facebook profile."
+msgstr "Votre profil Facebook."
+
+#: inc/views/settings/metaboxes/social.php:200
+msgid "When these options are filled in, Facebook might link the Facebook profile to be followed and liked when your post or page is shared."
+msgstr "Lorsque ces options sont remplies, Facebook peut lier votre profil Facebook ou votre page à chaque fois qu'un lien vers votre site est publié."
+
+#: inc/views/settings/metaboxes/social.php:199
+msgid "Facebook post sharing works mostly through Open Graph. However, you can also link your Business and Personal Facebook pages, among various other options."
+msgstr "Le partage de publications Facebook fonctionne principalement via Open Graph. Cependant, vous pouvez également lier vos pages Facebook professionnelles et personnelles, parmi d’autres options."
+
+#: inc/views/profile/author.php:16 inc/views/settings/metaboxes/social.php:190
+msgctxt "Example Facebook Personal URL"
+msgid "https://www.facebook.com/YourPersonalProfile"
+msgstr "https://www.facebook.com/VotreProfilPersonnel"
+
+#: inc/views/settings/metaboxes/social.php:93
+msgid "Output Twitter meta tags?"
+msgstr "Générer des balises pour Twitter ?"
+
+#: inc/views/settings/metaboxes/social.php:94
+msgid "Output various meta tags targeted at Twitter."
+msgstr "Génère des méta à destination de Twitter."
+
+#: inc/views/settings/metaboxes/social.php:83
+msgid "Output Facebook meta tags?"
+msgstr "Générer des méta pour Facebook ?"
+
+#: inc/views/settings/metaboxes/social.php:72
+msgid "Facebook, Twitter, Pinterest and many other social sites make use of these meta tags."
+msgstr "Facebook, Twitter, Pinterest et de nombreux autres sites sociaux utilisent ces méta."
+
+#: inc/views/settings/metaboxes/social.php:71
+msgid "Output Open Graph meta tags?"
+msgstr "Générer des méta Open Graph ?"
+
+#: inc/views/settings/metaboxes/social.php:61
+msgid "Output various meta tags for social site integration, among other third-party services."
+msgstr "Génère diverses méta pour améliorer votre présence sur les réseaux sociaux, ainsi que sur d’autres sites ou services."
+
+#: inc/views/settings/metaboxes/social.php:176
+msgid "Site Shortlink Settings"
+msgstr "Réglages de lien court pour le site"
+
+#: inc/views/settings/metaboxes/social.php:43
+msgid "Post Dates"
+msgstr "Dates des articles"
+
+#: inc/views/edit/seo-settings-singular.php:189
+#: inc/views/edit/seo-settings-tt.php:173
+#: inc/views/settings/metaboxes/homepage.php:139
+#: inc/views/settings/metaboxes/post-type-archive.php:228
+msgid "The meta description can be used to determine the text used under the title on search engine results pages."
+msgstr "La méta de description peut être utilisée pour déterminer le texte utilisé sous le titre sur les pages de résultats du moteur de recherche."
+
+#: inc/views/settings/metaboxes/homepage.php:23
+msgid "These settings will take precedence over the settings set within the homepage edit screen, if any."
+msgstr "Ces réglages auront la priorité sur les réglages définis dans l’écran d’édition de la page d’accueil, le cas échéant."
+
+#: inc/classes/builders/seobar/page.class.php:401
+#: inc/classes/builders/seobar/page.class.php:410
+#: inc/classes/builders/seobar/term.class.php:385
+#: inc/classes/builders/seobar/term.class.php:394
+msgid "Description"
+msgstr "Description"
+
+#: inc/classes/builders/seobar/page.class.php:192
+#: inc/classes/builders/seobar/term.class.php:201
+msgid "Title"
+msgstr "Titre"
+
+#: inc/views/settings/metaboxes/robots.php:300
+msgid "Robots Settings"
+msgstr "Réglages pour les robots"
+
+#. translators: the backticks are Markdown! Preserve them as-is!
+#: inc/views/settings/metaboxes/robots.php:133
+msgid "Apply `noindex` to every second or later archive page?"
+msgstr "Appliquer `noindex` à toutes les pages d’archives à partir de la numéro 2."
+
+#: inc/views/settings/metaboxes/robots.php:126
+msgid "Indexing the second or later page of any archive might cause duplication errors. Search engines look down upon them; therefore, it's recommended to disable indexing of those pages."
+msgstr "L’indexation de la deuxième ou de la dernière page d’une archive peut entraîner des erreurs de duplication, ce que les moteurs de recherche n’apprécient guère. Il est recommandé de désactiver l’indexation de ces pages."
+
+#: inc/views/settings/metaboxes/robots.php:125
+msgid "Paginated Archive Settings"
+msgstr "Réglages de la pagination des pages d’archive"
+
+#: inc/classes/builders/seobar/page.class.php:877
+#: inc/classes/builders/seobar/page.class.php:886
+#: inc/classes/builders/seobar/page.class.php:895
+#: inc/classes/builders/seobar/term.class.php:822
+#: inc/classes/builders/seobar/term.class.php:831
+#: inc/views/edit/seo-settings-singular.php:254
+#: inc/views/edit/seo-settings-tt.php:88 inc/views/list/bulk-post.php:36
+#: inc/views/list/quick-post.php:36 inc/views/list/quick-term.php:36
+#: inc/views/settings/metaboxes/post-type-archive.php:404
+#: inc/views/settings/metaboxes/robots.php:89
+msgid "Archiving"
+msgstr "Archivage"
+
+#: inc/classes/builders/seobar/page.class.php:746
+#: inc/classes/builders/seobar/page.class.php:755
+#: inc/classes/builders/seobar/page.class.php:764
+#: inc/classes/builders/seobar/term.class.php:705
+#: inc/classes/builders/seobar/term.class.php:714
+#: inc/views/list/quick-term.php:29 inc/views/settings/metaboxes/robots.php:78
+msgid "Following"
+msgstr "Suivre"
+
+#: inc/classes/builders/seobar/page.class.php:592
+#: inc/classes/builders/seobar/page.class.php:601
+#: inc/classes/builders/seobar/page.class.php:610
+#: inc/classes/builders/seobar/term.class.php:559
+#: inc/classes/builders/seobar/term.class.php:568
+#: inc/views/edit/seo-settings-singular.php:238
+#: inc/views/edit/seo-settings-tt.php:62 inc/views/list/bulk-post.php:22
+#: inc/views/list/quick-post.php:22 inc/views/list/quick-term.php:22
+#: inc/views/settings/metaboxes/post-type-archive.php:380
+#: inc/views/settings/metaboxes/robots.php:67
+msgid "Indexing"
+msgstr "Indexation"
+
+#: inc/views/edit/seo-settings-singular.php:29
+#: inc/views/settings/metaboxes/homepage.php:31
+#: inc/views/settings/metaboxes/post-type-archive.php:65
+#: inc/views/settings/metaboxes/robots.php:61
+#: inc/views/settings/metaboxes/sitemaps.php:23
+#: inc/views/settings/metaboxes/social.php:23
+#: inc/views/settings/metaboxes/title.php:141
+msgid "General"
+msgstr "Général"
+
+#: inc/views/settings/metaboxes/robots.php:53
+msgid "These options most likely prevent caching of the selected archives and pages. If you enable this, bots are urged not create a cached copy of the selected archives or pages."
+msgstr "Ces options sont censées empêcher la mise en cache des archives et des pages sélectionnées. Si vous activez cela, les bots sont priés de ne pas créer une copie mise en cache des archives ou des pages sélectionnées."
+
+#: inc/views/settings/metaboxes/robots.php:49
+msgid "These options most likely prevent links from being followed on the selected archives and pages. If you enable this, the selected archives or pages in-page links will gain no SEO value, including your internal links."
+msgstr "Ces options empêchent le suivi des liens sur les archives et les pages sélectionnées. Si vous activez cette option, les liens d’archives ou de pages dans les pages sélectionnées ne bénéficieront d’aucune valeur SEO, y compris vos propres liens."
+
+#: inc/views/settings/metaboxes/robots.php:45
+msgid "These options most likely prevent indexing of the selected archives and pages. If you enable this, the selected archives or pages will urge to be removed from search engine results pages."
+msgstr "Ces options empêchent l’indexation des archives et des pages sélectionnées. Si vous l’activez, les archives ou pages sélectionnées seront supprimées des pages de résultats des moteurs de recherche."
+
+#: inc/views/settings/metaboxes/robots.php:28
+msgid "Search pages"
+msgstr "Pages de recherche"
+
+#: inc/views/settings/metaboxes/homepage.php:254
+#: inc/views/settings/metaboxes/title.php:268
+msgid "Right:"
+msgstr "À droite :"
+
+#: inc/views/settings/metaboxes/homepage.php:244
+#: inc/views/settings/metaboxes/title.php:258
+msgid "Left:"
+msgstr "À gauche :"
+
+#: inc/views/settings/metaboxes/homepage.php:471
+msgid "This tells search engines not to follow links on this page."
+msgstr "Indiquer aux moteurs de recherche de ne pas suivre les liens sur cette page."
+
+#: inc/views/settings/metaboxes/homepage.php:455
+msgid "This tells search engines not to show this page in their search results."
+msgstr "Indiquer aux moteurs de recherche de ne pas afficher cette page dans leurs résultats de recherche."
+
+#: inc/views/edit/seo-settings-singular.php:185
+#: inc/views/edit/seo-settings-tt.php:169 inc/views/list/quick-post.php:77
+#: inc/views/list/quick-term.php:77
+#: inc/views/settings/metaboxes/homepage.php:135
+#: inc/views/settings/metaboxes/post-type-archive.php:224
+msgid "Meta Description"
+msgstr "Méta description"
+
+#. translators: 1 = The SEO Framework, 2 = 'by Sybre Waaijer
+#: inc/classes/render.class.php:1265
+msgid "%1$s %2$s"
+msgstr "%1$s : %2$s"
+
+#: inc/classes/generate-title.class.php:937
+msgctxt "post format archive title"
+msgid "Chats"
+msgstr "Discussions"
+
+#: inc/classes/generate-title.class.php:935
+msgctxt "post format archive title"
+msgid "Audio"
+msgstr "Son"
+
+#: inc/classes/generate-title.class.php:933
+msgctxt "post format archive title"
+msgid "Statuses"
+msgstr "États"
+
+#: inc/classes/generate-title.class.php:931
+msgctxt "post format archive title"
+msgid "Links"
+msgstr "Liens"
+
+#: inc/classes/generate-title.class.php:929
+msgctxt "post format archive title"
+msgid "Quotes"
+msgstr "Citations"
+
+#: inc/classes/generate-title.class.php:927
+msgctxt "post format archive title"
+msgid "Videos"
+msgstr "Vidéos"
+
+#: inc/classes/generate-title.class.php:925
+msgctxt "post format archive title"
+msgid "Images"
+msgstr "Images"
+
+#: inc/classes/generate-title.class.php:923
+msgctxt "post format archive title"
+msgid "Galleries"
+msgstr "Galeries"
+
+#: inc/classes/generate-title.class.php:921
+msgctxt "post format archive title"
+msgid "Asides"
+msgstr "En passant"
+
+#: inc/classes/generate-title.class.php:916
+msgctxt "daily archives date format"
+msgid "F j, Y"
+msgstr "j F Y"
+
+#: inc/classes/generate-title.class.php:913
+msgctxt "monthly archives date format"
+msgid "F Y"
+msgstr "F Y"
+
+#: inc/classes/generate-title.class.php:910
+msgctxt "yearly archives date format"
+msgid "Y"
+msgstr "Y"
+
+#: inc/classes/generate-title.class.php:896
+#: inc/classes/generate-title.class.php:969
+msgid "Archives"
+msgstr "Archives"
+
+#: inc/classes/generate-title.class.php:1146
+msgid "Untitled"
+msgstr "Sans titre"
+
+#: inc/classes/builders/seobar/page.class.php:993
+#: inc/classes/builders/seobar/page.class.php:1014
+#: inc/classes/builders/seobar/term.class.php:922
+#: inc/classes/builders/seobar/term.class.php:938
+msgctxt "Redirect"
+msgid "R"
+msgstr "R"
+
+#: inc/classes/builders/seobar/page.class.php:400
+#: inc/classes/builders/seobar/page.class.php:409
+#: inc/classes/builders/seobar/term.class.php:384
+#: inc/classes/builders/seobar/term.class.php:393
+msgctxt "Description"
+msgid "D"
+msgstr "D"
+
+#: inc/classes/builders/seobar/page.class.php:191
+#: inc/classes/builders/seobar/term.class.php:200
+msgctxt "Title"
+msgid "T"
+msgstr "T"
+
+#: inc/classes/admin-init.class.php:304
+msgid "Length is good."
+msgstr "La longueur est bonne."
+
+#: inc/classes/admin-init.class.php:320
+msgid "Good."
+msgstr "Bien."
+
+#: inc/classes/admin-init.class.php:311
+msgid "Far too long"
+msgstr "Bien trop long"
+
+#: inc/classes/admin-init.class.php:318
+msgid "Too long."
+msgstr "Trop long."
+
+#: inc/classes/admin-init.class.php:317
+msgid "Too short."
+msgstr "Trop court."
+
+#: inc/classes/admin-init.class.php:308
+msgid "Far too short"
+msgstr "Beaucoup trop court"
+
+#: inc/classes/bridges/seosettings.class.php:167
+msgid "Sitemap Settings"
+msgstr "Réglages du sitemap"
+
+#: inc/classes/bridges/seosettings.class.php:157
+msgid "Webmaster Meta Settings"
+msgstr "Réglages des méta pour webmasters"
+
+#: inc/classes/bridges/seosettings.class.php:147
+#: inc/views/edit/seo-settings-singular.php:285
+#: inc/views/edit/seo-settings-tt.php:346
+#: inc/views/settings/metaboxes/homepage.php:444
+msgid "Robots Meta Settings"
+msgstr "Réglages de la méta Robots"
+
+#: inc/classes/bridges/seosettings.class.php:127
+msgid "Social Meta Settings"
+msgstr "Réglages des balises méta pour les réseaux sociaux"
+
+#: inc/classes/bridges/seosettings.class.php:108
+msgid "Homepage Settings"
+msgstr "Réglages de la page d’accueil"
+
+#: inc/classes/bridges/seosettings.class.php:98
+msgid "Description Meta Settings"
+msgstr "Réglages de description de la métadonnée"
+
+#: inc/classes/bridges/seosettings.class.php:88
+msgid "Title Settings"
+msgstr "Réglages du titre"
+
+#: inc/classes/admin-pages.class.php:68
+msgid "SEO"
+msgstr "SEO"
+
+#: inc/classes/admin-pages.class.php:67
+#: inc/classes/bridges/postsettings.class.php:83
+msgid "SEO Settings"
+msgstr "Réglages SEO"
+
+#: inc/views/settings/wrap.php:45
+msgid "Reset Settings"
+msgstr "Réinitialiser les réglages"
+
+#: inc/views/settings/wrap.php:36
+msgid "Save Settings"
+msgstr "Enregistrer les réglages"
+
+#: inc/views/settings/wrap.php:43
+msgid "Are you sure you want to reset all SEO settings to their defaults?"
+msgstr "Êtes vous sûr de vouloir réinitialiser tous les paramètres SEO par défaut ?"
+
+#: inc/classes/bridges/scripts.class.php:332
+msgid "The changes you made will be lost if you navigate away from this page."
+msgstr "Les modifications que vous avez faites seront perdues si vous quittez cette page."
+
+#: inc/classes/admin-init.class.php:78
+msgid "No Search"
+msgstr "Aucune recherche"

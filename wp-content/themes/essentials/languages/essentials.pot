@@ -1,0 +1,1127 @@
+# Translation file by pixfort.com
+msgid ""
+msgstr ""
+"Project-Id-Version: Essentials 3.2.11\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/theme/essentials\n"
+"POT-Creation-Date: 2024-08-21 19:48:27+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2024-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: 404.php:182
+msgid "Oops! That page can&rsquo;t be found."
+msgstr ""
+
+#: 404.php:193
+msgid "It looks like nothing was found at this location. Maybe try a search?"
+msgstr ""
+
+#: comments.php:33
+#. translators: 1: title.
+msgid "1 Comment"
+msgstr ""
+
+#: comments.php:53
+msgid "Reply"
+msgstr ""
+
+#: comments.php:66
+msgid "Comments are closed."
+msgstr ""
+
+#: functions.php:57
+msgid "Primary"
+msgstr ""
+
+#: functions.php:143
+msgid "Main Sidebar"
+msgstr ""
+
+#: functions.php:145 functions.php:164
+msgid "Add widgets here."
+msgstr ""
+
+#: functions.php:353
+msgid "The item has been added to your shopping cart!"
+msgstr ""
+
+#: inc/bootstrap-wp-navwalker.php:800
+msgid "Add a menu"
+msgstr ""
+
+#: inc/config/plugins.php:102
+msgid "...verifying"
+msgstr ""
+
+#: inc/config/plugins.php:165
+msgid ""
+"Your website needs a few essential plugins. The following selected plugins "
+"will be installed or updated:"
+msgstr ""
+
+#: inc/config/plugins.php:270
+msgid "You can add and remove plugins later on from within WordPress."
+msgstr ""
+
+#: inc/config/plugins.php:278
+msgid "Good news!"
+msgstr ""
+
+#: inc/config/plugins.php:279
+msgid "All required plugins are already installed and up to date."
+msgstr ""
+
+#: inc/config/plugins.php:452
+msgid "No Slug Found"
+msgstr ""
+
+#: inc/config/plugins.php:468
+msgid "Activating Plugin"
+msgstr ""
+
+#: inc/config/plugins.php:483
+msgid "Updating Plugin"
+msgstr ""
+
+#: inc/config/plugins.php:498
+msgid "Installing Plugin"
+msgstr ""
+
+#: inc/config/plugins.php:508
+msgid "Success"
+msgstr ""
+
+#: inc/custom-header.php:11
+msgid "Enable Megamenu "
+msgstr ""
+
+#: inc/custom-header.php:18
+msgid "Convert to column item "
+msgstr ""
+
+#: inc/custom-header.php:23
+msgid "Hide the label "
+msgstr ""
+
+#: inc/custom-header.php:33
+msgid "Use padding style "
+msgstr ""
+
+#: inc/custom-header.php:36
+msgid "No"
+msgstr ""
+
+#: inc/custom-header.php:37
+msgid "Normal"
+msgstr ""
+
+#: inc/custom-header.php:38
+msgid "Small"
+msgstr ""
+
+#: inc/custom-header.php:43
+msgid "Width"
+msgstr ""
+
+#: inc/custom-header.php:46
+msgid "2 Columns (~16% of Mega menu)"
+msgstr ""
+
+#: inc/custom-header.php:47
+msgid "3 Columns (25% of Mega menu)"
+msgstr ""
+
+#: inc/custom-header.php:48
+msgid "4 Columns (~33% of Mega menu)"
+msgstr ""
+
+#: inc/custom-header.php:49
+msgid "6 Columns (50% of Mega menu)"
+msgstr ""
+
+#: inc/custom-header.php:50
+msgid "12 Columns (100% of Mega menu)"
+msgstr ""
+
+#: inc/custom-header.php:55
+msgid "Add column line "
+msgstr ""
+
+#: inc/custom-header.php:58
+msgid "Disabled"
+msgstr ""
+
+#: inc/custom-header.php:59
+msgid "Right"
+msgstr ""
+
+#: inc/custom-header.php:60
+msgid "Top"
+msgstr ""
+
+#: inc/custom-header.php:61
+msgid "Right & Top"
+msgstr ""
+
+#: inc/custom-header.php:68
+msgid "Convert to Box item "
+msgstr ""
+
+#: inc/custom-header.php:73
+msgid "Title"
+msgstr ""
+
+#: inc/custom-header.php:78
+msgid "Text"
+msgstr ""
+
+#: inc/custom-header.php:83
+msgid "Background image "
+msgstr ""
+
+#: inc/custom-header.php:88
+msgid "Box style "
+msgstr ""
+
+#: inc/custom-header.php:91
+msgid "Default"
+msgstr ""
+
+#: inc/custom-header.php:92
+msgid "With padding"
+msgstr ""
+
+#: inc/custom-header.php:93
+msgid "With padding (No padding top)"
+msgstr ""
+
+#: inc/custom-header.php:98
+msgid "Make the box full column height "
+msgstr ""
+
+#: inc/custom-header.php:103
+msgid "Use light text colors "
+msgstr ""
+
+#: inc/custom-header.php:119
+msgid "Advanced "
+msgstr ""
+
+#: inc/custom-header.php:213 inc/custom-header.php:217
+msgid "Advanced menu item Options"
+msgstr ""
+
+#: inc/dashboard.php:31
+msgid "Essentials Theme:"
+msgstr ""
+
+#: inc/dashboard.php:31
+msgid ""
+" your copy of the theme is not verified yet! Verify it now from Essentials "
+"dashboard to activate all the features and demo content."
+msgstr ""
+
+#: inc/dashboard.php:32 inc/dashboard.php:55
+msgid "Go to Essentials Dashboard"
+msgstr ""
+
+#: inc/dashboard.php:53
+msgid "Important notice!"
+msgstr ""
+
+#: inc/dashboard.php:54
+msgid ""
+"It seems that you updated Essentials theme, please make sure to update "
+"\"pixfort core\" too from Essentials > Dashboard > Install plugins."
+msgstr ""
+
+#: inc/dashboard.php:146 inc/dashboard.php:154
+msgid "Important Note: "
+msgstr ""
+
+#: inc/dashboard.php:146
+msgid ""
+"It seems that the website URL has been changed, please make sure to go to "
+"Essentials Theme options and click on the Save button to refresh the "
+"options URLs."
+msgstr ""
+
+#: inc/dashboard.php:147 inc/dashboard.php:155
+msgid "Go to Theme options"
+msgstr ""
+
+#: inc/dashboard.php:154
+msgid ""
+"Please make sure to go to Essentials Theme options and click on the Save "
+"options button."
+msgstr ""
+
+#: inc/dashboard.php:414
+msgid "Dashboard"
+msgstr ""
+
+#: inc/dashboard.php:427
+msgid "Step 1"
+msgstr ""
+
+#: inc/dashboard.php:428
+msgid "Plugins Installation"
+msgstr ""
+
+#: inc/dashboard.php:438
+msgid ""
+"Note: The additional compatible plugins with Essentials can be installed "
+"from WordPress plugins page."
+msgstr ""
+
+#: inc/dashboard.php:450
+msgid "Step 2"
+msgstr ""
+
+#: inc/dashboard.php:451
+msgid "Theme activation"
+msgstr ""
+
+#: inc/dashboard.php:473
+msgid "Great news! your theme is activated! You are ready to go!"
+msgstr ""
+
+#: inc/dashboard.php:476
+msgid "Deactivate theme"
+msgstr ""
+
+#: inc/dashboard.php:483
+msgid ""
+"In order to use all the included features you need to verify the theme "
+"using your account on pixfort hub."
+msgstr ""
+
+#: inc/dashboard.php:509
+msgid "Skip this step"
+msgstr ""
+
+#: inc/dashboard.php:515
+msgid "Step 3"
+msgstr ""
+
+#: inc/dashboard.php:516
+msgid "Useful Information"
+msgstr ""
+
+#: inc/dashboard.php:521
+msgid "Demo Import"
+msgstr ""
+
+#: inc/dashboard.php:522
+msgid "Go to Demo import page"
+msgstr ""
+
+#: inc/dashboard.php:528
+msgid "Theme Options"
+msgstr ""
+
+#: inc/dashboard.php:529
+msgid "Open theme settings"
+msgstr ""
+
+#: inc/dashboard.php:536
+msgid "Knowledge base"
+msgstr ""
+
+#: inc/dashboard.php:537
+msgid "Check all the help articles"
+msgstr ""
+
+#: inc/dashboard.php:542
+msgid "Videos"
+msgstr ""
+
+#: inc/dashboard.php:543
+msgid "Check the video tutorials"
+msgstr ""
+
+#: inc/dashboard.php:550
+msgid "Changelog"
+msgstr ""
+
+#: inc/dashboard.php:551
+msgid "Check latest theme updates"
+msgstr ""
+
+#: inc/dashboard.php:558
+msgid "Support"
+msgstr ""
+
+#: inc/dashboard.php:559
+msgid "Get support and check your licenses"
+msgstr ""
+
+#: inc/dashboard.php:564
+msgid "Follow us on"
+msgstr ""
+
+#: inc/dashboard.php:566
+msgid "YouTube"
+msgstr ""
+
+#: inc/dashboard.php:567
+msgid "Facebook"
+msgstr ""
+
+#: inc/dashboard.php:568
+msgid "Instagram"
+msgstr ""
+
+#: inc/dashboard.php:569
+msgid "Twitter"
+msgstr ""
+
+#: inc/dashboard.php:570
+msgid "Dribbble"
+msgstr ""
+
+#: inc/dashboard.php:579
+msgid "Finish"
+msgstr ""
+
+#: inc/dashboard.php:585
+msgid "Server status"
+msgstr ""
+
+#: inc/dashboard.php:614
+msgid "Please login as admin to view server status."
+msgstr ""
+
+#: inc/dashboard.php:646
+msgid "Writable uploads directory"
+msgstr ""
+
+#: inc/dashboard.php:656
+msgid "Memory limit (256MB)"
+msgstr ""
+
+#: inc/dashboard.php:667
+msgid "Upload max filesize (64MB)"
+msgstr ""
+
+#: inc/dashboard.php:678
+msgid "Post max size (64MB)"
+msgstr ""
+
+#: inc/dashboard.php:688
+msgid "Max input vars (3000)"
+msgstr ""
+
+#: inc/dashboard.php:698
+msgid "Max execution time (300s)"
+msgstr ""
+
+#: inc/dashboard.php:711
+msgid "XML Reader"
+msgstr ""
+
+#: inc/dashboard.php:724
+msgid "One Click Demo Import"
+msgstr ""
+
+#: inc/dashboard.php:725
+msgid "Import Demo Data"
+msgstr ""
+
+#: inc/demo-content/demos.php:193 inc/demo-content/demos.php:404
+#: inc/demo-content/demos.php:420 inc/demo-content/demos.php:601
+msgid ""
+"This demo content includes woocommerce elements, make sure that woocommerce "
+"is installed and activated."
+msgstr ""
+
+#: inc/demo-content/demos.php:644 inc/demo-content/demos.php:695
+#: inc/demo-content/demos.php:713 inc/demo-content/demos.php:731
+#: inc/demo-content/demos.php:751 inc/demo-content/demos.php:769
+#: inc/demo-content/demos.php:787 inc/demo-content/demos.php:805
+#: inc/demo-content/demos.php:843 inc/demo-content/demos.php:862
+#: inc/demo-content/demos.php:881 inc/demo-content/demos.php:900
+#: inc/demo-content/demos.php:923 inc/demo-content/demos.php:944
+#: inc/demo-content/demos.php:963 inc/demo-content/demos.php:983
+#: inc/demo-content/demos.php:1003 inc/demo-content/demos.php:1023
+#: inc/demo-content/demos.php:1043 inc/demo-content/demos.php:1062
+#: inc/demo-content/demos.php:1082 inc/demo-content/demos.php:1102
+#: inc/demo-content/demos.php:1161 inc/demo-content/demos.php:1181
+#: inc/demo-content/demos.php:1201 inc/demo-content/demos.php:1221
+#: inc/demo-content/demos.php:1241 inc/demo-content/demos.php:1260
+#: inc/demo-content/demos.php:1280 inc/demo-content/demos.php:1300
+#: inc/demo-content/demos.php:1320 inc/demo-content/demos.php:1340
+#: inc/demo-content/demos.php:1360 inc/demo-content/demos.php:1399
+msgid ""
+"Please make sure that Elementor plugin is installed and activated before "
+"importing this demo content."
+msgstr ""
+
+#: inc/demo-content/demos.php:824 inc/demo-content/demos.php:1122
+#: inc/demo-content/demos.php:1142 inc/demo-content/demos.php:1379
+msgid ""
+"Note: Elementor should be installed and activated before importing this "
+"demo content. This demo content includes woocommerce elements, make sure "
+"that woocommerce is installed and activated."
+msgstr ""
+
+#: inc/demo-content/forms.php:13 inc/demo-content/forms.php:22
+#: inc/demo-content/forms.php:31 inc/demo-content/forms.php:40
+#: inc/demo-content/forms.php:49 inc/demo-content/forms.php:59
+#: inc/demo-content/forms.php:69
+msgid ""
+"Contact Form 7 plugin should be installed and activated in order to import "
+"& use the forms."
+msgstr ""
+
+#: inc/demo-content/misc.php:20
+msgid "Default Essentials menu example."
+msgstr ""
+
+#: inc/demo-content/misc.php:30
+msgid ""
+"12 default portfolio items will be imported with associated images, you can "
+"change portfolio layout from theme options."
+msgstr ""
+
+#: inc/demo-content/misc.php:41
+msgid ""
+"4 default portfolio items will be imported with associated images, you can "
+"change portfolio layout from theme options. <br /><strong>Note:</strong> "
+"Make sure that Elementor plugin is installed and activated before import!"
+msgstr ""
+
+#: inc/demo-content/misc.php:52
+msgid ""
+"12 default products will be imported with associated images. <br /> "
+"<strong>Please note that woocommerce should be installed and "
+"activated.</strong>"
+msgstr ""
+
+#: inc/demo-content/misc.php:62
+msgid "5 default posts will be imported with associated images."
+msgstr ""
+
+#: inc/demo-content/misc.php:72
+msgid "Default blog widgets will be imported."
+msgstr ""
+
+#: inc/demo-content/misc.php:82
+msgid "Default shop widgets will be imported."
+msgstr ""
+
+#: inc/demo-content/misc.php:110
+msgid "Consulting Essentials menu example."
+msgstr ""
+
+#: inc/demo.php:12
+msgid "Please update \"One Click Demo Import\" plugin to the latest version."
+msgstr ""
+
+#: inc/demo.php:13
+msgid ""
+"In order to use the demo importer you need to update \"One Click Demo "
+"Import\" plugin from WordPress admin panel > Essentials dashboard > Install "
+"plugins."
+msgstr ""
+
+#: inc/header-functions.php:545
+msgid "Search for something"
+msgstr ""
+
+#: inc/header-functions.php:564 inc/template-functions.php:23
+#: inc/template-functions.php:328 inc/template-functions.php:350
+msgid "Search"
+msgstr ""
+
+#: inc/header-functions.php:828 inc/header-functions.php:903
+msgid "Toggle navigation"
+msgstr ""
+
+#: inc/post-functions.php:29
+msgid "Share on Facebook"
+msgstr ""
+
+#: inc/post-functions.php:44
+msgid "Share on X"
+msgstr ""
+
+#: inc/post-functions.php:87
+msgid "Previous post"
+msgstr ""
+
+#: inc/post-functions.php:88
+msgid "Next post"
+msgstr ""
+
+#: inc/post-functions.php:126 single-portfolio.php:90
+msgid "Continue Reading"
+msgstr ""
+
+#: inc/post-functions.php:197
+msgid "Related Posts"
+msgstr ""
+
+#: inc/post-functions.php:607 inc/post-functions.php:663
+#: inc/post-functions.php:712 inc/post-functions.php:751
+msgid "Read more"
+msgstr ""
+
+#: inc/post-functions.php:935
+msgid "By"
+msgstr ""
+
+#: inc/post-functions.php:1011 inc/post-functions.php:1024
+#: inc/post-functions.php:1038 inc/post-functions.php:1059
+msgid "Play"
+msgstr ""
+
+#: inc/post-functions.php:1078
+msgid "Open link"
+msgstr ""
+
+#: inc/template-functions.php:19 inc/template-functions.php:349
+msgid "Search for:"
+msgstr ""
+
+#: inc/template-functions.php:20
+msgid "Search …"
+msgstr ""
+
+#: inc/template-functions.php:52
+msgid "Required fields are marked *"
+msgstr ""
+
+#: inc/template-functions.php:56 inc/template-functions.php:58
+msgid "Name"
+msgstr ""
+
+#: inc/template-functions.php:63 inc/template-functions.php:65
+msgid "Email"
+msgstr ""
+
+#: inc/template-functions.php:70 inc/template-functions.php:71
+msgid "Website"
+msgstr ""
+
+#: inc/template-functions.php:76
+msgid "Leave a Reply"
+msgstr ""
+
+#: inc/template-functions.php:80
+msgid "Logged in as"
+msgstr ""
+
+#: inc/template-functions.php:80
+msgid "Log out?"
+msgstr ""
+
+#: inc/template-functions.php:85
+msgid "Post Comment"
+msgstr ""
+
+#: inc/template-functions.php:87 inc/template-functions.php:88
+msgid "Comment"
+msgstr ""
+
+#: inc/template-functions.php:91 woocommerce/single-product-reviews.php:86
+msgid "Your email address will not be published."
+msgstr ""
+
+#: inc/template-functions.php:174
+msgid "%s"
+msgstr ""
+
+#: inc/template-functions.php:176
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: inc/template-functions.php:204
+#. translators: 1: date, 2: time
+msgid "%1$s"
+msgstr ""
+
+#: inc/template-functions.php:214
+msgid "Edit"
+msgstr ""
+
+#: inc/template-functions.php:317 template-parts/banner.php:50
+#: template-parts/cookies.php:60
+msgid "Close"
+msgstr ""
+
+#: inc/template-functions.php:330
+msgid "Hit enter to search or ESC to close"
+msgstr ""
+
+#: inc/template-functions.php:388
+msgid "Your shopping cart"
+msgstr ""
+
+#: inc/template-functions.php:389
+msgid "Close Cart Sidebar"
+msgstr ""
+
+#: inc/template-functions.php:408
+msgid "WooCommerce should be installed and activated!"
+msgstr ""
+
+#: inc/template-functions.php:457
+msgid "Home"
+msgstr ""
+
+#: inc/template-functions.php:1121
+msgid "Extra profile information"
+msgstr ""
+
+#: inc/template-functions.php:1124
+msgid "Job title"
+msgstr ""
+
+#: inc/template-functions.php:1127
+msgid "Please enter your job title."
+msgstr ""
+
+#: inc/template-tags.php:67
+#. translators: used between list items, there is a space after the comma
+msgid ", "
+msgstr ""
+
+#: inc/template-tags.php:70
+#. translators: 1: list of categories.
+msgid "Posted in %1$s"
+msgstr ""
+
+#: inc/template-tags.php:77
+#. translators: 1: list of tags.
+msgid "Tagged %1$s"
+msgstr ""
+
+#: inc/template-tags.php:87
+#. translators: %s: post title
+msgid "Leave a Comment<span class=\"screen-reader-text\"> on %s</span>"
+msgstr ""
+
+#: inc/template-tags.php:104 template-parts/content-page.php:42
+#. translators: %s: Name of current post. Only visible to screen readers
+msgid "Edit <span class=\"screen-reader-text\">%s</span>"
+msgstr ""
+
+#: inc/wc/product.php:86
+msgid "Awaiting product image"
+msgstr ""
+
+#: inc/woocommerce.php:409
+msgid "View product"
+msgstr ""
+
+#: inc/woocommerce.php:420
+msgid "Out of stock"
+msgstr ""
+
+#: inc/woocommerce.php:450
+msgid "View your shopping cart"
+msgstr ""
+
+#: inc/woocommerce.php:454
+#. translators: number of items in the mini cart.
+msgid "%d item"
+msgid_plural "%d items"
+msgstr[0] ""
+msgstr[1] ""
+
+#: single-pixfooter.php:26
+msgid "Skip to content"
+msgstr ""
+
+#: single-portfolio.php:49
+msgid "Previous project"
+msgstr ""
+
+#: single-portfolio.php:50
+msgid "Next project"
+msgstr ""
+
+#: template-parts/banner.php:78
+msgid "Days"
+msgstr ""
+
+#: template-parts/banner.php:82
+msgid "Hours"
+msgstr ""
+
+#: template-parts/banner.php:86
+msgid "Minutes"
+msgstr ""
+
+#: template-parts/banner.php:90
+msgid "Seconds"
+msgstr ""
+
+#: template-parts/content-none.php:14
+msgid "Nothing Found"
+msgstr ""
+
+#: template-parts/content-none.php:24
+#. translators: 1: link to WP admin new post page.
+msgid "Ready to publish your first post? <a href=\"%1$s\">Get started here</a>."
+msgstr ""
+
+#: template-parts/content-none.php:37
+msgid ""
+"Sorry, but nothing matched your search terms. Please try again with some "
+"different keywords."
+msgstr ""
+
+#: template-parts/content-none.php:44
+msgid ""
+"It seems we can&rsquo;t find what you&rsquo;re looking for. Perhaps "
+"searching can help."
+msgstr ""
+
+#: template-parts/content-page.php:30
+#: template-parts/content-post-normal.php:221
+#: template-parts/content-post-sidebar.php:184
+#: template-parts/content-post.php:225
+#: template-parts/portfolio-item-box.php:131
+#: template-parts/portfolio-item-default.php:134
+#: template-parts/portfolio-item-sidebar-full.php:92
+#: template-parts/portfolio-item-sidebar.php:94
+msgid "Pages:"
+msgstr ""
+
+#: template-parts/content-post-normal.php:210
+#: template-parts/content-post-sidebar.php:173
+#: template-parts/content-post.php:214
+#. translators: %s: Name of current post. Only visible to screen readers
+msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
+msgstr ""
+
+#: template-parts/intro.php:355 template-parts/intro.php:360
+#: templates/template-blog-full-width.php:77
+#: templates/template-blog-left-sidebar.php:79
+#: templates/template-blog-right-sidebar.php:77
+#: templates/template-blog-with-offset.php:76
+#: templates/template-blog-without-sidebar.php:77
+msgid "Search Results for: %s"
+msgstr ""
+
+#: woocommerce/global/quantity-input.php:23
+#. translators: %s: Quantity.
+msgid "%s quantity"
+msgstr ""
+
+#: woocommerce/global/quantity-input.php:23
+msgid "Quantity"
+msgstr ""
+
+#: woocommerce/loop/orderby.php:24
+msgid "Shop order"
+msgstr ""
+
+#: woocommerce/loop/result-count.php:27
+msgid "Showing the single result"
+msgstr ""
+
+#: woocommerce/loop/result-count.php:30
+#. translators: %d: total results
+msgid "Showing all %d result"
+msgid_plural "Showing all %d results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: woocommerce/loop/sale-flash.php:32
+msgid "Sale!"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:28
+#: woocommerce/myaccount/form-login.php:31
+msgid "Login"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:40
+msgid "Username or email address"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:44
+#: woocommerce/myaccount/form-login.php:103
+msgid "Password"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:54
+msgid "Remember me"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:58
+msgid "Log in"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:62
+msgid "Lost your password?"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:80
+#: woocommerce/myaccount/form-login.php:117
+msgid "Register"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:89
+msgid "Username"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:96
+msgid "Email address"
+msgstr ""
+
+#: woocommerce/myaccount/form-login.php:109
+msgid "A password will be sent to your email address."
+msgstr ""
+
+#: woocommerce/single-product/meta.php:31
+msgid "SKU:"
+msgstr ""
+
+#: woocommerce/single-product/meta.php:31
+msgid "N/A"
+msgstr ""
+
+#: woocommerce/single-product/meta.php:37
+msgid "Tag:"
+msgid_plural "Tags:"
+msgstr[0] ""
+msgstr[1] ""
+
+#: woocommerce/single-product/rating.php:39
+msgid "%s customer review"
+msgid_plural "%s customer reviews"
+msgstr[0] ""
+msgstr[1] ""
+
+#: woocommerce/single-product/related.php:29
+msgid "Related Products"
+msgstr ""
+
+#: woocommerce/single-product/review-meta.php:27
+msgid "Your review is awaiting approval"
+msgstr ""
+
+#: woocommerce/single-product/review-meta.php:37
+msgid "verified owner"
+msgstr ""
+
+#: woocommerce/single-product/tabs/additional-information.php:27
+msgid "Additional information"
+msgstr ""
+
+#: woocommerce/single-product/tabs/description.php:25
+msgid "Description"
+msgstr ""
+
+#: woocommerce/single-product/up-sells.php:27
+msgid "You may also like"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:32
+#. translators: 1: reviews count 2: product name
+msgid "%1$s review for %2$s"
+msgid_plural "%1$s reviews for %2$s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: woocommerce/single-product-reviews.php:34
+msgid "Reviews"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:56
+msgid "There are no reviews yet."
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:71
+msgid "Add a review"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:71
+msgid "Be the first to review &ldquo;%s&rdquo;"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:72
+msgid "Leave a Reply to %s"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:78
+msgid "Name *"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:80
+msgid "Email *"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:82
+msgid "Submit"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:92
+msgid "You must be %1$slogged in%2$s to post a review."
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:95
+msgid "Your rating"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:96
+msgid "Rate&hellip;"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:97
+msgid "Perfect"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:98
+msgid "Good"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:99
+msgid "Average"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:100
+msgid "Not that bad"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:101
+msgid "Very poor"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:105
+msgid "Write your review"
+msgstr ""
+
+#: woocommerce/single-product-reviews.php:115
+msgid "Only logged in customers who have purchased this product may leave a review."
+msgstr ""
+
+#. Theme Name of the plugin/theme
+msgid "Essentials"
+msgstr ""
+
+#. Theme URI of the plugin/theme
+msgid "https://essentials.pixfort.com/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Essentials theme"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "pixfort"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://1.envato.market/pixfort"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Blog (Theme options Default) */"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Blog Full width */"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Blog Left sidebar */"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Blog Right sidebar */"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Blog with offset */"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Blog without sidebar */"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Full width Template */"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Left sidebar Template */"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Templates Library */"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Portfolio default */"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Portfolio Full width */"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Right sidebar Template */"
+msgstr ""
+
+#. Template Name of the plugin/theme
+msgid "Shop Template */"
+msgstr ""
+
+#: comments.php:38
+#. translators: 1: comment count number, 2: title.
+msgctxt "comments title"
+msgid "%1$s Comments"
+msgid_plural "%1$s Comments"
+msgstr[0] ""
+msgstr[1] ""
+
+#: inc/template-tags.php:29
+#. translators: %s: post date.
+msgctxt "post date"
+msgid "Posted on %s"
+msgstr ""
+
+#: inc/template-tags.php:50
+#. translators: %s: post author.
+msgctxt "post author"
+msgid "by %s"
+msgstr ""
+
+#: inc/template-tags.php:74
+#. translators: used between list items, there is a space after the comma
+msgctxt "list item separator"
+msgid ", "
+msgstr ""
+
+#: woocommerce/global/quantity-input.php:51
+msgctxt "Product quantity input tooltip"
+msgid "Qty"
+msgstr ""
+
+#: woocommerce/loop/result-count.php:35
+#. translators: 1: first result 2: last result 3: total results
+msgctxt "with first and last result"
+msgid "Showing %1$d&ndash;%2$d of %3$d result"
+msgid_plural "Showing %1$d&ndash;%2$d of %3$d results"
+msgstr[0] ""
+msgstr[1] ""

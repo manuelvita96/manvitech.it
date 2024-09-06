@@ -1,0 +1,107 @@
+# Translation of Plugins - Media File Renamer &#8211; Auto &amp; Manual Rename - Stable (latest release) in French (France)
+# This file is distributed under the same license as the Plugins - Media File Renamer &#8211; Auto &amp; Manual Rename - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2022-10-10 09:23:37+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n > 1;\n"
+"X-Generator: GlotPress/4.0.0-alpha.3\n"
+"Language: fr\n"
+"Project-Id-Version: Plugins - Media File Renamer &#8211; Auto &amp; Manual Rename - Stable (latest release)\n"
+
+#. Description of the plugin
+msgid "Rename your files and images for a better SEO, automatically and manually."
+msgstr "Renommer vos fichiers et images pour un meilleur SEO, automatiquement et manuellement."
+
+#: common/ratings.php:104
+msgid "Hide this"
+msgstr "Masquer ceci"
+
+#: common/ratings.php:98
+msgid "⏰ Remind me later"
+msgstr "⏰ Me le rappeler ultérieurement"
+
+#: common/ratings.php:90
+msgid "🥰 I did it"
+msgstr "🥰 Je l’ai fait"
+
+#. Translators: %1$s is a plugin nicename, %2$s is a short url (slug)
+#: common/ratings.php:79
+msgid ""
+"<h2 class=\"title\">You have been using <b>%1$s</b> for some time now. Thank you 💕</h2>Could you take one minute and write a <b>little review</b> for me? That would <b>really</b> bring me joy and motivation 🥰<br />In the review, don't hesitate to share your feature requests and remarks. I will try my best!\n"
+"\t\t\t\t\t"
+msgstr ""
+"<h2 class=\"title\">Vous utilisez <b>%1$s</b> depuis un petit moment. Merci 💕</h2>Pouvez-vous prendre quelques minutes et rédiger un <b>avis</b> pour moi ? Cela m’apporterait <b>réellement</b>de la joie et de la motivation 🥰<br />Dans la revue, n’hésitez pas à partager vos demandes de fonctionnalités et vos remarques. Je ferai de mon mieux !\n"
+"\t\t\t\t\t"
+
+#: common/admin.php:73
+msgid "<a target=\"_blank\" href=\"https://meowapps.com\">Get the <u>Pro Version</u></a>"
+msgstr "<a target=\"_blank\" href=\"https://meowapps.com\">Obtenir la <u>Version Pro</u></a>"
+
+#: common/admin.php:73
+msgid "License Issue"
+msgstr "Problème de licence"
+
+#: common/admin.php:69
+msgid "<a href=\"admin.php?page=%s_settings\">Settings</a>"
+msgstr "<a href=\"admin.php?page=%s_settings\">Réglages</a>"
+
+#: classes/core.php:1373 classes/rest.php:641
+msgid "Option updated."
+msgstr "Option mise à jour."
+
+#. translators: %1$s is the version of the interface; %2$s is a file path.
+#: common/admin.php:174
+msgid "Thanks for using <a href=\"https://meowapps.com\">Meow Apps</a>! This is the Meow Admin %1$s <br /><i>Loaded from %2$s </i>"
+msgstr "Merci d’utiliser <a href=\"https://meowapps.com\">Meow Apps</a> ! Ceci est l’administration  %1$s <br /><i>chargée depuis %2$s </i>"
+
+#: common/admin.php:72
+msgid "Pro Version"
+msgstr "Version Pro"
+
+#: common/admin.php:110
+msgid "Remove the license"
+msgstr "Retirer la licence"
+
+#: common/admin.php:104
+msgid "<p>It looks like you are using the free version of the plugin (<b>%s</b>) but a license for the Pro version was also found. The Pro version might have been replaced by the Free version during an update (might be caused by a temporarily issue). If it is the case, <b>please download it again</b> from the <a target=\"_blank\" href=\"https://meowapps.com\">Meow Store</a>. If you wish to continue using the free version and clear this message, click on this button."
+msgstr "<p>Il semble que vous utilisez la version gratuite de l’extension (<b>%s</b>) mais une licence pour la version Pro a aussi été trouvée. La version Pro peut avoir été remplacée par la version gratuite durant une mise à jour (peut être causée par un problème temporaire). Si c’est le cas, <b>veuillez la télécharger à nouveau</b> depuis <a target=\"_blank\" href=\"https://meowapps.com\">la boutique Meow</a>. Si vous souhaitez continuer d’utiliser la version gratuite et effacer ce message, cliquez sur ce bouton."
+
+#: common/admin.php:139
+msgid "<label>Hide <b>Meow Apps</b> Menu</label><br /><small>Hide Meow Apps menu and all its components, for a cleaner admin. This option will be reset if a new Meow Apps plugin is installed. <b>Once activated, an option will be added in your General settings to display it again.</b></small>"
+msgstr "<label>Masquer le menu <b>Meow Apps</b></label><br /><small>Masquer le menu Apps Meow et tous ses composants, pour une interface d’administration plus propre. Cette option sera réinitialisée si une nouvelle extension Meow Apps est installée.<b>Une fois activé, une option sera ajoutée à vos réglages généraux pour l’afficher à nouveau.</b></small>"
+
+#: classes/core.php:1348 classes/rest.php:616
+msgid "Force Rename and Numbered Files cannot be used at the same time. Please use Force Rename only when you are trying to repair a broken install. For now, Force Rename has been disabled."
+msgstr "« Forcer Renommage » et « Fichiers Numérotés » ne peuvent être utilisés en même temps. Veuillez utiliser « Forcer Renommage » uniquement lorsque vous essayez de réparer une installation endommagée. Pour l’instant, « Forcer Renommage » a été désactivé."
+
+#: classes/core.php:1362 classes/rest.php:634
+msgid "The option Sync Media Title was turned off since it does not make sense to have it with this Auto-Rename mode."
+msgstr "L’option « Sync Media Title » a été désactivée car il n’est pas logique de l’avoir avec le mode « Renommage automatique »."
+
+#: classes/core.php:1357 classes/rest.php:628
+msgid "The option Sync ALT was turned off since it does not make sense to have it with this Auto-Rename mode."
+msgstr "L’option « Sync ALT » a été désactivée, car ce n’est pas logique de l’activer avec le mode de renommage automatique."
+
+#: classes/admin.php:65 classes/ui.php:22 classes/ui.php:51
+msgid "Renamer"
+msgstr "Renommer"
+
+#. Plugin URI of the plugin
+#. Author URI of the plugin
+msgid "https://meowapps.com"
+msgstr "https://meowapps.com"
+
+#: common/admin.php:130 common/admin.php:131
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#. Author of the plugin
+msgid "Jordy Meow"
+msgstr "Jordy Meow"
+
+#. Plugin Name of the plugin
+msgid "Media File Renamer"
+msgstr "Media File Renamer"

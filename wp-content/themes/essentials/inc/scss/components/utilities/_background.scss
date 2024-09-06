@@ -1,0 +1,34 @@
+@each $color, $value in $theme-colors {
+  @include bg-variant(".bg-#{$color}", $value);
+}
+
+@each $color, $value in $opacity-values {
+  @include bg-transparent-variant(".bg-dark-#{$color}", darken(desaturate($primary, 85%), 55%), $value);
+  @include bg-transparent-variant(".bg-light-#{$color}", #ffffff, $value);
+}
+
+@each $c, $v in $theme-colors {
+    @include bg-transparent-variant(".bg-#{$c}-light", lighten($v, 20%), 0.15);
+}
+.bg-gradient-primary-light {
+    @if $middle-gradient == 'yes' {
+        background: linear-gradient($gradient-direction, rgba(lighten($gradient-primary-1, 20%), 0.15), rgba(lighten($gradient-primary-middle, 20%), 0.15), rgba(lighten($gradient-primary-2, 20%), 0.15)) !important;
+    } @else {
+        background: linear-gradient($gradient-direction, rgba(lighten($gradient-primary-1, 20%), 0.15), rgba(lighten($gradient-primary-2, 20%), 0.15)) !important;
+    }
+}
+
+@each $color, $value in $opacity-values {
+  .pix-#{$color} {
+      opacity: $value !important;
+  }
+  .pix-hover-#{$color}:hover {
+      opacity: $value !important;
+  }
+}
+.bg-white {
+  background-color: $white !important;
+}
+.bg-transparent {
+  background-color: transparent !important;
+}
