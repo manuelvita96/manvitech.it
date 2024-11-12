@@ -259,9 +259,9 @@ class Pix_Eor_Social_Icons extends Widget_Base {
 				'label' => __( 'Position', 'pixfort-core' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => array(
-					'text-left'			=> 'Left',
+					'text-left'			=> 'Start',
 	                'text-center'		=> 'Center',
-	                'text-right' 		=> 'Right',
+	                'text-right' 		=> 'End',
 	            ),
 				'default' => 'text-left',
 			]

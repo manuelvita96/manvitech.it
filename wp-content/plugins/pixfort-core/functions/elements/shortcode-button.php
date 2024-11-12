@@ -268,8 +268,8 @@ $button_params = array (
         "param_name" => "btn_icon_position",
         "admin_label" => false,
         "value" => array_flip(array(
-            ""            => "Before text (left)",
-            "after"        => "After text (right)"
+            ""            => "Before text",
+            "after"        => "After text"
         )),
         "dependency" => array(
             "element" => "btn_icon",
@@ -307,8 +307,8 @@ $button_params = array (
         'admin_label'	=> false,
         'value'			=> array_flip(array(
             'text-center' 		=> 'Center',
-            'text-left' 		=> 'Left',
-            'text-right' 		=> 'Right',
+            'text-left' 		=> 'Start',
+            'text-right' 		=> 'End',
         )),
         "dependency" => array(
             "element" => "btn_full",
@@ -325,8 +325,8 @@ $button_params = array (
         'value'			=> array_flip(array(
             '' 		=> 'Disabled',
             'text-center' 		=> 'Center align',
-            'text-left' 		=> 'Left align',
-            'text-right' 		=> 'Right align',
+            'text-left' 		=> 'Start',
+            'text-right' 		=> 'End',
         )),
     ),
 

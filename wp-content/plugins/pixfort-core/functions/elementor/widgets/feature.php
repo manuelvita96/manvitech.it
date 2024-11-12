@@ -294,7 +294,7 @@ class Pix_Eor_Feature extends Widget_Base {
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => array(
 					'top'	=> 'Top',
-					'left'	=> 'Left',
+					'left'	=> 'Side',
 				),
 				'default' => 'heading-default',
 				'condition' => [
@@ -564,9 +564,9 @@ class Pix_Eor_Feature extends Widget_Base {
 				'label' => __('Content align', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => array(
-					'left'	=> 'Left',
+					'left'	=> 'Start',
 					'center'	=> 'Center',
-					'right'	=> 'Right',
+					'right'	=> 'End',
 				),
 				'default' => 'left',
 				'selectors' => [

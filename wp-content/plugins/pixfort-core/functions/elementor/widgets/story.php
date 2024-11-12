@@ -226,9 +226,9 @@ class Pix_Eor_Story extends Widget_Base {
 				'type' => Controls_Manager::SELECT,
 				'default' => 'text-left',
 				'options' => [
-					'text-left'			=> 'Left',
+					'text-left'			=> 'Start',
                     'text-center'		=> 'Center',
-                    'text-right' 		=> 'Right',
+                    'text-right' 		=> 'End',
 				],
 			]
 		);

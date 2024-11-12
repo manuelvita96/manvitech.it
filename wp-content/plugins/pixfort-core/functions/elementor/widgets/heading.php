@@ -240,8 +240,8 @@ class Pix_Eor_Heading extends Widget_Base {
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => array(
 					'text-center'		=> 'Center',
-	                'text-left'			=> 'Left',
-	                'text-right' 		=> 'Right',
+	                'text-left'			=> 'Start',
+	                'text-right' 		=> 'End',
 	            ),
 				'default' => 'text-center',
 			]

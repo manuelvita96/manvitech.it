@@ -320,10 +320,6 @@ $pix_highlighted_items_params = array(
             'description'     => __('Select the animation of the heading.', 'pixfort-core'),
             'admin_label'    => false,
             'value'            => pix_get_animations(),
-            "dependency" => array(
-                "element" => "is_highlighted",
-                "value" => 'image'
-            ),
         ),
         array(
             'param_name'     => 'item_delay',
@@ -426,8 +422,8 @@ $pix_highlighted_text_params = array(
         'admin_label'    => false,
         'value'            => array_flip(array(
             'text-center'        => 'Center',
-            'text-left'            => 'Left',
-            'text-right'         => 'Right',
+            'text-left'            => 'Start',
+            'text-right'         => 'End',
         )),
     ),
 

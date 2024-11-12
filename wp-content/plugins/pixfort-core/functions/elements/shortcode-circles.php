@@ -104,9 +104,9 @@ vc_map( array (
                 "param_name" => "circles_align",
                 "admin_label" => true,
                 "value" => array_flip(array(
-                    "justify-content-start"       => "Left (Default)",
+                    "justify-content-start"       => "Start (Default)",
                     "justify-content-center"       => "Center",
-                    "justify-content-end"       => "Right",
+                    "justify-content-end"       => "End",
                 ))
             ),
 
@@ -118,9 +118,9 @@ vc_map( array (
                 "std" => "center",
                 "value" => array_flip(array(
                     "default"       => "Default (Same as Desktop)",
-                    "left"       => "Left",
+                    "left"       => "Start",
                     "center"       => "Center",
-                    "right"       => "Right",
+                    "right"       => "End",
                 ))
             ),
 

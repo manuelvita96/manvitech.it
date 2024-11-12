@@ -438,8 +438,8 @@ function pix_get_elementor_btn($that, $dynamicBtn=false){
             'label' => __( 'Icon position', 'pixfort-core' ),
             'type' => \Elementor\Controls_Manager::SELECT,
             'options' => array(
-                ""            => "Before text (left)",
-                "after"        => "After text (right)"
+                ""            => "Before text",
+                "after"        => "After text"
             ),
             'default' => '',
             'conditions' => [

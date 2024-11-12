@@ -111,9 +111,9 @@ vc_map(array(
 				'description'     	=> __('Select the position of the text.', 'pixfort-core'),
 				'admin_label'    	=> false,
 				'value'            	=> array_flip(array(
-					'text-left'     	=> __('Left', 'pixfort-core'),
+					'text-left'     	=> __('Start', 'pixfort-core'),
 					'text-center'       => __('Center', 'pixfort-core'),
-					'text-right'        => __('Right', 'pixfort-core'),
+					'text-right'        => __('End', 'pixfort-core'),
 				)),
 			),
 			array(

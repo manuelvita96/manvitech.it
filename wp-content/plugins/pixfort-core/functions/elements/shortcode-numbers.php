@@ -271,9 +271,9 @@ vc_map( array (
               'admin_label'	=> false,
               'std'	=> 'text-left',
               'value' 		=> array(
-                  __('Left','pixfort-core') 	=> 'text-left',
+                  __('Start','pixfort-core') 	=> 'text-left',
                   __('Center','pixfort-core') 	=> 'text-center',
-                  __('Right','pixfort-core') 	=> 'text-right',
+                  __('End','pixfort-core') 	=> 'text-right',
               ),
           ),
 

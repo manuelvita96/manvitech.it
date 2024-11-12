@@ -239,11 +239,11 @@ class Pix_Eor_Circles extends Widget_Base {
 			[
 				'label' => __( 'Circles Align', 'pixfort-core' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array(
-					"justify-content-start"       => "Left (Default)",
-	                "justify-content-center"       => "Center",
-	                "justify-content-end"       => "Right",
-				),
+				'options' => [
+					'justify-content-start' => __('Start (Default)','pixfort-core'),
+					'justify-content-center' => __('Center','pixfort-core'),
+					'justify-content-end' => __('End','pixfort-core'),
+                ],
 				'default' => 'justify-content-start',
 			]
 		);
@@ -253,12 +253,13 @@ class Pix_Eor_Circles extends Widget_Base {
 			[
 				'label' => __( 'Mobile Circles Align', 'pixfort-core' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array(
-					"default"       => "Default (Same as Desktop)",
-                    "left"       	=> "Left",
-                    "center"       	=> "Center",
-                    "right"       	=> "Right",
-				),
+				'options' => [
+					'default' => __('Default (Same as Desktop)','pixfort-core'),
+					'left' => __('Start','pixfort-core'),
+					'center' => __('Center','pixfort-core'),
+					'right' => __('End','pixfort-core'),
+                ],
+
 				'default' => 'center',
 			]
 		);

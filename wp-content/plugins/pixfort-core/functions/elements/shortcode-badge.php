@@ -209,9 +209,9 @@ vc_map( array (
             'admin_label'	=> false,
             'value'			=> array_flip(array(
                 '' 		=> 'Disabled',
-                'text-center' 		=> 'Center align',
-                'text-left' 		=> 'Left align',
-                'text-right' 		=> 'Right align',
+                'text-center' 		=> 'Center',
+                'text-left' 		=> 'Start',
+                'text-right' 		=> 'End',
             )),
         ),
 

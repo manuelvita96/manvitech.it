@@ -288,8 +288,8 @@ class Pix_Eor_Portfolio extends Widget_Base {
 				'default' => 'center',
 				'options' => [
 					'center'			=> 'Center',
-					'left'			=> 'Left',
-					'right'			=> 'Right',
+					'left'			=> 'Start',
+					'right'			=> 'End',
 				],
 			]
 		);

@@ -39,9 +39,9 @@ vc_map( array (
                 'description' 	=> __('Select the position of the image.', 'pixfort-core'),
                 'admin_label'	=> false,
                 'value'			=> array_flip(array(
-                    'text-left'			=> 'Left',
+                    'text-left'			=> 'Start',
                     'text-center'		=> 'Center',
-                    'text-right' 		=> 'Right',
+                    'text-right' 		=> 'End',
                 )),
             ),
             array (

@@ -263,7 +263,7 @@
 
 /* #pix-wrapper,
 #pix-wrapper .code { font-family:'Open Sans', Arial, sans-serif; } */
-#pix-wrapper * { outline:none !important;}
+/* #pix-wrapper * { outline:none !important;} */
 
 /* .inside #pix-wrapper { padding:0 5px; margin-bottom:20px;} */
 #pix-form-wrapper { margin-top:20px;}

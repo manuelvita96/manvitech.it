@@ -167,8 +167,8 @@ class Pix_Eor_Chart extends Widget_Base {
 				'default' => '',
 				'options' => array_flip(array(
 	                __('Center (Default)','pixfort-core') 	=> '',
-	                __('Left','pixfort-core')	    => 'left',
-	                __('Right','pixfort-core')	    => 'right',
+	                __('Start','pixfort-core')	    => 'left',
+	                __('End','pixfort-core')	    => 'right',
 	            )),
 			]
 		);

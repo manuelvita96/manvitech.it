@@ -369,6 +369,19 @@ class Pix_Eor_Team_Member_Circle extends Widget_Base {
 				],
 			]
 		);
+		$this->add_control(
+			'position',
+			[
+				'label' => __( 'Content align', 'pixfort-core' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'text-left'			=> 'Start',
+					'text-center'		=> 'Center',
+					'text-right' 		=> 'End',
+				],
+				'default' => 'text-center',
+			]
+		);
 		$this->end_controls_section();
 
 
@@ -649,19 +662,6 @@ class Pix_Eor_Team_Member_Circle extends Widget_Base {
 				'condition' => [
 					'items_color' => 'custom',
 				],
-			]
-		);
-		$this->add_control(
-			'position',
-			[
-				'label' => __( 'Position', 'pixfort-core' ),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => [
-					'text-left'			=> 'Left',
-					'text-center'		=> 'Center',
-					'text-right' 		=> 'Right',
-				],
-				'default' => 'text-center',
 			]
 		);
 

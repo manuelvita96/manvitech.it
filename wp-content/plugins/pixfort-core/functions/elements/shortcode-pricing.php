@@ -268,9 +268,9 @@ $more = array(
         'admin_label'	=> false,
         'value'			=> array_flip(array(
             ''			=> 'Default',
-            'text-left'			=> 'Left',
+            'text-left'			=> 'Start',
             'text-center'		=> 'Center',
-            'text-right' 		=> 'Right',
+            'text-right' 		=> 'End',
         )),
     ),
 

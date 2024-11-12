@@ -281,9 +281,9 @@ class Pix_Eor_Pricing extends Widget_Base {
 				'default' => '',
 				'options' => array(
 					''			=> 'Default',
-					'text-left'			=> 'Left',
+					'text-left'			=> 'Start',
 					'text-center'		=> 'Center',
-					'text-right' 		=> 'Right',
+					'text-right' 		=> 'End',
 				),
 			]
 		);

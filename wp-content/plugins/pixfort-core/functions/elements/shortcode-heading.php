@@ -99,8 +99,8 @@ $headingOptions = array (
         'admin_label'	=> false,
         'value'			=> array_flip(array(
             'text-center'		=> 'Center',
-            'text-left'			=> 'Left',
-            'text-right' 		=> 'Right',
+            'text-left'			=> 'Start',
+            'text-right' 		=> 'End',
         )),
     ),
 

@@ -122,11 +122,11 @@ class Pix_Eor_3d_Box extends Widget_Base {
 			[
 				'label' => __( 'Content align', 'pixfort-core' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array(
-	                'left'	=> 'Left',
-	                'center'	=> 'Center',
-	                'right'	=> 'Right',
-	            ),
+				'options' => [
+					'left' => __('Start','pixfort-core'),
+					'center' => __('Center','pixfort-core'),
+					'right' => __('End','pixfort-core'),
+                ],
 				'default' => 'left',
 			]
 		);

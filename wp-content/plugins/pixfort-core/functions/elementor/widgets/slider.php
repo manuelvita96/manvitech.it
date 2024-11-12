@@ -251,13 +251,13 @@ class Pix_Eor_Slider extends Widget_Base {
 		$this->add_control(
 			'align',
 			[
-				'label' => __('Text alignment', 'pixfort-core'),
+				'label' => __('Content alignment', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'text-left',
 				'options' => [
-					'text-left'			=> 'Left',
+					'text-left'			=> 'Start',
 					'text-center'		=> 'Center',
-					'text-right' 		=> 'Right',
+					'text-right' 		=> 'End',
 				],
 			]
 		);
@@ -282,8 +282,8 @@ class Pix_Eor_Slider extends Widget_Base {
 				'default' => 'center',
 				'options' => [
 					'center'		=> 'Center',
-					'left'			=> 'Left',
-					'right' 		=> 'Right',
+					'left'			=> 'Start',
+					'right' 		=> 'End',
 				],
 				'condition' => [
 					'nav_style' => 'circles',
@@ -856,8 +856,8 @@ class Pix_Eor_Slider extends Widget_Base {
 				'label' => __('Icon position', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => array(
-					""            => "Before text (left)",
-					"after"        => "After text (right)"
+					""            => "Before text",
+					"after"        => "After text"
 				),
 				'default' => '',
 				'conditions' => [
@@ -909,8 +909,8 @@ class Pix_Eor_Slider extends Widget_Base {
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => array(
 					'text-center' 		=> 'Center',
-					'text-left' 		=> 'Left',
-					'text-right' 		=> 'Right',
+					'text-left' 		=> 'Start',
+					'text-right' 		=> 'End',
 				),
 				'default' => '',
 				'conditions' => [
@@ -932,8 +932,8 @@ class Pix_Eor_Slider extends Widget_Base {
 				'options' => array(
 					'' 		=> 'Disabled',
 					'text-center' 		=> 'Center align',
-					'text-left' 		=> 'Left align',
-					'text-right' 		=> 'Right align',
+					'text-left' 		=> 'Start align',
+					'text-right' 		=> 'End align',
 				),
 				'default' => '',
 			]

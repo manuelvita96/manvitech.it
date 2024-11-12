@@ -3,7 +3,7 @@
    Plugin Name: pixfort Core
    Plugin URI: https://pixfort.com
    description: pixfort Core Plugin.
-   Version: 3.2.11
+   Version: 3.2.12
    Author: pixfort
    Author URI: https://pixfort.com
    License: Proprietary License
@@ -17,7 +17,7 @@ if (!defined('ABSPATH')) {
 }
 define('PIXFORT_PLUGIN_URL', plugin_dir_url(__FILE__));
 define('PIXFORT_PLUGIN_DIR', plugin_dir_path(__FILE__));
-define('PIXFORT_PLUGIN_VERSION', '3.2.11');
+define('PIXFORT_PLUGIN_VERSION', '3.2.12');
 
 // Load pixfort core
 require PIXFORT_PLUGIN_DIR . 'includes/core.php';

@@ -160,9 +160,9 @@ vc_map( array (
                 'admin_label'	=> false,
                 "group"   => "Advanced",
                 'value'			=> array_flip(array(
-                    'left'	=> 'Left',
+                    'left'	=> 'Start',
                     'center'	=> 'Center',
-                    'right'	=> 'Right',
+                    'right'	=> 'End',
                 )),
             ),
 

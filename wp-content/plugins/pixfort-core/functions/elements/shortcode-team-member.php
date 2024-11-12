@@ -278,9 +278,9 @@ vc_map( array (
             'admin_label'	=> false,
             'group'         => 'Advanced',
             'value'			=> array_flip(array(
-                'text-left'			=> 'Left',
+                'text-left'			=> 'Start',
                 'text-center'		=> 'Center',
-                'text-right' 		=> 'Right',
+                'text-right' 		=> 'End',
             )),
         ),
 

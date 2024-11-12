@@ -29,21 +29,22 @@ add_action('vc_before_init', 'pix_set_vc_as_theme');
 
 // Prevent WP from adding <p> tags on all post types
 function disable_wp_auto_p($content) {
-	$removeAutop = true;
-	$postTypes = array('product');
-
-	if (!empty(pix_plugin_get_option('pix-enable-blog-line-breaks')) && pix_plugin_get_option('pix-enable-blog-line-breaks')) {
-		array_push($postTypes, 'post');
-	}
-	if (!empty(pix_plugin_get_option('pix-enable-page-line-breaks')) && pix_plugin_get_option('pix-enable-page-line-breaks')) {
-		array_push($postTypes, 'page');
-	}
-	if (in_array(get_post_type(), $postTypes)) {
-		$removeAutop = false;
-	}
-	if ($removeAutop) {
-		remove_filter('the_content', 'wpautop');
-		remove_filter('the_excerpt', 'wpautop');
+	$mainTypes = array('post', 'page');
+	if (in_array(get_post_type(), $mainTypes)) {
+		$removeAutop = true;
+		if (get_post_type() === 'post') {
+			if (!empty(pix_plugin_get_option('pix-enable-blog-line-breaks')) && pix_plugin_get_option('pix-enable-blog-line-breaks')) {
+				$removeAutop = false;
+			}
+		} else if (get_post_type() === 'page') {
+			if (!empty(pix_plugin_get_option('pix-enable-page-line-breaks')) && pix_plugin_get_option('pix-enable-page-line-breaks')) {
+				$removeAutop = false;
+			}
+		}
+		if ($removeAutop) {
+			remove_filter('the_content', 'wpautop');
+			remove_filter('the_excerpt', 'wpautop');
+		}
 	}
 	return $content;
 }

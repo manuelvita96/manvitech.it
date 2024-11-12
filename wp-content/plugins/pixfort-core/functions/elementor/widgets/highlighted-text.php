@@ -5,6 +5,30 @@ namespace Elementor;
 class Pix_Eor_Highlighted_Text extends Widget_Base {
 
 	public function __construct($data = [], $args = null) {
+		// image_size migration code
+		if(!empty($data['settings'])){
+			if(!empty($data['settings']['items'])){
+				foreach ($data['settings']['items'] as $key => $value) {
+					if(!empty($data['settings']['items'][$key]['image_size'])&&!is_array($data['settings']['items'][$key]['image_size'])){
+						$image_size = (int) filter_var($data['settings']['items'][$key]['image_size'], FILTER_SANITIZE_NUMBER_INT);
+						$tabletImgSize = $image_size * 0.8;
+						$mobileImgSize = $image_size * 0.6;
+						$data['settings']['items'][$key]['image_size'] = [
+							'unit' => 'px',
+							'size' => $image_size,
+						];
+						$data['settings']['items'][$key]['image_size_tablet'] = [
+							'unit' => 'px',
+							'size' => $tabletImgSize
+						];
+						$data['settings']['items'][$key]['image_size_mobile'] = [
+							'unit' => 'px',
+							'size' => $mobileImgSize
+						];
+					}
+				}
+			}
+		}
 		parent::__construct($data, $args);
 	}
 
@@ -272,15 +296,46 @@ class Pix_Eor_Highlighted_Text extends Widget_Base {
 					],
 				]
 			);
-			$repeater->add_control(
+			// $repeater->add_responsive_control(
+			// 	'image_size',
+			// 	[
+			// 		'label' => __( 'Image Size', 'pixfort-core' ),
+			// 		'type' => \Elementor\Controls_Manager::TEXT,
+			// 		'default' => __( '', 'pixfort-core' ),
+			// 		'placeholder' => __( 'Leave empty for full size.', 'pixfort-core' ),
+			// 		'condition' => [
+			// 			'is_highlighted' => 'image',
+			// 		],
+			// 		'selectors' => [
+			// 			'{{WRAPPER}} {{CURRENT_ITEM}} img' => 'width: {{VALUE}} !important;height: {{VALUE}} !important;',
+			// 			// '{{WRAPPER}} {{CURRENT_ITEM}} img' => 'width: {{VALUE}}px !important;height: {{VALUE}}px !important;',
+			// 		],
+			// 	]
+			// );
+			$repeater->add_responsive_control(
 				'image_size',
 				[
 					'label' => __( 'Image Size', 'pixfort-core' ),
-					'type' => \Elementor\Controls_Manager::TEXT,
-					'default' => __( '', 'pixfort-core' ),
+					'type' => \Elementor\Controls_Manager::SLIDER,
+					'default' => [
+						'unit' => 'px',
+						'size' => '',
+					],
+					'range' => [
+						'px' => [
+							'min' => 0,
+							'max' => 400,
+							'step' => 1,
+						]
+					],
+					'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 					'placeholder' => __( 'Leave empty for full size.', 'pixfort-core' ),
 					'condition' => [
 						'is_highlighted' => 'image',
+					],
+					'selectors' => [
+						'{{WRAPPER}} {{CURRENT_ITEM}} img' => 'width: {{SIZE}}{{UNIT}} !important;height: auto !important;',
+						// '{{WRAPPER}} {{CURRENT_ITEM}} img' => 'width: {{VALUE}}px !important;height: {{VALUE}}px !important;',
 					],
 				]
 			);
@@ -373,9 +428,9 @@ class Pix_Eor_Highlighted_Text extends Widget_Base {
 					'type' => Controls_Manager::SELECT,
 					'default' => '',
 					'options' => pix_get_animations(true),
-					'condition' => [
-						'is_highlighted' => 'image',
-					],
+					// 'condition' => [
+					// 	'is_highlighted' => 'image',
+					// ],
 				]
 			);
 			$repeater->add_control(
@@ -531,7 +586,7 @@ class Pix_Eor_Highlighted_Text extends Widget_Base {
 					__('H4', 'pixfort-core')	    => 'h4',
 					__('H5', 'pixfort-core')	    => 'h5',
 					__('H6', 'pixfort-core')	    => 'h6',
-					__('Custom', 'pixfort-core')	    => 'custom',
+					__('Div', 'pixfort-core')	    => 'custom',
 				)),
 				'default' => 'h1',
 			]
@@ -570,16 +625,82 @@ class Pix_Eor_Highlighted_Text extends Widget_Base {
 				],
 			]
 		);
+		
+
+		$this->add_control(
+			'max_width',
+			[
+				'label' => __('Field max width', 'pixfort-core'),
+				'type' => \Elementor\Controls_Manager::TEXT,
+				'default' => __('', 'pixfort-core'),
+				'placeholder' => __('Input the width with the unit (eg. 300px)', 'pixfort-core'),
+			]
+		);	
+
+		// $this->add_control(
+		// 	'disable_resp_img',
+		// 	[
+		// 		'label' => __('Disable responsive images size in mobile devices', 'pixfort-core'),
+		// 		'type' => \Elementor\Controls_Manager::SWITCHER,
+		// 		'label_on' => __('Yes', 'pixfort-core'),
+		// 		'label_off' => __('No', 'pixfort-core'),
+		// 		'return_value' => 'yes',
+		// 		// 'default' => false,
+		// 	]
+		// );
+
+		$this->end_controls_section();
+
+
+		$this->start_controls_section(
+			'section_element_style',
+			[
+				'label' => __( 'Style', 'elementor' ),
+				'tab' => Controls_Manager::TAB_STYLE,
+			]
+		);
+		
+		// $this->add_responsive_control(
+		// 	'position',
+		// 	[
+		// 		'label' => __('Position', 'pixfort-core'),
+		// 		'type' => \Elementor\Controls_Manager::SELECT,
+		// 		'options' => array(
+		// 			'text-center'		=> 'Center',
+		// 			'text-left'			=> 'Start',
+		// 			'text-right' 		=> 'End',
+		// 		),
+		// 		'default' => 'text-center',
+		// 		'selectors_dictionary' => [
+		// 			'text-center' 		=> 'text-align: center !important;',
+		// 			'text-left' 		=> 'text-align: left !important;',
+		// 			'text-right' 		=> 'text-align: right !important;'
+		// 		],
+		// 		'selectors' => [
+		// 			'{{WRAPPER}} .pix-highlighted-element' => '{{VALUE}}'
+		// 		],
+		// 	]
+		// );
+
 		$this->add_responsive_control(
 			'position',
 			[
-				'label' => __('Position', 'pixfort-core'),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array(
-					'text-center'		=> 'Center',
-					'text-left'			=> 'Left',
-					'text-right' 		=> 'Right',
-				),
+				'label' => __( 'Position', 'elementor' ),
+				'type' => Controls_Manager::CHOOSE,
+				'options' => [
+					'text-left' => [
+						'title' => __( 'Start', 'elementor' ),
+						'icon' => 'eicon-text-align-left',
+					],
+					'text-center' => [
+						'title' => __( 'Center', 'elementor' ),
+						'icon' => 'eicon-text-align-center',
+					],
+					'text-right' => [
+						'title' => __( 'End', 'elementor' ),
+						'icon' => 'eicon-text-align-right',
+					]
+				],
 				'default' => 'text-center',
 				'selectors_dictionary' => [
 					'text-center' 		=> 'text-align: center !important;',
@@ -592,28 +713,34 @@ class Pix_Eor_Highlighted_Text extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'max_width',
+		$this->add_group_control(
+			Group_Control_Typography::get_type(),
 			[
-				'label' => __('Field max width', 'pixfort-core'),
-				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __('', 'pixfort-core'),
-				'placeholder' => __('Input the width with the unit (eg. 300px)', 'pixfort-core'),
-			]
-		);	
-
-		$this->add_control(
-			'disable_resp_img',
-			[
-				'label' => __('Disable responsive images size in mobile devices', 'pixfort-core'),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __('Yes', 'pixfort-core'),
-				'label_off' => __('No', 'pixfort-core'),
-				'return_value' => 'yes',
-				// 'default' => false,
+				'name' => 'bar_inner_typography',
+				'selector' => '{{WRAPPER}} .pix-highlighted-items, {{WRAPPER}} .pix-highlight-item.heading-font, {{WRAPPER}} .pix-highlight-item.font-weight-normal',
+				'fields_options' => [
+					'font_family' => [
+						'selectors' => [
+							'{{WRAPPER}} .pix-highlighted-items, {{WRAPPER}} .pix-highlight-item.heading-font, {{WRAPPER}} .pix-highlight-item.body-font' => 'font-family: {{value}} !important;',
+						],
+					],
+					'font_weight' => [
+						'selectors' => [
+							'{{WRAPPER}} .pix-highlighted-items, {{WRAPPER}} .pix-highlight-item.heading-font, {{WRAPPER}} .pix-highlight-item.font-weight-normal' => 'font-weight: {{value}} !important;',
+						],
+					],
+				],
 			]
 		);
 
+		$this->add_group_control(
+			Group_Control_Text_Shadow::get_type(),
+			[
+				'name' => 'text_shadow',
+				'selector' => '{{WRAPPER}}',
+			]
+		);
+		
 		$this->end_controls_section();
 	}
 

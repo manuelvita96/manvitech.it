@@ -41,9 +41,9 @@ $sliding_text_params = array(
         'description'     => __('Select the position of the heading.', 'pixfort-core'),
         'admin_label'    => false,
         'value'            => array_flip(array(
-            'left'            => 'Left',
+            'left'            => 'Start',
             'center'        => 'Center',
-            'right'         => 'Right',
+            'right'         => 'End',
         )),
     ),
 

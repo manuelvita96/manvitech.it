@@ -265,8 +265,8 @@ vc_map( array (
             'std'	=> '',
             'value' 		=> array(
                 __('Center (Default)','pixfort-core') 	=> '',
-                __('Left','pixfort-core')	    => 'left',
-                __('Right','pixfort-core')	    => 'right',
+                __('Start','pixfort-core')	    => 'left',
+                __('End','pixfort-core')	    => 'right',
             ),
         ),
 

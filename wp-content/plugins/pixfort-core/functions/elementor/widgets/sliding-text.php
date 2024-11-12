@@ -99,11 +99,11 @@ class Pix_Eor_Sliding_Text extends Widget_Base {
 			[
 				'label' => __('Position', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array(
-					'center'		=> 'Center',
-					'left'			=> 'Left',
-					'right' 		=> 'Right',
-				),
+				'options' => [
+					'center' => __('Center','pixfort-core'),
+					'left' => __('Start','pixfort-core'),
+					'right' => __('End','pixfort-core'),
+                ],
 				'default' => 'center',
 			]
 		);
@@ -243,6 +243,9 @@ class Pix_Eor_Sliding_Text extends Widget_Base {
 				'default' => '',
 				'condition' => [
 					'text_color' => 'custom',
+				],
+				'selectors' => [
+					'{{WRAPPER}} .pix-sliding-headline-2, {{WRAPPER}} .pix-sliding-headline-2 span' => 'color: {{VALUE}} !important;',
 				],
 			]
 		);

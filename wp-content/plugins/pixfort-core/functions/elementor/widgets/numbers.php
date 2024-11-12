@@ -480,11 +480,11 @@ class Pix_Eor_Numbers extends Widget_Base {
 			[
 				'label' => __( 'Content position', 'pixfort-core' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip(array(
-                    __('Left','pixfort-core') 	=> 'text-left',
-                    __('Center','pixfort-core') 	=> 'text-center',
-                    __('Right','pixfort-core') 	=> 'text-right',
-                )),
+				'options' => [
+					'text-left' => __('Start','pixfort-core'),
+					'text-center' => __('Center','pixfort-core'),
+					'text-right' => __('End','pixfort-core'),
+                ],
 				'default' => 'text-left',
 			]
 		);

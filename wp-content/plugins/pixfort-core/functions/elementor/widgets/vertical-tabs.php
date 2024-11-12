@@ -359,8 +359,8 @@ class Pix_Eor_Vertical_Tabs extends Widget_Base {
 				'label' => __( 'Menu Position', 'pixfort-core' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => array_flip(array(
-					__('Left','pixfort-core') 	=> 'left',
-					__('Right','pixfort-core')	    => 'right'
+					__('Start','pixfort-core') 	=> 'left',
+					__('End','pixfort-core')	    => 'right'
 				)),
 				'default' => 'left',
 			]
@@ -405,9 +405,9 @@ class Pix_Eor_Vertical_Tabs extends Widget_Base {
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => array(
 					''		=> 'Default (inherit from parent element)',
-					'text-left'			=> 'Left',
+					'text-left'			=> 'Start',
 					'text-center'			=> 'Center',
-					'text-right'			=> 'Right',
+					'text-right'			=> 'End',
 				),
 				'default' => '',
 			]

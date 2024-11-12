@@ -455,9 +455,9 @@ add_filter('upload_mimes', 'pix_custom_mime_types');
 
 
 function pixfort_scripts() {
-    $distFile = 'dist/front/index.bundle-79391ffdecb614f97286.js';
+    $distFile = 'dist/front/index.bundle-3573e7aee9c27288c60a.js';
     if (defined('PIXFORT_DEV')) {
-        $distFile = 'temp/front/index.bundle-ba4050123df38149e7d4.js';
+        $distFile = 'temp/front/index.bundle-84540af82b6b75aec9f2.js';
     }
     wp_enqueue_script('pix-main-pixfort', PIX_CORE_PLUGIN_URI . $distFile , ['jquery'], PIXFORT_PLUGIN_VERSION, true);
     $jsOptions = array();

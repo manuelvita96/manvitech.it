@@ -174,9 +174,9 @@ vc_map( array (
             'admin_label'	=> false,
             "std"           => "center",
             'value'			=> array_flip(array(
-                'text-left'			=> 'Left',
+                'text-left'			=> 'Start',
                 'text-center'		=> 'Center',
-                'text-right' 		=> 'Right',
+                'text-right' 		=> 'End',
             )),
         ),
 

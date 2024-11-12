@@ -51,8 +51,8 @@ vc_map( array (
                 'type' => 'dropdown',
                 'param_name' => 'layout',
                 'value' => array(
-                    __( 'Wide card (right image)', 'pixfort-core' ) 			=> 'wide_card_right',
-                    __( 'Wide card (left image)', 'pixfort-core' )		=> 'wide_card_left',
+                    __( 'Wide card (image end)', 'pixfort-core' ) 			=> 'wide_card_right',
+                    __( 'Wide card (image start)', 'pixfort-core' )		=> 'wide_card_left',
                 ),
                 'heading' => __( 'Layout', 'pixfort-core' ),
                 'description' => __( 'Select tabs display style.', 'pixfort-core' ),

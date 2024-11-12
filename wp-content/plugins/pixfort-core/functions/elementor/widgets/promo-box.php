@@ -435,11 +435,11 @@ class Pix_Eor_Promo_Box extends Widget_Base {
 			[
 				'label' => __( 'Content align', 'pixfort-core' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array(
-                    'text-left'			=> 'Left',
-                    'text-center'		=> 'Center',
-                    'text-right' 		=> 'Right',
-                ),
+				'options' => [
+                    'text-left'			=> __('Start','pixfort-core'),
+                    'text-center'		=> __('Center','pixfort-core'),
+                    'text-right' 		=> __('End','pixfort-core'),
+				],
 				'default' => 'text-left',
 			]
 		);

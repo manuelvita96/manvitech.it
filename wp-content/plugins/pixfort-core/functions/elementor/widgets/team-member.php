@@ -321,6 +321,19 @@ class Pix_Eor_Team_Member extends Widget_Base {
 				],
 			]
 		);
+		$this->add_control(
+			'position',
+			[
+				'label' => __('Content align', 'pixfort-core'),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => [
+					'text-left'			=> 'Start',
+					'text-center'		=> 'Center',
+					'text-right' 		=> 'End',
+				],
+				'default' => 'text-left',
+			]
+		);
 		$this->end_controls_section();
 
 
@@ -604,21 +617,6 @@ class Pix_Eor_Team_Member extends Widget_Base {
 			]
 		);
 
-
-
-		$this->add_control(
-			'position',
-			[
-				'label' => __('Position', 'pixfort-core'),
-				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => [
-					'text-left'			=> 'Left',
-					'text-center'		=> 'Center',
-					'text-right' 		=> 'Right',
-				],
-				'default' => 'text-left',
-			]
-		);
 
 		$this->end_controls_section();
 
