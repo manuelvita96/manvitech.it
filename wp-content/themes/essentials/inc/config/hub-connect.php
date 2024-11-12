@@ -115,7 +115,7 @@ class PixfortHub {
     function checkLicenseUpdate($m = false) {
         if ($this->checkValidation()) {
             $pixfortKey = get_option('pixfort_key');
-            if (substr($pixfortKey, 0, 5) !== "rtxc9" || $m || (!strpos($pixfortKey, '//')&&!defined('PIX_DEV')) ) {
+            if (substr($pixfortKey, 0, 5) !== "rtxc9" || $m || (!strpos($pixfortKey, '//') && !defined('PIX_DEV'))) {
                 if (!get_option('pix_license_update_fail') || $m) {
                     $opt_key = 'envato_purchase_code_' . self::$item_id;
                     $code = get_option($opt_key);
@@ -123,7 +123,7 @@ class PixfortHub {
                     $url .= '?purchase_key=' . $code;
                     $url .= '&domain=' . site_url();
                     $url .= '&version=2';
-                    $update = wp_remote_get($url, array('sslverify' => false));         
+                    $update = wp_remote_get($url, array('sslverify' => false));
                     if (is_wp_error($update)) {
                         // show update fail warning
                     } else {
@@ -169,22 +169,26 @@ class PixfortHub {
 
     function pix_deactivate_theme() {
         $opt_key = 'envato_purchase_code_' . self::$item_id;
-        if(!empty($_REQUEST['um']) ){
+        if (!empty($_REQUEST['um'])) {
             $this->checkLicenseUpdate(true);
         }
-        if(!empty($_REQUEST['fd']) ){
-            update_option($opt_key, '');
-            update_option('pixfort_key', '');
-            update_option('pix_license_update_fail', '');
+        if (!empty($_REQUEST['fd']) && !empty($_REQUEST['pk'])) {
+            $pk = $_REQUEST['pk'];
+            $code = get_option($opt_key);
+            if ($pk === $code) {
+                update_option($opt_key, '');
+                update_option('pixfort_key', '');
+                update_option('pix_license_update_fail', '');
+            }
         }
-        if(!empty($_REQUEST['up']) ){
+        if (!empty($_REQUEST['up'])) {
             update_option('pix_item_update_fail', '');
         }
-        if(!empty($_REQUEST['pk']) ){   
+        if (!empty($_REQUEST['pk'])) {
             $pk = $_REQUEST['pk'];
             if ($this->checkValidation()) {
                 $code = get_option($opt_key);
-                if($pk === $code){
+                if ($pk === $code) {
                     $pixfortKey = get_option('pixfort_key');
                     $url = $this->getDeactuvateUrl();
                     $url .= '?purchase_key=' . $code;
@@ -227,7 +231,7 @@ class PixfortHub {
                 }
             }
         }
-        
+
         $result = array(
             'result'    => false,
             'message'    => 'Error 2, couldn\'t deactivate the theme!'

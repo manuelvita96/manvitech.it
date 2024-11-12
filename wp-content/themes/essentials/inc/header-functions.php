@@ -109,7 +109,8 @@ if( !function_exists('pix_get_header_link') ){
         <div data-anim-type="<?php echo esc_attr($animation); ?>" class="d-inline-flex line-height-1 align-items-center text-sm pix-header-text pix-py-5 <?php echo esc_attr( $classes ); ?> mb-0">
             <?php if(!empty($icon)){ 
                 if(pixCheckIconsEnabled()){
-                    echo \PixfortCore::instance()->icons->getIcon($icon, 24, 'text-18 pix-mr-5 pix-header-icon-style');
+                    $margin5 = is_rtl() ? 'pix-ml-5' : 'pix-mr-5';
+                    echo \PixfortCore::instance()->icons->getIcon($icon, 24, 'text-18 '.$margin5.' pix-header-icon-style');
                 } else {
                     // echo \PixfortCore::instance()->icons->getFontIcon($icon, 'text-18 pix-mr-5 pix-header-icon-style');
                     ?>
@@ -169,7 +170,8 @@ if( !function_exists('pix_get_header_link') ){
             <a data-anim-type="<?php echo esc_attr($animation); ?>" class="<?php echo esc_attr($classes); ?> btn btn-link p-0 line-height-1 pix-header-text text-sm  d-inline-flex align-items-center" href="<?php echo esc_url($url); ?>" <?php echo esc_attr( $target_out) . ' style="' . esc_attr( $custom ); ?>" >
                 <?php if(!empty($icon)){ 
                     if(pixCheckIconsEnabled()){
-                        echo \PixfortCore::instance()->icons->getIcon($icon, 24, 'pix-header-icon-format pix-mr-5 pix-header-icon-style');
+                        $margin5 = is_rtl() ? 'pix-ml-5' : 'pix-mr-5';
+                        echo \PixfortCore::instance()->icons->getIcon($icon, 24, 'pix-header-icon-format '.$margin5.' pix-header-icon-style');
                     } else {
                         // echo \PixfortCore::instance()->icons->getFontIcon($icon, 'pix-header-icon-format pix-mr-5 pix-header-icon-style');
                         ?>
@@ -313,9 +315,9 @@ if( !function_exists('pix_get_header_button') ){
         $icon_class = '';
         if(!empty($text)){
             if(empty($btn_icon_position)){
-                $icon_class = ' mr-2';
+                $icon_class = is_rtl() ? ' ml-2' : ' mr-2';
             } else {
-                $icon_class = ' ml-2';
+                $icon_class = is_rtl() ? ' mr-2' : ' ml-2';
             }
         }
         ?>
@@ -391,7 +393,8 @@ if( !function_exists('pix_get_header_phone') ){
         <a data-anim-type="<?php echo esc_attr($animation); ?>" href="tel:<?php echo esc_attr($tel);?>" class="pix-header-phone text-sm d-inline-block2 pix-header-text d-inline-flex align-items-center pix-py-5 <?php echo esc_attr( $classes ); ?> mb-0" style="<?php echo esc_attr( $custom ); ?>" >
         <?php
             if(pixCheckIconsEnabled()){
-                echo \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-telephone-1', 24, 'text-18 pix-mr-5 pix-header-icon-style');
+                $margin5 = is_rtl() ? 'pix-ml-5' : 'pix-mr-5';
+                echo \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-telephone-1', 24, 'text-18 '.$margin5.' pix-header-icon-style');
             } else {
                 // echo \PixfortCore::instance()->icons->getFontIcon('pixicon-phone', 'text-18 pix-mr-5 pix-header-icon-style');
                 ?>
@@ -440,7 +443,8 @@ if( !function_exists('pix_get_header_address') ){
         <div data-anim-type="<?php echo esc_attr($animation); ?>" class="d-inline-block2 d-inline-flex align-items-center line-height-1 pix-header-text pix-py-5 text-sm <?php echo esc_attr( $classes ); ?> mb-0" style="<?php echo esc_attr( $custom ); ?>" >
         <?php 
         if(pixCheckIconsEnabled()){
-            echo \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-pin-3', 24, 'text-18 pix-mr-5 pix-header-icon-style');
+            $margin5 = is_rtl() ? 'pix-ml-5' : 'pix-mr-5';
+            echo \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-pin-3', 24, 'text-18 '.$margin5.' pix-header-icon-style');
         } else {
             // echo \PixfortCore::instance()->icons->getFontIcon('pixicon-map-pin-1-circle', 'text-18 pix-mr-5 pix-header-icon-style');
             ?>
@@ -546,11 +550,9 @@ if( !function_exists('pix_get_header_search') ){
             if(defined('PIX_CORE_PLUGIN_DIR')){
             ?>
             <div class="pix-header-floating-search <?php echo esc_attr($search_bar_direction); ?>"><form class="pix-small-search pix-ajax-search-container position-relative bg-white shadow-lg rounded-lg pix-small-search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
-                    <div class="input-group input-group-lg2 ">
+                    <div class="input-group2 d-flex">
                         <input type="search" class="form-control pix-ajax-search form-control-lg shadow-0 font-weight-bold text-body-default" name="s" autocomplete="off" placeholder="<?php echo esc_attr($placeholder); ?>" aria-label="Search" data-search-link="<?php echo esc_url($search_data); ?>" >
-                        <div class="input-group-append">
-                            <button class="btn btn-lg2 btn-white m-0 text-body-default" type="submit"><?php echo pix_load_inline_svg(PIX_CORE_PLUGIN_DIR.'/functions/images/search.svg'); ?></button>
-                        </div>
+                        <button class="btn btn-search btn-white m-0 text-body-default" type="submit"><?php echo pix_load_inline_svg(PIX_CORE_PLUGIN_DIR.'/functions/images/search.svg'); ?></button>
                     </div>
                 </form>
             </div>
@@ -613,7 +615,7 @@ if( !function_exists('pix_get_header_cart') ){
             $cartLink = wc_get_cart_url();
         }
         ?>
-        <a data-anim-type="<?php echo esc_attr($animation); ?>" href="<?php echo esc_url( $cartLink ); ?>" data-e-disable-page-transition="true" class="btn pix-header-btn btn-link m-0 p-0 pix-header-text pix-px-15 pix-cart-btn pix-open-sidebar text-<?php echo esc_attr( $color ); ?> d-inline-flex align-items-center <?php echo esc_attr($animation_class); ?>">
+        <a data-anim-type="<?php echo esc_attr($animation); ?>" href="<?php echo esc_url( $cartLink ); ?>" data-e-disable-page-transition="true" class="btn pix-header-btn btn-link m-0 p-0 pix-header-text pix-px-10 pix-cart-btn pix-open-sidebar text-<?php echo esc_attr( $color ); ?> d-inline-flex align-items-center <?php echo esc_attr($animation_class); ?>">
             <?php
             if(pixCheckIconsEnabled()){
                 echo \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-bag-1', 24, 'text-18 scale2 position-relative font-weight-bold pix-header-text text-'.esc_attr( $color ), esc_attr( $custom ));
@@ -656,7 +658,7 @@ function pix_get_header_wishlist($opts){
             if(!empty($wishlist_page_id)){
                 $i_count = yith_wcwl_count_products();
                 ?>
-                <a data-anim-type="<?php echo esc_attr($animation); ?>" href="<?php echo get_page_link($wishlist_page_id); ?>" class="btn pix-header-btn pix-header-wishlist btn-link m-0 p-0 pix-px-15 pix-header-text d-inline-flex align-items-center pix-cart-btn text-<?php echo esc_attr( $color ); ?> <?php echo esc_attr($animation_class); ?>">
+                <a data-anim-type="<?php echo esc_attr($animation); ?>" href="<?php echo get_page_link($wishlist_page_id); ?>" class="btn pix-header-btn pix-header-wishlist btn-link m-0 p-0 pix-px-10 pix-header-text d-inline-flex align-items-center pix-cart-btn text-<?php echo esc_attr( $color ); ?> <?php echo esc_attr($animation_class); ?>">
                     <?php
                         if(pixCheckIconsEnabled()){
                             echo \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-heart-1', 24, 'text-18 position-relative', esc_attr( $custom ));
@@ -707,7 +709,8 @@ function pix_get_header_language($opts){
             <a href="#" class="pix-current-language pix-header-text text-sm font-weight-bold d-flex align-items-center <?php echo esc_attr( $classes ); ?>" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="<?php echo esc_attr( $custom ); ?>" >
                 <?php
                     if(pixCheckIconsEnabled()){
-                        echo \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-earth-1', 24, 'pix-mr-5 text-18');
+                        $margin5 = is_rtl() ? 'pix-ml-5' : 'pix-mr-5';
+                        echo \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-earth-1', 24, $margin5.' text-18');
                     } else {
                         ?>
                         <i class="pixicon-world-map-3 pix-mr-5 text-18"></i>
@@ -740,7 +743,8 @@ function pix_get_header_language($opts){
                             <a href="#" class="pix-current-language font-weight-bold pix-header-text d-flex align-items-center <?php echo esc_attr( $classes ); ?>" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <?php echo esc_attr( $custom ); ?>>
                                 <?php
                                     if(pixCheckIconsEnabled()){
-                                        echo \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-earth-1', 24, 'pix-mr-5');
+                                        $margin5 = is_rtl() ? 'pix-ml-5' : 'pix-mr-5';
+                                        echo \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-earth-1', 24, $margin5);
                                     } else {
                                         // echo \PixfortCore::instance()->icons->getFontIcon('pixicon-world-map-3', 'pix-mr-5');
                                         ?>

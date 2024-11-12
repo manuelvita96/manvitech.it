@@ -34,6 +34,12 @@ if (get_post_meta(get_the_ID(), 'pix-hide-top-area', true)) {
             $hide_top_area = true;
         }
     }
+} else {
+    if(get_post_meta(get_the_ID(), 'pix-hide-top-area', true)===''){
+        if (empty(pix_get_option('post-with-intro')) || !pix_get_option('post-with-intro')) {
+            $hide_top_area = true;
+        }
+    }
 }
 if (is_archive() || is_author() || is_category() || is_home() || is_single() || is_tag() || is_search()) {
     $hide_top_area = false;

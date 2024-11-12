@@ -8,7 +8,7 @@
  * @package pixfort theme
  */
 
-define('PIXFORT_THEME_VERSION', '3.2.11');
+define('PIXFORT_THEME_VERSION', '3.2.12');
 define('ESSENTIALS_THEME_VERSION', PIXFORT_THEME_VERSION);
 define('PIXFORT_THEME_SLUG', 'essentials');
 

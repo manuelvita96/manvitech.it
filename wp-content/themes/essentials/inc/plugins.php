@@ -33,7 +33,7 @@ function pixfort_register_required_plugins() {
 			'slug'               => 'pixfort-core', // The plugin slug (typically the folder name).
 			'source'             => get_template_directory() . '/inc/tgm/plugins/pixfort-core.zip', // The plugin source.
 			'required'           => true, // If false, the plugin is only 'recommended' instead of required.
-			'version'            => '3.2.11', 
+			'version'            => '3.2.12', 
 			'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
 			'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
 			'external_url'       => '', // If set, overrides default API URL and points to an external URL.
@@ -58,7 +58,7 @@ function pixfort_register_required_plugins() {
 			'slug'               => 'masterslider', // The plugin slug (typically the folder name).
 			'source'             => get_template_directory() . '/inc/tgm/plugins/masterslider.zip', // The plugin source.
 			'required'           => false, // If false, the plugin is only 'recommended' instead of required.
-			'version'            => '3.7.7', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
+			'version'            => '3.7.8', // E.g. 1.0.0. If set, the active plugin must be this version or higher. If the plugin version is higher than the plugin version installed, the user will be notified to update the plugin.
 			'force_activation'   => false, // If true, plugin is activated upon theme activation and cannot be deactivated until theme switch.
 			'force_deactivation' => false, // If true, plugin is deactivated upon theme switch, useful for theme-specific plugins.
 			'external_url'       => '', // If set, overrides default API URL and points to an external URL.

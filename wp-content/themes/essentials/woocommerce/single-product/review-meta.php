@@ -39,7 +39,7 @@ if ( '0' === $comment->comment_approved ) { ?>
 
 		?>
 		<span class="w-100 d-block pix-mt-5 d-flex align-items-center">
-			<span class="pix-pr-10  d-flex align-items-center">
+			<span class="<?php echo is_rtl() ? 'pix-pl-10' : 'pix-pr-10'; ?> d-flex align-items-center">
 				<?php echo pix_load_inline_svg(get_template_directory().'/inc/assets/blog/blog-post-date-icon.svg'); ?>
 			</span>
 			<time class="woocommerce-review__published-date text-body-default" datetime="<?php echo esc_attr( get_comment_date( 'c' ) ); ?>"><?php echo esc_html( get_comment_date( wc_date_format() ) ); ?></time>

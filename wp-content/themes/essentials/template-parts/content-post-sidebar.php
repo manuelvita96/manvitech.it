@@ -116,7 +116,11 @@ $post_sidebar_class = 'post-sidebar-'.$sidebar_location;
 								<div class="pix-post-meta-author text-heading-default font-weight-bold">
 									<a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>" class="text-heading-default font-weight-bold">
 									<?php
-										echo get_avatar(get_the_author_meta('ID'), 40, '', $author, array( 'class'=>'pix_blog_md_avatar pix-mr-10 shadow'));
+										$margin10 = 'pix-mr-10';
+										if (is_rtl()) {
+											$margin10 = 'pix-ml-10';
+										}  
+										echo get_avatar(get_the_author_meta('ID'), 40, '', $author, array( 'class'=>'pix_blog_md_avatar '.$margin10.' shadow'));
 									?>
 									<span class="text-sm"><?php echo esc_attr( $author ); ?></span>
 									</a>
@@ -262,7 +266,11 @@ $post_sidebar_class = 'post-sidebar-'.$sidebar_location;
 			<footer class="entry-footer d-inline-block w-100">
 				<div class="media bg-white rounded-xl shadow-sm pix-p-30 pix-my-20">
 				<?php
-					echo get_avatar(get_the_author_meta('ID'), 80, '', $author, array( 'class'=>'pix_blog_lg_avatar pix-mr-30 shadow'));
+					$margin30 = 'pix-mr-30';
+					if (is_rtl()) {
+						$margin30 = 'pix-ml-30';
+					}  
+					echo get_avatar(get_the_author_meta('ID'), 80, '', $author, array( 'class'=>'pix_blog_lg_avatar '.$margin30.' shadow'));
 				?>
 				<div class="media-body">
 					<a href="<?php echo get_author_posts_url(get_the_author_meta('ID')); ?>"><h6 class="mt-0 font-weight-bold text-heading-default"><?php echo esc_html( $author ); ?></h6></a>

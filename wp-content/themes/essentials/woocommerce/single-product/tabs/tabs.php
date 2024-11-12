@@ -45,7 +45,7 @@ if ( ! empty( $product_tabs ) ) : ?>
 			$i = 0;
 			foreach ( $product_tabs as $key => $tab ) : ?>
 				<li class="<?php echo esc_attr( $key ); ?>_tab nav-item" id="pills-title-<?php echo esc_attr( $key ); ?>">
-					<a class="nav-link px-4 pix-tabs-btn font-weight-bold2 <?php if($i == 0) echo "active"; ?>" role="tab" data-toggle="pill" aria-controls="pills-<?php echo esc_attr( $key ); ?>" aria-selected="false" href="#pills-<?php echo esc_attr( $key ); ?>"><strong><?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', esc_html( $tab['title'] ), $key ); ?></strong></a>
+					<a class="nav-link woo-tab-link px-4 pix-tabs-btn font-weight-bold2 <?php if($i == 0) echo "active"; ?>" role="tab" data-toggle="pill" aria-controls="pills-<?php echo esc_attr( $key ); ?>" aria-selected="false" href="#pills-<?php echo esc_attr( $key ); ?>"><strong><?php echo apply_filters( 'woocommerce_product_' . $key . '_tab_title', esc_html( $tab['title'] ), $key ); ?></strong></a>
 				</li>
 			<?php
 			$i++;

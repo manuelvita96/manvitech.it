@@ -358,6 +358,20 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 			} else {
 				$id = $id ? ' id="' . esc_attr( $id ) . '"' : '';
 			}
+
+			/* RTL */
+			$margin1 = 'ml-1';
+			$margin5 = 'pix-mr-5';
+			$margin10 = 'pix-mr-10';
+			$hoverRight = 'pix-hover-right';
+			$boxBtnIcon = 'Line/pixfort-icon-arrow-right-2';
+			if (is_rtl()) {
+				$margin1 = 'mr-1';
+				$margin5 = 'pix-ml-5';
+				$margin10 = 'pix-ml-10';
+				$hoverRight = 'pix-hover-left';
+				$boxBtnIcon = 'Line/pixfort-icon-arrow-left-2';
+			}
 			
 
 			if($is_megamenu && !$this->force_normal){
@@ -443,7 +457,7 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 									$output .=  '<span class="pix-box-link text-heading-default btn btn-sm p-0 font-weight-bold pix-py-5 text-sm2 pix-hover-item d-flex align-items-center align-self-stretch text-left">'.$box_btn_text.' ';
 									if(pixCheckIconsAvailable()){
 										if(pixCheckIconsEnabled()){
-											$output .= \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-arrow-right-2', 24, 'ml-1 d-flex align-self-center font-weight-bold pix-hover-right', 'style="line-height:16px;"');
+											$output .= \PixfortCore::instance()->icons->getIcon($boxBtnIcon, 24, $margin1.' d-flex align-self-center font-weight-bold '.$hoverRight, 'style="line-height:16px;"');
 										} else {
 											$output .= \PixfortCore::instance()->icons->getFontIcon('pixicon-angle-right', 'ml-2 d-flex align-self-center font-weight-bold pix-hover-right', 'style="line-height:16px;"');
 										}
@@ -477,11 +491,11 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 
 			// Set title from item to the $atts array - if title is empty then
 			// default to item title.
-			if ( empty( $item->attr_title ) ) {
-				$atts['title'] = ! empty( $item->title ) ? strip_shortcodes(strip_tags( $item->title )) : '';
-			} else {
-				$atts['title'] = strip_shortcodes($item->attr_title);
-			}
+			// if ( empty( $item->attr_title ) ) {
+			// 	$atts['title'] = ! empty( $item->title ) ? strip_shortcodes(strip_tags( $item->title )) : '';
+			// } else {
+			// 	$atts['title'] = strip_shortcodes($item->attr_title);
+			// }
 			
 			$atts['class'] = $this->headerTextClasses;
 			$atts['class'] .= ' pix-nav-link ';
@@ -600,9 +614,9 @@ if ( ! class_exists( 'WP_Bootstrap_Navwalker' ) ) {
 			$title = apply_filters( 'nav_menu_item_title', $title, $item, $args, $depth );
 			$menu_item_icon_out = '';
 			if(!empty($menu_item_icon)){
-				$menu_item_icon_classes = 'pix-mr-10 pix-menu-item-icon';
+				$menu_item_icon_classes = $margin10.' pix-menu-item-icon';
 				if($depth==0){
-					$menu_item_icon_classes = 'pix-mr-5 pix-menu-item-icon';
+					$menu_item_icon_classes = $margin5.' pix-menu-item-icon';
 					// $menu_item_icon_out = '<i class="'.$menu_item_icon.' pix-mr-5 pix-menu-item-icon"></i>';
 				}
 				// else{

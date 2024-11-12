@@ -10,9 +10,9 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see     https://docs.woocommerce.com/document/template-structure/
+ * @see     https://woocommerce.com/document/template-structure/
  * @package WooCommerce\Templates
- * @version 3.3.1
+ * @version 9.3.0
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -28,7 +28,7 @@ if ( $total <= 1 ) {
 	return;
 }
 ?>
-<nav class="woocommerce-pagination pix-pagination d-sm-flex justify-content-center align-items-center">
+<nav class="woocommerce-pagination pix-pagination d-sm-flex justify-content-center align-items-center" aria-label="<?php esc_attr_e( 'Product Pagination', 'essentials' ); ?>">
 	<?php
 		$prevIcon = '<i class="pixicon-angle-left align-self-center"></i>';
 		$nextIcon = '<i class="pixicon-angle-right align-self-center"></i>';

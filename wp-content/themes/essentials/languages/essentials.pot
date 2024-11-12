@@ -1,9 +1,9 @@
 # Translation file by pixfort.com
 msgid ""
 msgstr ""
-"Project-Id-Version: Essentials 3.2.11\n"
+"Project-Id-Version: Essentials 3.2.12\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/theme/essentials\n"
-"POT-Creation-Date: 2024-08-21 19:48:27+00:00\n"
+"POT-Creation-Date: 2024-09-13 15:27:15+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -60,7 +60,7 @@ msgstr ""
 msgid "The item has been added to your shopping cart!"
 msgstr ""
 
-#: inc/bootstrap-wp-navwalker.php:800
+#: inc/bootstrap-wp-navwalker.php:814
 msgid "Add a menu"
 msgstr ""
 
@@ -236,210 +236,210 @@ msgid ""
 "dashboard to activate all the features and demo content."
 msgstr ""
 
-#: inc/dashboard.php:32 inc/dashboard.php:55
+#: inc/dashboard.php:32 inc/dashboard.php:56
 msgid "Go to Essentials Dashboard"
 msgstr ""
 
-#: inc/dashboard.php:53
+#: inc/dashboard.php:54
 msgid "Important notice!"
 msgstr ""
 
-#: inc/dashboard.php:54
+#: inc/dashboard.php:55
 msgid ""
 "It seems that you updated Essentials theme, please make sure to update "
 "\"pixfort core\" too from Essentials > Dashboard > Install plugins."
 msgstr ""
 
-#: inc/dashboard.php:146 inc/dashboard.php:154
+#: inc/dashboard.php:147 inc/dashboard.php:155
 msgid "Important Note: "
 msgstr ""
 
-#: inc/dashboard.php:146
+#: inc/dashboard.php:147
 msgid ""
 "It seems that the website URL has been changed, please make sure to go to "
 "Essentials Theme options and click on the Save button to refresh the "
 "options URLs."
 msgstr ""
 
-#: inc/dashboard.php:147 inc/dashboard.php:155
+#: inc/dashboard.php:148 inc/dashboard.php:156
 msgid "Go to Theme options"
 msgstr ""
 
-#: inc/dashboard.php:154
+#: inc/dashboard.php:155
 msgid ""
 "Please make sure to go to Essentials Theme options and click on the Save "
 "options button."
 msgstr ""
 
-#: inc/dashboard.php:414
+#: inc/dashboard.php:415
 msgid "Dashboard"
 msgstr ""
 
-#: inc/dashboard.php:427
+#: inc/dashboard.php:428
 msgid "Step 1"
 msgstr ""
 
-#: inc/dashboard.php:428
+#: inc/dashboard.php:429
 msgid "Plugins Installation"
 msgstr ""
 
-#: inc/dashboard.php:438
+#: inc/dashboard.php:439
 msgid ""
 "Note: The additional compatible plugins with Essentials can be installed "
 "from WordPress plugins page."
 msgstr ""
 
-#: inc/dashboard.php:450
+#: inc/dashboard.php:451
 msgid "Step 2"
 msgstr ""
 
-#: inc/dashboard.php:451
+#: inc/dashboard.php:452
 msgid "Theme activation"
 msgstr ""
 
-#: inc/dashboard.php:473
+#: inc/dashboard.php:474
 msgid "Great news! your theme is activated! You are ready to go!"
 msgstr ""
 
-#: inc/dashboard.php:476
+#: inc/dashboard.php:477
 msgid "Deactivate theme"
 msgstr ""
 
-#: inc/dashboard.php:483
+#: inc/dashboard.php:484
 msgid ""
 "In order to use all the included features you need to verify the theme "
 "using your account on pixfort hub."
 msgstr ""
 
-#: inc/dashboard.php:509
+#: inc/dashboard.php:510
 msgid "Skip this step"
 msgstr ""
 
-#: inc/dashboard.php:515
+#: inc/dashboard.php:516
 msgid "Step 3"
 msgstr ""
 
-#: inc/dashboard.php:516
+#: inc/dashboard.php:517
 msgid "Useful Information"
 msgstr ""
 
-#: inc/dashboard.php:521
+#: inc/dashboard.php:522
 msgid "Demo Import"
 msgstr ""
 
-#: inc/dashboard.php:522
+#: inc/dashboard.php:523
 msgid "Go to Demo import page"
 msgstr ""
 
-#: inc/dashboard.php:528
+#: inc/dashboard.php:529
 msgid "Theme Options"
 msgstr ""
 
-#: inc/dashboard.php:529
+#: inc/dashboard.php:530
 msgid "Open theme settings"
 msgstr ""
 
-#: inc/dashboard.php:536
+#: inc/dashboard.php:537
 msgid "Knowledge base"
 msgstr ""
 
-#: inc/dashboard.php:537
+#: inc/dashboard.php:538
 msgid "Check all the help articles"
 msgstr ""
 
-#: inc/dashboard.php:542
+#: inc/dashboard.php:543
 msgid "Videos"
 msgstr ""
 
-#: inc/dashboard.php:543
+#: inc/dashboard.php:544
 msgid "Check the video tutorials"
 msgstr ""
 
-#: inc/dashboard.php:550
+#: inc/dashboard.php:551
 msgid "Changelog"
 msgstr ""
 
-#: inc/dashboard.php:551
+#: inc/dashboard.php:552
 msgid "Check latest theme updates"
 msgstr ""
 
-#: inc/dashboard.php:558
+#: inc/dashboard.php:559
 msgid "Support"
 msgstr ""
 
-#: inc/dashboard.php:559
+#: inc/dashboard.php:560
 msgid "Get support and check your licenses"
 msgstr ""
 
-#: inc/dashboard.php:564
+#: inc/dashboard.php:565
 msgid "Follow us on"
 msgstr ""
 
-#: inc/dashboard.php:566
+#: inc/dashboard.php:567
 msgid "YouTube"
 msgstr ""
 
-#: inc/dashboard.php:567
+#: inc/dashboard.php:568
 msgid "Facebook"
 msgstr ""
 
-#: inc/dashboard.php:568
+#: inc/dashboard.php:569
 msgid "Instagram"
 msgstr ""
 
-#: inc/dashboard.php:569
+#: inc/dashboard.php:570
 msgid "Twitter"
 msgstr ""
 
-#: inc/dashboard.php:570
+#: inc/dashboard.php:571
 msgid "Dribbble"
 msgstr ""
 
-#: inc/dashboard.php:579
+#: inc/dashboard.php:580
 msgid "Finish"
 msgstr ""
 
-#: inc/dashboard.php:585
+#: inc/dashboard.php:586
 msgid "Server status"
 msgstr ""
 
-#: inc/dashboard.php:614
+#: inc/dashboard.php:615
 msgid "Please login as admin to view server status."
 msgstr ""
 
-#: inc/dashboard.php:646
+#: inc/dashboard.php:647
 msgid "Writable uploads directory"
 msgstr ""
 
-#: inc/dashboard.php:656
+#: inc/dashboard.php:657
 msgid "Memory limit (256MB)"
 msgstr ""
 
-#: inc/dashboard.php:667
+#: inc/dashboard.php:668
 msgid "Upload max filesize (64MB)"
 msgstr ""
 
-#: inc/dashboard.php:678
+#: inc/dashboard.php:679
 msgid "Post max size (64MB)"
 msgstr ""
 
-#: inc/dashboard.php:688
+#: inc/dashboard.php:689
 msgid "Max input vars (3000)"
 msgstr ""
 
-#: inc/dashboard.php:698
+#: inc/dashboard.php:699
 msgid "Max execution time (300s)"
 msgstr ""
 
-#: inc/dashboard.php:711
+#: inc/dashboard.php:712
 msgid "XML Reader"
 msgstr ""
 
-#: inc/dashboard.php:724
+#: inc/dashboard.php:725
 msgid "One Click Demo Import"
 msgstr ""
 
-#: inc/dashboard.php:725
+#: inc/dashboard.php:726
 msgid "Import Demo Data"
 msgstr ""
 
@@ -540,16 +540,16 @@ msgid ""
 "plugins."
 msgstr ""
 
-#: inc/header-functions.php:545
+#: inc/header-functions.php:549
 msgid "Search for something"
 msgstr ""
 
-#: inc/header-functions.php:564 inc/template-functions.php:23
+#: inc/header-functions.php:566 inc/template-functions.php:23
 #: inc/template-functions.php:328 inc/template-functions.php:350
 msgid "Search"
 msgstr ""
 
-#: inc/header-functions.php:828 inc/header-functions.php:903
+#: inc/header-functions.php:832 inc/header-functions.php:907
 msgid "Toggle navigation"
 msgstr ""
 
@@ -795,8 +795,8 @@ msgid ""
 msgstr ""
 
 #: template-parts/content-page.php:30
-#: template-parts/content-post-normal.php:221
-#: template-parts/content-post-sidebar.php:184
+#: template-parts/content-post-normal.php:225
+#: template-parts/content-post-sidebar.php:188
 #: template-parts/content-post.php:225
 #: template-parts/portfolio-item-box.php:131
 #: template-parts/portfolio-item-default.php:134
@@ -805,8 +805,8 @@ msgstr ""
 msgid "Pages:"
 msgstr ""
 
-#: template-parts/content-post-normal.php:210
-#: template-parts/content-post-sidebar.php:173
+#: template-parts/content-post-normal.php:214
+#: template-parts/content-post-sidebar.php:177
 #: template-parts/content-post.php:214
 #. translators: %s: Name of current post. Only visible to screen readers
 msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
@@ -832,6 +832,10 @@ msgstr ""
 
 #: woocommerce/loop/orderby.php:24
 msgid "Shop order"
+msgstr ""
+
+#: woocommerce/loop/pagination.php:31
+msgid "Product Pagination"
 msgstr ""
 
 #: woocommerce/loop/result-count.php:27
@@ -890,6 +894,10 @@ msgstr ""
 
 #: woocommerce/myaccount/form-login.php:109
 msgid "A password will be sent to your email address."
+msgstr ""
+
+#: woocommerce/myaccount/navigation.php:25
+msgid "Account pages"
 msgstr ""
 
 #: woocommerce/single-product/meta.php:31

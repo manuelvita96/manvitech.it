@@ -237,9 +237,10 @@ if (!$hide_top_area) {
         $customStyle .= '@media (max-width: 991px) { .pix-main-intro .pix-intro-container { padding-bottom:' . $customMobileBottomPadding . 'px !important; }}';
     }
 
-    wp_register_style('pix-intro-area-handle', false);
-    wp_enqueue_style('pix-intro-area-handle');
-    wp_add_inline_style('pix-intro-area-handle', $customStyle);
+    // wp_register_style('pix-intro-area-handle', false);
+    // wp_enqueue_style('pix-intro-area-handle');
+    // wp_add_inline_style('pix-intro-area-handle', $customStyle);
+    echo '<style>' . $customStyle . '</style>';
 
 ?>
 

@@ -45,26 +45,27 @@ if (!$status) {
  * Display notice to udapte pixfort-core plugin
  */
 function pixfort_update_core_notice() {
-?>
-	<div class="pixfort-admin-notice pixfort-danger-notice  notice  notice-danger  is-dismissible2">
-		<div class="notice-grid">
-			<div class="grid-box box-1">
-				<div>
-					<h2><img class="alert-icon" src="<?php echo esc_url(get_template_directory_uri() . '/inc/assets/icons/warning-icon-white.svg'); ?>" /><?php esc_html_e('Important notice!', 'essentials'); ?></h2>
-					<p class="notice-text"><strong><?php esc_html_e('It seems that you updated Essentials theme, please make sure to update "pixfort core" too from Essentials > Dashboard > Install plugins.', 'essentials'); ?></strong></p>
-					<a href="<?php echo esc_url(admin_url('?page=pixfort-theme-dashboard')); ?>" class="button-danger"><?php esc_html_e('Go to Essentials Dashboard', 'essentials'); ?></a>
+	if ($_GET['page'] !== 'pixfort-options') {
+		?>
+			<div class="pixfort-admin-notice pixfort-danger-notice  notice  notice-danger  is-dismissible2">
+				<div class="notice-grid">
+					<div class="grid-box box-1">
+						<div>
+							<h2><img class="alert-icon" src="<?php echo esc_url(get_template_directory_uri() . '/inc/assets/icons/warning-icon-white.svg'); ?>" /><?php esc_html_e('Important notice!', 'essentials'); ?></h2>
+							<p class="notice-text"><strong><?php esc_html_e('It seems that you updated Essentials theme, please make sure to update "pixfort core" too from Essentials > Dashboard > Install plugins.', 'essentials'); ?></strong></p>
+							<a href="<?php echo esc_url(admin_url('?page=pixfort-theme-dashboard')); ?>" class="button-danger"><?php esc_html_e('Go to Essentials Dashboard', 'essentials'); ?></a>
+						</div>
+					</div>
+					<div class="grid-box box-2">
+						<video style="" width="320" height="240" autoplay muted loop>
+							<source src="<?php echo version_compare(PIXFORT_PLUGIN_VERSION, '3.2.5', '<=') ? 'https://pixfort-space.sfo2.cdn.digitaloceanspaces.com/wordpress/themes/assets/pixfort-core-update-note-old-versions-video.mp4' : 'https://pixfort-space.sfo2.cdn.digitaloceanspaces.com/wordpress/themes/assets/pixfort-core-update-note-video.mp4'; ?>" type="video/mp4">
+							Your browser does not support the video tag.
+						</video>
+					</div>
 				</div>
 			</div>
-			<div class="grid-box box-2">
-				<video style="" width="320" height="240" autoplay muted loop>
-					<!-- <source src="https://pixfort-space.sfo2.cdn.digitaloceanspaces.com/wordpress/essentials/admin-panel/update-pixfort-core.mp4" type="video/mp4"> -->
-					<source src="<?php echo version_compare(PIXFORT_PLUGIN_VERSION, '3.2.5', '<=') ? 'https://pixfort-space.sfo2.cdn.digitaloceanspaces.com/wordpress/themes/assets/pixfort-core-update-note-old-versions-video.mp4' : 'https://pixfort-space.sfo2.cdn.digitaloceanspaces.com/wordpress/themes/assets/pixfort-core-update-note-video.mp4'; ?>" type="video/mp4">
-					Your browser does not support the video tag.
-				</video>
-			</div>
-		</div>
-	</div>
-<?php
+		<?php
+	}
 }
 
 if (defined('PIXFORT_PLUGIN_VERSION')) {
