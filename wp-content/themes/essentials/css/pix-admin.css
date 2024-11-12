@@ -1363,6 +1363,11 @@
   color: rgba(0, 0, 0, 0.5);
 }
 
+.rtl .pix-menu-mega-badge {
+  right: auto;
+  left: 8px;
+}
+
 .menu-item-depth-3 .pix-menu-mega-badge,
 .menu-item-depth-4 .pix-menu-mega-badge {
   display: none;
