@@ -9,7 +9,10 @@ class pix_small_search extends WP_Widget {
 			// Widget name will appear in UI
 			__('PixFort Search', 'pixfort-core'),
 			// Widget description
-			array('description' => __('Small search widget', 'pixfort-core'),)
+			[
+				'description' => __('Small search widget', 'pixfort-core'),
+				'show_instance_in_rest' => true
+			]
 		);
 	}
 
@@ -30,11 +33,9 @@ class pix_small_search extends WP_Widget {
 		// This is where you run the code and display the output
 		$placeholder = esc_attr__('Search for something', 'pixfort-core');
 		echo '<form class="pix-small-search pix-ajax-search-container position-relative bg-white shadow-sm rounded-lg pix-small-search" method="get" action="' . esc_url(home_url('/')) . '">
-                <div class="input-group input-group-lg2 ">
+                <div class="d-flex">
                     <input type="search" class="form-control pix-ajax-search form-control-lg shadow-0 font-weight-bold text-body-default" name="s" autocomplete="off" placeholder="' . $placeholder . '" aria-label="Search" ' . $search_data . '>
-                    <div class="input-group-append">
-                        <button class="btn btn-lg2 btn-white m-0 text-body-default" aria-label="Search" type="submit">' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/search.svg') . '</button>
-                    </div>
+                    <button class="btn btn-search btn-white m-0 text-body-default" aria-label="Search" type="submit">' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/search.svg') . '</button>
                 </div>
             </form>';
 		echo $args['after_widget'];
@@ -63,3 +64,9 @@ class pix_small_search extends WP_Widget {
 		return $instance;
 	}
 }
+
+// function pixfort_hide_search_widget( $widget_types ) {
+//     $widget_types[] = 'pix_small_search';
+//     return $widget_types;
+// }
+// add_filter( 'widget_types_to_hide_from_legacy_widget_block', 'pixfort_hide_search_widget' );

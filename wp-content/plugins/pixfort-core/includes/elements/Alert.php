@@ -197,6 +197,13 @@ class PixAlert {
 		}
 		$output .= '<div class="alert position-relative d-flex flex-column flex-sm-row justify-content-between align-items-center alert-' . $alert_type_1 . ' ' . $shadow_class . ' ' . $class_names . '" role="alert" ' . $anim_attrs . '>';
 
+		$alertTitleMargin = 'mr-2';
+		$alertTitleMarginMedia = 'mr-0 mr-sm-3';
+		if (is_rtl()) {
+			$alertTitleMargin = 'ml-2';
+			$alertTitleMarginMedia = 'ml-0 ml-sm-3';
+		}
+
 		/*	Alert Icon	*/
 		if (!empty($media_type) && $media_type != "none") {
 			$output .= '<div class="pix-alert-icon d-inline-flex align-items-center mb-2 mb-sm-0 order-2">';
@@ -209,15 +216,15 @@ class PixAlert {
 					if (str_contains($icon, 'Duotone/')) {
 						$icon_size = $icon_size_div;
 					}
-					$output .= '<div class="d-inline-flex align-items-center position-relative text-center mr-0 mr-sm-3" style="font-size:' . $icon_size . 'px;">';
+					$output .= '<div class="d-inline-flex align-items-center position-relative text-center ' . $alertTitleMarginMedia . '" ' . 'style="font-size:' . $icon_size . 'px;">';
 					$output .= \PixfortCore::instance()->icons->getIcon($icon, $icon_size, $i_color);
 					$output .= '</div>';
 				} else {
 					if ($media_type == "icon") {
-						$output .= '<div class="mr-0 mr-sm-3 feature_img" style="position:relative;text-align:center;"><i style="display:inline-block;font-size:' . $icon_size . 'px;min-width:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle ' . $icon . '"></i></div>';
+						$output .= '<div class="' . $alertTitleMarginMedia . ' feature_img" style="position:relative;text-align:center;"><i style="display:inline-block;font-size:' . $icon_size . 'px;min-width:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle ' . $icon . '"></i></div>';
 					} else if ($media_type == "duo_icon") {
 						if (!empty($pix_duo_icon)) {
-							$output .= '<div class="mr-0 mr-sm-3 ' . $i_color . '" style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;">';
+							$output .= '<div class=" ' . $alertTitleMarginMedia . ' ' . $i_color . '" style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;">';
 							$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $pix_duo_icon . '.svg');
 							$output .= '</div>';
 						}
@@ -226,19 +233,13 @@ class PixAlert {
 			}
 
 			if ($media_type == "image") {
-				$output .= '<div class="feature_img  mr-0 mr-sm-3 d-inline-block position-relative" style="' . $size_style . '"><img style="' . $size_style . '" class="img-fluid2 pix-fit-cover ' . $circle . '" src="' . $imgSrc . '" alt="' . do_shortcode($title) . '"></div>';
+				$output .= '<div class="feature_img ' . $alertTitleMarginMedia . ' d-inline-block position-relative" style="' . $size_style . '"><img style="' . $size_style . '" class="img-fluid2 pix-fit-cover ' . $circle . '" src="' . $imgSrc . '" alt="' . do_shortcode($title) . '"></div>';
 			} else if ($media_type == "char") {
-				$output .= '<div class="d-inline-block mr-0 mr-sm-3 feature_img" style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="display:inline-block;font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle">' . $char . '</span></div>';
+				$output .= '<div class="d-inline-block  ' . $alertTitleMarginMedia . '" ' . ' feature_img" style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="display:inline-block;font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle">' . $char . '</span></div>';
 			}
 			$output .= '</div>';
 		}
 
-
-		$alertTitleMargin = 'mr-2';
-		$alertTitleAlign = '';
-		if (is_rtl()) {
-			$alertTitleAlign = 'text-sm-right';
-		}
 		$output .= '<div class="pix-alert-title ' . $alertTitleMargin . ' flex-grow-1 mb-2 mb-sm-0 order-2">';
 		$output .= do_shortcode($title);
 		$output .= '</div>';

@@ -1,3 +1,6 @@
+.clients img {
+    height: auto;
+}
 .clients:not(.no-effect) {
     &:hover {
         .client {

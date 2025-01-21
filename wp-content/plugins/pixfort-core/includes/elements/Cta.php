@@ -201,23 +201,37 @@ class PixCta {
 		if(!empty($cta_style)&&$cta_style=='default'){
 			$class_names .= ' w-100';
 		}
+
+		/* RTL */
+		$contentAlign = 'text-md-left';
+		$btnAlign = 'text-md-right';
+		$mdMargin5 = 'mr-md-5';
+		$mdMargin3 = 'mr-md-3';
+		if (is_rtl()) {
+			$contentAlign = 'text-md-right';
+			$btnAlign = 'text-md-left';
+			$mdMargin5 = 'ml-md-5';
+			$mdMargin3 = 'ml-md-3';
+		}
+
         $output = '<div class="container">';
         $output .= '<div class="row justify-content-center">';
-        $output .= '<div class="col bg-white2 rounded-lg2 '. $class_names .' m-32 p-42 pix-py-30 col-sm-auto d-md-flex align-items-center text-center text-sm-left justify-content-between2" style="z-index:11;" '.$anim_attrs.'>';
-              $output .= '<div class="mr-md-5">';
-                $output .= '<'.$t_tag.' class="d-block mr-md-3 mb-md-0 mb-md-0 text-'.$title_color.' '.$title_class_names.'" '.$t_custom.'>';
+        $output .= '<div class="col bg-white2 rounded-lg2 '. $class_names .' m-32 p-42 pix-py-30 col-sm-auto d-md-flex align-items-center text-center '.$contentAlign.' justify-content-between2" style="z-index:11;" '.$anim_attrs.'>';
+              $output .= '<div class="'.$mdMargin5.'">';
+                $output .= '<'.$t_tag.' class="d-block '.$mdMargin3.' mb-md-0 mb-md-0 text-'.$title_color.' '.$title_class_names.'" '.$t_custom.'>';
                     $output .= $title;
                 $output .= '</'.$t_tag.'>';
 
 				if (!empty($content)) {
-					$output .= '<span class="d-block mr-md-3 mb-md-0 mb-md-0 pix-mt-10 '.$c_classes.' '.$content_size.' text-'.$content_color.'" '.$c_custom_color.'>';
+					$output .= '<span class="d-block '.$mdMargin3.' mb-md-0 mb-md-0 pix-mt-10 '.$c_classes.' '.$content_size.' text-'.$content_color.'" '.$c_custom_color.'>';
 	                    $output .= do_shortcode( $content );
 	                $output .= '</span>';
 				}
             $output .= '</div>';
 
             if(!empty($btn_text)){
-                if(!empty($cta_style)&&$cta_style=='default') $output .= '<div class="flex-fill mt-4 mt-sm-0 mt-md-0 text-md-right flex-grow-1" style="min-width:250px;max-width:100%;">';
+                if(!empty($cta_style)&&$cta_style=='default') $output .= '<div class="flex-fill '.$btnAlign.' flex-grow-1" style="min-width:250px;max-width:100%;">';
+				$btn_attrs['btn_extra_classes'] = $btn_attrs['btn_extra_classes'] . ' mt-4 mt-md-0';
                 $output .= \PixfortCore::instance()->elementsManager->renderElement('Button', $btn_attrs );
 				if(!empty($cta_style)&&$cta_style=='default') $output .= '</div>';
             }

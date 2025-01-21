@@ -84,6 +84,13 @@ class PixCircles {
 		$i = intval($delay);
 		$circles_html = '';
 
+		$circleMargin = 'pix-mr-5';
+		$btnMargin = 'pix-ml-5 ';
+		if (is_rtl()) {
+			$circleMargin = 'pix-ml-5 ';
+			$btnMargin = 'pix-mr-5 ';
+		}
+
 		if (!empty($circles_arr)) {
 			foreach ($circles_arr as $key => $value) {
 				$image_alt = '';
@@ -140,9 +147,9 @@ class PixCircles {
 					$nofollow = 'rel="nofollow"';
 				}
 				if (empty($value['link'])) {
-					$circles_html .= '<span class="align-middle circle-item pix-mr-5 ' . $color . $classes . '" ' . $animation_type . ' data-anim-delay="' . $i . '" data-toggle="tooltip" data-html="true" data-placement="bottom" title="' . do_shortcode($title) . '"><img src="' . $imgSrc . '" ' . $imgSrcset . ' ' . $imgSizes . ' width="60" height="60" class="rounded-circle bg-white" loading="lazy" alt="' . $image_alt . '" /></span>';
+					$circles_html .= '<span class="align-middle circle-item ' . $circleMargin . ' ' . $color . $classes . '" ' . $animation_type . ' data-anim-delay="' . $i . '" data-toggle="tooltip" data-html="true" data-placement="bottom" title="' . do_shortcode($title) . '"><img src="' . $imgSrc . '" ' . $imgSrcset . ' ' . $imgSizes . ' width="60" height="60" class="rounded-circle bg-white" loading="lazy" alt="' . $image_alt . '" /></span>';
 				} else {
-					$circles_html .= '<a class="align-middle circle-item pix-mr-5 ' . $color . $classes . '" ' . $animation_type . ' data-anim-delay="' . $i . '"  href="' . $value["link"] . '" ' . $target . ' ' . $nofollow . ' data-toggle="tooltip" data-html="true" data-placement="bottom" title="' . do_shortcode($title) . '" aria-label="' . $title . '"><img src="' . $imgSrc . '" ' . $imgSrcset . ' ' . $imgSizes . ' width="60" height="60" class="rounded-circle bg-white" loading="lazy"  alt="' . $image_alt . '" /></a>';
+					$circles_html .= '<a class="align-middle circle-item ' . $circleMargin . ' ' . $color . $classes . '" ' . $animation_type . ' data-anim-delay="' . $i . '"  href="' . $value["link"] . '" ' . $target . ' ' . $nofollow . ' data-toggle="tooltip" data-html="true" data-placement="bottom" title="' . do_shortcode($title) . '" aria-label="' . $title . '"><img src="' . $imgSrc . '" ' . $imgSrcset . ' ' . $imgSizes . ' width="60" height="60" class="rounded-circle bg-white" loading="lazy"  alt="' . $image_alt . '" /></a>';
 				}
 				$i += 100;
 			}
@@ -167,7 +174,7 @@ class PixCircles {
 		$output = '<div class="pix-circles-elem d-inline-block2 d-flex flex-column flex-sm-row w-100 text-center2 align-items-center2 ' . $circles_align . '  ' . esc_attr($css_class) . '">';
 		$output .= '<div class="pix-circles ' . $circles_size . ' d-inline-flex align-items-center align-middle ' . $circles_align . '">' . $circles_html . '</div>';
 		if (!empty($btn_text)) {
-			$output .= '<div class="pix-ml-5 align-items-center align-items-center d-flex pt-md-0 pt-3 ' . $circles_align . '">';
+			$output .= '<div class="' . $btnMargin . 'align-items-center align-items-center d-flex pt-md-0 pt-3 ' . $circles_align . '">';
 			$output .= \PixfortCore::instance()->elementsManager->renderElement('Button', $attr );
 			$output .= '</div>';
 		}

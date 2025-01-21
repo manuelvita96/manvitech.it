@@ -223,6 +223,12 @@ function pix_pagination($the_query){
 		$paged = (get_query_var('paged')) ? get_query_var('paged') : 1;
 	}
 
+	$prevIcon = 'Line/pixfort-icon-arrow-left-2';
+	$nextIcon = 'Line/pixfort-icon-arrow-right-2';
+	if (is_rtl()) {
+		$prevIcon = 'Line/pixfort-icon-arrow-right-2';
+		$nextIcon = 'Line/pixfort-icon-arrow-left-2';
+	}
 	$output = '';
 	 $output .= '<div class="pix-pagination d-sm-flex justify-content-center align-items-center">';
         $output .= paginate_links( array(
@@ -236,8 +242,8 @@ function pix_pagination($the_query){
            'mid_size'     => 1,
            'prev_next'    => true,
         //    'prev_text'    => '<span class="d-sm-flex justify-content-center align-items-center"><i class="pixicon-angle-left align-self-center"></i></span>',
-           'prev_text'    => '<span class="d-sm-flex justify-content-center align-items-center">'.\PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-arrow-left-2').'</span>',
-           'next_text'    => '<span class="d-sm-flex justify-content-center align-items-center">'.\PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-arrow-right-2').'</span>',
+           'prev_text'    => '<span class="d-sm-flex justify-content-center align-items-center">'.\PixfortCore::instance()->icons->getIcon($prevIcon).'</span>',
+           'next_text'    => '<span class="d-sm-flex justify-content-center align-items-center">'.\PixfortCore::instance()->icons->getIcon($nextIcon).'</span>',
            'add_args'     => false,
            'add_fragment' => '',
        ) );

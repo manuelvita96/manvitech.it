@@ -54,11 +54,9 @@ class PixSearch {
 		$class_names = join(' ', $classes);
 		$placeholder = esc_attr__('Search for something', 'pixfort-core');
 		$output  .= '<form class="pix-small-search pix-ajax-search-container position-relative bg-white shadow-sm rounded-lg pix-small-search ' . $class_names . '" ' . $c_style . ' ' . $anim_type . ' ' . $anim_delay_icon . ' method="get" action="' . esc_url(home_url('/')) . '">
-                <div class="input-group input-group-lg2 ">
+                <div class="d-flex">
                     <input type="search" class="form-control pix-ajax-search form-control-lg shadow-0 font-weight-bold text-body-default" name="s" autocomplete="off" placeholder="' . $placeholder . '" aria-label="Search" ' . $search_data . '>
-                    <div class="input-group-append">
-                        <button class="btn btn-lg2 btn-white m-0 text-body-default" aria-label="Search" type="submit">' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/search.svg') . '</button>
-                    </div>
+                    <button class="btn btn-search btn-white m-0 text-body-default" aria-label="Search" type="submit">' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/search.svg') . '</button>
                 </div>
             </form>';
 		if (!empty($search_div)) {

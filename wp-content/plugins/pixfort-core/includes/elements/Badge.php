@@ -145,7 +145,9 @@ class PixBadge {
 		if (!empty($link)) {
 			$output .= '<a href="' . $link . '" target="' . $target . '">';
 		}
-		$output .= '<span class="pix-badge-element ' . $text_size . ' d-inline-flex mr-1 ' . $anim . '" ' . $anim_type . ' ' . $anim_delay . '>';
+
+		$margin1 = is_rtl() ? 'ml-1' : 'mr-1';
+		$output .= '<span class="pix-badge-element ' . $text_size . ' d-inline-flex '.$margin1.' ' . $anim . '" ' . $anim_type . ' ' . $anim_delay . '>';
 		$output .= '<span class="badge ' . $class_names . ' ' . $css_class . '" style="' . $t_custom_style . ' ' . $custom_css . '">';
 		$output .= '<span class="' . $span_class_names . '" style="' . $span_custom_style . '">';
 		$output .= do_shortcode($text);

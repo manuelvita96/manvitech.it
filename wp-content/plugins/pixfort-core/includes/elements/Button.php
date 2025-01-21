@@ -172,13 +172,24 @@ class PixButton {
 		if (!empty($btn_icon_animation)) {
 			// 	$classes .= ' pix-hover-item ';
 			// 	$icon_classes .= $btn_icon_animation;
-			$icon_classes = ' pix-hover-left';
 			$classes .= ' pix-hover-item ';
-			if (!empty($btn_icon_position)) {
-				if ($btn_icon_position == 'after') {
-					$icon_classes = ' pix-hover-right';
+			$icon_classes = '';
+			if (is_rtl()) {
+				$icon_classes = ' pix-hover-right';
+				if (!empty($btn_icon_position)) {
+					if ($btn_icon_position == 'after') {
+						$icon_classes = ' pix-hover-left';
+					}
+				}
+			} else {
+				$icon_classes = ' pix-hover-left';
+				if (!empty($btn_icon_position)) {
+					if ($btn_icon_position == 'after') {
+						$icon_classes = ' pix-hover-right';
+					}
 				}
 			}
+			
 		}
 
 		$classes .= ' ' . $btn_remove_padding;
@@ -222,9 +233,17 @@ class PixButton {
 		$btn_icon_output = '';
 		if (!empty($btn_icon)) {
 			if (\PixfortCore::instance()->icons::$isEnabled) {
-				$iconPositionClasses = 'mr-2';
-				if (!empty($btn_icon_position)) {
+				$iconPositionClasses = '';
+				if (is_rtl()) {
 					$iconPositionClasses = 'ml-2';
+					if (!empty($btn_icon_position)) {
+						$iconPositionClasses = 'mr-2';
+					}
+				} else {
+					$iconPositionClasses = 'mr-2';
+					if (!empty($btn_icon_position)) {
+						$iconPositionClasses = 'ml-2';
+					}
 				}
 				$btn_icon_output = \PixfortCore::instance()->icons->getIcon($btn_icon, 24, $btn_title_bold . ' ' . $icon_classes . ' ' . $icon_inner_class . ' ' . $iconPositionClasses);
 			} else {

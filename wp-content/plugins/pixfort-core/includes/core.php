@@ -78,6 +78,7 @@ class PixfortCore {
             require_once PIXFORT_PLUGIN_DIR . 'includes/options/menus.php';
             new PixfortMenusOptions();
         }
+        require_once PIXFORT_PLUGIN_DIR . 'includes/blocks/blocks-index.php';
     }
 
     public function init() {

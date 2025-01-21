@@ -258,6 +258,7 @@ class PixPricing {
 
 			if(!empty($btn_text)){
             	$output .= '<div class="pix-mt-20">';
+					$btn_attrs['btn_extra_classes'] = ' mr-0 ';
                     $output .= \PixfortCore::instance()->elementsManager->renderElement('Button', $btn_attrs );
             	$output .= '</div>';
 			}

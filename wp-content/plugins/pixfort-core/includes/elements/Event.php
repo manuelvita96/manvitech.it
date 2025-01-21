@@ -78,7 +78,7 @@ class PixEvent {
 		}
 		// $features_arr = vc_param_group_parse_atts( $features );
 
-		$output .= '<div class="slide-in-container w-100 ' . esc_attr($css_class) . '" >';
+		$output .= '<div class="w-100 ' . esc_attr($css_class) . '" >';
 		$output .= '<div class="" id="' . $element_id . '">';
 
 		$output .= '<table class="table pix-event-table mb-0 table-borderless font-weight-bold ' . $content_size . ' " ' . $c_custom_color . '>

@@ -365,6 +365,13 @@ class PixComparisonTable {
 				'col_3_icon'  => '',
 			), $value));
 
+			/* RTL */
+			$margin2 = 'ml-2';
+			$margin10 = 'pix-mr-10';
+			if (is_rtl()) {
+				$margin2 = 'mr-2';
+				$margin10 = 'pix-ml-10';
+			}
 
 			$output .= '<div class="row pix-py-20 pix-my-10 ' . $class_names . ' rounded-lg" ' . $anim_type . ' ' . $anim_delay . '>';
 			$output .= '<div class="col-12 col-md-4 col-lg-6 mb-2 mb-sm-0 pb-2 pb-md-0">';
@@ -377,7 +384,7 @@ class PixComparisonTable {
 				$output .= $title_out;
 				if (!empty($title_tooltip)) {
 					if(\PixfortCore::instance()->icons::$isEnabled) {
-						$output .= '<span class="' . $descriptions_title_size . ' mb-0 d-inline-flex align-items-center"><span data-toggle="tooltip" data-placement="auto" title="'.$title_tooltip.'" class="d-inline-flex align-middle align-self-center text-'.$descriptions_title_color.' ml-2 mb-0 line-height-0" style="cursor: help;font-size:70%;'.$custom_tooltip_color.'">'.\PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-question-mark-circle-1').'</span></span>';
+						$output .= '<span class="' . $descriptions_title_size . ' mb-0 d-inline-flex align-items-center"><span data-toggle="tooltip" data-placement="auto" title="'.$title_tooltip.'" class="d-inline-flex align-middle align-self-center text-'.$descriptions_title_color.' ' . $margin2 . ' mb-0 line-height-0" style="cursor: help;font-size:70%;'.$custom_tooltip_color.'">'.\PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-question-mark-circle-1').'</span></span>';
 					} else {
 						$output .= '<span class="' . $descriptions_title_size . ' mb-0"><i data-toggle="tooltip" data-placement="auto" title="' . $title_tooltip . '" class="text-' . $descriptions_title_color . ' ml-2 mb-0 line-height-0 pixicon-question-circle" style="cursor: help;font-size:70%;' . $custom_tooltip_color . '"></i></span>';
 					}
@@ -398,14 +405,13 @@ class PixComparisonTable {
 			$output .= '<div class="col mt-2 mt-sm-0 text-center pix_comparison_1_title d-md-flex align-items-center justify-content-center">';
 			$output .= '<div class="text-center ' . $columns_classes . ' d-flex align-items-center justify-content-center ' . $col_1_color_class . '" ' . $tooltip_1_out . '>';
 
-			
 			if (!empty($col_1_media_type)&&$col_1_media_type!=='none') {
 				if(\PixfortCore::instance()->icons::$isEnabled) {
 						if ($col_1_media_type == "duo_icon") {
 							$col_1_icon = $col_1_pix_duo_icon;
 						}
 						if (!empty($col_1_icon)) {
-							$output .= '<div class="pix-mr-10 ' . $col_1_color_class . '" style="position:relative;text-align:center;">';
+							$output .= '<div class="' . $margin10 . ' ' . $col_1_color_class . '" style="position:relative;text-align:center;">';
 							$output .= \PixfortCore::instance()->icons->getIcon($col_1_icon);
 							$output .= '</div>';
 						}
@@ -454,7 +460,7 @@ class PixComparisonTable {
 								$col_2_icon = $col_2_pix_duo_icon;
 							}
 							if (!empty($col_2_icon)) {
-								$output .= '<div class="d-inline-flex align-items-center pix-mr-10 ' . $col_2_color_class . '" style="position:relative;text-align:center;">';
+								$output .= '<div class="d-inline-flex align-items-center ' . $margin10 . ' ' . $col_2_color_class . '" style="position:relative;text-align:center;">';
 								$output .= \PixfortCore::instance()->icons->getIcon($col_2_icon);
 								$output .= '</div>';
 							}
@@ -518,7 +524,7 @@ class PixComparisonTable {
 								$col_3_icon = $col_3_pix_duo_icon;
 							}
 							if (!empty($col_3_icon)) {
-								$output .= '<div class="d-inline-flex align-items-center pix-mr-10 ' . $col_3_color_class . '" style="position:relative;text-align:center;">';
+								$output .= '<div class="d-inline-flex align-items-center ' . $margin10 . ' ' . $col_3_color_class . '" style="position:relative;text-align:center;">';
 								$output .= \PixfortCore::instance()->icons->getIcon($col_3_icon);
 								$output .= '</div>';
 							}

@@ -140,6 +140,12 @@ class PixFeatureList {
 					$output .= '<a class="d-flex align-items-center" href="' . $link['url'] . '" target="' . $link['target'] . '">';
 				}
 				// $output .= '<div class=" w-100">';
+				$margin10 = 'pix-mr-10';
+				$margin2 = 'mr-2';
+				if (is_rtl()) {
+					$margin10 = 'pix-ml-10';
+					$margin2 = 'ml-2';
+				}
 				if(\PixfortCore::instance()->icons::$isEnabled) {
 						$icon = $value['icon'];
 						// var_dump($value['pix_duo_icon']);
@@ -147,7 +153,7 @@ class PixFeatureList {
 							$icon = $value['pix_duo_icon'];
 						}
 						if(!empty($icon)){
-							$output .= '<div class="d-inline-flex align-items-center pix-mr-10 ' . $i_color . '" style="font-size:1.2em;position:relative;line-height:1em;text-align:center;">';
+							$output .= '<div class="d-inline-flex align-items-center ' . $margin10 . ' ' . $i_color . '" style="font-size:1.2em;position:relative;line-height:1em;text-align:center;">';
 							$output .= \PixfortCore::instance()->icons->getIcon($icon);
 							$output .= '</div>';
 						}						
@@ -164,19 +170,19 @@ class PixFeatureList {
 								$value['pix_duo_icon'] = $icon;
 								$value['media_type'] = "duo_icon";
 							} elseif (!empty($value['icon'])) {
-								$output .= '<i class="' . $icon . ' mr-2 ' . $i_color . '" ' . $i_custom_color . '></i>';
+								$output .= '<i class="' . $icon . ' ' . $margin2 . ' ' . $i_color . '" ' . $i_custom_color . '></i>';
 							}
 						} 
 						if ($value['media_type'] == "duo_icon") {
 							if (!empty($value['pix_duo_icon'])) {
-								$output .= '<div class="pix-mr-10 ' . $i_color . '" style="width:1.5em;min-width:1.5em;height:1.5em;min-width:1.5em;position:relative;line-height:1em;text-align:center;">';
+								$output .= '<div class="' . $margin10 . ' ' . $i_color . '" style="width:1.5em;min-width:1.5em;height:1.5em;min-width:1.5em;position:relative;line-height:1em;text-align:center;">';
 								$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $value['pix_duo_icon'] . '.svg');
 								$output .= '</div>';
 							}
 						}
 					} else {
 						if (!empty($icon)) {
-							$output .= '<i class="' . $icon . ' mr-2 ' . $i_color . '" ' . $i_custom_color . '></i>';
+							$output .= '<i class="' . $icon . ' ' . $margin2 . ' ' . $i_color . '" ' . $i_custom_color . '></i>';
 						}
 					}
 					/*

@@ -112,11 +112,12 @@ class PixFaq {
 		$output = '<div class="pix-faq ' . $position . ' ' . $css_class . '">';
 		$output .= '<div><div class="slide-in-container"><' . $title_tag . ' class="d-flex align-items-center mb-3 ' . $titleClasses . '" style="' . $t_custom_color . $t_size_style . '" data-anim-type="' . $animation . '" data-anim-delay="' . $delay . '">';
 
+		$margin10 = is_rtl() ? 'pix-ml-10' : 'pix-mr-10';
 		if(\PixfortCore::instance()->icons::$isEnabled) {
 			if ($media_type == "duo_icon") {
 				$icon = $pix_duo_icon;
 			}
-			$output .= '<span class="pix-faq-icon d-inline-flex align-items-center pix-mr-10 ' . $icon_class . '" style="' . $icon_style . '">';
+			$output .= '<span class="pix-faq-icon d-inline-flex align-items-center '.$margin10.' ' . $icon_class . '" style="' . $icon_style . '">';
 			$output .= \PixfortCore::instance()->icons->getIcon($icon);
 			$output .= '</span>';
 		} else {

@@ -104,6 +104,14 @@ class PixBlog {
 		$output = '';
 		$query_blog = new WP_Query( $args );
 
+
+		$prevIcon = 'Line/pixfort-icon-arrow-left-2';
+		$nextIcon = 'Line/pixfort-icon-arrow-right-2';
+		if (is_rtl()) {
+			$prevIcon = 'Line/pixfort-icon-arrow-right-2';
+			$nextIcon = 'Line/pixfort-icon-arrow-left-2';
+		}
+
 		$col = 12 / $items_count;
 		$output .= '<div class="row '.$css_class.' '.$blog_dark_mode.'">';
 
@@ -124,8 +132,8 @@ class PixBlog {
 				           'end_size'     => 2,
 				           'mid_size'     => 1,
 				           'prev_next'    => true,
-				           'prev_text'    => '<span class="d-sm-flex justify-content-center align-items-center"><i class="pixicon-angle-left align-self-center"></i></span>',
-				           'next_text'    => '<span class="d-sm-flex justify-content-center align-items-center"><i class="pixicon-angle-right align-self-center"></i></span>',
+				           'prev_text'    => '<span class="d-sm-flex justify-content-center align-items-center">'.\PixfortCore::instance()->icons->getIcon($prevIcon).'</span>',
+				           'next_text'    => '<span class="d-sm-flex justify-content-center align-items-center">'.\PixfortCore::instance()->icons->getIcon($nextIcon).'</span>',
 				           'add_args'     => false,
 				           'add_fragment' => '',
 				       ) );

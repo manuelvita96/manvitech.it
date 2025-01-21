@@ -1,9 +1,9 @@
 # Translation file by pixfort.com
 msgid ""
 msgstr ""
-"Project-Id-Version: pixfort Core 3.2.11\n"
+"Project-Id-Version: pixfort Core 3.2.12\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/pixfort-core\n"
-"POT-Creation-Date: 2024-08-21 19:48:43+00:00\n"
+"POT-Creation-Date: 2024-09-13 15:27:22+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -64,8 +64,8 @@ msgstr ""
 #: functions/elementor/widgets/feature-list.php:250
 #: functions/elementor/widgets/feature.php:345
 #: functions/elementor/widgets/heading.php:112
-#: functions/elementor/widgets/highlighted-text.php:386
-#: functions/elementor/widgets/highlighted-text.php:450
+#: functions/elementor/widgets/highlighted-text.php:441
+#: functions/elementor/widgets/highlighted-text.php:505
 #: functions/elementor/widgets/horizontal-tabs.php:303
 #: functions/elementor/widgets/icon.php:383
 #: functions/elementor/widgets/img-box.php:302
@@ -156,7 +156,7 @@ msgstr ""
 msgid "150"
 msgstr ""
 
-#: functions/elementor/widgets/circles.php:280
+#: functions/elementor/widgets/circles.php:281
 msgid "1000"
 msgstr ""
 
@@ -474,13 +474,13 @@ msgstr ""
 msgid "Light opacity 9"
 msgstr ""
 
-#: dev/archive/shortcodes/blog.php:355
-#: includes/elements/extras/blog-functions.php:231
+#: dev/archive/shortcodes/blog.php:359
+#: includes/elements/extras/blog-functions.php:247
 msgid "By"
 msgstr ""
 
-#: dev/archive/shortcodes/blog.php:375
-#: includes/elements/extras/blog-functions.php:251
+#: dev/archive/shortcodes/blog.php:379
+#: includes/elements/extras/blog-functions.php:267
 msgid "Read more"
 msgstr ""
 
@@ -796,12 +796,11 @@ msgstr ""
 #: functions/elementor/widgets/heading.php:133
 #: functions/elementor/widgets/heading.php:144
 #: functions/elementor/widgets/heading.php:276
-#: functions/elementor/widgets/highlighted-text.php:161
-#: functions/elementor/widgets/highlighted-text.php:175
-#: functions/elementor/widgets/highlighted-text.php:189
-#: functions/elementor/widgets/highlighted-text.php:203
-#: functions/elementor/widgets/highlighted-text.php:402
-#: functions/elementor/widgets/highlighted-text.php:610
+#: functions/elementor/widgets/highlighted-text.php:185
+#: functions/elementor/widgets/highlighted-text.php:199
+#: functions/elementor/widgets/highlighted-text.php:213
+#: functions/elementor/widgets/highlighted-text.php:227
+#: functions/elementor/widgets/highlighted-text.php:457
 #: functions/elementor/widgets/horizontal-tabs.php:63
 #: functions/elementor/widgets/horizontal-tabs.php:207
 #: functions/elementor/widgets/horizontal-tabs.php:327
@@ -989,20 +988,20 @@ msgstr ""
 #: functions/elementor/widgets/story.php:472
 #: functions/elementor/widgets/team-member-circle.php:261
 #: functions/elementor/widgets/team-member-circle.php:273
-#: functions/elementor/widgets/team-member-circle.php:390
-#: functions/elementor/widgets/team-member-circle.php:401
-#: functions/elementor/widgets/team-member-circle.php:412
-#: functions/elementor/widgets/team-member-circle.php:488
-#: functions/elementor/widgets/team-member-circle.php:499
-#: functions/elementor/widgets/team-member-circle.php:510
+#: functions/elementor/widgets/team-member-circle.php:403
+#: functions/elementor/widgets/team-member-circle.php:414
+#: functions/elementor/widgets/team-member-circle.php:425
+#: functions/elementor/widgets/team-member-circle.php:501
+#: functions/elementor/widgets/team-member-circle.php:512
+#: functions/elementor/widgets/team-member-circle.php:523
 #: functions/elementor/widgets/team-member.php:191
 #: functions/elementor/widgets/team-member.php:205
-#: functions/elementor/widgets/team-member.php:342
-#: functions/elementor/widgets/team-member.php:353
-#: functions/elementor/widgets/team-member.php:364
-#: functions/elementor/widgets/team-member.php:440
-#: functions/elementor/widgets/team-member.php:451
-#: functions/elementor/widgets/team-member.php:462
+#: functions/elementor/widgets/team-member.php:355
+#: functions/elementor/widgets/team-member.php:366
+#: functions/elementor/widgets/team-member.php:377
+#: functions/elementor/widgets/team-member.php:453
+#: functions/elementor/widgets/team-member.php:464
+#: functions/elementor/widgets/team-member.php:475
 #: functions/elementor/widgets/testimonial-masonry.php:245
 #: functions/elementor/widgets/testimonial-masonry.php:362
 #: functions/elementor/widgets/testimonial-masonry.php:373
@@ -1295,13 +1294,12 @@ msgstr ""
 #: functions/elementor/widgets/heading.php:134
 #: functions/elementor/widgets/heading.php:145
 #: functions/elementor/widgets/heading.php:277
-#: functions/elementor/widgets/highlighted-text.php:162
-#: functions/elementor/widgets/highlighted-text.php:176
-#: functions/elementor/widgets/highlighted-text.php:190
-#: functions/elementor/widgets/highlighted-text.php:204
-#: functions/elementor/widgets/highlighted-text.php:294
-#: functions/elementor/widgets/highlighted-text.php:403
-#: functions/elementor/widgets/highlighted-text.php:611
+#: functions/elementor/widgets/highlighted-text.php:186
+#: functions/elementor/widgets/highlighted-text.php:200
+#: functions/elementor/widgets/highlighted-text.php:214
+#: functions/elementor/widgets/highlighted-text.php:228
+#: functions/elementor/widgets/highlighted-text.php:349
+#: functions/elementor/widgets/highlighted-text.php:458
 #: functions/elementor/widgets/horizontal-tabs.php:64
 #: functions/elementor/widgets/horizontal-tabs.php:208
 #: functions/elementor/widgets/horizontal-tabs.php:328
@@ -1505,21 +1503,21 @@ msgstr ""
 #: functions/elementor/widgets/story.php:473
 #: functions/elementor/widgets/team-member-circle.php:262
 #: functions/elementor/widgets/team-member-circle.php:274
-#: functions/elementor/widgets/team-member-circle.php:391
-#: functions/elementor/widgets/team-member-circle.php:402
-#: functions/elementor/widgets/team-member-circle.php:413
-#: functions/elementor/widgets/team-member-circle.php:489
-#: functions/elementor/widgets/team-member-circle.php:500
-#: functions/elementor/widgets/team-member-circle.php:511
+#: functions/elementor/widgets/team-member-circle.php:404
+#: functions/elementor/widgets/team-member-circle.php:415
+#: functions/elementor/widgets/team-member-circle.php:426
+#: functions/elementor/widgets/team-member-circle.php:502
+#: functions/elementor/widgets/team-member-circle.php:513
+#: functions/elementor/widgets/team-member-circle.php:524
 #: functions/elementor/widgets/team-member.php:192
 #: functions/elementor/widgets/team-member.php:206
 #: functions/elementor/widgets/team-member.php:295
-#: functions/elementor/widgets/team-member.php:343
-#: functions/elementor/widgets/team-member.php:354
-#: functions/elementor/widgets/team-member.php:365
-#: functions/elementor/widgets/team-member.php:441
-#: functions/elementor/widgets/team-member.php:452
-#: functions/elementor/widgets/team-member.php:463
+#: functions/elementor/widgets/team-member.php:356
+#: functions/elementor/widgets/team-member.php:367
+#: functions/elementor/widgets/team-member.php:378
+#: functions/elementor/widgets/team-member.php:454
+#: functions/elementor/widgets/team-member.php:465
+#: functions/elementor/widgets/team-member.php:476
 #: functions/elementor/widgets/testimonial-masonry.php:246
 #: functions/elementor/widgets/testimonial-masonry.php:313
 #: functions/elementor/widgets/testimonial-masonry.php:363
@@ -1658,7 +1656,7 @@ msgstr ""
 #: functions/elementor/widgets/feature.php:511
 #: functions/elementor/widgets/gallery.php:297
 #: functions/elementor/widgets/heading.php:131
-#: functions/elementor/widgets/highlighted-text.php:159
+#: functions/elementor/widgets/highlighted-text.php:183
 #: functions/elementor/widgets/horizontal-tabs.php:325
 #: functions/elementor/widgets/img-box.php:356
 #: functions/elementor/widgets/levels.php:219
@@ -1681,10 +1679,10 @@ msgstr ""
 #: functions/elementor/widgets/slider.php:599
 #: functions/elementor/widgets/sliding-text.php:138
 #: functions/elementor/widgets/story.php:448
-#: functions/elementor/widgets/team-member-circle.php:388
-#: functions/elementor/widgets/team-member-circle.php:486
-#: functions/elementor/widgets/team-member.php:340
-#: functions/elementor/widgets/team-member.php:438
+#: functions/elementor/widgets/team-member-circle.php:401
+#: functions/elementor/widgets/team-member-circle.php:499
+#: functions/elementor/widgets/team-member.php:353
+#: functions/elementor/widgets/team-member.php:451
 #: functions/elementor/widgets/testimonial-masonry.php:360
 #: functions/elementor/widgets/testimonial-masonry.php:458
 #: functions/elementor/widgets/testimonial.php:357
@@ -1720,7 +1718,7 @@ msgstr ""
 #: functions/elementor/widgets/feature.php:522
 #: functions/elementor/widgets/gallery.php:308
 #: functions/elementor/widgets/heading.php:142
-#: functions/elementor/widgets/highlighted-text.php:173
+#: functions/elementor/widgets/highlighted-text.php:197
 #: functions/elementor/widgets/horizontal-tabs.php:336
 #: functions/elementor/widgets/img-box.php:367
 #: functions/elementor/widgets/levels.php:230
@@ -1743,10 +1741,10 @@ msgstr ""
 #: functions/elementor/widgets/slider.php:610
 #: functions/elementor/widgets/sliding-text.php:149
 #: functions/elementor/widgets/story.php:459
-#: functions/elementor/widgets/team-member-circle.php:399
-#: functions/elementor/widgets/team-member-circle.php:497
-#: functions/elementor/widgets/team-member.php:351
-#: functions/elementor/widgets/team-member.php:449
+#: functions/elementor/widgets/team-member-circle.php:412
+#: functions/elementor/widgets/team-member-circle.php:510
+#: functions/elementor/widgets/team-member.php:364
+#: functions/elementor/widgets/team-member.php:462
 #: functions/elementor/widgets/testimonial-masonry.php:371
 #: functions/elementor/widgets/testimonial-masonry.php:469
 #: functions/elementor/widgets/testimonial.php:368
@@ -1803,10 +1801,10 @@ msgstr ""
 #: functions/elementor/widgets/slider.php:621
 #: functions/elementor/widgets/sliding-text.php:186
 #: functions/elementor/widgets/story.php:470
-#: functions/elementor/widgets/team-member-circle.php:410
-#: functions/elementor/widgets/team-member-circle.php:508
-#: functions/elementor/widgets/team-member.php:362
-#: functions/elementor/widgets/team-member.php:460
+#: functions/elementor/widgets/team-member-circle.php:423
+#: functions/elementor/widgets/team-member-circle.php:521
+#: functions/elementor/widgets/team-member.php:375
+#: functions/elementor/widgets/team-member.php:473
 #: functions/elementor/widgets/testimonial-masonry.php:382
 #: functions/elementor/widgets/testimonial-masonry.php:480
 #: functions/elementor/widgets/testimonial.php:379
@@ -1846,7 +1844,7 @@ msgstr ""
 #: functions/elementor/widgets/card-wide.php:441
 #: functions/elementor/widgets/card.php:497
 #: functions/elementor/widgets/countdown.php:246
-#: functions/elementor/widgets/highlighted-text.php:502
+#: functions/elementor/widgets/highlighted-text.php:557
 #: functions/elementor/widgets/img-box.php:481
 #: functions/elementor/widgets/levels.php:344
 #: functions/elementor/widgets/numbers.php:312
@@ -1967,7 +1965,7 @@ msgstr ""
 #: functions/elementor/widgets/card-wide.php:275
 #: functions/elementor/widgets/card.php:291
 #: functions/elementor/widgets/chart.php:178
-#: functions/elementor/widgets/circles.php:269
+#: functions/elementor/widgets/circles.php:270
 #: functions/elementor/widgets/clients-carousel.php:153
 #: functions/elementor/widgets/clients.php:184
 #: functions/elementor/widgets/comparison-table.php:511
@@ -1986,8 +1984,8 @@ msgstr ""
 #: functions/elementor/widgets/feature-list.php:239
 #: functions/elementor/widgets/feature.php:334
 #: functions/elementor/widgets/heading.php:101
-#: functions/elementor/widgets/highlighted-text.php:372
-#: functions/elementor/widgets/highlighted-text.php:439
+#: functions/elementor/widgets/highlighted-text.php:427
+#: functions/elementor/widgets/highlighted-text.php:494
 #: functions/elementor/widgets/horizontal-tabs.php:292
 #: functions/elementor/widgets/icon.php:372
 #: functions/elementor/widgets/img-box.php:291
@@ -2085,7 +2083,7 @@ msgstr ""
 #: functions/elements/vc_section.php:238 functions/elements/vc_section.php:311
 #: functions/elements/vc_section.php:383 functions/elements/vc_section.php:585
 #: functions/elements/vc_section.php:652 functions/elements/vc_section.php:719
-#: functions/visual-composer.php:374
+#: functions/visual-composer.php:375
 msgid "Animation"
 msgstr ""
 
@@ -2107,7 +2105,7 @@ msgstr ""
 #: functions/elementor/widgets/card-wide.php:284
 #: functions/elementor/widgets/card.php:300
 #: functions/elementor/widgets/chart.php:187
-#: functions/elementor/widgets/circles.php:278
+#: functions/elementor/widgets/circles.php:279
 #: functions/elementor/widgets/clients-carousel.php:162
 #: functions/elementor/widgets/clients.php:193
 #: functions/elementor/widgets/comparison-table.php:520
@@ -2126,8 +2124,8 @@ msgstr ""
 #: functions/elementor/widgets/feature-list.php:248
 #: functions/elementor/widgets/feature.php:343
 #: functions/elementor/widgets/heading.php:110
-#: functions/elementor/widgets/highlighted-text.php:384
-#: functions/elementor/widgets/highlighted-text.php:448
+#: functions/elementor/widgets/highlighted-text.php:439
+#: functions/elementor/widgets/highlighted-text.php:503
 #: functions/elementor/widgets/horizontal-tabs.php:301
 #: functions/elementor/widgets/icon.php:381
 #: functions/elementor/widgets/img-box.php:300
@@ -2230,7 +2228,7 @@ msgstr ""
 #: functions/elements/vc_section.php:252 functions/elements/vc_section.php:325
 #: functions/elements/vc_section.php:397 functions/elements/vc_section.php:598
 #: functions/elements/vc_section.php:665 functions/elements/vc_section.php:732
-#: functions/visual-composer.php:382
+#: functions/visual-composer.php:383
 msgid "Animation delay (in miliseconds)"
 msgstr ""
 
@@ -2261,7 +2259,7 @@ msgstr ""
 #: functions/elementor/widgets/blog.php:211
 #: functions/elementor/widgets/card-wide.php:185
 #: functions/elementor/widgets/card.php:221
-#: functions/elementor/widgets/highlighted-text.php:309
+#: functions/elementor/widgets/highlighted-text.php:364
 #: functions/elementor/widgets/marquee.php:306
 #: functions/elementor/widgets/products-carousel.php:274
 #: functions/elements/global-params.php:28
@@ -2286,7 +2284,7 @@ msgstr ""
 #: functions/elementor/widgets/card-wide.php:202
 #: functions/elementor/widgets/card.php:238
 #: functions/elementor/widgets/comparison-table.php:1030
-#: functions/elementor/widgets/highlighted-text.php:329
+#: functions/elementor/widgets/highlighted-text.php:384
 #: functions/elementor/widgets/marquee.php:326
 #: functions/elementor/widgets/products-carousel.php:291
 #: functions/elements/global-params.php:45
@@ -2314,7 +2312,7 @@ msgstr ""
 #: functions/elementor/widgets/clients-carousel.php:118
 #: functions/elementor/widgets/clients.php:149
 #: functions/elementor/widgets/comparison-table.php:1047
-#: functions/elementor/widgets/highlighted-text.php:349
+#: functions/elementor/widgets/highlighted-text.php:404
 #: functions/elementor/widgets/img.php:533
 #: functions/elementor/widgets/marquee.php:346
 #: functions/elementor/widgets/products-carousel.php:308
@@ -2782,7 +2780,7 @@ msgstr ""
 #: functions/elementor/widgets/feature.php:139
 #: functions/elementor/widgets/feature.php:160
 #: functions/elementor/widgets/heading.php:80
-#: functions/elementor/widgets/highlighted-text.php:83
+#: functions/elementor/widgets/highlighted-text.php:107
 #: functions/elementor/widgets/horizontal-tabs.php:44
 #: functions/elementor/widgets/horizontal-tabs.php:165
 #: functions/elementor/widgets/icon.php:154
@@ -2941,8 +2939,8 @@ msgstr ""
 #: functions/elementor/widgets/fancybox.php:101
 #: functions/elementor/widgets/faq.php:222
 #: functions/elementor/widgets/feature-list.php:117
-#: functions/elementor/widgets/highlighted-text.php:108
-#: functions/elementor/widgets/highlighted-text.php:412
+#: functions/elementor/widgets/highlighted-text.php:132
+#: functions/elementor/widgets/highlighted-text.php:467
 #: functions/elementor/widgets/img-box.php:178
 #: functions/elementor/widgets/levels.php:116
 #: functions/elementor/widgets/marquee.php:103
@@ -2987,6 +2985,8 @@ msgstr ""
 #: functions/elementor/widgets/icon.php:394
 #: functions/elementor/widgets/pricing.php:279
 #: functions/elementor/widgets/promo-box.php:436
+#: functions/elementor/widgets/team-member-circle.php:375
+#: functions/elementor/widgets/team-member.php:327
 #: functions/elementor/widgets/vertical-tabs.php:404
 #: functions/elements/shortcode-3d-box.php:159
 #: functions/elements/shortcode-chart.php:263
@@ -2998,8 +2998,61 @@ msgstr ""
 #: functions/elements/shortcode-icon.php:199
 #: functions/elements/shortcode-pricing.php:267
 #: functions/elements/shortcode-promo-box.php:252
-#: functions/elements/vc_column.php:24 functions/visual-composer.php:352
+#: functions/elements/vc_column.php:24 functions/visual-composer.php:353
 msgid "Content align"
+msgstr ""
+
+#: functions/elementor/widgets/3d-box.php:126
+#: functions/elementor/widgets/chart.php:170
+#: functions/elementor/widgets/circles.php:258
+#: functions/elementor/widgets/highlighted-text.php:692
+#: functions/elementor/widgets/numbers.php:484
+#: functions/elementor/widgets/promo-box.php:439
+#: functions/elementor/widgets/sliding-text.php:104
+#: functions/elementor/widgets/vertical-tabs.php:362
+#: functions/elements/shortcode-chart.php:268
+#: functions/elements/shortcode-numbers.php:274
+#: functions/elements/shortcode-slider.php:114
+msgid "Start"
+msgstr ""
+
+#: functions/elementor/widgets/3d-box.php:127
+#: functions/elementor/widgets/accordion.php:507
+#: functions/elementor/widgets/animated-heading.php:475
+#: functions/elementor/widgets/animated-heading.php:536
+#: functions/elementor/widgets/badge.php:410
+#: functions/elementor/widgets/button.php:69
+#: functions/elementor/widgets/circles.php:244
+#: functions/elementor/widgets/circles.php:259
+#: functions/elementor/widgets/heading.php:326
+#: functions/elementor/widgets/highlighted-text.php:696
+#: functions/elementor/widgets/numbers.php:485
+#: functions/elementor/widgets/promo-box.php:440
+#: functions/elementor/widgets/runtime.php:145
+#: functions/elementor/widgets/sliding-text.php:103
+#: functions/elementor/widgets/text.php:349
+#: functions/elements/shortcode-numbers.php:275
+#: functions/elements/shortcode-slider.php:115
+#: includes/options/data/blogIntro.php:115
+#: includes/options/data/pagesIntro.php:115
+#: includes/options/data/portfolioIntro.php:115
+#: includes/options/data/shopIntro.php:116
+msgid "Center"
+msgstr ""
+
+#: functions/elementor/widgets/3d-box.php:128
+#: functions/elementor/widgets/chart.php:171
+#: functions/elementor/widgets/circles.php:245
+#: functions/elementor/widgets/circles.php:260
+#: functions/elementor/widgets/highlighted-text.php:700
+#: functions/elementor/widgets/numbers.php:486
+#: functions/elementor/widgets/promo-box.php:441
+#: functions/elementor/widgets/sliding-text.php:105
+#: functions/elementor/widgets/vertical-tabs.php:363
+#: functions/elements/shortcode-chart.php:269
+#: functions/elements/shortcode-numbers.php:276
+#: functions/elements/shortcode-slider.php:116
+msgid "End"
 msgstr ""
 
 #: functions/elementor/widgets/3d-box.php:137
@@ -3012,7 +3065,7 @@ msgstr ""
 #: functions/elementor/widgets/card.php:275
 #: functions/elementor/widgets/fancy-mockup.php:76
 #: functions/elementor/widgets/gallery.php:281
-#: functions/elementor/widgets/highlighted-text.php:290
+#: functions/elementor/widgets/highlighted-text.php:345
 #: functions/elementor/widgets/img-box.php:135
 #: functions/elementor/widgets/img-carousel.php:86
 #: functions/elementor/widgets/img-slider.php:104
@@ -3145,7 +3198,7 @@ msgstr ""
 #: functions/elementor/widgets/card.php:281
 #: functions/elementor/widgets/fancy-mockup.php:82
 #: functions/elementor/widgets/gallery.php:287
-#: functions/elementor/widgets/highlighted-text.php:296
+#: functions/elementor/widgets/highlighted-text.php:351
 #: functions/elementor/widgets/img-box.php:141
 #: functions/elementor/widgets/img-carousel.php:92
 #: functions/elementor/widgets/img-slider.php:110
@@ -3216,7 +3269,7 @@ msgstr ""
 #: functions/elementor/widgets/card.php:282
 #: functions/elementor/widgets/fancy-mockup.php:83
 #: functions/elementor/widgets/gallery.php:288
-#: functions/elementor/widgets/highlighted-text.php:297
+#: functions/elementor/widgets/highlighted-text.php:352
 #: functions/elementor/widgets/img-box.php:142
 #: functions/elementor/widgets/img-carousel.php:93
 #: functions/elementor/widgets/img-slider.php:111
@@ -3286,7 +3339,7 @@ msgstr ""
 #: functions/elementor/widgets/card.php:283
 #: functions/elementor/widgets/fancy-mockup.php:84
 #: functions/elementor/widgets/gallery.php:289
-#: functions/elementor/widgets/highlighted-text.php:298
+#: functions/elementor/widgets/highlighted-text.php:353
 #: functions/elementor/widgets/img-box.php:143
 #: functions/elementor/widgets/img-carousel.php:94
 #: functions/elementor/widgets/img-slider.php:112
@@ -3673,8 +3726,8 @@ msgstr ""
 #: functions/elementor/widgets/shop-category.php:503
 #: functions/elementor/widgets/slider.php:472
 #: functions/elementor/widgets/sliding-text.php:232
-#: functions/elementor/widgets/team-member-circle.php:519
-#: functions/elementor/widgets/team-member.php:471
+#: functions/elementor/widgets/team-member-circle.php:532
+#: functions/elementor/widgets/team-member.php:484
 #: functions/elementor/widgets/testimonial-masonry.php:491
 #: functions/elementor/widgets/testimonial.php:488
 #: functions/elementor/widgets/testimonials-slider.php:454
@@ -3750,8 +3803,8 @@ msgstr ""
 #: functions/elementor/widgets/shop-category.php:512
 #: functions/elementor/widgets/slider.php:481
 #: functions/elementor/widgets/sliding-text.php:241
-#: functions/elementor/widgets/team-member-circle.php:528
-#: functions/elementor/widgets/team-member.php:480
+#: functions/elementor/widgets/team-member-circle.php:541
+#: functions/elementor/widgets/team-member.php:493
 #: functions/elementor/widgets/testimonial-masonry.php:500
 #: functions/elementor/widgets/testimonial.php:497
 #: functions/elementor/widgets/testimonials-slider.php:463
@@ -3777,8 +3830,8 @@ msgstr ""
 #: functions/elementor/widgets/review.php:331
 #: functions/elementor/widgets/reviews-slider.php:323
 #: functions/elementor/widgets/slider.php:492
-#: functions/elementor/widgets/team-member-circle.php:539
-#: functions/elementor/widgets/team-member.php:491
+#: functions/elementor/widgets/team-member-circle.php:552
+#: functions/elementor/widgets/team-member.php:504
 #: functions/elementor/widgets/testimonial-masonry.php:511
 #: functions/elementor/widgets/testimonial.php:508
 #: functions/elementor/widgets/testimonials-slider.php:474
@@ -3823,7 +3876,7 @@ msgstr ""
 #: functions/elementor/widgets/feature.php:372
 #: functions/elementor/widgets/gallery.php:355
 #: functions/elementor/widgets/heading.php:190
-#: functions/elementor/widgets/highlighted-text.php:528
+#: functions/elementor/widgets/highlighted-text.php:583
 #: functions/elementor/widgets/img-box.php:412
 #: functions/elementor/widgets/levels.php:275
 #: functions/elementor/widgets/marquee.php:436
@@ -3834,10 +3887,10 @@ msgstr ""
 #: functions/elementor/widgets/pricing.php:542
 #: functions/elementor/widgets/promo-box.php:537
 #: functions/elementor/widgets/slider.php:495
-#: functions/elementor/widgets/team-member-circle.php:444
-#: functions/elementor/widgets/team-member-circle.php:542
-#: functions/elementor/widgets/team-member.php:396
-#: functions/elementor/widgets/team-member.php:494
+#: functions/elementor/widgets/team-member-circle.php:457
+#: functions/elementor/widgets/team-member-circle.php:555
+#: functions/elementor/widgets/team-member.php:409
+#: functions/elementor/widgets/team-member.php:507
 #: functions/elementor/widgets/testimonial-masonry.php:416
 #: functions/elementor/widgets/testimonial.php:413
 #: functions/elementor/widgets/testimonials-slider.php:379
@@ -3898,7 +3951,7 @@ msgstr ""
 #: functions/elementor/widgets/feature.php:373
 #: functions/elementor/widgets/gallery.php:356
 #: functions/elementor/widgets/heading.php:191
-#: functions/elementor/widgets/highlighted-text.php:529
+#: functions/elementor/widgets/highlighted-text.php:584
 #: functions/elementor/widgets/img-box.php:413
 #: functions/elementor/widgets/levels.php:276
 #: functions/elementor/widgets/marquee.php:437
@@ -3909,10 +3962,10 @@ msgstr ""
 #: functions/elementor/widgets/pricing.php:543
 #: functions/elementor/widgets/promo-box.php:538
 #: functions/elementor/widgets/slider.php:496
-#: functions/elementor/widgets/team-member-circle.php:445
-#: functions/elementor/widgets/team-member-circle.php:543
-#: functions/elementor/widgets/team-member.php:397
-#: functions/elementor/widgets/team-member.php:495
+#: functions/elementor/widgets/team-member-circle.php:458
+#: functions/elementor/widgets/team-member-circle.php:556
+#: functions/elementor/widgets/team-member.php:410
+#: functions/elementor/widgets/team-member.php:508
 #: functions/elementor/widgets/testimonial-masonry.php:417
 #: functions/elementor/widgets/testimonial.php:414
 #: functions/elementor/widgets/testimonials-slider.php:380
@@ -3973,7 +4026,7 @@ msgstr ""
 #: functions/elementor/widgets/feature.php:374
 #: functions/elementor/widgets/gallery.php:357
 #: functions/elementor/widgets/heading.php:192
-#: functions/elementor/widgets/highlighted-text.php:530
+#: functions/elementor/widgets/highlighted-text.php:585
 #: functions/elementor/widgets/img-box.php:414
 #: functions/elementor/widgets/levels.php:277
 #: functions/elementor/widgets/marquee.php:438
@@ -3984,10 +4037,10 @@ msgstr ""
 #: functions/elementor/widgets/pricing.php:544
 #: functions/elementor/widgets/promo-box.php:539
 #: functions/elementor/widgets/slider.php:497
-#: functions/elementor/widgets/team-member-circle.php:446
-#: functions/elementor/widgets/team-member-circle.php:544
-#: functions/elementor/widgets/team-member.php:398
-#: functions/elementor/widgets/team-member.php:496
+#: functions/elementor/widgets/team-member-circle.php:459
+#: functions/elementor/widgets/team-member-circle.php:557
+#: functions/elementor/widgets/team-member.php:411
+#: functions/elementor/widgets/team-member.php:509
 #: functions/elementor/widgets/testimonial-masonry.php:418
 #: functions/elementor/widgets/testimonial.php:415
 #: functions/elementor/widgets/testimonials-slider.php:381
@@ -4048,7 +4101,7 @@ msgstr ""
 #: functions/elementor/widgets/feature.php:375
 #: functions/elementor/widgets/gallery.php:358
 #: functions/elementor/widgets/heading.php:193
-#: functions/elementor/widgets/highlighted-text.php:531
+#: functions/elementor/widgets/highlighted-text.php:586
 #: functions/elementor/widgets/img-box.php:415
 #: functions/elementor/widgets/levels.php:278
 #: functions/elementor/widgets/marquee.php:439
@@ -4059,10 +4112,10 @@ msgstr ""
 #: functions/elementor/widgets/pricing.php:545
 #: functions/elementor/widgets/promo-box.php:540
 #: functions/elementor/widgets/slider.php:498
-#: functions/elementor/widgets/team-member-circle.php:447
-#: functions/elementor/widgets/team-member-circle.php:545
-#: functions/elementor/widgets/team-member.php:399
-#: functions/elementor/widgets/team-member.php:497
+#: functions/elementor/widgets/team-member-circle.php:460
+#: functions/elementor/widgets/team-member-circle.php:558
+#: functions/elementor/widgets/team-member.php:412
+#: functions/elementor/widgets/team-member.php:510
 #: functions/elementor/widgets/testimonial-masonry.php:419
 #: functions/elementor/widgets/testimonial.php:416
 #: functions/elementor/widgets/testimonials-slider.php:382
@@ -4123,7 +4176,7 @@ msgstr ""
 #: functions/elementor/widgets/feature.php:376
 #: functions/elementor/widgets/gallery.php:359
 #: functions/elementor/widgets/heading.php:194
-#: functions/elementor/widgets/highlighted-text.php:532
+#: functions/elementor/widgets/highlighted-text.php:587
 #: functions/elementor/widgets/img-box.php:416
 #: functions/elementor/widgets/levels.php:279
 #: functions/elementor/widgets/marquee.php:440
@@ -4134,10 +4187,10 @@ msgstr ""
 #: functions/elementor/widgets/pricing.php:546
 #: functions/elementor/widgets/promo-box.php:541
 #: functions/elementor/widgets/slider.php:499
-#: functions/elementor/widgets/team-member-circle.php:448
-#: functions/elementor/widgets/team-member-circle.php:546
-#: functions/elementor/widgets/team-member.php:400
-#: functions/elementor/widgets/team-member.php:498
+#: functions/elementor/widgets/team-member-circle.php:461
+#: functions/elementor/widgets/team-member-circle.php:559
+#: functions/elementor/widgets/team-member.php:413
+#: functions/elementor/widgets/team-member.php:511
 #: functions/elementor/widgets/testimonial-masonry.php:420
 #: functions/elementor/widgets/testimonial.php:417
 #: functions/elementor/widgets/testimonials-slider.php:383
@@ -4198,7 +4251,7 @@ msgstr ""
 #: functions/elementor/widgets/feature.php:377
 #: functions/elementor/widgets/gallery.php:360
 #: functions/elementor/widgets/heading.php:195
-#: functions/elementor/widgets/highlighted-text.php:533
+#: functions/elementor/widgets/highlighted-text.php:588
 #: functions/elementor/widgets/img-box.php:417
 #: functions/elementor/widgets/levels.php:280
 #: functions/elementor/widgets/marquee.php:441
@@ -4209,10 +4262,10 @@ msgstr ""
 #: functions/elementor/widgets/pricing.php:547
 #: functions/elementor/widgets/promo-box.php:542
 #: functions/elementor/widgets/slider.php:500
-#: functions/elementor/widgets/team-member-circle.php:449
-#: functions/elementor/widgets/team-member-circle.php:547
-#: functions/elementor/widgets/team-member.php:401
-#: functions/elementor/widgets/team-member.php:499
+#: functions/elementor/widgets/team-member-circle.php:462
+#: functions/elementor/widgets/team-member-circle.php:560
+#: functions/elementor/widgets/team-member.php:414
+#: functions/elementor/widgets/team-member.php:512
 #: functions/elementor/widgets/testimonial-masonry.php:421
 #: functions/elementor/widgets/testimonial.php:418
 #: functions/elementor/widgets/testimonials-slider.php:384
@@ -4272,7 +4325,6 @@ msgstr ""
 #: functions/elementor/widgets/faq.php:353
 #: functions/elementor/widgets/feature.php:378
 #: functions/elementor/widgets/gallery.php:361
-#: functions/elementor/widgets/highlighted-text.php:534
 #: functions/elementor/widgets/img-box.php:418
 #: functions/elementor/widgets/levels.php:281
 #: functions/elementor/widgets/marquee.php:442
@@ -4282,10 +4334,10 @@ msgstr ""
 #: functions/elementor/widgets/pricing.php:430
 #: functions/elementor/widgets/promo-box.php:543
 #: functions/elementor/widgets/slider.php:501
-#: functions/elementor/widgets/team-member-circle.php:450
-#: functions/elementor/widgets/team-member-circle.php:548
-#: functions/elementor/widgets/team-member.php:402
-#: functions/elementor/widgets/team-member.php:500
+#: functions/elementor/widgets/team-member-circle.php:463
+#: functions/elementor/widgets/team-member-circle.php:561
+#: functions/elementor/widgets/team-member.php:415
+#: functions/elementor/widgets/team-member.php:513
 #: functions/elementor/widgets/testimonial-masonry.php:422
 #: functions/elementor/widgets/testimonial.php:419
 #: functions/elementor/widgets/testimonials-slider.php:385
@@ -4347,7 +4399,7 @@ msgstr ""
 #: functions/elementor/widgets/feature.php:389
 #: functions/elementor/widgets/gallery.php:372
 #: functions/elementor/widgets/heading.php:207
-#: functions/elementor/widgets/highlighted-text.php:545
+#: functions/elementor/widgets/highlighted-text.php:600
 #: functions/elementor/widgets/img-box.php:429
 #: functions/elementor/widgets/levels.php:292
 #: functions/elementor/widgets/numbers.php:352
@@ -4355,8 +4407,8 @@ msgstr ""
 #: functions/elementor/widgets/promo-box.php:554
 #: functions/elementor/widgets/promo-box.php:655
 #: functions/elementor/widgets/slider.php:512
-#: functions/elementor/widgets/team-member-circle.php:559
-#: functions/elementor/widgets/team-member.php:511
+#: functions/elementor/widgets/team-member-circle.php:572
+#: functions/elementor/widgets/team-member.php:524
 #: functions/elementor/widgets/vertical-tabs.php:562
 #: functions/elementor/widgets/vertical-tabs.php:660
 msgid "Enter custom title size"
@@ -4431,7 +4483,7 @@ msgstr ""
 #: functions/elementor/widgets/faq.php:429
 #: functions/elementor/widgets/feature-list.php:273
 #: functions/elementor/widgets/feature.php:493
-#: functions/elementor/widgets/highlighted-text.php:525
+#: functions/elementor/widgets/highlighted-text.php:580
 #: functions/elementor/widgets/img-box.php:502
 #: functions/elementor/widgets/numbers.php:332
 #: functions/elementor/widgets/numbers.php:448
@@ -4694,8 +4746,8 @@ msgstr ""
 #: functions/elementor/widgets/card-wide.php:450
 #: functions/elementor/widgets/card.php:506
 #: functions/elementor/widgets/countdown.php:255
-#: functions/elementor/widgets/highlighted-text.php:231
-#: functions/elementor/widgets/highlighted-text.php:511
+#: functions/elementor/widgets/highlighted-text.php:255
+#: functions/elementor/widgets/highlighted-text.php:566
 #: functions/elementor/widgets/horizontal-tabs.php:382
 #: functions/elementor/widgets/horizontal-tabs.php:423
 #: functions/elementor/widgets/img-box.php:490
@@ -4725,17 +4777,11 @@ msgstr ""
 #: functions/elementor/widgets/animated-heading.php:532
 #: functions/elementor/widgets/badge.php:406
 #: functions/elementor/widgets/button.php:65
-#: functions/elementor/widgets/chart.php:170
 #: functions/elementor/widgets/heading.php:322
-#: functions/elementor/widgets/numbers.php:484
 #: functions/elementor/widgets/runtime.php:141
 #: functions/elementor/widgets/text.php:345
-#: functions/elementor/widgets/vertical-tabs.php:362
-#: functions/elements/shortcode-chart.php:268
 #: functions/elements/shortcode-content-stack.php:18
 #: functions/elements/shortcode-content-tabs.php:429
-#: functions/elements/shortcode-numbers.php:274
-#: functions/elements/shortcode-slider.php:114
 #: includes/options/data/blogIntro.php:114
 #: includes/options/data/pagesIntro.php:114
 #: includes/options/data/portfolioIntro.php:114
@@ -4743,40 +4789,16 @@ msgstr ""
 msgid "Left"
 msgstr ""
 
-#: functions/elementor/widgets/accordion.php:507
-#: functions/elementor/widgets/animated-heading.php:475
-#: functions/elementor/widgets/animated-heading.php:536
-#: functions/elementor/widgets/badge.php:410
-#: functions/elementor/widgets/button.php:69
-#: functions/elementor/widgets/heading.php:326
-#: functions/elementor/widgets/numbers.php:485
-#: functions/elementor/widgets/runtime.php:145
-#: functions/elementor/widgets/text.php:349
-#: functions/elements/shortcode-numbers.php:275
-#: functions/elements/shortcode-slider.php:115
-#: includes/options/data/blogIntro.php:115
-#: includes/options/data/pagesIntro.php:115
-#: includes/options/data/portfolioIntro.php:115
-#: includes/options/data/shopIntro.php:116
-msgid "Center"
-msgstr ""
-
 #: functions/elementor/widgets/accordion.php:511
 #: functions/elementor/widgets/animated-heading.php:479
 #: functions/elementor/widgets/animated-heading.php:540
 #: functions/elementor/widgets/badge.php:414
 #: functions/elementor/widgets/button.php:73
-#: functions/elementor/widgets/chart.php:171
 #: functions/elementor/widgets/heading.php:330
-#: functions/elementor/widgets/numbers.php:486
 #: functions/elementor/widgets/runtime.php:149
 #: functions/elementor/widgets/text.php:353
-#: functions/elementor/widgets/vertical-tabs.php:363
-#: functions/elements/shortcode-chart.php:269
 #: functions/elements/shortcode-content-stack.php:19
 #: functions/elements/shortcode-content-tabs.php:430
-#: functions/elements/shortcode-numbers.php:276
-#: functions/elements/shortcode-slider.php:116
 #: includes/options/data/blogIntro.php:116
 #: includes/options/data/pagesIntro.php:116
 #: includes/options/data/portfolioIntro.php:116
@@ -4964,8 +4986,8 @@ msgstr ""
 #: functions/elementor/widgets/fancybox.php:115
 #: functions/elementor/widgets/feature.php:175
 #: functions/elementor/widgets/gallery.php:90
-#: functions/elementor/widgets/highlighted-text.php:101
-#: functions/elementor/widgets/highlighted-text.php:265
+#: functions/elementor/widgets/highlighted-text.php:125
+#: functions/elementor/widgets/highlighted-text.php:289
 #: functions/elementor/widgets/icon.php:269
 #: functions/elementor/widgets/img-box.php:125
 #: functions/elementor/widgets/img-carousel.php:44
@@ -5037,7 +5059,7 @@ msgstr ""
 
 #: functions/elementor/widgets/alert.php:465
 #: functions/elementor/widgets/feature.php:683
-#: functions/elementor/widgets/highlighted-text.php:281
+#: functions/elementor/widgets/highlighted-text.php:332
 #: functions/elementor/widgets/icon.php:512
 msgid "Leave empty for full size."
 msgstr ""
@@ -5057,6 +5079,7 @@ msgstr ""
 #: functions/elementor/widgets/blog.php:43
 #: functions/elementor/widgets/cta.php:185
 #: functions/elementor/widgets/heading.php:310
+#: functions/elementor/widgets/highlighted-text.php:658
 #: functions/elementor/widgets/horizontal-tabs.php:232
 #: functions/elementor/widgets/marquee.php:583
 #: functions/elementor/widgets/menu.php:49
@@ -5090,7 +5113,7 @@ msgid "Enter the word"
 msgstr ""
 
 #: functions/elementor/widgets/animated-heading.php:118
-#: functions/elementor/widgets/highlighted-text.php:201
+#: functions/elementor/widgets/highlighted-text.php:225
 #: functions/elementor/widgets/social-icons.php:139
 #: functions/elementor/widgets/team-member-circle.php:271
 #: functions/elementor/widgets/team-member.php:203
@@ -5137,13 +5160,11 @@ msgstr ""
 
 #: functions/elementor/widgets/animated-heading.php:207
 #: functions/elementor/widgets/heading.php:239
-#: functions/elementor/widgets/highlighted-text.php:576
+#: functions/elementor/widgets/highlighted-text.php:688
 #: functions/elementor/widgets/horizontal-tabs.php:219
 #: functions/elementor/widgets/sliding-text.php:100
 #: functions/elementor/widgets/social-icons.php:259
 #: functions/elementor/widgets/story.php:501
-#: functions/elementor/widgets/team-member-circle.php:657
-#: functions/elementor/widgets/team-member.php:612
 #: functions/elementor/widgets/text.php:258
 #: functions/elementor/widgets/vertical-tabs.php:732
 #: functions/elements/shortcode-advanced-text.php:64
@@ -5164,7 +5185,7 @@ msgstr ""
 #: functions/elementor/widgets/card-wide.php:401
 #: functions/elementor/widgets/card.php:454
 #: functions/elementor/widgets/feature-list.php:265
-#: functions/elementor/widgets/highlighted-text.php:462
+#: functions/elementor/widgets/highlighted-text.php:517
 #: functions/elementor/widgets/img-box.php:441
 #: functions/elementor/widgets/levels.php:304
 #: functions/elementor/widgets/testimonial-masonry.php:536
@@ -5198,7 +5219,7 @@ msgstr ""
 #: functions/elementor/widgets/comparison-table.php:869
 #: functions/elementor/widgets/countdown.php:227
 #: functions/elementor/widgets/heading.php:221
-#: functions/elementor/widgets/highlighted-text.php:558
+#: functions/elementor/widgets/highlighted-text.php:613
 #: functions/elementor/widgets/marquee.php:450
 #: functions/elementor/widgets/numbers.php:365
 #: functions/elementor/widgets/sliding-text.php:214
@@ -5465,7 +5486,7 @@ msgstr ""
 #: functions/elementor/widgets/badge.php:283
 #: functions/elementor/widgets/card.php:535
 #: functions/elementor/widgets/card.php:635
-#: functions/elementor/widgets/highlighted-text.php:542
+#: functions/elementor/widgets/highlighted-text.php:597
 #: functions/elementor/widgets/numbers.php:349
 #: functions/elementor/widgets/pricing.php:438
 #: functions/elementor/widgets/vertical-tabs.php:559
@@ -5480,7 +5501,7 @@ msgstr ""
 #: functions/elementor/widgets/badge.php:393
 #: functions/elementor/widgets/button.php:54
 #: functions/elementor/widgets/team-member-circle.php:677
-#: functions/elementor/widgets/team-member.php:667
+#: functions/elementor/widgets/team-member.php:665
 msgid "Advanced Style"
 msgstr ""
 
@@ -6367,13 +6388,11 @@ msgstr ""
 
 #: functions/elementor/widgets/card-wide.php:92
 #: functions/elements/shortcode-card-wide.php:19
-#: functions/elements/shortcode-highlight-box.php:54
 msgid "Wide card (right image)"
 msgstr ""
 
 #: functions/elementor/widgets/card-wide.php:93
 #: functions/elements/shortcode-card-wide.php:20
-#: functions/elements/shortcode-highlight-box.php:55
 msgid "Wide card (left image)"
 msgstr ""
 
@@ -6407,8 +6426,8 @@ msgstr ""
 #: functions/elementor/widgets/shop-category.php:463
 #: functions/elementor/widgets/slider.php:432
 #: functions/elementor/widgets/sliding-text.php:131
-#: functions/elementor/widgets/team-member-circle.php:479
-#: functions/elementor/widgets/team-member.php:431
+#: functions/elementor/widgets/team-member-circle.php:492
+#: functions/elementor/widgets/team-member.php:444
 #: functions/elementor/widgets/testimonial-masonry.php:451
 #: functions/elementor/widgets/testimonial.php:448
 #: functions/elementor/widgets/testimonials-slider.php:414
@@ -6455,8 +6474,8 @@ msgstr ""
 #: functions/elementor/widgets/photo-box.php:412
 #: functions/elementor/widgets/promo-box.php:551
 #: functions/elementor/widgets/slider.php:509
-#: functions/elementor/widgets/team-member-circle.php:556
-#: functions/elementor/widgets/team-member.php:508
+#: functions/elementor/widgets/team-member-circle.php:569
+#: functions/elementor/widgets/team-member.php:521
 #: functions/elementor/widgets/vertical-tabs.php:657
 msgid "Custom Title size"
 msgstr ""
@@ -6669,9 +6688,17 @@ msgstr ""
 msgid "Circles Align"
 msgstr ""
 
+#: functions/elementor/widgets/circles.php:243
+msgid "Start (Default)"
+msgstr ""
+
 #: functions/elementor/widgets/circles.php:254
 #: functions/elements/shortcode-circles.php:115
 msgid "Mobile Circles Align"
+msgstr ""
+
+#: functions/elementor/widgets/circles.php:257
+msgid "Default (Same as Desktop)"
 msgstr ""
 
 #: functions/elementor/widgets/clients-carousel.php:108
@@ -7357,7 +7384,7 @@ msgid "Use image as text color"
 msgstr ""
 
 #: functions/elementor/widgets/heading.php:264
-#: functions/elementor/widgets/highlighted-text.php:598
+#: functions/elementor/widgets/highlighted-text.php:633
 #: functions/elementor/widgets/search.php:84
 #: functions/elementor/widgets/sliding-text.php:113
 #: functions/elements/shortcode-search.php:54
@@ -7365,7 +7392,7 @@ msgid "Field max width"
 msgstr ""
 
 #: functions/elementor/widgets/heading.php:267
-#: functions/elementor/widgets/highlighted-text.php:601
+#: functions/elementor/widgets/highlighted-text.php:636
 #: functions/elementor/widgets/search.php:87
 #: functions/elementor/widgets/sliding-text.php:116
 msgid "Input the width with the unit (eg. 300px)"
@@ -7380,52 +7407,52 @@ msgstr ""
 msgid "HTML Tag"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:95
+#: functions/elementor/widgets/highlighted-text.php:119
 #: functions/elements/shortcode-highlighted-text.php:13
 msgid "Highlighted"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:99
+#: functions/elementor/widgets/highlighted-text.php:123
 #: functions/elements/shortcode-highlighted-text.php:74
 msgid "Normal text"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:100
+#: functions/elementor/widgets/highlighted-text.php:124
 #: functions/elements/shortcode-highlighted-text.php:75
 msgid "Highlighted text"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:111
+#: functions/elementor/widgets/highlighted-text.php:135
 #: functions/elementor/widgets/marquee.php:189
 msgid "Enter the text"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:124
+#: functions/elementor/widgets/highlighted-text.php:148
 #: functions/elements/shortcode-highlighted-text.php:21
 #: functions/elements/shortcode-highlighted-text.php:106
 msgid "Highlight color"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:141
+#: functions/elementor/widgets/highlighted-text.php:165
 msgid "Custom height (default is 30)"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:143
+#: functions/elementor/widgets/highlighted-text.php:167
 msgid "Input number between 0 and 100"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:187
+#: functions/elementor/widgets/highlighted-text.php:211
 #: functions/elementor/widgets/marquee.php:230
 msgid "Heading font"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:215
+#: functions/elementor/widgets/highlighted-text.php:239
 #: functions/elements/shortcode-highlighted-text.php:180
 #: includes/options/options.php:702
 msgid "Text Color"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:246
+#: functions/elementor/widgets/highlighted-text.php:270
 #: functions/elements/shortcode-content-box.php:359
 #: functions/elements/shortcode-highlighted-text.php:205
 #: functions/elements/vc_column.php:277 functions/elements/vc_row.php:1073
@@ -7433,7 +7460,7 @@ msgstr ""
 msgid "Gradient custom picker"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:278
+#: functions/elementor/widgets/highlighted-text.php:318
 #: functions/elementor/widgets/marquee.php:272
 #: functions/elements/shortcode-alert.php:299
 #: functions/elements/shortcode-feature.php:362
@@ -7443,7 +7470,7 @@ msgstr ""
 msgid "Image Size"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:295
+#: functions/elementor/widgets/highlighted-text.php:350
 #: functions/elementor/widgets/testimonials-slider.php:274
 #: functions/elements/shortcode-content-box.php:19
 #: functions/elements/shortcode-highlighted-text.php:241
@@ -7452,7 +7479,7 @@ msgstr ""
 msgid "Rounded Small"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:299
+#: functions/elementor/widgets/highlighted-text.php:354
 #: functions/elementor/widgets/img.php:94
 #: functions/elementor/widgets/marquee.php:296
 #: functions/elements/shortcode-highlighted-text.php:245
@@ -7462,13 +7489,12 @@ msgstr ""
 msgid "Circle"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:400
+#: functions/elementor/widgets/highlighted-text.php:455
 msgid "Add new line after text"
 msgstr ""
 
-#: functions/elementor/widgets/highlighted-text.php:608
-#: functions/elements/shortcode-highlighted-text.php:492
-msgid "Disable responsive images size in mobile devices"
+#: functions/elementor/widgets/highlighted-text.php:589
+msgid "Div"
 msgstr ""
 
 #: functions/elementor/widgets/horizontal-tabs.php:61
@@ -8235,8 +8261,8 @@ msgstr ""
 
 #: functions/elementor/widgets/review.php:288
 #: functions/elementor/widgets/reviews-slider.php:280
-#: functions/elementor/widgets/team-member-circle.php:421
-#: functions/elementor/widgets/team-member.php:373
+#: functions/elementor/widgets/team-member-circle.php:434
+#: functions/elementor/widgets/team-member.php:386
 #: functions/elementor/widgets/testimonial-masonry.php:393
 #: functions/elementor/widgets/testimonial.php:390
 #: functions/elementor/widgets/testimonials-slider.php:356
@@ -8256,8 +8282,8 @@ msgstr ""
 #: functions/elementor/widgets/review.php:318
 #: functions/elementor/widgets/reviews-slider.php:289
 #: functions/elementor/widgets/reviews-slider.php:310
-#: functions/elementor/widgets/team-member-circle.php:430
-#: functions/elementor/widgets/team-member.php:382
+#: functions/elementor/widgets/team-member-circle.php:443
+#: functions/elementor/widgets/team-member.php:395
 #: functions/elementor/widgets/testimonial-masonry.php:402
 #: functions/elementor/widgets/testimonial.php:399
 #: functions/elementor/widgets/testimonials-slider.php:365
@@ -8334,8 +8360,7 @@ msgid "Count badge format"
 msgstr ""
 
 #: functions/elementor/widgets/slider.php:254
-#: functions/elements/shortcode-slider.php:110
-msgid "Text alignment"
+msgid "Content alignment"
 msgstr ""
 
 #: functions/elementor/widgets/slider.php:267
@@ -8443,8 +8468,8 @@ msgid "Please input the value (with the unit: px,.. etc)."
 msgstr ""
 
 #: functions/elementor/widgets/social-icons.php:222
-#: functions/elementor/widgets/team-member-circle.php:636
-#: functions/elementor/widgets/team-member.php:588
+#: functions/elementor/widgets/team-member-circle.php:649
+#: functions/elementor/widgets/team-member.php:601
 #: functions/elements/shortcode-social-icons.php:132
 #: functions/elements/shortcode-team-member-circle.php:238
 #: functions/elements/shortcode-team-member.php:241
@@ -8498,8 +8523,8 @@ msgstr ""
 msgid "Enter the description"
 msgstr ""
 
-#: functions/elementor/widgets/team-member-circle.php:381
-#: functions/elementor/widgets/team-member.php:333
+#: functions/elementor/widgets/team-member-circle.php:394
+#: functions/elementor/widgets/team-member.php:346
 #: functions/elementor/widgets/testimonial-masonry.php:353
 #: functions/elementor/widgets/testimonial.php:350
 #: functions/elementor/widgets/testimonials-slider.php:316
@@ -8509,8 +8534,8 @@ msgstr ""
 msgid "Name format"
 msgstr ""
 
-#: functions/elementor/widgets/team-member-circle.php:441
-#: functions/elementor/widgets/team-member.php:393
+#: functions/elementor/widgets/team-member-circle.php:454
+#: functions/elementor/widgets/team-member.php:406
 #: functions/elementor/widgets/testimonial-masonry.php:413
 #: functions/elementor/widgets/testimonial.php:410
 #: functions/elementor/widgets/testimonials-slider.php:376
@@ -8522,81 +8547,81 @@ msgstr ""
 msgid "Name size"
 msgstr ""
 
-#: functions/elementor/widgets/team-member-circle.php:458
-#: functions/elementor/widgets/team-member.php:410
+#: functions/elementor/widgets/team-member-circle.php:471
+#: functions/elementor/widgets/team-member.php:423
 #: functions/elementor/widgets/testimonial-masonry.php:430
 #: functions/elementor/widgets/testimonial.php:427
 #: functions/elementor/widgets/testimonials-slider.php:393
 msgid "Custom Name size"
 msgstr ""
 
-#: functions/elementor/widgets/team-member-circle.php:461
-#: functions/elementor/widgets/team-member.php:413
+#: functions/elementor/widgets/team-member-circle.php:474
+#: functions/elementor/widgets/team-member.php:426
 #: functions/elementor/widgets/testimonial-masonry.php:433
 #: functions/elementor/widgets/testimonial.php:430
 #: functions/elementor/widgets/testimonials-slider.php:396
 msgid "Enter custom Name size"
 msgstr ""
 
-#: functions/elementor/widgets/team-member-circle.php:576
-#: functions/elementor/widgets/team-member.php:528
+#: functions/elementor/widgets/team-member-circle.php:589
+#: functions/elementor/widgets/team-member.php:541
 msgid "Description format"
 msgstr ""
 
-#: functions/elementor/widgets/team-member-circle.php:587
-#: functions/elementor/widgets/team-member.php:539
+#: functions/elementor/widgets/team-member-circle.php:600
+#: functions/elementor/widgets/team-member.php:552
 #: functions/elements/shortcode-team-member-circle.php:188
 #: functions/elements/shortcode-team-member.php:191
 msgid "Description color"
 msgstr ""
 
-#: functions/elementor/widgets/team-member-circle.php:597
-#: functions/elementor/widgets/team-member.php:549
+#: functions/elementor/widgets/team-member-circle.php:610
+#: functions/elementor/widgets/team-member.php:562
 msgid "Description Title color"
 msgstr ""
 
-#: functions/elementor/widgets/team-member-circle.php:608
-#: functions/elementor/widgets/team-member.php:560
+#: functions/elementor/widgets/team-member-circle.php:621
+#: functions/elementor/widgets/team-member.php:573
 msgid "Description font size"
 msgstr ""
 
-#: functions/elementor/widgets/team-member-circle.php:628
-#: functions/elementor/widgets/team-member.php:580
+#: functions/elementor/widgets/team-member-circle.php:641
+#: functions/elementor/widgets/team-member.php:593
 msgid "Icons format"
 msgstr ""
 
-#: functions/elementor/widgets/team-member-circle.php:646
-#: functions/elementor/widgets/team-member.php:598
+#: functions/elementor/widgets/team-member-circle.php:659
+#: functions/elementor/widgets/team-member.php:611
 msgid "Description icons color"
 msgstr ""
 
 #: functions/elementor/widgets/team-member-circle.php:688
-#: functions/elementor/widgets/team-member.php:678
+#: functions/elementor/widgets/team-member.php:676
 msgid "Name Typography"
 msgstr ""
 
 #: functions/elementor/widgets/team-member-circle.php:697
-#: functions/elementor/widgets/team-member.php:687
+#: functions/elementor/widgets/team-member.php:685
 msgid "Name Shadow"
 msgstr ""
 
 #: functions/elementor/widgets/team-member-circle.php:706
-#: functions/elementor/widgets/team-member.php:696
+#: functions/elementor/widgets/team-member.php:694
 msgid "Title Typography"
 msgstr ""
 
 #: functions/elementor/widgets/team-member-circle.php:715
-#: functions/elementor/widgets/team-member.php:705
+#: functions/elementor/widgets/team-member.php:703
 msgid "Title Shadow"
 msgstr ""
 
 #: functions/elementor/widgets/team-member-circle.php:725
-#: functions/elementor/widgets/team-member.php:715
+#: functions/elementor/widgets/team-member.php:713
 msgid "Description Typography"
 msgstr ""
 
 #: functions/elementor/widgets/team-member-circle.php:733
-#: functions/elementor/widgets/team-member.php:723
+#: functions/elementor/widgets/team-member.php:721
 msgid "Description Shadow"
 msgstr ""
 
@@ -10658,6 +10683,14 @@ msgstr ""
 msgid "Create custom Highlight content and image"
 msgstr ""
 
+#: functions/elements/shortcode-highlight-box.php:54
+msgid "Wide card (image end)"
+msgstr ""
+
+#: functions/elements/shortcode-highlight-box.php:55
+msgid "Wide card (image start)"
+msgstr ""
+
 #: functions/elements/shortcode-highlight-box.php:87
 msgid "Content area Css"
 msgstr ""
@@ -10697,6 +10730,10 @@ msgstr ""
 
 #: functions/elements/shortcode-highlighted-text.php:438
 msgid "Select the animation of the text."
+msgstr ""
+
+#: functions/elements/shortcode-highlighted-text.php:492
+msgid "Disable responsive images size in mobile devices"
 msgstr ""
 
 #: functions/elements/shortcode-highlighted-text.php:502
@@ -11089,7 +11126,7 @@ msgid "Reviews"
 msgstr ""
 
 #: functions/elements/shortcode-search.php:7
-#: functions/widgets/small_search.php:48 includes/options/data/search.php:7
+#: functions/widgets/small_search.php:46 includes/options/data/search.php:7
 #: includes/options/options.php:348
 msgid "Search"
 msgstr ""
@@ -11120,6 +11157,10 @@ msgstr ""
 
 #: functions/elements/shortcode-slider.php:66
 msgid "Leave empty to apply the link on the title."
+msgstr ""
+
+#: functions/elements/shortcode-slider.php:110
+msgid "Text alignment"
 msgstr ""
 
 #: functions/elements/shortcode-slider.php:123
@@ -11867,7 +11908,7 @@ msgstr ""
 msgid "Product page layout"
 msgstr ""
 
-#: functions/visual-composer.php:375
+#: functions/visual-composer.php:376
 msgid "Select the animation style."
 msgstr ""
 
@@ -11880,7 +11921,7 @@ msgid "Categories widget"
 msgstr ""
 
 #: functions/widgets/categories.php:43 functions/widgets/promo_box.php:98
-#: functions/widgets/recent_posts.php:110 functions/widgets/small_search.php:53
+#: functions/widgets/recent_posts.php:110 functions/widgets/small_search.php:51
 #: functions/widgets/social.php:157
 msgid "Title:"
 msgstr ""

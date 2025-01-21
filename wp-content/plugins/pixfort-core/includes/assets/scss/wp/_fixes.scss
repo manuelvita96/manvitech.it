@@ -904,7 +904,7 @@ video[poster]{
     pointer-events: none;
 }
 .sticky-top {
-    position: sticky;
+    position: sticky !important;
 }
 
 #masthead:not(.sticky-top):not(.is-scroll) {

@@ -242,7 +242,8 @@ if (!function_exists('pix_portfolio_style_mini')) {
             $output .= '<div class="d-flex justify-content-between align-items-center">';
             $output .= '<h6 class="card-title mb-0 text-heading-default"><strong>' . get_the_title() . '</strong></h6>';
             // $output .= '<i class="pixicon-angle-right text-heading-default font-weight-bold"></i>';
-            $output .= \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-arrow-right-2', 24, 'text-heading-default');
+            $arrowIcon = is_rtl() ? 'Line/pixfort-icon-arrow-left-2' : 'Line/pixfort-icon-arrow-right-2';
+            $output .= \PixfortCore::instance()->icons->getIcon($arrowIcon, 24, 'text-heading-default');
             $output .= '</div>';
             $output .= '</div>';
             $output .= '</div>';

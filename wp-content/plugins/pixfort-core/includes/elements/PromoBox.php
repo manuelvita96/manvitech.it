@@ -258,7 +258,15 @@ class PixPromoBox {
 			if(!empty($badge)){ $output .= '<div class="">'.$badge_out.'</div>'; }
 		    if(!empty($title)){ $output .= '<'.$title_tag.' class="card-title '.$title_classes.' pix-my-10" '.$title_style.'>'.$title.'</'.$title_tag.'>'; }
 			// if(!empty($link_text)){ $output .= '<span class="d-flex align-items-center '.$link_classes.'" '.$link_style.'><span>'.$link_text.'</span><i class="pixicon-angle-right pix-hover-right pix-hover-item pix-ml-10 font-weight-bold text-20"></i></span>'; }
-			if(!empty($link_text)){ $output .= '<span class="d-flex align-items-center '.$link_classes.'" '.$link_style.'><span>'.$link_text.'</span>'. \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-arrow-right-2', 24, 'pix-hover-right pix-hover-item pix-ml-5') .'</span>'; }
+			if(!empty($link_text)){
+				$iconName = 'Line/pixfort-icon-arrow-right-2';
+				$iconClasses = 'pix-hover-right pix-hover-item pix-ml-5';
+				if (is_rtl()) {
+					$iconName = 'Line/pixfort-icon-arrow-left-2';
+					$iconClasses = 'pix-hover-left pix-hover-item pix-mr-5';
+				}
+				$output .= '<span class="d-flex align-items-center '.$link_classes.'" '.$link_style.'><span>'.$link_text.'</span>'. \PixfortCore::instance()->icons->getIcon($iconName, 24, $iconClasses) .'</span>'; 
+			}
 			$output .= '</div>';
 			if(!empty($link)) {
 		  		$output .= '</a>';

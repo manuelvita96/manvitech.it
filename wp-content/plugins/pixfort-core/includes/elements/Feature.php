@@ -265,6 +265,12 @@ class PixFeature {
 			$output .= '<a href="' . $link . '" ' . $target . '>';
 		}
 
+		// RTL
+		$margin3 = 'mr-3';
+		if (is_rtl()) {
+			$margin3 = 'ml-3';
+		}
+
 
 		if ($icon_position == "left") {
 			$output .= '<div id="' . $element_id . '" class="pix-feature-el media ' . $css_class . '">';
@@ -277,7 +283,7 @@ class PixFeature {
 					if (!empty($icon)) {
 
 						if (!empty($has_icon_bg)) {
-							$output .= '<div class="rounded-circle mr-3 d-inline-block2 d-inline-flex align-items-center justify-content-center line-height-0 mw-100 ' . $i_bg_color . ' ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $i_bg_custom_color . ' width:' . $icon_size_div . 'px;aspect-ratio:1/1 !important;position:relative;text-align:center;">';
+							$output .= '<div class="rounded-circle '.$margin3.' d-inline-block2 d-inline-flex align-items-center justify-content-center line-height-0 mw-100 ' . $i_bg_color . ' ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $i_bg_custom_color . ' width:' . $icon_size_div . 'px;aspect-ratio:1/1 !important;position:relative;text-align:center;">';
 							$output .= '<div class="' . $i_color . '" style="display:inline-block;font-size:' . $icon_size . 'px;width:' . $icon_size . 'px;height:' . $icon_size . 'px;' . $i_custom_color . 'font-size:' . $icon_size . 'px;">';
 							$output .= \PixfortCore::instance()->icons->getIcon($icon);
 							$output .= '</div>';
@@ -286,7 +292,7 @@ class PixFeature {
 							// if(str_contains($icon, 'Duotone/')){
 							// 	$icon_size = (int) $icon_size_div * 0.75;
 							// }
-							$output .= '<div class="mr-3 mw-100 d-flex ' . $i_color . ' ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="font-size:' . $icon_size . 'px;width:' . $icon_size_div . 'px;aspect-ratio:1/1 !important;position:relative;line-height:' . $icon_size_div . 'px;' . $i_custom_color . 'text-align:center;">';
+							$output .= '<div class="'.$margin3.' mw-100 d-flex ' . $i_color . ' ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="font-size:' . $icon_size . 'px;width:' . $icon_size_div . 'px;aspect-ratio:1/1 !important;position:relative;line-height:' . $icon_size_div . 'px;' . $i_custom_color . 'text-align:center;">';
 							$output .= \PixfortCore::instance()->icons->getIcon($icon);
 							$output .= '</div>';
 						}
@@ -332,12 +338,12 @@ class PixFeature {
 			}
 
 			if ($media_type == "image") {
-				$output .= '<div class="feature_img  mr-3 ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $size_style . '"><img style="width:' . $image_size . ';height:' . $image_size . ';" class="img-fluid2 pix-fit-cover ' . $circle . '" src="' . $imgSrc . '" alt="' . do_shortcode($title) . '"></div>';
+				$output .= '<div class="feature_img  '.$margin3.' ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $size_style . '"><img style="width:' . $image_size . ';height:' . $image_size . ';" class="img-fluid2 pix-fit-cover ' . $circle . '" src="' . $imgSrc . '" alt="' . do_shortcode($title) . '"></div>';
 			} else if ($media_type == "char") {
 				if (!empty($has_icon_bg)) {
-					$output .= '<div class="rounded-circle d-inline-block mr-3 feature_img ' . $i_bg_color . ' ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $i_bg_custom_color . ' width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="display:inline-block;font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle">' . $char . '</span></div>';
+					$output .= '<div class="rounded-circle d-inline-block '.$margin3.' feature_img ' . $i_bg_color . ' ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $i_bg_custom_color . ' width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="display:inline-block;font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle">' . $char . '</span></div>';
 				} else {
-					$output .= '<div class="d-inline-block mr-3 feature_img ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="display:inline-block;font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle">' . $char . '</span></div>';
+					$output .= '<div class="d-inline-block '.$margin3.' feature_img ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="display:inline-block;font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle">' . $char . '</span></div>';
 				}
 			}
 			$output .= '<div class="media-body ' . $classes . '">';

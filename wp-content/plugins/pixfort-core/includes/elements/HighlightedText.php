@@ -126,6 +126,13 @@ class PixHighlightedText {
 					$repeaterClass = ' elementor-repeater-item-' . $value['_id'];
 					$bgClasses .= ' ' . $repeaterClass;
 				}
+				$anim_type = '';
+            	$anim_delay = '';
+				if(!empty($item_animation)){
+					$anim_type = 'data-anim-type="'.$item_animation.'"';
+					$anim_delay = 'data-anim-delay="'.$item_delay.'"';
+					$classes .= ' animate-in';
+				}
 				
 				$customStyle = '';
 				$item_color_class = $t_color;
@@ -189,6 +196,7 @@ class PixHighlightedText {
 							if ($add_hover_effect) {
 								array_push($imageClasses, $add_hover_effect_arr[$add_hover_effect]);
 							}
+							array_push($imageClasses, $repeaterClass);
 
 							$imgSrc = '';
 							$imgWidth = '';
@@ -198,7 +206,11 @@ class PixHighlightedText {
 							if (!empty($rounded_img) && $rounded_img === 'rounded-circle') {
 								$size = "thumbnail";
 							}
+							if(!empty($image_size)&&is_array($image_size)){
+								$image_size = $image_size['size'];
+							}
 							if (!empty($image_size)) {
+								
 								$image_size = (int) filter_var($image_size, FILTER_SANITIZE_NUMBER_INT);
 								$image_height = 'auto';
 								if (!empty($rounded_img) && $rounded_img === 'rounded-circle') {
@@ -242,11 +254,11 @@ class PixHighlightedText {
 									}
 								}
 							}
-							$anim_type = '';
-            				$anim_delay = '';
+							// $anim_type = '';
+            				// $anim_delay = '';
 							if(!empty($item_animation)){
-								$anim_type = 'data-anim-type="'.$item_animation.'"';
-								$anim_delay = 'data-anim-delay="'.$item_delay.'"';
+								// $anim_type = 'data-anim-type="'.$item_animation.'"';
+								// $anim_delay = 'data-anim-delay="'.$item_delay.'"';
 								array_push($imageClasses, 'animate-in');
 							}
 							array_push($imageClasses, $rounded_img);
@@ -259,7 +271,7 @@ class PixHighlightedText {
 					} else {
 
 						
-						$css_color = '';
+						// $css_color = '';
 						
 						// if (!empty($highlighted_color_type)&&$highlighted_color_type=='gradient') {
 						// 	if (!empty($highlight_gradient)) {
@@ -291,8 +303,23 @@ class PixHighlightedText {
 							// wp_add_inline_style('pix-highlighted-text-handle', $customStyle);
 							\PixfortCore::instance()->elementsManager::pixAddInlineStyle( $customStyle );
 						}
+						if (preg_match('/\[(\w+)[^\]]*\]/', $text)) {
+							$output .= '<span id="'.$item_id.'" class="pix-highlight-bg '.$bgClasses.' animate-in" data-anim-type="highlight-grow" data-anim-delay="200"><span '.$anim_type.' '. $anim_delay .' class="pix-highlighted-text d-inline-block ' . $classes . ' '.$item_color_class.'">' . do_shortcode($text) . '</span></span>';
+						} else {
+							$itemsString = do_shortcode($text);
+							$itemsArray = explode(" ", $itemsString);
+							if (!empty($itemsArray)) {
+								$output .= '<span id="'.$item_id.'" class="pix-highlight-bg '.$bgClasses.' animate-in" data-anim-type="highlight-grow" data-anim-delay="200">';
+								foreach ($itemsArray as $key => $itemValue) {
+									if($key < count($itemsArray)-1 && count($itemsArray) > 1){
+										$itemValue = $itemValue . '&nbsp;';
+									}
+									$output .= '<span '.$anim_type.' '. $anim_delay .' class="pix-highlighted-text d-inline-block ' . $classes . ' '.$item_color_class.'">' . do_shortcode($itemValue). '</span>';
+								}
+								$output .= '</span>';
+							}
+						}
 						
-						$output .= '<span id="'.$item_id.'" class="pix-highlight-bg align-middle2 '.$bgClasses.' animate-in" data-anim-type="highlight-grow" data-anim-delay="200"><span class="pix-highlighted-text  ' . $classes . ' '.$item_color_class.'">' . do_shortcode($text) . '</span></span>';
 					}
 				} else {
 					if (!empty($customStyle)) {
@@ -302,7 +329,23 @@ class PixHighlightedText {
 						// wp_add_inline_style('pix-highlighted-text-handle', $customStyle);
 						\PixfortCore::instance()->elementsManager::pixAddInlineStyle( $customStyle );
 					}
-					$output .= '<span id="' . $item_id . '" class="'.$repeaterClass.'"><span class="pix-highlighted-text ' . $classes . ' '.$item_color_class.'">' . do_shortcode($text) . '</span></span>';
+					if (preg_match('/\[(\w+)[^\]]*\]/', $text)) {
+						$output .= '<span id="' . $item_id . '"  class="'.$repeaterClass.'"><span '.$anim_type.' '. $anim_delay .' class="pix-highlighted-text  ' . $classes . ' '.$item_color_class.'">' . do_shortcode($text) . '</span></span>';
+					} else {
+						$itemsString = do_shortcode($text);
+						$itemsArray = explode(" ", $itemsString);
+						if (!empty($itemsArray)) {
+							$output .= '<span id="' . $item_id . '"  class="'.$repeaterClass.'">';
+							foreach ($itemsArray as $key => $itemValue) {
+								if($key < count($itemsArray)-1 && count($itemsArray) > 1){
+									$itemValue = $itemValue . '&nbsp;';
+								}
+								$output .= '<span '.$anim_type.' '. $anim_delay .' class="pix-highlighted-text d-inline-block  ' . $classes . ' '.$item_color_class.'">' . $itemValue . '</span>';
+							}
+							$output .= '</span>';
+						}
+					}
+					
 				}
 				if (!empty($new_line)) {
 					$output .= '</br>';

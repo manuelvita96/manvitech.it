@@ -126,6 +126,22 @@ if (!function_exists('pix_blog_item')) {
 				$cats = wp_get_post_categories(get_the_ID(), $cat_args);
 
 				$cats_str = '';
+
+				/* RTL */
+				$padding1 = 'pr-1';
+				$margin1 = 'mr-1';
+				$margin2 = 'mr-2';
+				$readMoreIconClasses = 'ml-1 align-middle pix-hover-right';
+				$custom_css = 'padding:5px 10px;line-height:12px;margin-right:3px;';
+				$tooltipPosition = 'right';
+				if (is_rtl()) {
+					$padding1 = 'pl-1';
+					$margin1 = 'ml-1';
+					$margin2 = 'ml-2';
+					$readMoreIconClasses = 'm-1 align-middle pix-hover-right flip-icon-rtl';
+					$custom_css = 'padding:5px 10px;line-height:12px;margin-left:3px;';
+					$tooltipPosition = 'left';
+				}  
 				foreach ($cats as $key => $value) {
 					$badge_attrs = array(
 						'text'	=> $value->name,
@@ -133,7 +149,7 @@ if (!function_exists('pix_blog_item')) {
 						'text_custom_size'		=> '12px',
 						'bold'  => 'font-weight-bold',
 						'secondary-font'  => 'secondary-font',
-						'custom_css'	=> 'padding:5px 10px;line-height:12px;margin-right:3px;',
+						'custom_css'	=> $custom_css,
 						'link'      => get_category_link($value->term_id)
 					);
 					$cats_str .= \PixfortCore::instance()->elementsManager->renderElement('Badge', $badge_attrs);
@@ -199,7 +215,7 @@ if (!function_exists('pix_blog_item')) {
 
 				$output .= '<a class="pix-post-meta-date text-sm mb-0 d-inline-block text-body-default svg-body-default" href="' . get_permalink() . '">';
 				// $output .= '<img class="pr-2 align-middle2" src="'.PIX_CORE_PLUGIN_URI.'functions/images/blog/blog-post-date-icon.svg"/>';
-				$output .= '<span class="pr-1">
+				$output .= '<span class="' . $padding1 . '">
 								' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/blog/blog-post-date-icon.svg') . '
 								</span>';
 				$output .= '<span class="text-body-default">' . get_the_date() . '</span>';
@@ -215,7 +231,7 @@ if (!function_exists('pix_blog_item')) {
 				$comment_link = get_comments_link();
 				$comment_count = get_comments_number();
 				$author = get_the_author();
-				$author_img = get_avatar(get_the_author_meta('ID'), 24, '', '', array('class' => 'pix_blog_sm_avatar'));
+				$author_img = get_avatar(get_the_author_meta('ID'), 24, '', $author, array('class' => 'pix_blog_sm_avatar'));
 				if (empty($author_img)) {
 					$author_img = pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/blog/blog-post-author-icon.svg');
 				}
@@ -227,17 +243,17 @@ if (!function_exists('pix_blog_item')) {
 
 				if ($blog_size == 'lg' || $blog_size == 'md') {
 					$output .= '<div class="card-footer2 bg-gray-1 text-right d-flex align-items-center align-items-end2 w-100 pix-p-20 ' . $footer_classes . '" style="line-height:0;">
-									<div class="flex-fill2 pix-post-meta-author text-left pr-1">
-										<span class="text-sm pr-2" data-toggle="tooltip" data-placement="right" title="' . esc_attr__('By', 'pixfort-core') . ' ' . $author . '">
-											<span class="pr-1">
+									<div class="flex-fill2 pix-post-meta-author text-left ' . $padding1 . '">
+										<span class="text-sm '.$margin2.'" data-toggle="tooltip" data-placement="'.$tooltipPosition.'" title="' . esc_attr__('By', 'pixfort-core') . ' ' . $author . '">
+											<span class="' . $padding1 . '">
 											' . $author_img . '
 											</span>
 										</span>
 									</div>';
 					if (comments_open()) {
-						$output .= '<div class="pix-post-meta-comments flex-fill2 text-left pr-1">';
-						$output .= '<a href="' . $comment_link . '" class="text-xs pr-2 text-body-default svg-body-default">
-												<span class="pr-1">
+						$output .= '<div class="pix-post-meta-comments flex-fill2 text-left ' . $padding1 . '">';
+						$output .= '<a href="' . $comment_link . '" class="text-xs '.$margin1.' text-body-default svg-body-default">
+												<span class="' . $padding1 . '">
 												' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/blog/blog-post-comments-icon.svg') . '
 												</span>
 												<span class="align-middle font-weight-bold">' . $comment_count . '</span>
@@ -246,10 +262,10 @@ if (!function_exists('pix_blog_item')) {
 					}
 					$output .= $likes . '
 									<div class="flex-fill text-right">
-										<a href="' . get_permalink() . '" class="btn btn-sm p-0 btn-link text-body-default svg-body-default font-weight-bold pix-hover-item">
+										<a href="' . get_permalink() . '" class="btn btn-sm p-0 mx-0 btn-link text-body-default svg-body-default font-weight-bold pix-hover-item">
 											<span class="d-flex align-items-center">
 												<span class="align-bottom">' . esc_attr__('Read more', 'pixfort-core') . '</span>
-												<span class="ml-1 align-middle pix-hover-right">
+												<span class="' . $readMoreIconClasses . '">
 												' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/blog/blog-post-read-more-icon.svg') . '
 												</span>
 											</span>

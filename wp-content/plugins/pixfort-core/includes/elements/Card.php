@@ -264,6 +264,7 @@ class PixCard {
             $output .= '<div class="card pix-content-box pix-card-element bg-white2 rounded-xl ' . $classes . '" ' . $anim_attrs . '>';
             if (!empty($image)) {
                 $imgSrcset = '';
+                $imgSrc = '';
                 if (is_string($image) && substr($image, 0, 4) === "http") {
                     $img = $image;
                     $imgSrc = $img;
@@ -275,7 +276,9 @@ class PixCard {
                         $img = wp_get_attachment_image_src($image, "full");
                         $imgSrcset = wp_get_attachment_image_srcset($image);
                     }
-                    $imgSrc = $img[0];
+                    if(!empty($img[0])) {
+                        $imgSrc = $img[0];
+                    }
                     if (!empty($explicit_width_height)) {
                         $heightVal = 'height="' . $img[1] . '"';
                         $widthVal = 'width="' . $img[2] . '"';
@@ -284,8 +287,10 @@ class PixCard {
                 if (!empty($link)) {
                     $output .= '<a ' . $linkTarget . ' ' . $custom_link_atts . ' href="' . $link . '">';
                 }
-                // if (pix_plugin_get_option('pix-disable-lazy-images', false)) {
+                if(!empty($imgSrc)) {
                     $output .= '<img ' . $heightVal . ' ' . $widthVal . ' srcset="' . $imgSrcset . '" src="' . $imgSrc . '" alt="' . $title . '">';
+                }
+                // if (pix_plugin_get_option('pix-disable-lazy-images', false)) {
                 // } else {
                 //     $output .= '<img src="' . PIX_IMG_PLACEHOLDER . '" ' . $heightVal . ' ' . $widthVal . ' data-srcset="' . $imgSrcset . '" data-src="' . $imgSrc . '" class="pix-lazy" loading="lazy" alt="' . do_shortcode($title)  . '">';
                 // }

@@ -336,7 +336,9 @@ table {
 	margin: 0 0 30px;
 	display: inline-block;
 	width: 100%;
-	/* Make sure select elements fit in widgets. */
+	&:has(.pix-sm-margin) {
+		margin-bottom: 10px;
+	}
 }
 
 .widget select {

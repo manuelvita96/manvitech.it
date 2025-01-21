@@ -224,7 +224,11 @@ class PixPhotoBox {
             $output .= '<div class="card-content-box pix-p-20 ' . $rounded_img . ' w-100 shadow ' . $title_effect . ' bg-white d-flex justify-content-between align-items-center">';
             $output .= '<' . $t_tag . ' class="card-title ' . $title_class_names . '  text-' . $title_color . ' m-0 w-100" ' . $t_custom . '>' . $title . '</' . $t_tag . '>';
             // $output .= '<' . $t_tag . ' class="pixicon-angle-right text-' . $title_color . ' font-weight-bold" ' . $t_custom . '></' . $t_tag . '>';
-            $output .= '<'.$t_tag.' class="d-inline-flex align-middle text-'.$title_color.'" '.$t_custom.'>'.\PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-arrow-right-2').'</'.$t_tag.'>';
+            $iconName = 'Line/pixfort-icon-arrow-right-2';
+            if (is_rtl()) {
+                $iconName = 'Line/pixfort-icon-arrow-left-2';
+            }
+            $output .= '<'.$t_tag.' class="d-inline-flex align-middle text-'.$title_color.'" '.$t_custom.'>'.\PixfortCore::instance()->icons->getIcon($iconName).'</'.$t_tag.'>';
             $output .= '</div>';
         }
 

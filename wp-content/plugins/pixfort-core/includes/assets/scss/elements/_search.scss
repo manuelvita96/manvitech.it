@@ -96,6 +96,15 @@
 	.pix-search-btn, .form-control {
 		min-height: 60px !important;
 	}
+	
+}
+body:not(.rtl) .btn-search {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+body.rtl .btn-search {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
 }
 
 // .typeahead.dropdown-menu  {

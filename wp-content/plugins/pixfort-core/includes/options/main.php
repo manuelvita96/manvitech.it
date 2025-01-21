@@ -31,9 +31,9 @@ class PixfortOptions {
             if (defined('PIXFORT_DEV')) {
                 $distDir = 'temp';
             }
-            wp_enqueue_script('pix-options-vendors', PIX_CORE_PLUGIN_URI . $distDir . '/options/vendors.bundle-5.js', false, PIXFORT_PLUGIN_VERSION, true);
-            wp_enqueue_script('pix-options-runtime', PIX_CORE_PLUGIN_URI . $distDir . '/options/runtime.bundle-5.js', false, PIXFORT_PLUGIN_VERSION, true);
-            wp_enqueue_script('pix-options-builder', PIX_CORE_PLUGIN_URI . $distDir . '/options/index.bundle-5.js', false, PIXFORT_PLUGIN_VERSION, true);
+            wp_enqueue_script('pix-options-vendors', PIX_CORE_PLUGIN_URI . $distDir . '/options/vendors.bundle-6.js', false, PIXFORT_PLUGIN_VERSION, true);
+            // wp_enqueue_script('pix-options-runtime', PIX_CORE_PLUGIN_URI . $distDir . '/options/runtime.index.bundle-6.js', false, PIXFORT_PLUGIN_VERSION, true);
+            wp_enqueue_script('pix-options-builder', PIX_CORE_PLUGIN_URI . $distDir . '/options/index.bundle-6.js', false, PIXFORT_PLUGIN_VERSION, true);
             wp_localize_script('pix-options-builder', 'pixfort_options_obj', array(
                 'ADMIN_LINK' => $link,
                 'PIX_ICONS' => $icons
@@ -416,7 +416,7 @@ class PixfortOptions {
                 "name" => "Default",
                 "value" => ""
             )),
-            $text_colors
+            $text_colors_with_custom
         );
         /*
         * Menu Data

@@ -242,7 +242,13 @@ class PixShopCategory {
 				  	<div class="badge bg-dark-opacity-3 ' . $count_classes . '" ' . $count_style . '>' . $cat_val->count . ' ' . $items_text . '</div>
 				    <h5 class="card-title ' . $title_classes . ' pix-my-10" ' . $title_style . '>' . $card_title . '</h5>';
 				// if (!empty($link_text)) $output .= '<span class="d-flex align-items-center ' . $link_classes . '" ' . $link_style . '><span>' . $link_text . '</span><i class="pixicon-angle-right pix-hover-right pix-hover-item pix-ml-10 text-20"></i></span>';
-				if (!empty($link_text)) $output .= '<span class="d-flex align-items-center ' . $link_classes . '" ' . $link_style . '><span>' . $link_text . '</span>'. \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-arrow-right-2', 24, 'pix-hover-right pix-hover-item text-20') .'</span>';
+				$arrowIcon = 'Line/pixfort-icon-arrow-right-2';
+				$hoverEffect = 'pix-hover-right';
+				if (is_rtl()) {
+					$arrowIcon = 'Line/pixfort-icon-arrow-left-2';
+					$hoverEffect = 'pix-hover-left';
+				}
+				if (!empty($link_text)) $output .= '<span class="d-flex align-items-center ' . $link_classes . '" ' . $link_style . '><span>' . $link_text . '</span>'. \PixfortCore::instance()->icons->getIcon($arrowIcon, 24, $hoverEffect.' pix-hover-item text-20') .'</span>';
 				$output .= '</a>
 				</div>';
 

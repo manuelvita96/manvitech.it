@@ -815,6 +815,7 @@ body.render {
 //         overflow: visible !important;
 //     }
 // }
+.pix-main-intro-placeholder { min-height: 60px; }
 @media (max-width: 991px) {
     .pix-main-intro .pix-main-intro-placeholder.d-block {
         display: none !important;

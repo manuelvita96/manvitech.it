@@ -77,7 +77,8 @@ class PixTabsHText {
                     if ($tabs_icon_position == 'top') {
                         $icon_html .= \PixfortCore::instance()->icons->getIcon($icon, 24, 'w-100 d-inline-flex align-items-center text-center mt-2');
                     } else {
-                        $icon_html .= \PixfortCore::instance()->icons->getIcon($icon, 24, 'mr-2');
+                        $margin2 = is_rtl() ? 'ml-2' : 'mr-2';
+                        $icon_html .= \PixfortCore::instance()->icons->getIcon($icon, 24, $margin2);
                     }
                 } else {
                     /*
