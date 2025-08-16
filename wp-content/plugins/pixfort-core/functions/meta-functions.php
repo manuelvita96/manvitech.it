@@ -421,7 +421,9 @@ function pix_get_svg_shapes(){
         $is_class_color = $opts['is_class_color'];
     }
 
-    if(!$el_id){ $el_id = rand(10,100000); }
+    if(!$el_id){ 
+        $el_id = 'divider-' . hash('md5', json_encode([$style, $color, $pos, $opts]));
+     }
 
 
     $svg = '';
@@ -498,9 +500,9 @@ function pix_get_svg_shapes(){
                 if(!empty($shape['groups'])&&$shape['groups']){
                     $gmeta = '';
                     if(!empty($shape['groups_meta'][2])){ $gmeta = $shape['groups_meta'][2]; }
-                    $svg .= '<'.$shape['tag'].' fill="url(#divider-'.$el_id.'-'.$pos.'-overlay-layer-3)" '.$gmeta.'>'. $shape['content'][2]. '</'.$shape['tag'].'>';
+                    $svg .= '<'.$shape['tag'].' class="pix-divider-layer-3" fill="url(#divider-'.$el_id.'-'.$pos.'-overlay-layer-3)" '.$gmeta.'>'. $shape['content'][2]. '</'.$shape['tag'].'>';
                 }else{
-                    $svg .= '<'.$shape['tag'].' fill="url(#divider-'.$el_id.'-'.$pos.'-overlay-layer-3)" '. $shape['content'][2]. ' />';
+                    $svg .= '<'.$shape['tag'].' class="pix-divider-layer-3" fill="url(#divider-'.$el_id.'-'.$pos.'-overlay-layer-3)" '. $shape['content'][2]. ' />';
                 }
             }elseif($is_class_color){
                 if(!empty($shape['groups'])&&$shape['groups']){
@@ -523,9 +525,9 @@ function pix_get_svg_shapes(){
                 if(!empty($shape['groups'])&&$shape['groups']){
                     $gmeta = '';
                     if(!empty($shape['groups_meta'][2])){ $gmeta = $shape['groups_meta'][2]; }
-                    $svg .= '<'.$shape['tag'].' fill="'.$color.'" '.$fill_op.' '.$gmeta.'>'. $shape['content'][2]. '</'.$shape['tag'].'>';
+                    $svg .= '<'.$shape['tag'].' class="pix-divider-layer-3" fill="'.$color.'" '.$fill_op.' '.$gmeta.'>'. $shape['content'][2]. '</'.$shape['tag'].'>';
                 }else{
-                    $svg .= '<'.$shape['tag'].' fill="'.$color.'" '.$fill_op.' '. $shape['content'][2]. '  />';
+                    $svg .= '<'.$shape['tag'].' class="pix-divider-layer-3" fill="'.$color.'" '.$fill_op.' '. $shape['content'][2]. '  />';
                 }
             }
             if(!empty($opts['d_3_animation'])){
@@ -551,9 +553,9 @@ function pix_get_svg_shapes(){
                 if(!empty($shape['groups'])&&$shape['groups']){
                     $gmeta = '';
                     if(!empty($shape['groups_meta'][1])){ $gmeta = $shape['groups_meta'][1]; }
-                    $svg .= '<'.$shape['tag'].' fill="url(#divider-'.$el_id.'-'.$pos.'-overlay-layer-2)" '.$gmeta.'>'. $shape['content'][1]. '</'.$shape['tag'].'>';
+                    $svg .= '<'.$shape['tag'].' class="pix-divider-layer-2" fill="url(#divider-'.$el_id.'-'.$pos.'-overlay-layer-2)" '.$gmeta.'>'. $shape['content'][1]. '</'.$shape['tag'].'>';
                 }else{
-                    $svg .= '<'.$shape['tag'].' fill="url(#divider-'.$el_id.'-'.$pos.'-overlay-layer-2)" '. $shape['content'][1]. '  />';
+                    $svg .= '<'.$shape['tag'].' class="pix-divider-layer-2" fill="url(#divider-'.$el_id.'-'.$pos.'-overlay-layer-2)" '. $shape['content'][1]. '  />';
                 }
             }elseif($is_class_color){
                 if(!empty($shape['groups'])&&$shape['groups']){
@@ -575,9 +577,9 @@ function pix_get_svg_shapes(){
                 if(!empty($shape['groups'])&&$shape['groups']){
                     $gmeta = '';
                     if(!empty($shape['groups_meta'][1])){ $gmeta = $shape['groups_meta'][1]; }
-                    $svg .= '<'.$shape['tag'].' fill="'.$color.'" '.$fill_op.' '.$gmeta.'>'. $shape['content'][1]. '</'.$shape['tag'].'>';
+                    $svg .= '<'.$shape['tag'].' class="pix-divider-layer-2" fill="'.$color.'" '.$fill_op.' '.$gmeta.'>'. $shape['content'][1]. '</'.$shape['tag'].'>';
                 }else{
-                    $svg .= '<'.$shape['tag'].' fill="'.$color.'" '.$fill_op.' '. $shape['content'][1]. ' />';
+                    $svg .= '<'.$shape['tag'].' class="pix-divider-layer-2" fill="'.$color.'" '.$fill_op.' '. $shape['content'][1]. ' />';
                 }
             }
             if(!empty($opts['d_2_animation'])){
@@ -601,9 +603,9 @@ function pix_get_svg_shapes(){
             if(!empty($shape['groups'])&&$shape['groups']){
                 $gmeta = '';
                 if(!empty($shape['groups_meta'][0])){ $gmeta = $shape['groups_meta'][0]; }
-                $svg .= '<'.$shape['tag'].' fill="url(#divider-'.$el_id.'-'.$pos.'-overlay-layer-1)" '.$gmeta.'>'. $shape['content'][0]. '</'.$shape['tag'].'>';
+                $svg .= '<'.$shape['tag'].' class="pix-divider-layer-1" fill="url(#divider-'.$el_id.'-'.$pos.'-overlay-layer-1)" '.$gmeta.'>'. $shape['content'][0]. '</'.$shape['tag'].'>';
             }else{
-                $svg .= '<'.$shape['tag'].' fill="url(#divider-'.$el_id.'-'.$pos.'-overlay-layer-1)" '. $shape['content'][0]. '/>';
+                $svg .= '<'.$shape['tag'].' class="pix-divider-layer-1" fill="url(#divider-'.$el_id.'-'.$pos.'-overlay-layer-1)" '. $shape['content'][0]. '/>';
             }
         }elseif($is_class_color){
             if(!empty($shape['groups'])&&$shape['groups']){
@@ -617,9 +619,9 @@ function pix_get_svg_shapes(){
             if(!empty($shape['groups'])&&$shape['groups']){
                 $gmeta = '';
                 if(!empty($shape['groups_meta'][0])){ $gmeta = $shape['groups_meta'][0]; }
-                $svg .= '<'.$shape['tag'].' fill="'.$opts['d_1_color'].'" '.$gmeta.'>'. $shape['content'][0]. '</'.$shape['tag'].'>';
+                $svg .= '<'.$shape['tag'].' class="pix-divider-layer-1" fill="'.$opts['d_1_color'].'" '.$gmeta.'>'. $shape['content'][0]. '</'.$shape['tag'].'>';
             }else{
-                $svg .= '<'.$shape['tag'].' fill="'.$opts['d_1_color'].'" '. $shape['content'][0]. '/>';
+                $svg .= '<'.$shape['tag'].' class="pix-divider-layer-1" fill="'.$opts['d_1_color'].'" '. $shape['content'][0]. '/>';
             }
         }
         if(!empty($opts['d_1_animation'])){
@@ -694,134 +696,6 @@ function pix_get_svg_shapes(){
  	return $output;
  }
 
-
-
-/*-----------------------------------------------------------------------------------*/
-/*	PRINT Single PixFort Options FIELD
-/*-----------------------------------------------------------------------------------*/
-function pix_meta_field_input( $field, $meta ){
-
-	if( isset( $field['type'] ) ){
-		$fold = "";
-		if(isset($field['fold'])){
-			$fold="f_".$field['fold']." temphide";
-		}
-		echo '<div class="pix-options-area '.$fold.'">';
-
-			// Field Title & SubDescription
-			echo '<div class="pix-options-title">';
-				if( key_exists('title', $field) ) echo '<div class="title">'.$field['title'].'</div>';
-				if( key_exists('sub_desc', $field) ) echo '<span class="description">'. $field['sub_desc'] .'</span>';
-			echo '</div>';
-
-			// PixFort Options Field & Description
-
-			echo '<div class="pix_meta_'.$field['type'].'">';
-			switch ($field['type']) {
-			    case "textarea":
-			        echo '<textarea name="'. $field['id'] .'" class="large-text" rows="6" >'. $meta .'</textarea>';
-			        echo (isset($field['desc']) && !empty($field['desc']))?'<br/><span class="description">'.$field['desc'].'</span>':'';
-			        break;
-			    case "text":
-			        echo '<input type="text" name="'. $field['id'] .'" class="large-text" value="'.$meta.'" >';
-			        echo (isset($field['desc']) && !empty($field['desc']))?'<br/><span class="description">'.$field['desc'].'</span>':'';
-			        break;
-			    case "select":
-			        echo '<select name="'. $field['id'] .'" rows="6" >';
-						if( is_array( $field['options'] ) ){
-							foreach( $field['options'] as $k => $v ){
-								echo '<option value="'.$k.'" '.selected($meta, $k, false).'>'.$v.'</option>';
-							}
-						}
-					echo '</select>';
-					echo (isset($field['desc']) && !empty($field['desc']))?'<br/><span class="description">'.$field['desc'].'</span>':'';
-			        break;
-			    case "switch":
-			    	//$sl_meta_box_sidebar = $custom["sl-meta-box-sidebar"][0];
-			        //echo '<input type="checkbox" class="uiswitch" id="'. $field['id'] .'" name="'. $field['id'] .'"  value="yes" '. checked($meta, 1, false).' />';
-
-    			    if ( isset ( $meta ) ){
-                        // TODO
-    			    	echo '<input type="checkbox" class="uiswitch" id="'. $field['id'] .'" name="'. $field['id'] .'"  value="1" '.  checked( $meta, 1,false ) .' />';
-    			    }
-
-			        break;
-			    case "tinymce":
-    			    if ( isset ( $meta ) ){
-
-                        wp_editor( $meta, 'portfolio_tinymce', array(
-                            'wpautop'       => false,
-                            'media_buttons' => true,
-                            'textarea_name' => $field['id'],
-                            'textarea_rows' => 20,
-                            'teeny'         => false,
-                            // 'tinymce'       => false
-                        ) );
-    			    }
-
-			        break;
-			    case 'media':
-
-				 	$value = $rawvalue = get_post_meta( get_the_id(), $field['id'], true );
-				 	$name = esc_attr( $field['id'] );
-					$value = esc_attr( $field['id'] );
-					// echo "<input type='hidden' id='$name-value'  class='small-text'       name='$name'            value='$value' />";
-					// echo "<input type='button' id='$name' data-field='$name-value'    class='button meta-box-upload-button'        value='Upload' />";
-
-					$image = ! $rawvalue ? '' : wp_get_attachment_image( $rawvalue, 'thumbnail', false, array('style' => 'max-width:300px;height:auto;margin-top:20px;') );
-
-
-                    echo '<input class="widefat meta-box-upload-value" id="'.$field['id'].'" name="'.esc_attr( $name ).'" type="hidden" value="'.$meta.'" />';
-                    echo '<button class="meta-box-upload-button button button-primary">Upload Image</button>';
-                    echo " <input type='button' id='$name-remove' class='button meta-box-upload-button-remove' value='Remove' />";
-                    echo "<div class='image-preview'>$image</div>";
-
-					echo '<br />';
-
-					break;
-			    case 'multifields':
-
-				 	$value = $rawvalue = get_post_meta( get_the_id(), $field['id'], true );
-				 	$name = esc_attr( $field['id'] );
-					$value = esc_attr( $field['id'] );
-
-                    echo '<div class="pix-multifields-meta">';
-                        echo '<input class="pix-multi-fields-value" id="'.$field['id'].'" name="'.esc_attr( $name ).'" type="hidden" value="'.htmlspecialchars($meta).'" />';
-                        echo '<div class="pix-multi-fields-input">';
-                            // echo '<div class="pix-multifields-item">';
-                            //     echo '<input class="pix_item_title pix_fields_field" type="text" placeholder="Title" />';
-                            //     echo '<input class="pix_item_value pix_fields_field" type="text" placeholder="Value" />';
-                            // echo '</div>';
-                        echo '</div>';
-                        echo '<button class="pix-multi-fields-add button button-primary">Add field</button>';
-                    echo '</div>';
-
-					echo '<br />';
-
-					break;
-			    case "radio_img":
-			        echo '<fieldset>';
-						foreach($field['options'] as $k => $v){
-							echo '<div class="pix-radio-item">';
-								$selected = (checked($meta, $k, false) != '')?' pix-radio-img-selected':'';
-								echo '<label class="pix-radio-img'.$selected.' pix-radio-img-'.$field['id'].'" for="'.$field['id'].'_'.array_search($k,array_keys($field['options'])).'">';
-									echo '<input type="radio" id="'.$field['id'].'_'.array_search($k,array_keys($field['options'])).'" name="'. $field['id'] . '" value="'.$k.'" '.checked($meta, $k, false).'/>';
-									echo '<img src="'.$v['img'].'" alt="'.$v['title'].'" onclick="jQuery:pix_radio_img_select(\''.$field['id'].'_'.array_search($k,array_keys($field['options'])).'\', \''.$field['id'].'\');" />';
-								echo '</label>';
-								echo '<span class="description">'.$v['title'].'</span>';
-							echo '</div>';
-						}
-						echo (isset($field['desc']) && !empty($field['desc']))?'<br style="clear:both;"/><span class="description">'.$field['desc'].'</span>':'';
-					echo '</fieldset>';
-			        break;
-			}
-
-			echo '</div>';
-
-		echo '</div>';
-	}
-
-}
 
 if( ! function_exists( 'pix_get_animations' ) ){
     function pix_get_animations($flip=false){

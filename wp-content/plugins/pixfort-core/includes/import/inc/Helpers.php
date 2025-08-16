@@ -313,7 +313,7 @@ class Helpers {
 		// Get plugin page settings.
 		$plugin_page_setup = apply_filters( 'pt-ocdi/plugin_page_setup', array(
 				'parent_slug' => 'themes.php',
-				'page_title'  => esc_html__( 'One Click Demo Import' , 'pixfort-core' ),
+				'page_title'  => esc_html__( 'pixfort Demo Import' , 'pixfort-core' ),
 				'menu_title'  => esc_html__( 'Import Demo Data' , 'pixfort-core' ),
 				'capability'  => 'import',
 				'menu_slug'   => 'pt-one-click-demo-import',
@@ -402,7 +402,7 @@ class Helpers {
 	 * Check if the AJAX call is valid.
 	 */
 	public static function verify_ajax_call() {
-		check_ajax_referer( 'ocdi-ajax-verification', 'security' );
+		check_ajax_referer( 'pixfort-ajax-verification', 'security' );
 
 		// Check if user has the WP capability to import data.
 		if ( ! current_user_can( 'import' ) ) {
@@ -457,7 +457,7 @@ class Helpers {
 			wp_handle_upload( $_FILES['customizer_file'], $upload_overrides ) :
 			$file_not_provided_error;
 
-		$redux_file_info = isset( $_FILES['customizer_file'] ) ?
+		$redux_file_info = isset( $_FILES['redux_file'] ) ?
 			wp_handle_upload( $_FILES['redux_file'], $upload_overrides ) :
 			$file_not_provided_error;
 
@@ -514,19 +514,19 @@ class Helpers {
 
 		// Process Redux import file.
 		if ( $redux_file_info && ! isset( $redux_file_info['error'] ) ) {
-			if ( isset( $_POST['redux_option_name'] ) && empty( $_POST['redux_option_name'] ) ) {
-				// Write error to log file and send an AJAX response with the error.
-				self::log_error_and_send_ajax_response(
-					esc_html__( 'Missing Redux option name! Please also enter the Redux option name!', 'pixfort-core' ),
-					$log_file_path,
-					esc_html__( 'Upload files', 'pixfort-core' )
-				);
-			}
+			// if ( isset( $_POST['redux_option_name'] ) && empty( $_POST['redux_option_name'] ) ) {
+			// 	// Write error to log file and send an AJAX response with the error.
+			// 	self::log_error_and_send_ajax_response(
+			// 		esc_html__( 'Missing Redux option name! Please also enter the Redux option name!', 'pixfort-core' ),
+			// 		$log_file_path,
+			// 		esc_html__( 'Upload files', 'pixfort-core' )
+			// 	);
+			// }
 
 			// Set uploaded Redux file.
 			$selected_import_files['redux'] = array(
 				array(
-					'option_name' => $_POST['redux_option_name'],
+					'option_name' => 'pix_options',
 					'file_path'   => $redux_file_info['file'],
 				),
 			);
@@ -575,7 +575,7 @@ class Helpers {
 			ini_get( 'max_execution_time' )
 		) . PHP_EOL .
 		sprintf(
-			__( 'Files info:%1$sSite URL = %2$s%1$sData file = %3$s%1$sWidget file = %4$s%1$sCustomizer file = %5$s%1$sRedux files:%1$s%6$s', 'pixfort-core' ),
+			__( 'Files info:%1$sSite URL = %2$s%1$sData file = %3$s%1$sWidget file = %4$s%1$sCustomizer file = %5$s%1$sTheme Options files:%1$s%6$s', 'pixfort-core' ),
 			PHP_EOL,
 			get_site_url(),
 			empty( $selected_import_files['content'] ) ? esc_html__( 'not defined!', 'pixfort-core' ) : $selected_import_files['content'],

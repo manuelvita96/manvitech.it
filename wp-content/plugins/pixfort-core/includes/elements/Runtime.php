@@ -21,16 +21,19 @@ class PixRuntime {
         ), $attr));
 
         $output = '';
+        $width = filter_var($width, FILTER_SANITIZE_NUMBER_INT);
+        $height = filter_var($height, FILTER_SANITIZE_NUMBER_INT);
+
         if(!empty($link)&&!empty($link['url'])){
             $target = '';
             if(!empty($link['is_external'])) $target = 'target="_blank"';
             $output .= '<a href="'.$link['url'].'" '.$target.' aria-label="'.$aria_label.'">';
         }
         if (!empty($runtime_file) && !empty($runtime_file['url'])) {
-            $output .= '<canvas class="pix-runtime-canvas" id="canvas" runtime-state="' . $runtime_state . '" width="' . $width . '" height="' . $height . '" runtime-url="' . $runtime_file['url'] . '"></canvas>';
+            $output .= '<canvas class="pix-runtime-canvas" data-runtime-state="' . $runtime_state . '" width="' . $width . '" height="' . $height . '" data-runtime-url="' . $runtime_file['url'] . '"></canvas>';
         } else {
             if (!empty($runtime_file_url)) {
-                $output .= '<canvas class="pix-runtime-canvas" id="canvas" runtime-state="' . $runtime_state . '" width="' . $width . '" height="' . $height . '" runtime-url="' . $runtime_file_url . '"></canvas>';
+                $output .= '<canvas class="pix-runtime-canvas" data-runtime-state="' . $runtime_state . '" width="' . $width . '" height="' . $height . '" data-runtime-url="' . $runtime_file_url . '"></canvas>';
             }
         }
         if(!empty($link)&&!empty($link['url'])){

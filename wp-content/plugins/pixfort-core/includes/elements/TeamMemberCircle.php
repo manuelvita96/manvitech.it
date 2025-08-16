@@ -48,6 +48,7 @@ class PixTeamMemberCircle {
 		$css_class = '';
 		if (function_exists('vc_shortcode_custom_css_class')) {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
+			$description = pix_unescape_vc($description);
 		}
 
 		$name_classes = $name_bold . ' ' . $name_italic . ' ' . $name_secondary_font;
@@ -132,7 +133,7 @@ class PixTeamMemberCircle {
 		$output .= '<div class="' . esc_attr($css_class) . ' ' . $position . ' ' . $anim_class . '" style="position:relative" data-anim-type="' . $animation . '" data-anim-delay="' . $delay . '">';
 		$output .= '<div class="card-body ' . $position . '">';
 		$output .= '<div class="mb-2" >';
-		$output .= \PixfortCore::instance()->elementsManager->renderElement('Story', $img_arr );
+		$output .= \PixfortCore::instance()->elementsManager->renderElement('Story', $img_arr);
 		$output .= '</div>';
 		$output .= '<div class="' . $position . '">';
 		$output .= '<' . $name_tag . ' class="pix-member-name card-title mb-3 ' . $name_classes . ' ' . $anim_class . '" ' . $name_style . ' data-anim-type="' . $animation . '" data-anim-delay="' . $delay . '">' . do_shortcode($name) . '</' . $name_tag . '>';
@@ -140,7 +141,7 @@ class PixTeamMemberCircle {
 		$output .= '<' . $title_tag . ' class="pix-member-title mb-3 ' . $title_classes . ' ' . $anim_class . '" ' . $title_style . ' data-anim-type="' . $animation . '" data-anim-delay="' . $delay . '"><strong>' . do_shortcode($title) . '</strong></' . $title_tag . '>';
 		$delay += 100;
 		if (!empty($description)) $output .= '<p class="pix-member-desc p-0 ' . $anim_class . ' ' . $d_classes . '" ' . $d_custom_color . ' data-anim-type="' . $animation . '" data-anim-delay="' . $delay . '">' . do_shortcode($description) . '</p>';
-		$output .= \PixfortCore::instance()->elementsManager->renderElement('SocialIcons', $icons_arr );
+		$output .= \PixfortCore::instance()->elementsManager->renderElement('SocialIcons', $icons_arr);
 		$output .= '</div>';
 		$output .= '</div>';
 		$output .= '</div>';

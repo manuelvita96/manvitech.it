@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Main One Click Demo Import plugin class/file.
+ * Main pixfort Demo Import plugin class/file.
  *
  * @package ocdi
  */
@@ -9,7 +9,7 @@
 namespace OCDI;
 
 /**
- * One Click Demo Import class, so we don't have to worry about namespaces.
+ * pixfort Demo Import class, so we don't have to worry about namespaces.
  */
 class OneClickDemoImport {
 	/**
@@ -105,11 +105,10 @@ class OneClickDemoImport {
 		// Actions.
 		add_action('admin_menu', array($this, 'create_plugin_page'));
 		add_action('admin_enqueue_scripts', array($this, 'admin_enqueue_scripts'));
-		add_action('wp_ajax_ocdi_import_demo_data', array($this, 'import_demo_data_ajax_callback'));
+		add_action('wp_ajax_pix_import_demo_data', array($this, 'import_demo_data_ajax_callback'));
 		add_action('wp_ajax_ocdi_import_customizer_data', array($this, 'import_customizer_data_ajax_callback'));
 		add_action('wp_ajax_ocdi_after_import_data', array($this, 'after_all_import_data_ajax_callback'));
 		add_action('after_setup_theme', array($this, 'setup_plugin_with_filter_data'));
-		add_action('plugins_loaded', array($this, 'load_textdomain'));
 	}
 
 
@@ -137,22 +136,16 @@ class OneClickDemoImport {
 	public function create_plugin_page() {
 		$this->plugin_page_setup = apply_filters('pt-ocdi/plugin_page_setup', array(
 			'parent_slug' => 'themes.php',
-			'page_title'  => esc_html__('One Click Demo Import', 'pixfort-core'),
+			'page_title'  => esc_html__('pixfort Demo Import', 'pixfort-core'),
 			'menu_title'  => esc_html__('Import Demo Data', 'pixfort-core'),
 			'capability'  => 'import',
-			'menu_slug'   => 'pt-one-click-demo-import',
+			'menu_slug'   => 'pixfort-demo-importer',
 		));
 
-		$this->plugin_page = add_submenu_page(
-			$this->plugin_page_setup['parent_slug'],
-			$this->plugin_page_setup['page_title'],
-			$this->plugin_page_setup['menu_title'],
-			$this->plugin_page_setup['capability'],
-			$this->plugin_page_setup['menu_slug'],
-			apply_filters('pt-ocdi/plugin_page_display_callback_function', array($this, 'display_plugin_page'))
-		);
-
-		register_importer($this->plugin_page_setup['menu_slug'], $this->plugin_page_setup['page_title'], $this->plugin_page_setup['menu_title'], apply_filters('pt-ocdi/plugin_page_display_callback_function', array($this, 'display_plugin_page')));
+		register_importer($this->plugin_page_setup['menu_slug'], esc_html__('pixfort Demo Import', 'pixfort-core'), esc_html__('Import Demo Data', 'pixfort-core'), function() {
+			wp_redirect(admin_url('admin.php?page=pixfort-options#/demo-import'));
+			exit;
+		});
 	}
 
 	/**
@@ -185,7 +178,7 @@ class OneClickDemoImport {
 				'ocdi',
 				array(
 					'ajax_url'         => admin_url('admin-ajax.php'),
-					'ajax_nonce'       => wp_create_nonce('ocdi-ajax-verification'),
+					'ajax_nonce'       => wp_create_nonce('pixfort-ajax-verification'),
 					'import_files'     => $this->import_files,
 					'wp_customize_on'  => apply_filters('pt-ocdi/enable_wp_customize_save_hooks', false),
 					'import_popup'     => apply_filters('pt-ocdi/enable_grid_layout_import_popup_confirmation', true),
@@ -393,28 +386,33 @@ class OneClickDemoImport {
 
 		// Display final messages (success or error messages).
 		if (empty($this->frontend_error_messages)) {
+			$response['success'] = true;
 			$response['message'] = '';
 
-			$response['message'] .= sprintf(
-				__('%1$s%3$sThat\'s it, all done!%4$s%2$sThe demo import has finished. %5$s', 'pixfort-core'),
-				'<div class="notice  notice-success"><p>',
-				'<br>',
-				'<strong>',
-				'</strong>',
-				'</p></div>'
-			);
+			// $response['message'] .= sprintf(
+			// 	__('%1$s%3$sThat\'s it, all done!%4$s%2$sThe demo import has finished. %5$s', 'pixfort-core'),
+			// 	'<div class="notice  notice-success"><p>',
+			// 	'<br>',
+			// 	'<strong>',
+			// 	'</strong>',
+			// 	'</p></div>'
+			// );
+			$response['message'] .= __('Demo imported successfully 👍', 'pixfort-core');
 		} else {
-			$response['message'] = $this->frontend_error_messages_display() . '<br>';
-			$response['message'] .= sprintf(
-				__('%1$sThe demo import has finished, but there were some import errors.%2$sMore details about the errors can be found in this %3$s%5$slog file%6$s%4$s%7$s', 'pixfort-core'),
-				'<div class="notice  notice-warning"><p>',
-				'<br>',
-				'<strong>',
-				'</strong>',
-				'<a href="' . Helpers::get_log_url($this->log_file_path) . '" target="_blank">',
-				'</a>',
-				'</p></div>'
-			);
+			$response['success'] = false;
+			$response['log'] = Helpers::get_log_url($this->log_file_path);
+			$response['message'] = $this->frontend_error_messages_display();
+			$response['message'] .= __('The demo import has finished, but there were some import errors.', 'pixfort-core');
+			// $response['message'] .= sprintf(
+			// 	__('%1$sThe demo import has finished, but there were some import errors.%2$sMore details about the errors can be found in this %3$s%5$slog file%6$s%4$s%7$s', 'pixfort-core'),
+			// 	'<div class="notice  notice-warning"><p>',
+			// 	'<br>',
+			// 	'<strong>',
+			// 	'</strong>',
+			// 	'<a href="' . Helpers::get_log_url($this->log_file_path) . '" target="_blank">',
+			// 	'</a>',
+			// 	'</p></div>'
+			// );
 		}
 
 		wp_send_json($response);
@@ -427,6 +425,10 @@ class OneClickDemoImport {
 	 * @return boolean
 	 */
 	private function use_existing_importer_data() {
+		// Ensure importer is initialized
+		if (!isset($this->importer)) {
+			$this->setup_plugin_with_filter_data();
+		}
 		if ($data = get_transient('ocdi_importer_data')) {
 			$this->frontend_error_messages = empty($data['frontend_error_messages']) ? array() : $data['frontend_error_messages'];
 			$this->log_file_path           = empty($data['log_file_path']) ? '' : $data['log_file_path'];
@@ -434,9 +436,10 @@ class OneClickDemoImport {
 			$this->selected_import_files   = empty($data['selected_import_files']) ? array() : $data['selected_import_files'];
 			$this->import_files            = empty($data['import_files']) ? array() : $data['import_files'];
 			$this->before_import_executed  = empty($data['before_import_executed']) ? false : $data['before_import_executed'];
-			$this->importer->set_importer_data($data);
-
-			return true;
+			if (isset($this->importer)) {
+				$this->importer->set_importer_data($data);
+				return true;
+			}
 		}
 		return false;
 	}
@@ -501,19 +504,11 @@ class OneClickDemoImport {
 		if (!empty($this->frontend_error_messages)) {
 			foreach ($this->frontend_error_messages as $line) {
 				$output .= esc_html($line);
-				$output .= '<br>';
+				// $output .= '<br>';
 			}
 		}
 
 		return $output;
-	}
-
-
-	/**
-	 * Load the plugin textdomain, so that translations can be made.
-	 */
-	public function load_textdomain() {
-		// load_plugin_textdomain('pixfort-core', false, plugin_basename(dirname(dirname(__FILE__))) . '/languages');
 	}
 
 

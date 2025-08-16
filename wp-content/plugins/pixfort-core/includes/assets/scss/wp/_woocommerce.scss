@@ -4,10 +4,10 @@
     -webkit-user-select: none;
        -moz-user-select: none;
             user-select: none;
-    i {
-        position: relative;
-        vertical-align: middle !important;
-    }
+    // i {
+    //     position: relative;
+    //     vertical-align: middle !important;
+    // }
     &:focus,
     &.focus {
         outline: 0;
@@ -22,15 +22,8 @@
 }
 
 .single_add_to_cart_button {
-    // @extend .woo-btn;
-    // @extend .btn-primary;
-    // @extend .btn-lg;
-    // @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-line-height-lg, $btn-border-radius-lg);
     height: 2.7rem;
-    // font-weight: 700;
     font-size: 12px !important;
-    // @include fly-sm();
-    // transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
     box-shadow: 0 1px 5px 0 rgba(0,0,0,0.15) !important;
     &:hover {
         transform: translate(0,-3px) !important;
@@ -79,6 +72,7 @@
                     border-radius: 5px;
                     padding: 20px 20px 20px 120px;
                     min-height: 120px;
+                    transition: var(--transition-base);
                     .woocommerce-placeholder.wp-post-image,
                     .attachment-woocommerce_thumbnail.size-woocommerce_thumbnail {
                         left: 20px;
@@ -93,7 +87,6 @@
             li {
                 background: #fff;
                 box-shadow: 0 1px 5px 0 rgba(0,0,0,0.15) !important;
-                // transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
                 @include fly-sm();
                 border-radius: 5px;
                 margin-bottom: 10px;

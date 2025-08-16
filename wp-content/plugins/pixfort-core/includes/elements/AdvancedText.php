@@ -56,7 +56,7 @@ class PixAdvancedText {
 					$customStyle .= '#' . $element_id . ' p {color:' . $content_custom_color . ';}';
 				}
 			} else {
-				$customStyle .= '#' . $element_id . ' p {color:var(--text-' . $content_color . ');}';
+				$customStyle .= '#' . $element_id . ' p {color:var(--pix-' . $content_color . ');}';
 			}
 		}
 		if (!empty($customStyle)) {

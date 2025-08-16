@@ -2,12 +2,13 @@
 
 class PixfortOptions {
 
-    public $options = array();
+    public $options = [];
     public $type = 'meta';
     public $post = false;
     public $hasTabs = false;
     public $display = true;
-    public $config = array();
+    public $config = [];
+    public $commonData = [];
 
     function __construct() {
     }
@@ -33,10 +34,34 @@ class PixfortOptions {
             }
             wp_enqueue_script('pix-options-vendors', PIX_CORE_PLUGIN_URI . $distDir . '/options/vendors.bundle-6.js', false, PIXFORT_PLUGIN_VERSION, true);
             // wp_enqueue_script('pix-options-runtime', PIX_CORE_PLUGIN_URI . $distDir . '/options/runtime.index.bundle-6.js', false, PIXFORT_PLUGIN_VERSION, true);
-            wp_enqueue_script('pix-options-builder', PIX_CORE_PLUGIN_URI . $distDir . '/options/index.bundle-6.js', false, PIXFORT_PLUGIN_VERSION, true);
+            wp_register_script('pix-options-builder', PIX_CORE_PLUGIN_URI . $distDir . '/options/index.bundle-6.js', ['wp-i18n'], PIXFORT_PLUGIN_VERSION, true);
+
+            // Set up translations for your script
+            // wp_set_script_translations('pix-options-builder', 'pixfort-core', plugin_dir_path(dirname(__FILE__)) . 'options/languages');
+            wp_set_script_translations('pix-options-builder', 'pixfort-core-admin', PIXFORT_PLUGIN_DIR . 'includes/options/languages');
+            
+            // Get and display the translation file content
+            $locale = determine_locale();
+            // $translations_dir = PIXFORT_PLUGIN_DIR . 'includes/options/languages';
+            
+            // Look for files matching the pattern: {textdomain}-{locale}-{md5hash}.json
+            // $translation_files = glob($translations_dir . '/pixfort-core-admin-' . $locale . '-*.json');
+            // $translations = [];
+            // if (!empty($translation_files)) {
+            //     if (!empty($translation_files)) {
+            //         $file = $translation_files[0];
+            //         $translation_content = file_get_contents($file);
+            //         $translations = json_decode($translation_content, true);
+            //     }
+            // }
+            
+            wp_enqueue_script('pix-options-builder');
+        
+
             wp_localize_script('pix-options-builder', 'pixfort_options_obj', array(
                 'ADMIN_LINK' => $link,
-                'PIX_ICONS' => $icons
+                'PIX_ICONS' => $icons,
+                // 'locale' => get_locale()
             ));
             wp_enqueue_style('pix-options-vendors', PIX_CORE_PLUGIN_URI . $distDir . '/options/vendors.css', false, PIXFORT_PLUGIN_VERSION, 'all');
             wp_enqueue_style('pix-options-builder', PIX_CORE_PLUGIN_URI . $distDir . '/options/index.css', false, PIXFORT_PLUGIN_VERSION, 'all');
@@ -92,6 +117,18 @@ class PixfortOptions {
         if (is_array($this->options)) {
             foreach ($this->options as $key => $value) {
                 if(is_array($pix_options)){
+                    if ($this->options[$key]['type'] === 'media') {
+                        if (!empty($pix_options[$key]['id'])) {
+                            $image = wp_get_attachment_image_src($pix_options[$key]['id'], "full");
+                            $attachment = get_post($pix_options[$key]['id']);
+                            if ($attachment&&!empty($image[0])) {
+                                $slug = $attachment->post_name;
+                                if($slug == $pix_options[$key]['title']){
+                                    $pix_options[$key]['url'] = $image[0];
+                                }
+                            }
+                        }
+                    }
                     if (!empty($pix_options[$key])) {
                         $this->options[$key]['value'] = $pix_options[$key];
                     } else {
@@ -111,6 +148,9 @@ class PixfortOptions {
                             }
                         }
                     }
+                    if ($this->options[$key]['type'] === 'deleted') {
+                        $this->options[$key]['value'] = '';
+                    }
                 } else {
                     if (array_key_exists('default', $this->options[$key])) {
                         $this->options[$key]['value'] = $this->options[$key]['default'];
@@ -119,25 +159,6 @@ class PixfortOptions {
                 
             }
         }
-        // $wpFavicon = get_option("site_icon");
-        // if(!empty($wpFavicon)){
-        //     if(!empty($pix_options['favicon-img'])&&!empty($pix_options['favicon-img']['id'])){
-        //         $wpFavicon = (int) $wpFavicon;
-        //         if($pix_options['favicon-img']['id'] !== $wpFavicon){
-        //             $imgURL = wp_get_attachment_image_src($wpFavicon, [500, 500]);
-        //             if(!empty($imgURL[0])) {
-        //                 $newImage = [
-        //                     'id'   => $wpFavicon,
-        //                     'url'   => $imgURL[0],
-        //                     'width'   => 500,
-        //                     'height'   => 500,
-        //                     'thumbnail' => $imgURL[0],
-        //                 ];
-        //                 $this->options['favicon-img']['value'] = $newImage;
-        //             }
-        //         }
-        //     }
-        // }
     }
 
     function saveData() {
@@ -162,11 +183,31 @@ class PixfortOptions {
             }
             update_option('pix_options', $pix_options);
         }
-
+        if(PixfortCore::instance()->dynamicColors) {
+            if(\PixfortCore::instance()->styleFunctions) { 
+                \PixfortCore::instance()->styleFunctions->generateStyling();
+                // Update Elementor global colors with custom colors from saved options
+                \PixfortCore::instance()->styleFunctions->updateElementorGlobalColors();
+            }
+        }
         // echo json_encode($data);
         wp_die();
     }
 
+    function upgradeHeaderOptions() {
+        $options = $this->options;
+        if(isset($options['pix-header-style'])){
+            if(!empty($options['pix-header-style']['value'])){
+                // check if $options['pix-header-style']['value'] ends with  '-full'
+                if(substr($options['pix-header-style']['value'], -5) === '-full'){
+                    // remove '-full' from $options['pix-header-style']['value']
+                    $options['pix-header-style']['value'] = str_replace('-full', '', $options['pix-header-style']['value']);
+                    $options['container-width']['value'] = 'full';
+                }
+            }
+        }
+        $this->options = $options;
+    }
 
     function loadOptionsData() {
         $isPixfortIcons = true;
@@ -180,6 +221,14 @@ class PixfortOptions {
                 case 'essentials':
                     $key = get_option('envato_purchase_code_27889640');
                     break;
+                case 'acquire':
+                    $key = get_option('envato_purchase_code_27889640');
+                    $slug = 'Acquire';
+                    break;
+                case 'inspiron':
+                    $key = get_option('envato_purchase_code_27889640');
+                    $slug = 'inspiron';
+                    break;
                 case 'pixfort':
                     $key = get_option('pixfort_purchase_code_1');
                     $slug = 'pixfort';
@@ -188,21 +237,83 @@ class PixfortOptions {
                     break;
             }	
         }
+        $dev = false;
+        if (defined('PIXFORT_DEV') || ( defined('PIXFORT_THEME_SLUG') && PIXFORT_THEME_SLUG === 'acquire') ) {
+            $dev = true;
+        }
+
+        // Get custom post types from external plugins
+        $custom_post_types = get_post_types(array(
+            'public' => true,
+            '_builtin' => false
+        ), 'objects');
+        
+        // Filter out pixfort's own post types and common ones we don't want
+        $excluded_types = array(
+            'pixheader', 'pixfooter', 'pixpopup', 'portfolio', 'product',
+            'pixfort_template', 'elementor_library', 'attachment', 'e-landing-page', 'e-floating-buttons'
+        );
+        
+        $external_post_types = array();
+        foreach ($custom_post_types as $post_type_slug => $post_type_obj) {
+            if (!in_array($post_type_slug, $excluded_types)) {
+                // Get taxonomies associated with this post type
+                $taxonomies = get_object_taxonomies($post_type_slug, 'objects');
+                $post_type_taxonomies = array();
+                
+                foreach ($taxonomies as $taxonomy_slug => $taxonomy_obj) {
+                    // Only include public taxonomies that are not built-in WordPress taxonomies
+                    if ($taxonomy_obj->public && !in_array($taxonomy_slug, array('post_tag', 'category'))) {
+                        $post_type_taxonomies[] = array(
+                            'slug' => $taxonomy_slug,
+                            'name' => $taxonomy_obj->labels->name,
+                            'singular_name' => $taxonomy_obj->labels->singular_name
+                        );
+                    }
+                }
+                
+                $external_post_types[] = array(
+                    'slug' => $post_type_slug,
+                    'name' => $post_type_obj->labels->name,
+                    'singular_name' => $post_type_obj->labels->singular_name,
+                    'taxonomies' => $post_type_taxonomies
+                );
+            }
+        }
+
+        $enableDynamicColors = false;
+        if(PixfortCore::instance()->dynamicColors) {
+            if(\PixfortCore::instance()->styleFunctions->darkModeEnabled) {
+                    $enableDynamicColors = true;
+            }
+        }
+
         $data = array();
         $data['options'] = $this->options;
         $data['key'] = get_option('pixfort_key');
         $data['createdAt'] = get_option('pixfort_key_created_at');
         $data['licenseKey'] = get_option('pixfort_license_key');
         $data['licenseURL'] = get_option('pixfort_key_url');
+        $data['siteType'] = get_option('pixfort_site_type');
         $data['pk'] = $key;
         $data['slug'] = $slug;
         $data['url'] = site_url();
         $data['type'] = $this->type;
         $data['hasTabs'] = $this->hasTabs;
         $data['config'] = $this->config;
+        $data['common'] = $this->getCommonData();
         $data['ajaxurl'] = admin_url('admin-ajax.php');
         $data['isPixfortIcons'] = $isPixfortIcons;
+        $data['dev'] = $dev;
+        $data['customPostTypes'] = $external_post_types;
+        $data['enableDynamicColors'] = $enableDynamicColors;
         wp_localize_script('pix-options-builder', 'pixfort_options_data', $data);
+    }
+    
+    function getCommonData() {
+        $data = array();
+        $data['docs_troubleshooting_errors'] = \PixfortCore::instance()->adminCore->getParam('docs_troubleshooting_errors');
+        return $data;
     }
 
     function loadVariablesData() {
@@ -252,7 +363,7 @@ class PixfortOptions {
             array("name" => "Light opacity 8", "value" => "light-opacity-8"),
             array("name" => "Light opacity 9", "value" => "light-opacity-9")
         );
-        $bg_colors = array(
+        $bg_colors_without_blur = array(
             array("name" => "Body default", "value" => "body-default"),
             array("name" => "Heading default", "value" => "heading-default"),
             array("name" => "Transparent", "value" => "transparent"),
@@ -306,9 +417,7 @@ class PixfortOptions {
             array("name" => "Light opacity 6", "value" => "light-opacity-6"),
             array("name" => "Light opacity 7", "value" => "light-opacity-7"),
             array("name" => "Light opacity 8", "value" => "light-opacity-8"),
-            array("name" => "Light opacity 9", "value" => "light-opacity-9"),
-            array("name" => "Dark blur", "value" => "dark-blur"),
-            array("name" => "Light blur", "value" => "light-blur")
+            array("name" => "Light opacity 9", "value" => "light-opacity-9")
         );
         $btn_colors = array(
             array("name" => "Primary", "value" => "primary"),
@@ -356,13 +465,16 @@ class PixfortOptions {
             array("name" => "Light opacity 9", "value" => "light-opacity-9"),
             array("name" => "Custom", "value" => "custom"),
         );
-        // foreach ($btn_colors as $key => $value) {
-        //     echo 'array("name" => "'.$value.'", "value" => "'.$key.'"),<br>';
-        // }
-        // die();
         /*
         * Colors Data
         */
+        $bg_colors = $bg_colors_without_blur;
+        array_push($bg_colors, [
+            "name" => "Dark blur", "value" => "dark-blur"
+        ]);
+        array_push($bg_colors, [
+            "name" => "Light blur", "value" => "light-blur"
+        ]);
         $text_colors_with_custom = $text_colors;
         array_push($text_colors_with_custom, array(
             "name" => "Custom",
@@ -447,20 +559,44 @@ class PixfortOptions {
         // }
         // die();
 
+        $legacyDarkHeading = pix_plugin_get_option('opt-dark-heading-color');
+        $legacyDarkHeadingCustom = pix_plugin_get_option('opt-custom-dark-heading-color');
+        $legacyDarkBody = pix_plugin_get_option('opt-dark-body-color');
+        $legacyDarkBodyCustom = pix_plugin_get_option('opt-custom-dark-body-color');
+
         $colors = array(
             'text_colors' => $bg_colors,
+            'text_colors_groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(['blur' => true, 'lightBasicText' => true, 'custom' => false]),
+            'text_colors_groups_custom' => \PixfortCore::instance()->coreFunctions->getColorsArray([ 'lightBasicText' => true]),
+            'border_colors_groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(['lightBasicText' => true, 'transparent' => true]),
+            'border_colors_groups_with_default' => \PixfortCore::instance()->coreFunctions->getColorsArray(['lightBasicText' => true, 'transparent' => true, 'defaultValue' => ['default' => __('Default', 'pixfort-core-admin')] ]),
+            'bg_colors_groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(['blur' => true,'lightBasicText' => true, 'transparent' => true, 'dynamicBlur' => true]),
+            'bg_colors_groups_no_custom' => \PixfortCore::instance()->coreFunctions->getColorsArray(['bg' => true, 'blur' => true,'lightBasicText' => true, 'transparent' => true, 'dynamicBlur' => true, 'custom' => false]),
+            'bg_colors_groups_with_default' => \PixfortCore::instance()->coreFunctions->getColorsArray(['blur' => true,'lightBasicText' => true, 'dynamicBlur' => true, 'defaultValue' => ['default' => __('Default', 'pixfort-core-admin')], 'custom' => false, 'transparent' => true ]),
+            'pix_btn_colors_groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultColors' => false, 'mainLight' => true,'lightBasicText' => true ]),
+            'pix_btn_text_colors_groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(['mainLight' => true,'lightBasicText' => true, 'defaultValue' => ['default' => __('Default', 'pixfort-core-admin')] ]),
+            'pix_divider_colors_groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(['mainLight' => true,'lightBasicText' => true, 'transparent' => true, 'blur' => true, 'custom' => false ]),
+            'pix_divider_colors_groups_with_default' => \PixfortCore::instance()->coreFunctions->getColorsArray(['mainLight' => true,'lightBasicText' => true, 'transparent' => true, 'blur' => true, 'defaultValue' => ['default' => __('Default', 'pixfort-core-admin')], 'custom' => false ]),
+            'menu_text_colors_groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(['lightBasicText' => true, 'custom' => false, 'defaultValue' => ['default' => __('Default', 'pixfort-core-admin')]]),
             'text_colors_with_custom' => $bg_colors_with_custom,
+            // 'bg_colors_without_blur' => $bg_colors_without_blur,
             'bg_colors' => $bg_colors,
-            'bg_colors_with_custom' => $bg_colors_with_custom,
-            'bg_colors_with_default' => $bg_colors_with_default,
+            // 'bg_colors_with_custom' => $bg_colors_with_custom,
+            // 'bg_colors_with_default' => $bg_colors_with_default,
             'pix_popups'            => $popups,
             'pix_btn_style'            => $btn_style,
-            'pix_btn_colors'            => $btn_colors,
-            'pix_btn_text_colors'            => $btn_text_colors,
-            'pix_menus'            => $pix_menus
+            // 'pix_btn_colors'            => $btn_colors,
+            // 'pix_btn_text_colors'            => $btn_text_colors,
+            'pix_menus'            => $pix_menus,
+            'legacyDarkHeading' => $legacyDarkHeading,
+            'legacyDarkHeadingCustom' => $legacyDarkHeadingCustom,
+            'legacyDarkBody' => $legacyDarkBody,
+            'legacyDarkBodyCustom' => $legacyDarkBodyCustom,
         );
 
 
         wp_localize_script('pix-options-builder', 'PIX_HEADER_DATA', $colors);
     }
 }
+
+

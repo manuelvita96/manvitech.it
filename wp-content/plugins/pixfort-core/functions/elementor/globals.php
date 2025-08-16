@@ -73,7 +73,7 @@ function pix_get_elementor_btn($that, $dynamicBtn=false){
     $that->start_controls_section(
         'section_button',
         [
-            'label' => __( 'Button Settings', 'elementor' ),
+            'label' => __( 'Button Settings', 'pixfort-core' ),
         ]
     );
 
@@ -89,10 +89,10 @@ function pix_get_elementor_btn($that, $dynamicBtn=false){
     $that->add_control(
         'btn_text',
         [
-            'label' => __( 'Button Text', 'elementor' ),
+            'label' => __( 'Button Text', 'pixfort-core' ),
             'label_block' => true,
             'type' => Controls_Manager::TEXT,
-            'placeholder' => __( 'Button text', 'elementor' ),
+            'placeholder' => __( 'Button Text', 'pixfort-core' ),
             'default' => 'Click here',
             'dynamic'     => array(
                 'active'  => true
@@ -120,10 +120,10 @@ function pix_get_elementor_btn($that, $dynamicBtn=false){
         $that->add_control(
             'btn_link',
             [
-                'label' => __( 'Button Link', 'elementor' ),
+                'label' => __( 'Button Link', 'pixfort-core' ),
                 'label_block' => true,
                 'type' => Controls_Manager::TEXT,
-                'placeholder' => __( 'Button Link', 'elementor' ),
+                'placeholder' => __( 'Button Link', 'pixfort-core' ),
                 'default' => '',
             ]
         );
@@ -208,55 +208,56 @@ function pix_get_elementor_btn($that, $dynamicBtn=false){
         [
             'label' => __( 'Button Color', 'pixfort-core' ),
             'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => array(
-                'primary' 		=> 'Primary',
-                'primary-light' 		=> 'Primary Light',
-                // 'success'		=> 'Success',
-                'secondary'		=> 'Secondary',
-                'secondary-light'		=> 'Secondary Light',
-                'gray-1' 		=> 'Light',
-                'gray-5' 		    => 'Dark',
-                'black' 		=> 'Black',
-                // 'link' 		    => 'Link',
-                'white' 		=> 'White',
-                'blue' 		    => 'Blue',
-                'red' 		    => 'Red',
-                'cyan' 		    => 'Cyan',
-                'orange' 		    => 'Orange',
-                'green' 		    => 'Green',
-                'purple' 		    => 'Purple',
-                'brown' 		    => 'Brown',
-                'yellow' 		    => 'Yellow',
-                'gradient-primary' 		    => 'Primary gradient',
-                "gray-1" => 'Gray 1',
-                "gray-2" => 'Gray 2',
-                "gray-3" => 'Gray 3',
-                "gray-4" => 'Gray 4',
-                "gray-5" => 'Gray 5',
-                "gray-6" => 'Gray 6',
-                "gray-7" => 'Gray 7',
-                "gray-8" => 'Gray 8',
-                "gray-9" => 'Gray 9',
-                "dark-opacity-1" => 'Dark opacity 1',
-                "dark-opacity-2" => 'Dark opacity 2',
-                "dark-opacity-3" => 'Dark opacity 3',
-                "dark-opacity-4" => 'Dark opacity 4',
-                "dark-opacity-5" => 'Dark opacity 5',
-                "dark-opacity-6" => 'Dark opacity 6',
-                "dark-opacity-7" => 'Dark opacity 7',
-                "dark-opacity-8" => 'Dark opacity 8',
-                "dark-opacity-9" => 'Dark opacity 9',
-                "light-opacity-1" => 'Light opacity 1',
-                "light-opacity-2" => 'Light opacity 2',
-                "light-opacity-3" => 'Light opacity 3',
-                "light-opacity-4" => 'Light opacity 4',
-                "light-opacity-5" => 'Light opacity 5',
-                "light-opacity-6" => 'Light opacity 6',
-                "light-opacity-7" => 'Light opacity 7',
-                "light-opacity-8" => 'Light opacity 8',
-                "light-opacity-9" => 'Light opacity 9'
+            'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultColors' => false, 'mainLight' => true, 'custom' => false]),
+            // 'options' => array(
+            //     'primary' 		=> 'Primary',
+            //     'primary-light' 		=> 'Primary Light',
+            //     // 'success'		=> 'Success',
+            //     'secondary'		=> 'Secondary',
+            //     'secondary-light'		=> 'Secondary Light',
+            //     'gray-1' 		=> 'Light',
+            //     'gray-5' 		    => 'Dark',
+            //     'black' 		=> 'Black',
+            //     // 'link' 		    => 'Link',
+            //     'white' 		=> 'White',
+            //     'blue' 		    => 'Blue',
+            //     'red' 		    => 'Red',
+            //     'cyan' 		    => 'Cyan',
+            //     'orange' 		    => 'Orange',
+            //     'green' 		    => 'Green',
+            //     'purple' 		    => 'Purple',
+            //     'brown' 		    => 'Brown',
+            //     'yellow' 		    => 'Yellow',
+            //     'gradient-primary' 		    => 'Primary gradient',
+            //     "gray-1" => 'Gray 1',
+            //     "gray-2" => 'Gray 2',
+            //     "gray-3" => 'Gray 3',
+            //     "gray-4" => 'Gray 4',
+            //     "gray-5" => 'Gray 5',
+            //     "gray-6" => 'Gray 6',
+            //     "gray-7" => 'Gray 7',
+            //     "gray-8" => 'Gray 8',
+            //     "gray-9" => 'Gray 9',
+            //     "dark-opacity-1" => 'Dark opacity 1',
+            //     "dark-opacity-2" => 'Dark opacity 2',
+            //     "dark-opacity-3" => 'Dark opacity 3',
+            //     "dark-opacity-4" => 'Dark opacity 4',
+            //     "dark-opacity-5" => 'Dark opacity 5',
+            //     "dark-opacity-6" => 'Dark opacity 6',
+            //     "dark-opacity-7" => 'Dark opacity 7',
+            //     "dark-opacity-8" => 'Dark opacity 8',
+            //     "dark-opacity-9" => 'Dark opacity 9',
+            //     "light-opacity-1" => 'Light opacity 1',
+            //     "light-opacity-2" => 'Light opacity 2',
+            //     "light-opacity-3" => 'Light opacity 3',
+            //     "light-opacity-4" => 'Light opacity 4',
+            //     "light-opacity-5" => 'Light opacity 5',
+            //     "light-opacity-6" => 'Light opacity 6',
+            //     "light-opacity-7" => 'Light opacity 7',
+            //     "light-opacity-8" => 'Light opacity 8',
+            //     "light-opacity-9" => 'Light opacity 9'
 
-            ),
+            // ),
             'default' => 'primary',
         ]
     );
@@ -280,7 +281,8 @@ function pix_get_elementor_btn($that, $dynamicBtn=false){
         [
             'label' => __( 'Text color', 'pixfort-core' ),
             'type' => \Elementor\Controls_Manager::SELECT,
-            'options' => array_flip(array_merge(array("Default" => "",), $colors)),
+            // 'options' => array_flip(array_merge(array("Default" => "",), $colors)),
+            'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray([ 'defaultValue' => ['' => __('Default', 'pixfort-core')], 'mainLight' => true ]),
             'default' => '',
         ]
     );
@@ -390,47 +392,14 @@ function pix_get_elementor_btn($that, $dynamicBtn=false){
             }
         }
 
-        if(\PixfortCore::instance()->icons::$isEnabled) {
-			$that->add_control(
-				'btn_icon', [
-					'label' => esc_html__('Button Icon', 'pixfort-core'),
-					'type' => \Elementor\CustomControl\PixfortIconSelector_Control::PixfortIconSelector,
-					'default' => '',
-				]
-			);
-		} else {
-			$that->add_control(
-                'btn_icon',
-                [
-                    'label' => esc_html__('Button Icon', 'pixfort-core'),
-                    'type' => \Elementor\CustomControl\FonticonSelector_Control::FonticonSelector,
-                    'options'	=> $fontiocns_opts,
-                    'default' => '',
-                ]
-            );
-		}
+        $that->add_control(
+            'btn_icon', [
+                'label' => esc_html__('Button Icon', 'pixfort-core'),
+                'type' => \Elementor\CustomControl\PixfortIconSelector_Control::PixfortIconSelector,
+                'default' => '',
+            ]
+        );
 
-    
-    // require PIX_CORE_PLUGIN_DIR.'/functions/images/icons_list.php';
-    // $due_opts = array();
-    // foreach ($pix_icons_list as $key) {
-    //     $due_opts[$key] = array(
-    //         'title'	=> $key,
-    //         'url'	=> PIX_CORE_PLUGIN_URI.'functions/images/icons/'.$key.'.svg'
-    //     );
-    // }
-    // $that->add_control(
-    //     'pix_duo_icon',
-    //     [
-    //         'label' => esc_html__('Icon', 'pixfort-core'),
-    //         'type' => \Elementor\CustomControl\IconSelector_Control::IconSelector,
-    //         'options'	=> $due_opts,
-    //         'default' => '',
-    //         'condition' => [
-    //             'media_type' => 'duo_icon',
-    //         ],
-    //     ]
-    // );
 
     $that->add_control(
         'btn_icon_position',
@@ -549,10 +518,10 @@ function pix_get_elementor_btn($that, $dynamicBtn=false){
     $that->add_control(
         'btn_extra_classes',
         [
-            'label' => __( 'Extra Classes', 'elementor' ),
+            'label' => __( 'Extra Classes', 'pixfort-core' ),
             'label_block' => true,
             'type' => Controls_Manager::TEXT,
-            'placeholder' => __( '', 'elementor' ),
+            'placeholder' => __( '', 'pixfort-core' ),
             'default' => '',
         ]
     );
@@ -570,7 +539,7 @@ function pix_get_elementor_effects( $that ){
         $that->start_controls_section(
             'section_pix_effects',
             [
-                'label' => __( 'Effects Settings', 'elementor' ),
+                'label' => __( 'Effects Settings', 'pixfort-core' ),
             ]
         );
 
@@ -634,4 +603,86 @@ function pix_get_elementor_effects( $that ){
 
 
         $that->end_controls_section();
+}
+
+
+function getElementorDynamicImageControls($that, $imageID = 'image', $darkImageID = 'image_dark', $conditions = []) {
+    if(\PixfortCore::instance()->styleFunctions->darkModeEnabled) {
+        $that->start_controls_tabs(
+            'pix_img_tabs',
+            [
+                'condition' => $conditions,
+            ]
+        );
+        $that->start_controls_tab(
+            'pix_img_light',
+            [
+                'label' => esc_html__('Light Image', 'pixfort-core'),
+            ]
+        );
+        $that->add_control(
+            $imageID,
+            [
+                'label' => __('Choose Image', 'pixfort-core'),
+                'type' => \Elementor\Controls_Manager::MEDIA,
+                'dynamic'     => array(
+                    'active'  => true
+                ),
+            ]
+        );
+        $that->end_controls_tab();
+        $that->start_controls_tab(
+            'pix_img_dark',
+            [
+                'label' => esc_html__('Dark Image', 'pixfort-core'),
+            ]
+        );
+        $that->add_control(
+            $darkImageID,
+            [
+                'label' => __('Choose Image', 'pixfort-core'),
+                'type' => \Elementor\Controls_Manager::MEDIA,
+                'dynamic'     => array(
+                    'active'  => true
+                ),
+                'description' => __('The dark image is optional, leave empty to use the light image', 'pixfort-core'),
+
+            ]
+        );
+        $that->end_controls_tab();
+        $that->end_controls_tabs();
+        $that->add_control(
+            'separator_img_dark_mode_tab',
+            [
+                'type' => Controls_Manager::DIVIDER,
+                'style' => 'thick',
+            ]
+        );
+    } else {
+        if(empty($conditions)){
+            $that->add_control(
+                $imageID,
+                [
+                    'label' => __('Choose Image', 'pixfort-core'),
+                    'type' => \Elementor\Controls_Manager::MEDIA,
+                    'dynamic'     => array(
+                        'active'  => true
+                    )
+                ]
+            );
+        } else {
+            $that->add_control(
+                $imageID,
+                [
+                    'label' => __('Choose Image', 'pixfort-core'),
+                    'type' => \Elementor\Controls_Manager::MEDIA,
+                    'dynamic'     => array(
+                        'active'  => true
+                    ),
+                    'condition' => $conditions,
+                ]
+            );
+        }
+        
+    }
 }

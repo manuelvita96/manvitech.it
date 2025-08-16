@@ -8,7 +8,7 @@ $pixfortBuilder->addOption(
 		'tab'             => 'shopIntro',
 		'icon'            => 'intro',
 		'linkText'            => __('Learn more about intro section', 'pixfort-core'),
-		'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/customize-page-intro-section/',
+		'linkHref'            => \PixfortCore::instance()->adminCore->getParam('docs_customize_page_intro_section'),
 		'linkIcon'            => 'bookmark'
 	]
 );
@@ -21,7 +21,7 @@ $pixfortBuilder->addOption(
         'options'         => array('1' => 'On', '0' => 'Off'),
         'default'           => '1',
         'tab'             => 'shopIntro',
-        'tooltipText'     => __('The Intro Section is the first section in the page after the header, which contains the page title and breadcrumbs.', 'pixfort-core') . '<br/><br/>' . __('For more information ', 'pixfort-core') . '<a target="_blank" href="https://essentials.pixfort.com/knowledge-base/customize-page-intro-section/" target="_blank" class="text-primary font-semibold">check this article</a>',
+        'tooltipText'     => __('The Intro Section is the first section in the page after the header, which contains the page title and breadcrumbs.', 'pixfort-core') . '<br/><br/>' . __('For more information ', 'pixfort-core') . '<a target="_blank" href="'.\PixfortCore::instance()->adminCore->getParam('docs_customize_page_intro_section').'" target="_blank" class="text-primary font-semibold">check this article</a>',
         'tooltipImage'   => PIX_CORE_PLUGIN_URI . '/includes/assets/core-options/tooltips/core-options-tooltip-page-intro-section.webp',
     ]
 );
@@ -29,7 +29,7 @@ $pixfortBuilder->addOption(
     'shop-divider-style',
     [
         'type' => 'radio',
-        'label' => 'Shop Divider Style',
+        'label' => __('Shop Divider Style', 'pixfort-core'),
         'default' => '0',
         'tab'             => 'shopIntro',
         'imageSize'       => '130',
@@ -90,14 +90,30 @@ $pixfortBuilder->addOption(
         'removePadding'       => true,
     ]
 );
+// $pixfortBuilder->addOption(
+//     'shop-intro-light',
+//     [
+//         'type' => 'checkbox',
+//         'label' => __('Enable Light Shop Intro Text', 'pixfort-core'),
+//         'description' => __('Disable to display dark text in the intro.', 'pixfort-core'),
+//         'options'         => array('1' => 'On', '0' => 'Off'),
+//         'default'           => '1',
+//         'tab'             => 'shopIntro',
+//         'dependency' => [
+//             'field' => 'shop-with-intro',
+//             'val' => ['1', true]
+//         ],
+//     ]
+// );
+
 $pixfortBuilder->addOption(
     'shop-intro-light',
     [
-        'type' => 'checkbox',
-        'label' => __('Enable Light Shop Intro Text', 'pixfort-core'),
+        'type' => 'deleted',
+        'label' => __('Enable light Shop intro text', 'pixfort-core'),
         'description' => __('Disable to display dark text in the intro.', 'pixfort-core'),
         'options'         => array('1' => 'On', '0' => 'Off'),
-        'default'           => '1',
+        'default'           => '',
         'tab'             => 'shopIntro',
         'dependency' => [
             'field' => 'shop-with-intro',
@@ -105,6 +121,82 @@ $pixfortBuilder->addOption(
         ],
     ]
 );
+$defaultIntroTitleColor = 'heading-default';
+$defaultIntroTitleColorCustom = '#495057';
+$defaultIntroBreadcrumbsColor = 'body-default';
+$defaultIntroBreadcrumbsColorCustom = '#6c757d';
+
+if (!empty(pix_plugin_get_option('shop-intro-light'))) {
+    if (pix_plugin_get_option('shop-intro-light')==='1') {
+        $defaultIntroTitleColor = pix_plugin_get_option('opt-dark-heading-color');
+        $defaultIntroTitleColorCustom = pix_plugin_get_option('opt-custom-dark-heading-color');
+        $defaultIntroBreadcrumbsColor = pix_plugin_get_option('opt-dark-body-color');
+        $defaultIntroBreadcrumbsColorCustom = pix_plugin_get_option('opt-custom-dark-body-color');
+    }
+}
+
+$pixfortBuilder->addOption(
+    'shop-intro-title-color',
+    [
+        'type' => 'select',
+        'label' => __('Shop Intro title color', 'pixfort-core'),
+        'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultValue' => false]),
+        'groups' => true,
+        'default'             => $defaultIntroTitleColor,
+        'tab'             => 'shopIntro',
+        'dependency' => [
+            'field' => 'shop-with-intro',
+            'val' => ['1', true]
+        ],
+    ]
+);
+$pixfortBuilder->addOption(
+    'shop-intro-title-color-custom',
+    [
+        'type'             => 'color',
+        'tab'             => 'shopIntro',
+        'label'         => __('Custom Shop Intro title color', 'pixfort-core'),
+        'default'         => $defaultIntroTitleColorCustom,
+        'disableAlpha'         => true,
+        'hideBorderBottom'      => true,
+        'dependency' => [
+            'field' => 'shop-intro-title-color',
+            'val' => ['custom']
+        ]
+    ]
+);
+$pixfortBuilder->addOption(
+    'shop-intro-breadcrumbs-color',
+    [
+        'type' => 'select',
+        'label' => __('Shop Intro Breadcrumbs color', 'pixfort-core'),
+        'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultValue' => false]),
+        'groups' => true,
+        'default'             => $defaultIntroBreadcrumbsColor,
+        'tab'             => 'shopIntro',
+        'dependency' => [
+            'field' => 'shop-with-intro',
+            'val' => ['1', true]
+        ],
+    ]
+);
+$pixfortBuilder->addOption(
+    'shop-intro-breadcrumbs-color-custom',
+    [
+        'type'             => 'color',
+        'tab'             => 'shopIntro',
+        'label'         => __('Custom Shop Intro Breadcrumbs color', 'pixfort-core'),
+        'default'         => $defaultIntroBreadcrumbsColorCustom,
+        'disableAlpha'         => true,
+        'hideBorderBottom'      => true,
+        'dependency' => [
+            'field' => 'shop-intro-breadcrumbs-color',
+            'val' => ['custom']
+        ]
+    ]
+);
+
+
 $pixfortBuilder->addOption(
     'shop-intro-align',
     [
@@ -128,7 +220,9 @@ $pixfortBuilder->addOption(
     [
         'type' => 'select',
         'label' => __('Shop Intro Overlay Color', 'pixfort-core'),
-        'options' => array_flip($bg_colors_no_custom),
+        // 'options' => array_flip($bg_colors_no_custom),
+        'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['bg' => true, 'transparent' => true, 'defaultValue' => false, 'custom' => false]),
+		'groups' => true,
         'default'             => 'primary',
         'tab'             => 'shopIntro',
         'dependency' => [
@@ -157,10 +251,15 @@ $pixfortBuilder->addOption(
                 'pix-opacity-1'   => "90%",
                 'pix-opacity-0'   => "100%",
         ],
+        // 'dependency' => [
+        //     'field' => 'shop-with-intro',
+        //     'val' => ['1', true]
+        // ],
         'dependency' => [
-            'field' => 'shop-with-intro',
-            'val' => ['1', true]
-        ],
+            'field' => 'shop-intro-img',
+            'val' => ['0', false, ''],
+            'op'                => '!='
+        ]
     ]
 );
 $pixfortBuilder->addOption(

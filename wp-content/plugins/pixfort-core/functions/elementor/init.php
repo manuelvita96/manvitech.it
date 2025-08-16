@@ -111,7 +111,6 @@ class My_Elementor_Widgets {
 		\Elementor\Plugin::instance()->widgets_manager->register( new \Elementor\Pix_Eor_Circles() );
 		\Elementor\Plugin::instance()->widgets_manager->register( new \Elementor\Pix_Eor_Clients_Carousel() );
 		\Elementor\Plugin::instance()->widgets_manager->register( new \Elementor\Pix_Eor_Clients() );
-		// pix_beta
 
 		\Elementor\Plugin::instance()->widgets_manager->register( new \Elementor\Pix_Eor_Comparison_Table() );
 
@@ -250,7 +249,7 @@ function pix_add_elementor_widget_categories( $elements_manager ) {
 		unset($elementor_categories['favorites']);
 	}
 	$categories['pixfort'] = [
-		'title' => __( 'PixFort Elements', 'pixfort-core' ),
+		'title' => __( 'pixfort Elements', 'pixfort-core' ),
 		'icon' => 'fa fa-plug',
 	];
 	$categories = array_merge($categories, $elementor_categories);
@@ -262,10 +261,30 @@ function pix_add_elementor_widget_categories( $elements_manager ) {
 add_action( 'elementor/elements/categories_registered', 'pix_add_elementor_widget_categories', 5 );
 
 // Enqueu Styles after Elementor After Enqueue
+// pixfort library
+add_action( 'elementor/editor/footer', function() {
+	wp_enqueue_script( 'pixfort-library', PIX_CORE_PLUGIN_URI.'dist/main/library/main.js', [ 'jquery' ], time(), true );
+	$dynamicColors = false;
+	if(\PixfortCore::instance()->styleFunctions && \PixfortCore::instance()->styleFunctions->darkModeEnabled) {
+		$dynamicColors = true;
+	}
+	$main_values = array(
+		'ADMIN_LINK' => admin_url('admin-ajax.php'),
+		'DYNAMIC_COLORS' => $dynamicColors
+	);
+	wp_localize_script( 'pixfort-library', 'pixfort_library_object', $main_values );
+});
 add_action( 'elementor/editor/after_enqueue_scripts', function() {
 	wp_enqueue_style(
 		'pix-elementor-core-style',
 		PIX_CORE_PLUGIN_URI.'/functions/elementor/css/pixfort-elementor-style.css',
+		['elementor-editor'],
+		PIXFORT_PLUGIN_VERSION
+	);
+	// pixfort library
+	wp_enqueue_style(
+		'pixfort-elementor-library',
+		PIX_CORE_PLUGIN_URI.'/dist/main/library/main.css',
 		['elementor-editor'],
 		PIXFORT_PLUGIN_VERSION
 	);
@@ -282,6 +301,8 @@ add_action( 'elementor/editor/after_enqueue_scripts', function() {
 add_action( 'elementor/frontend/after_register_scripts', function() {
 	if(is_user_logged_in()){
 		wp_register_script( 'pix-section-handle', PIX_CORE_PLUGIN_URI.'functions/elementor/includes/js/back.min.js', [ 'jquery' ], PIXFORT_PLUGIN_VERSION, true );
+		// pixfort library
+		// wp_enqueue_script( 'pixfort-library-button', PIX_CORE_PLUGIN_URI.'dist/main/front/main.js', [ 'jquery' ], PIXFORT_PLUGIN_VERSION, true );
 		wp_enqueue_script( 'pix-section-handle' );
 		$main_values = array(
 			'pix_shapes' => pix_get_svg_shapes()
@@ -294,31 +315,31 @@ add_action( 'elementor/frontend/after_register_scripts', function() {
 });
 
 
-add_action( 'elementor/init', function() {
-	$disable_pix_blocks = false;
-	if(!empty(pix_plugin_get_option('pix-disable-elementor-demo'))){
-		if(pix_plugin_get_option('pix-disable-elementor-demo')){
-			$disable_pix_blocks = true;
-		}
-	}
-	if(!$disable_pix_blocks){
-		include 'includes/source.php';
+// add_action( 'elementor/init', function() {
+// 	$disable_pix_blocks = false;
+// 	if(!empty(pix_plugin_get_option('pix-disable-elementor-demo'))){
+// 		if(pix_plugin_get_option('pix-disable-elementor-demo')){
+// 			$disable_pix_blocks = true;
+// 		}
+// 	}
+// 	if(!$disable_pix_blocks){
+// 		include 'includes/source.php';
 
-		$callSource = true;
-		if (defined('PHP_MAJOR_VERSION') && PHP_MAJOR_VERSION < 7){
-			$callSource = false;
-			add_action( 'admin_notices', 'pixfort_php_notice' );
-		}
-		if($callSource){
-			$unregister_source = function($id) {
-				unset( $this->_registered_sources[ $id ] );
-			};
+// 		$callSource = true;
+// 		if (defined('PHP_MAJOR_VERSION') && PHP_MAJOR_VERSION < 7){
+// 			$callSource = false;
+// 			add_action( 'admin_notices', 'pixfort_php_notice' );
+// 		}
+// 		if($callSource){
+// 			$unregister_source = function($id) {
+// 				unset( $this->_registered_sources[ $id ] );
+// 			};
 
-			$unregister_source->call( \Elementor\Plugin::instance()->templates_manager, 'remote');
-			\Elementor\Plugin::instance()->templates_manager->register_source( 'Elementor\TemplateLibrary\Source_Custom' );
-		}
-	}
-}, 15 );
+// 			$unregister_source->call( \Elementor\Plugin::instance()->templates_manager, 'remote');
+// 			\Elementor\Plugin::instance()->templates_manager->register_source( 'Elementor\TemplateLibrary\Source_Custom' );
+// 		}
+// 	}
+// }, 15 );
 
 
 function pixfort_php_notice(){

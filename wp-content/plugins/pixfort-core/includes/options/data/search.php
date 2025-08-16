@@ -8,7 +8,7 @@ $pixfortBuilder->addOption(
 		'tab'             => 'search',
 		'icon'            => 'browserSearch',
 		'linkText'            => __('Learn more about search', 'pixfort-core'),
-		'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/customize-website-search-bar/',
+		'linkHref'            => \PixfortCore::instance()->adminCore->getParam('docs_customize_search_bar'),
 		'linkIcon'            => 'bookmark'
 	]
 );
@@ -25,32 +25,32 @@ $pixfortBuilder->addOption(
 		'description' => __('Choose the default search overlay animation style.', 'pixfort-core'),
 		'options'        => array(
 			[
-				'name'            => 'ZigZag',
+				'name'            => __('ZigZag', 'pixfort-core'),
 				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/search/search-style-zigzag.webp',
 				'value'            => '1'
 			],
 			[
-				'name'            => 'Default Waves',
+				'name'            => __('Default Waves', 'pixfort-core'),
 				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/search/search-style-default-waves.webp',
 				'value'            => '2'
 			],
 			[
-				'name'            => 'Paper Slides',
+				'name'            => __('Paper Slides', 'pixfort-core'),
 				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/search/search-style-paper-slides.webp',
 				'value'            => '3'
 			],
 			[
-				'name'            => 'Side Waves',
+				'name'            => __('Side Waves', 'pixfort-core'),
 				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/search/search-style-side-waves.webp',
 				'value'            => '4'
 			],
 			[
-				'name'            => 'Time Machine',
+				'name'            => __('Time Machine', 'pixfort-core'),
 				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/search/search-style-time-machine.webp',
 				'value'            => '5'
 			],
 			[
-				'name'            => 'Silly Waves',
+				'name'            => __('Silly Waves', 'pixfort-core'),
 				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/search/search-style-silly-waves.webp',
 				'value'            => '6'
 			]
@@ -172,10 +172,21 @@ $pixfortBuilder->addOption(
 		]
 	]
 );
+// $pixfortBuilder->addOption(
+// 	'search-dark-overlay',
+// 	[
+// 		'type' => 'checkbox',
+// 		'label' => __('Use Dark Text Colors for Search Overlay', 'pixfort-core'),
+// 		'description' => __('Default theme text colors are set from the Typograpy tab.', 'pixfort-core'),
+// 		'options'         => array('1' => 'On', '0' => 'Off'),
+// 		'default'           => '0',
+// 		'tab'             => 'search'
+// 	]
+// );
 $pixfortBuilder->addOption(
 	'search-dark-overlay',
 	[
-		'type' => 'checkbox',
+		'type' => 'deleted',
 		'label' => __('Use Dark Text Colors for Search Overlay', 'pixfort-core'),
 		'description' => __('Default theme text colors are set from the Typograpy tab.', 'pixfort-core'),
 		'options'         => array('1' => 'On', '0' => 'Off'),
@@ -183,6 +194,41 @@ $pixfortBuilder->addOption(
 		'tab'             => 'search'
 	]
 );
+
+
+$defaultSearchOverlayTitleColor = 'white';
+$defaultSearchOverlayTextColor = 'light-opacity-5';
+
+if (!empty(pix_plugin_get_option('search-dark-overlay'))) {
+    if (pix_plugin_get_option('search-dark-overlay')==='1') {
+		$defaultSearchOverlayTitleColor = 'black';
+		$defaultSearchOverlayTextColor = 'dark-opacity-5';
+    }
+}
+
+$pixfortBuilder->addOption(
+    'search-overlay-title-color',
+    [
+        'type' => 'select',
+        'label' => __('Search Overlay Title Color', 'pixfort-core'),
+        'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultValue' => false, 'custom' => false]),
+        'groups' => true,
+        'default'             => $defaultSearchOverlayTitleColor,
+        'tab'             => 'search'
+    ]
+);
+$pixfortBuilder->addOption(
+    'search-overlay-text-color',
+    [
+        'type' => 'select',
+        'label' => __('Search Overlay Text Color', 'pixfort-core'),
+        'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultValue' => false, 'custom' => false]),
+        'groups' => true,
+        'default'             => $defaultSearchOverlayTextColor,
+        'tab'             => 'search'
+    ]
+);
+
 $pixfortBuilder->addOption(
 	'pix-search-alert',
 	[
@@ -194,7 +240,7 @@ $pixfortBuilder->addOption(
 		'style' => 'simple',
 		'icon'  =>  'info',
 		'linkOneText'  =>  __('Check article', 'pixfort-core'),
-		'linkOneHref'  =>  'https://essentials.pixfort.com/knowledge-base/customize-website-search-bar/#pix_section_custom_search',
+		'linkOneHref'  =>  \PixfortCore::instance()->adminCore->getParam('docs_customize_search_bar').'#pix_section_custom_search',
 		'linkOneIcon'  =>  'bookmark'
 	]
 );

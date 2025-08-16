@@ -653,12 +653,13 @@ a.pix-general-button span { display: block; width: 16px; height: 16px; overflow:
 }
 .wpb-layout-element-button { border: 0px solid transparent !important;background: transparent !important;margin: 0px; box-shadow: none;overflow: visible !important;}
 .wpb-layout-element-button:hover { border: 0px solid transparent !important;box-shadow: 0 0 0px 0px transparent inset; }
-.wpb-layout-element-button .vc_el-container {
+/* .wpb-layout-element-button .vc_el-container { */
+.wpb-layout-element-button  {
     padding: 10px !important;
     position: relative !important;
     /* height: 100% !important; */
 }
-.wpb-layout-element-button .vc_el-container a {
+.wpb-layout-element-button  a {
     background: #333;
     border-radius: 3px;
     overflow: hidden;
@@ -666,7 +667,7 @@ a.pix-general-button span { display: block; width: 16px; height: 16px; overflow:
     box-shadow: 0 .25rem .5rem rgba(0,0,0, .05), 0 1.5rem 2.2rem rgba(0,0,0, .1);
     transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
-.wpb-layout-element-button .vc_el-container a:hover {
+.wpb-layout-element-button  a:hover {
     transform: translate(0,-3px);
     box-shadow: 0 .25rem .5rem rgba(0,0,0, .09), 0 1.5rem 2.2rem rgba(0,0,0, .15);
 }
@@ -680,6 +681,10 @@ a.pix-general-button span { display: block; width: 16px; height: 16px; overflow:
 }
 .pixfort_element_nav {
     padding: 0px !important;
+    width: 100% !important;
+}
+.pixfort_element_nav > div {
+    width: 100% !important;
 }
 .pixfort_elemet_img_div {
     width: 100%;
@@ -703,6 +708,7 @@ a.pix-general-button span { display: block; width: 16px; height: 16px; overflow:
 .wpb-content-layouts {
     display: flex !important;
     flex-wrap: wrap !important;
+    gap: 0px !important;
 }
 .vc_add-element-container .wpb-content-layouts li {
     display: flex;
@@ -715,6 +721,13 @@ a.pix-general-button span { display: block; width: 16px; height: 16px; overflow:
 
 .pixfort_element_text {
     padding: 15px 10px;
+    text-align: left;
+}
+.vc_element-description {
+    text-align: left !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
 }
 .pixfort_element_text span[data-vc-shortcode-name]{
     color: #fff !important;

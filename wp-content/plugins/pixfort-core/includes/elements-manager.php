@@ -111,7 +111,7 @@ class ElementsManager {
 		include_once('elements/extras/misc.php');
 	}
 
-	public function renderElement($name, $attr, $content = null) {
+	public function renderElement($name, $attr = [], $content = null) {
 		if (file_exists(PIXFORT_PLUGIN_DIR . 'includes/elements/' . $name . '.php')) {
 			include_once('elements/' . $name . '.php');
 			$class = 'Pix'. $name;
@@ -143,6 +143,12 @@ class ElementsManager {
 
 	public static function pixAddInlineStyle($css){
 		self::$elementsCSS .= $css;
+		// if (defined('DOING_AJAX') && DOING_AJAX) {
+		// 	$element_id = 'pix-inline-style-' . hash('md5', json_encode($css));
+		// 	wp_register_style($element_id, false);
+		// 	wp_enqueue_style($element_id);
+		// 	wp_add_inline_style($element_id, $css);
+		// }
 	}
 
 	public function pixfortFooter(){
@@ -159,6 +165,9 @@ class ElementsManager {
 	}
 
 	public function pixfortCookies() {
+		if (defined('DOING_AJAX') && DOING_AJAX) {
+			return false;
+		}
 		$options = get_option('pix_options');
 		if (!empty($options['pix-enable-cookies'])) {
 			include_once('elements/extras/cookies.php');

@@ -226,7 +226,7 @@ vc_map( array (
                 'heading' => __( 'Responsive options', 'pixfort-core' ),
                 'param_name' => 'responsive_css',
                 'group' => __( 'Design options', 'pixfort-core' ),
-                "description" => __( "Input responsive values to override Desktop settings.<br />Note: Tablet landscape preview in WPBakery uses the Desktop values.", "essentials-core" ),
+                "description" => __( "Input responsive values to override Desktop settings.<br />Note: Tablet landscape preview in WPBakery uses the Desktop values.", "pixfort-core" ),
                 'value'   => '{}'
                 ),
         ),

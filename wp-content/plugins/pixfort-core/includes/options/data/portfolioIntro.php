@@ -4,11 +4,10 @@ $pixfortBuilder->addOption(
 	'pix-heading-portfolio-intro',
 	[
 		'type'             => 'heading',
-		'label'         => 'Portfolio Intro',
+		'label'         => __('Portfolio Intro', 'pixfort-core'),
 		'tab'             => 'portfolioIntro',
 		'icon'            => 'intro',
 		// 'linkText'            => __('Learn more about blog', 'pixfort-core'),
-		// 'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/how-to-create-the-blog-page/',
 		// 'linkIcon'            => 'bookmark'
 	]
 );
@@ -27,7 +26,7 @@ $pixfortBuilder->addOption(
     'portfolio-divider-style',
     [
         'type' => 'radio',
-        'label' => 'Portfolio Intro Divider Style',
+        'label' => __('Portfolio Intro Divider Style', 'pixfort-core'),
         'description' => __('Choose the shape of the intro divider.', 'pixfort-core'),
         'default' => '0',
         'tab'             => 'portfolioIntro',
@@ -89,14 +88,30 @@ $pixfortBuilder->addOption(
         'removePadding'       => true,
     ]
 );
+// $pixfortBuilder->addOption(
+//     'portfolio-intro-light',
+//     [
+//         'type' => 'checkbox',
+//         'label' => __('Enable Light Portfolio Intro Text', 'pixfort-core'),
+//         'description' => __('Disable to display dark text in the intro.', 'pixfort-core'),
+//         'options'         => array('1' => 'On', '0' => 'Off'),
+//         'default'           => '1',
+//         'tab'             => 'portfolioIntro',
+//         'dependency' => [
+//             'field' => 'portfolio-with-intro',
+//             'val' => ['1', true]
+//         ],
+//     ]
+// );
+
 $pixfortBuilder->addOption(
     'portfolio-intro-light',
     [
-        'type' => 'checkbox',
-        'label' => __('Enable Light Portfolio Intro Text', 'pixfort-core'),
+        'type' => 'deleted',
+        'label' => __('Enable light Portfolio intro text', 'pixfort-core'),
         'description' => __('Disable to display dark text in the intro.', 'pixfort-core'),
         'options'         => array('1' => 'On', '0' => 'Off'),
-        'default'           => '1',
+        'default'           => '',
         'tab'             => 'portfolioIntro',
         'dependency' => [
             'field' => 'portfolio-with-intro',
@@ -104,6 +119,82 @@ $pixfortBuilder->addOption(
         ],
     ]
 );
+$defaultIntroTitleColor = 'heading-default';
+$defaultIntroTitleColorCustom = '#495057';
+$defaultIntroBreadcrumbsColor = 'body-default';
+$defaultIntroBreadcrumbsColorCustom = '#6c757d';
+
+if (!empty(pix_plugin_get_option('portfolio-intro-light'))) {
+    if (pix_plugin_get_option('portfolio-intro-light')==='1') {
+        $defaultIntroTitleColor = pix_plugin_get_option('opt-dark-heading-color');
+        $defaultIntroTitleColorCustom = pix_plugin_get_option('opt-custom-dark-heading-color');
+        $defaultIntroBreadcrumbsColor = pix_plugin_get_option('opt-dark-body-color');
+        $defaultIntroBreadcrumbsColorCustom = pix_plugin_get_option('opt-custom-dark-body-color');
+    }
+}
+
+$pixfortBuilder->addOption(
+    'portfolio-intro-title-color',
+    [
+        'type' => 'select',
+        'label' => __('Portfolio Intro title color', 'pixfort-core'),
+        'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultValue' => false]),
+        'groups' => true,
+        'default'             => $defaultIntroTitleColor,
+        'tab'             => 'portfolioIntro',
+        'dependency' => [
+            'field' => 'portfolio-with-intro',
+            'val' => ['1', true]
+        ],
+    ]
+);
+$pixfortBuilder->addOption(
+    'portfolio-intro-title-color-custom',
+    [
+        'type'             => 'color',
+        'tab'             => 'portfolioIntro',
+        'label'         => __('Custom Portfolio Intro title color', 'pixfort-core'),
+        'default'         => $defaultIntroTitleColorCustom,
+        'disableAlpha'         => true,
+        'hideBorderBottom'      => true,
+        'dependency' => [
+            'field' => 'portfolio-intro-title-color',
+            'val' => ['custom']
+        ]
+    ]
+);
+$pixfortBuilder->addOption(
+    'portfolio-intro-breadcrumbs-color',
+    [
+        'type' => 'select',
+        'label' => __('Portfolio Intro Breadcrumbs color', 'pixfort-core'),
+        'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultValue' => false]),
+        'groups' => true,
+        'default'             => $defaultIntroBreadcrumbsColor,
+        'tab'             => 'portfolioIntro',
+        'dependency' => [
+            'field' => 'portfolio-with-intro',
+            'val' => ['1', true]
+        ],
+    ]
+);
+$pixfortBuilder->addOption(
+    'portfolio-intro-breadcrumbs-color-custom',
+    [
+        'type'             => 'color',
+        'tab'             => 'portfolioIntro',
+        'label'         => __('Custom Portfolio Intro Breadcrumbs color', 'pixfort-core'),
+        'default'         => $defaultIntroBreadcrumbsColorCustom,
+        'disableAlpha'         => true,
+        'hideBorderBottom'      => true,
+        'dependency' => [
+            'field' => 'portfolio-intro-breadcrumbs-color',
+            'val' => ['custom']
+        ]
+    ]
+);
+
+
 $pixfortBuilder->addOption(
     'portfolio-intro-align',
     [
@@ -127,7 +218,9 @@ $pixfortBuilder->addOption(
     [
         'type' => 'select',
         'label' => __('Portfolio Intro Overlay Color', 'pixfort-core'),
-        'options' => array_flip($bg_colors_no_custom),
+        // 'options' => array_flip($bg_colors_no_custom),
+        'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['bg' => true, 'transparent' => true, 'defaultValue' => false, 'custom' => false]),
+		'groups' => true,
         'default'             => 'primary',
         'tab'             => 'portfolioIntro',
         'dependency' => [
@@ -156,10 +249,15 @@ $pixfortBuilder->addOption(
                 'pix-opacity-1'   => "90%",
                 'pix-opacity-0'   => "100%",
         ],
+        // 'dependency' => [
+        //     'field' => 'portfolio-with-intro',
+        //     'val' => ['1', true]
+        // ],
         'dependency' => [
-            'field' => 'portfolio-with-intro',
-            'val' => ['1', true]
-        ],
+            'field' => 'portfolio-intro-img',
+            'val' => ['0', false, ''],
+            'op'                => '!='
+        ]
     ]
 );
 $pixfortBuilder->addOption(

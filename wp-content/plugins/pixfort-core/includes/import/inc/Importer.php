@@ -1,6 +1,6 @@
 <?php
 /**
- * Class for declaring the content importer used in the One Click Demo Import plugin
+ * Class for declaring the content importer used in the pixfort Demo Import
  *
  * @package ocdi
  */
@@ -30,7 +30,7 @@ class Importer {
 	public $logger;
 
 	/**
-	 * The instance of the One Click Demo Import class.
+	 * The instance of the pixfort Demo Import class.
 	 *
 	 * @var object
 	 */

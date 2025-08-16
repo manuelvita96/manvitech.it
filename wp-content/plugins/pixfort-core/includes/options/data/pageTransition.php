@@ -11,7 +11,7 @@
 			'tab'             => 'pageTransition',
 			'icon'            => 'loading',
 			// 'linkText'            => __('Learn about website logo', 'pixfort-core'),
-			// 'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/how-to-add-website-logo/',
+			// 'linkHref'            => '#',
 			// 'linkIcon'            => 'bookmark'
 		]
 	);
@@ -36,7 +36,12 @@
 			'type'             => 'color',
 			'tab'             => 'pageTransition',
 			'label'         => __('Page Transition Background Color', 'pixfort-core'),
-			'default'         => '#ffffff',
+			// 'default'         => '#ffffff',
+			'default'         => [
+				'light' => '#ffffff',
+				'dark' => '#000000'
+			],
+			'dynamic'         => true,
 			'disableAlpha'         => true,
 			'enableReset'	  => true,
 			'dependency' => [
@@ -53,7 +58,7 @@
 			'label' => __('Disable Top Loading Bar', 'pixfort-core'),
 			'options'         => array('1' => 'On', '0' => 'Off'),
 			'default'           => '0',
-			'description' => __('Note: the bar color is the website gradient color set in Theme options → Layout → Colors.', 'pixfort-core'),
+			'description' => __('Note: The bar color is the website gradient color set in Theme Options → Design System → Colors.', 'pixfort-core'),
 			'tab'             => 'pageTransition'
 		]
 	);
@@ -84,6 +89,10 @@
 				"style-6"            => __("Wobble Spinning bar", 'pixfort-core'),
 				"style-7"            => __("Spinning bar", 'pixfort-core'),
 				"style-8"            => __("Custom Image", 'pixfort-core'),
+			],
+			'dependency' => [
+				'field' => 'site-disable-loading-icon',
+				'val' => ['0', false]
 			]
 		]
 	);
@@ -115,3 +124,19 @@
 			'hideBorderBottom'   => true
 		]
 	);
+	if(defined('IS_PIXFORT_THEME')){
+		if(defined('PIX_DEV')){
+			$pixfortBuilder->addOption(
+				'enable-view-transition',
+				[
+					'type' => 'checkbox',
+					'label' => __('Enable view transition (Alpha)', 'pixfort-core'),
+					'options'         => array('1' => 'On', '0' => 'Off'),
+					'default'           => '0',
+					'tab'             => 'pageTransition',
+					'hideBorderBottom'   => true,
+					'showBorderTop'   => true
+				]
+			);
+		}
+	}

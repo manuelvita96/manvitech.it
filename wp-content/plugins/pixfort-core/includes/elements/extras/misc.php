@@ -7,6 +7,13 @@ if (!function_exists('sc_pix_br')) {
 }
 add_shortcode('pix_br', 'sc_pix_br');
 
+if (!function_exists('pixfort_dynamic_site_url')) {
+    function pixfort_dynamic_site_url($attr) {
+        return site_url();
+    }
+}
+add_shortcode( 'site_url', 'pixfort_dynamic_site_url' );
+
 /* ---------------------------------------------------------------------------
 * date [pix_date]
 * --------------------------------------------------------------------------- */

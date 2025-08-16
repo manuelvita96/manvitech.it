@@ -195,18 +195,7 @@ class PixContentTabs {
             }
             $icon_html = '';
             if (!empty($item['icon'])) {
-                if(\PixfortCore::instance()->icons::$isEnabled) {
-                    $icon_html .= \PixfortCore::instance()->icons->getIcon($item['icon'], 24, 'mr-2');
-                } else {
-                    $item['icon'] = \PixfortCore::instance()->icons->verifyIconName($item['icon']);
-                    /*
-                    * Deprecated Icons 
-                    */
-                    $icon_html = '<i class="' . $item['icon'] . ' mr-2"></i> ';
-                    /*
-                    * End of Deprecated Icons
-                    */
-                }
+                $icon_html .= \PixfortCore::instance()->icons->getIcon($item['icon'], 24, 'mr-2');
                 
             }
             $bold = '';

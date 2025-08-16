@@ -1,6 +1,8 @@
 jQuery(window).on('elementor/frontend/init', () => {
     const addHandler = ($element) => {
-        init_chart($element);
+        if (typeof init_chart === 'function') {
+            init_chart($element);
+        }
     };
 
     elementorFrontend.hooks.addAction(

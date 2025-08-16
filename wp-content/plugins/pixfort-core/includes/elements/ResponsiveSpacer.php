@@ -11,7 +11,6 @@ class PixResponsiveSpacer {
 
     function render($attr, $content = null) {
 
-
         extract(shortcode_atts(array(
             'height'  => '',
             'height_tablet'  => '',

@@ -64,7 +64,7 @@
 }
 
 // Color contrast (Lighten or Darken)
-@function color-yiq-ld($color, $dark: $yiq-text-dark, $light: $yiq-text-light) {
+@function color-yiq-ld($color, $dark: $yiq-text-dark, $light: $yiq-text-light, $amount: 80%) {
 	$r: red($color);
 	$g: green($color);
 	$b: blue($color);
@@ -72,9 +72,9 @@
 	$yiq: (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
 
 	@if ($yiq >= $yiq-contrasted-threshold) {
-		@return darken($color, 80%);
+		@return darken($color, $amount);
 	} @else {
-		@return lighten($color, 80%);
+		@return lighten($color, $amount);
 	}
 }
 

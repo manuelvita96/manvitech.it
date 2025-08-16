@@ -16,10 +16,6 @@
 	    	},
 	    	pix_update: function () {
 				var that = this;
-
-				if(vc.frame_window){
-					vc.frame_window.update_collapse();
-				}
 	    	},
 	    	updated: function () {
 	            // console && console.log('InlineShortcodeView_test_element: updated called.');

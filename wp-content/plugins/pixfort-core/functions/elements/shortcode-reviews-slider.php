@@ -297,8 +297,8 @@ vc_map(array(
                 'value'         => array(
                     __('Standard', 'pixfort-core')                     => 'pix-effect-standard',
                     __('Circular effect', 'pixfort-core')             => 'pix-circular-slider',
-                    __('Circular Left only', 'pixfort-core')             => 'pix-circular-left',
-                    __('Circular Right only', 'pixfort-core')         => 'pix-circular-right',
+                    __('Circular Start Only', 'pixfort-core')             => 'pix-circular-left',
+                    __('Circular End Only', 'pixfort-core')         => 'pix-circular-right',
                     __('Fade out', 'pixfort-core')                     => 'pix-fade-out-effect',
                 ),
                 "group" => __("Advanced", "pixfort-core"),

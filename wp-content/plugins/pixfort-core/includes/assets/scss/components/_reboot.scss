@@ -13,9 +13,8 @@ body {
     font-size: $font-size-base;
     font-weight: $font-weight-base;
     line-height: $line-height-base;
-    color: $body-color;
+    color: var(--pix-body-default);
     text-align: left;
-    background-color: $body-bg;
     width: 100%;
     min-height: 100vh;
     min-height: -webkit-fill-available;
@@ -25,15 +24,22 @@ b, strong, .font-weight-bold {
     font-weight: $font-weight-bold !important;
 }
 
+.flex-1 {
+    flex: 1 1 0%;
+}
+
 :root {
     --transition-base: #{$transition-base};
     --pf-icon-color: currentcolor;
-    // --pf-icon-stroke-width: 1.5;
     @if variable-exists(pixfort-stroke-width) {
         --pf-icon-stroke-width: #{$pixfort-stroke-width};
     } @else {
         --pf-icon-stroke-width: 1.5;
     }
+    --pix-shadow-none: none;
+    --pix-shadow-sm: 0 1px 5px 0 rgba(0, 0, 0, 0.1);
+    --pix-shadow: 0 0.125rem 0.375rem rgba(0, 0, 0, 0.03), 0 0.5rem 1.2rem rgba(0, 0, 0, 0.08);
+    --pix-shadow-lg: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.03), 0 1.5rem 2.2rem rgba(0, 0, 0, 0.08);
 }
 svg.pixfort-icon {
     width: 1em;
@@ -45,23 +51,27 @@ svg.pixfort-icon {
         shape-rendering: geometricPrecision;
     }
 }
-// .overflow-x-clip { 
-//     overflow-x: clip;
-// }
+
+.overflow-clip,
 body.pix-is-safari {
     overflow: clip;
 }
-@media screen and (max-width: 992px) {
+@media screen and (max-width: $mainMobileBreakpoint) {
     body.pix-is-safari {
         overflow-x: hidden;
         overflow-x: clip;
     }
+    .pix-is-safari .pix_tabs_container [data-anim-type] {
+        opacity: 1 !important;
+	    transform: none;
+    }
 }
 .navbar-light.navbar-nav.nav-link.text-body-default,
 .text-body-default {
-    color: $body-color !important;
-    svg:not(.pixfort-icon) path {
-        fill: $body-color !important;
+    @if variable-exists(body-color-var) {    
+        color: $body-color-var !important;
+    } @else {
+        color: $body-color !important;
     }
     &.btn {
         &:hover {
@@ -74,50 +84,27 @@ body.pix-is-safari {
     }
 }
 .svg-body-default {
-    color: $body-color;
-    svg:not(.pixfort-icon),
-    svg:not(.pixfort-icon) path {
-        fill: $body-color !important;
-    }
-    &:hover,
-    &:focus,
-    &:active {
-        svg:not(.pixfort-icon),
-        svg:not(.pixfort-icon) path {
-            fill: darken($body-color, 20%) !important;
-        }
-    }
+    color: var(--pix-body-default);
 }
 a.navbar-light.navbar-nav.nav-link.text-body-default,
 a.text-body-default {
     &:hover,
     &:focus,
     &:active {
-        color: darken($body-color, 20%) !important;
+        color: color-mix(in srgb, var(--pix-body-default) 60%, black 40%) !important;
     }
 }
 
 .navbar-light.navbar-nav.nav-link.text-heading-default,
 .text-heading-default {
-    color: $heading-color !important;
-    svg:not(.pixfort-icon) path {
-        fill: $heading-color !important;
+    @if variable-exists(heading-color-var) {    
+        color: $heading-color-var !important;
+    } @else {
+        color: $heading-color !important;
     }
 }
 .svg-heading-default {
     color: $heading-color;
-    svg:not(.pixfort-icon),
-    svg:not(.pixfort-icon) path {
-        fill: $heading-color;
-    }
-    &:hover,
-    &:focus,
-    &:active {
-        svg:not(.pixfort-icon),
-        svg:not(.pixfort-icon) path {
-            fill: darken($heading-color, 20%);
-        }
-    }
 }
 
 a.navbar-light.navbar-nav.nav-link.text-heading-default,
@@ -125,19 +112,27 @@ a.text-heading-default {
     &:hover,
     &:focus,
     &:active {
-        color: darken($heading-color, 20%) !important;
-        svg:not(.pixfort-icon),
-        svg:not(.pixfort-icon) path {
-            fill: darken($heading-color, 20%) !important;
+        @if variable-exists(heading-color-var) {    
+            color: color-mix(in srgb, $heading-color-var 80%, black 20%) !important;
+        } @else {
+            color: darken($heading-color, 20%) !important;
         }
     }
 }
 
 .bg-body-default {
-    background: $body-color;
+    @if variable-exists(body-color-var) {    
+        --pix-bg-color: #{$body-color-var};
+    } @else {
+        --pix-bg-color: #{$body-color};
+    }
 }
 .bg-heading-default {
-    background: $heading-color;
+    @if variable-exists(heading-color-var) {    
+        --pix-bg-color: #{$heading-color-var};
+    } @else {
+        --pix-bg-color: #{$heading-color};
+    }
 }
 
 .pix-full-height {
@@ -153,75 +148,6 @@ a.text-heading-default {
        object-fit: contain;
 }
 
-%heading {
-    line-height: $headings-line-height;
-}
-
-h1, .h1 {
-    @extend %heading;
-    @if variable-exists(h1-line-height) {
-        line-height: $h1-line-height;
-    }
-    // &:not(.pix-custom-text-size) svg:not(.pixfort-icon) {
-    //     height: $h1-font-size;
-    //     width: auto;
-    // }
-}
-
-h2, .h2 {
-    @extend %heading;
-    @if variable-exists(h2-line-height) {
-        line-height: $h2-line-height;
-    }
-    // &:not(.pix-custom-text-size) svg:not(.pixfort-icon) {
-    //     height: $h2-font-size;
-    //     width: auto;
-    // }
-}
-
-h3, .h3 {
-    @extend %heading;
-    @if variable-exists(h3-line-height) {
-        line-height: $h3-line-height;
-    }
-    // &:not(.pix-custom-text-size) svg:not(.pixfort-icon) {
-    //     height: $h3-font-size;
-    //     width: auto;
-    // }
-}
-
-h4, .h4 {
-    @extend %heading;
-    @if variable-exists(h4-line-height) {
-        line-height: $h4-line-height;
-    }
-    // &:not(.pix-custom-text-size) svg:not(.pixfort-icon) {
-    //     height: $h4-font-size;
-    //     width: auto;
-    // }
-}
-
-h5, .h5 {
-    @extend %heading;
-    @if variable-exists(h5-line-height) {
-        line-height: $h5-line-height;
-    }
-    // &:not(.pix-custom-text-size) svg:not(.pixfort-icon) {
-    //     height: $h5-font-size;
-    //     width: auto;
-    // }
-}
-
-h6, .h6 {
-    @extend %heading;
-    @if variable-exists(h6-line-height) {
-        line-height: $h6-line-height;
-    }
-    // &:not(.pix-custom-text-size) svg:not(.pixfort-icon) {
-    //     height: $h6-font-size;
-    //     width: auto;
-    // }
-}
 
 .h1,
 .h2,
@@ -235,19 +161,59 @@ h3,
 h4,
 h5,
 h6 {
+    line-height: $headings-line-height;
     margin-top: 0;
     margin-bottom: $headings-margin-bottom;
     font-family: var(--pix-heading-font), sans-serif;
     letter-spacing: $letter-spacing-secondary;
+    font-weight: 500;
     &:not(.elementor-heading-title) {
-        color: $heading-color;
+        @if variable-exists(heading-color-var) {    
+            color: $heading-color-var;
+        } @else {
+            color: $heading-color;
+        }
     }
-    // svg:not(.pixfort-icon) path {
-    //     fill: $heading-color !important;
-    // }
 }
 
-@media screen and (max-width: 992px) {
+
+@if variable-exists(h1-line-height) {
+    h1, .h1 {
+        line-height: $h1-line-height;
+    }
+}
+
+h2, .h2 {
+    @if variable-exists(h2-line-height) {
+        line-height: $h2-line-height;
+    }
+}
+
+h3, .h3 {
+    @if variable-exists(h3-line-height) {
+        line-height: $h3-line-height;
+    }
+}
+
+h4, .h4 {
+    @if variable-exists(h4-line-height) {
+        line-height: $h4-line-height;
+    }
+}
+
+h5, .h5 {
+    @if variable-exists(h5-line-height) {
+        line-height: $h5-line-height;
+    }
+}
+
+h6, .h6 {
+    @if variable-exists(h6-line-height) {
+        line-height: $h6-line-height;
+    }
+}
+
+@media screen and (max-width: $mainMobileBreakpoint) {
     @if variable-exists(h1-line-height-tablet) {
         h1, .h1 { line-height: $h1-line-height-tablet; }
     }
@@ -291,7 +257,8 @@ h6 {
 p {
     margin-top: 0;
     margin-bottom: $paragraph-margin-bottom;
-    color: $body-color;
+    // color: $body-color;
+    color: var(--pix-body-default);
 }
 .elementor-widget-woocommerce-product-content p,
 .elementor-text-editor p,
@@ -322,14 +289,9 @@ figcaption {
 .text-18 {
     font-size: 18px;
     line-height: 26px;
-    i {
-        position: relative;
-        top: 2px;
-    }
 }
 .text-small,
 .text-sm {
-    // font-size: 14px !important; Removed !important to prevent conflicts with other plugins
     font-size: 14px;
 }
 .text-extra-small,
@@ -343,12 +305,12 @@ figcaption {
 .line-height-1 {
     line-height: 1rem;
 }
-.rounded-t-lg {
-    @include border-top-radius(0.3rem);
-}
-.rounded-b-lg {
-    @include border-bottom-radius(0.3rem);
-}
+// .rounded-t-lg {
+//     @include border-top-radius(0.3rem);
+// }
+// .rounded-b-lg {
+//     @include border-bottom-radius(0.3rem);
+// }
 
 .sticky-bottom {
     position: sticky;
@@ -816,6 +778,7 @@ body.render .pix-loading-circ-path {
 }
 $popupContainer: 1140px;
 :root {
+    // --pix-container-width: min(1140px, 100vw);
     --pix-container-width: 1140px;
 }
 

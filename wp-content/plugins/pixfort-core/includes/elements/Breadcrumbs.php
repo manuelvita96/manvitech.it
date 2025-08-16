@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
+    exit; // Exit if accessed directly.
 }
 
 /* ---------------------------------------------------------------------------
@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
 * --------------------------------------------------------------------------- */
 class PixBreadcrumbs {
 
-	function render($attr, $content = null) {
+    function render($attr, $content = null) {
         extract(shortcode_atts(array(
             'align'         => 'justify-content-start',
             'css'             => '',
@@ -22,7 +22,7 @@ class PixBreadcrumbs {
         global $post;
         global $woocommerce;
         $homeURL = esc_url(home_url('/'));
-        $homeTitle = esc_attr__('Home', 'essentials');
+        $homeTitle = esc_attr__('Home', 'pixfort-core');
         if ($woocommerce && (is_product() || is_product_category())) {
             $shopPage = wc_get_page_id('shop');
             $homeTitle = get_the_title($shopPage);

@@ -9,42 +9,37 @@ function pix_page_meta_add(){
 	global $pix_page_meta_box_3;
 
 
-	$header_posts = get_posts([
-	    'post_type' => 'pixheader',
-	    'post_status' => array('publish', 'private'),
-	    'numberposts' => -1
-	]);
+	// $header_posts = get_posts([
+	//     'post_type' => 'pixheader',
+	//     'post_status' => array('publish', 'private'),
+	//     'numberposts' => -1
+	// ]);
 
-	$headers = array();
+	// $headers = array();
 
-	$headers[''] = "Theme Default";
-	$headers['disable'] = "Disable";
-	foreach ($header_posts as $key => $value) {
-	    $headers[$value->ID] = $value->post_title;
-	}
+	// $headers['default'] = "Theme Default";
+	// $headers['disable'] = "Disable";
+	// foreach ($header_posts as $key => $value) {
+	//     $headers[$value->ID] = $value->post_title;
+	// }
 
-	$footer_posts = get_posts([
-	    'post_type' => 'pixfooter',
-	    'post_status' => array('publish', 'private'),
-	    'numberposts' => -1
-	]);
+	// $footer_posts = get_posts([
+	//     'post_type' => 'pixfooter',
+	//     'post_status' => array('publish', 'private'),
+	//     'numberposts' => -1
+	// ]);
 
-	$footers = array();
-	$footers[''] = "Theme Default";
-	$footers['disable'] = "Disabled";
-	foreach ($footer_posts as $key => $value) {
-	    $footers[$value->ID] = $value->post_title;
-	}
+	
 
 
-	$sidebars = array();
-	$sidebars[''] = 'Theme default';
-	$sidebars['sidebar-1'] = 'Main Sidebar';
-	if(!empty(pix_plugin_get_option('pix_sidebars'))){
-	    foreach (pix_plugin_get_option('pix_sidebars') as $key => $value) {
-	        $sidebars['sidebar-'.str_replace(' ', '', $value)] = $value;
-	    }
-	}
+	// $sidebars = array();
+	// $sidebars[''] = 'Theme default';
+	// $sidebars['sidebar-1'] = 'Main Sidebar';
+	// if(!empty(pix_plugin_get_option('pix_sidebars'))){
+	//     foreach (pix_plugin_get_option('pix_sidebars') as $key => $value) {
+	//         $sidebars['sidebar-'.str_replace(' ', '', $value)] = $value;
+	//     }
+	// }
 
 	$pagePostTypes = array('page', 'elementor_library');
 	$pagePostTypes = apply_filters( 'pixfort_page_options_post_types', $pagePostTypes );
@@ -105,21 +100,22 @@ function pix_page_meta_add(){
 			array(
 				'id' 		=> 'pix-page-header',
 				'type' 		=> 'select',
+				'default' => 'default',
 				'title' 	=> __('Custom Header', 'pixfort-core'),
-				'options' 	=> $headers,
+				// 'options' 	=> $headers,
 			),
 			array(
 				'id' 		=> 'pix-page-footer',
 				'type' 		=> 'select',
 				'title' 	=> __('Custom Footer', 'pixfort-core'),
-				'options' 	=> $footers,
+				// 'options' 	=> $footers,
 			),
 			array(
 				'id' 		=> 'pix-page-sidebar',
 				'type' 		=> 'select',
 				'title' 	=> __('Custom Sidebar', 'pixfort-core'),
 				'sub_desc'	=> __('Select if you choose sidebar template for the page.', 'pixfort-core'),
-				'options' 	=> $sidebars,
+				// 'options' 	=> $sidebars,
 			),
 			array(
 				'id' 		=> 'pix-page-sidebar-sticky',
@@ -137,6 +133,7 @@ function pix_page_meta_add(){
 				'type' 		=> 'select',
 				'title' 	=> __('Disable Gutenberg CSS from this page', 'pixfort-core'),
 				'sub_desc'	=> __('If you don\'t use Gutenberg in the page, you can disabled its css to improve page performance.', 'pixfort-core'),
+				'hideBorderBottom'   => true,
 				'options' 	=> array(
 	                ''   => "No",
 	                'yes'   => "Yes"
@@ -153,36 +150,11 @@ function pix_page_meta_add(){
  function pix_page_show_box() {
 	global $pix_page_meta_box_3, $post;
 
-	$header_posts = get_posts([
-	    'post_type' => 'pixheader',
-	    'post_status' => array('publish', 'private'),
-	    'numberposts' => -1
-	]);
-
-	$headers = array();
-
-	$headers[''] = "Theme Default";
-	$headers['disable'] = "Disable";
-	foreach ($header_posts as $key => $value) {
-	    $headers[$value->ID] = $value->post_title;
-	}
-
-	$footer_posts = get_posts([
-	    'post_type' => 'pixfooter',
-	    'post_status' => array('publish', 'private'),
-	    'numberposts' => -1
-	]);
-
-	$footers = array();
-	$footers[''] = "Theme Default";
-	$footers['disable'] = "Disabled";
-	foreach ($footer_posts as $key => $value) {
-	    $footers[$value->ID] = $value->post_title;
-	}
 
 
-	$sidebars = array();
-	$sidebars[''] = 'Theme default';
+
+	$sidebars = [];
+	$sidebars['default'] = 'Theme default';
 	$sidebars['sidebar-1'] = 'Main Sidebar';
 	if(!empty(pix_plugin_get_option('pix_sidebars'))){
 	    foreach (pix_plugin_get_option('pix_sidebars') as $key => $value) {
@@ -196,26 +168,8 @@ function pix_page_meta_add(){
 
 
 
-		echo '<table class="form-table">';
+		echo '<table class="form-table" style="margin-bottom:110px;">';
 			echo '<tbody>';
-			// $test = new PixfortOptions();
-			
-
-
-				// foreach ($pix_page_meta_box_3['fields'] as $field) {
-				// 	$meta = get_post_meta($post->ID, $field['id'], true);
-				// 	if( ! key_exists('std', $field) ) $field['std'] = false;
-				// 	$meta = ( $meta || $meta==='0' ) ? $meta : stripslashes(htmlspecialchars(($field['std']), ENT_QUOTES ));
-				// 	pix_meta_field_input( $field, $meta );
-				// }
-
-				
-			// $test->loadOptionsData();
-			// echo '<div id="pixfort_builder_option"></div>';
-			// echo '<input type="text" name="pixfort-options" id="pixfort-options" class="large-text" value="" >';
-
-
-
 
 			$pixfortBuilder = new PixfortOptions();
 			$pixfortBuilder->initOptions(
@@ -279,32 +233,106 @@ function pix_page_meta_add(){
 			);
 
 			
+			
+			$displayLegacyHeaderSelector = false;
+			$headerValue = get_post_meta($post->ID, 'pix-page-header', true);
+			if(!empty($headerValue) && $headerValue !== 'default' && $headerValue !== 'disable' && $headerValue !== 'disable'){	
+				if(ctype_digit($headerValue)){
+					$displayLegacyHeaderSelector = true;
+				}
+			}
+			if($displayLegacyHeaderSelector) {
+				$headers = [];
+				$header_posts = get_posts([
+					'post_type' => 'pixheader',
+					'post_status' => array('publish', 'private'),
+					'numberposts' => -1
+				]);
+				$headers['default'] = "Theme Default";
+				$headers['disable'] = "Disable";
+				foreach ($header_posts as $key => $value) {
+					$headers[$value->ID] = $value->post_title;
+				}
+				$pixfortBuilder->addOption(
+					'pix-page-header',
+					[
+						'type' => 'select',
+						'label' => 'Custom Header',
+						'default' 		=> 'default',
+						'options' => $headers
+					]
+				);
+			} else {
+				$pixfortBuilder->addOption(
+					'pix-page-header',
+					[
+						'type' => 'select',
+						'label' => 'Page Header',
+						'default' => 'default',
+						'description' => 'You can set custom headers with specific display conditions from each header settings.',
+						'tooltipText' => 'Global Site Header can be set from Theme Options → Layout → Header.</br>You can set custom headers with specific display conditions from each header settings.',
+						'options' => [
+							'default' => "Default",
+							'disable' => "Disable"
+						]
+					]
+				);
+			}
 
-			$pixfortBuilder->addOption(
-				'pix-page-header',
-				[
-					'type' => 'select',
-					'label' => 'Custom Header',
-					'default' => '',
-					'options' => $headers
-				]
-			);
-			$pixfortBuilder->addOption(
-				'pix-page-footer',
-				[
-					'type' => 'select',
-					'label' => 'Custom Footer',
-					'default' => '',
-					'options' => $footers
-				]
-			);
+			$displayLegacyFooterSelector = false;
+			$footerValue = get_post_meta($post->ID, 'pix-page-footer', true);
+			if(!empty($footerValue) && $footerValue !== 'default' && $footerValue !== 'disable' && $footerValue !== 'disable'){	
+				if(ctype_digit($footerValue)){
+					$displayLegacyFooterSelector = true;
+				}
+			}
+			if($displayLegacyFooterSelector) {
+				$footer_posts = get_posts([
+					'post_type' => 'pixfooter',
+					'post_status' => array('publish', 'private'),
+					'numberposts' => -1
+				]);
+			
+				$footers = [];
+				$footers['default'] = "Theme Default";
+				$footers['disable'] = "Disabled";
+				
+				foreach ($footer_posts as $key => $value) {
+					$footers[$value->ID] = $value->post_title;
+				}
+				$pixfortBuilder->addOption(
+					'pix-page-footer',
+					[
+						'type' => 'select',
+						'label' => 'Custom Footer',
+						'default' => 'default',
+						'options' => $footers
+					]
+				);
+			} else {
+				$pixfortBuilder->addOption(
+					'pix-page-footer',
+					[
+						'type' => 'select',
+						'label' => 'Page Footer',
+						'default' => 'default',
+						'description' => 'You can set custom footers with specific display conditions from each footer settings.',
+						'tooltipText' => 'Global Site Footer can be set from Theme Options → Layout → Footer.</br>You can set custom footers with specific display conditions from each footer settings.',
+						'options' => [
+							'default' => "Default",
+							'disable' => "Disable"
+						]
+					]
+				);
+			}
+			
 
 			$pixfortBuilder->addOption(
 				'pix-page-sidebar',
 				[
 					'type' => 'select',
 					'label' => 'Custom Sidebar',
-					'default' => '',
+					'default' => 'default',
 					'description' => __('Select if you choose sidebar template for the page.', 'pixfort-core'),
 					'options' => $sidebars
 				]
@@ -314,10 +342,10 @@ function pix_page_meta_add(){
 				[
 					'type' => 'select',
 					'label' => 'Sidebar Sticky',
-					'default' => '',
+					'default' => 'default',
 					'description' => __('Select if you choose sidebar template for the page.', 'pixfort-core'),
 					'options' => array(
-						''   => "Theme default",
+						'default'   => "Theme default",
 						'sticky-bottom'   => "Sticky bottom",
 						'sticky-top'   => "Sticky Top",
 						'sticky-disabled'   => "Disable Sticky"
@@ -329,10 +357,11 @@ function pix_page_meta_add(){
 				[
 					'type' => 'select',
 					'label' => 'Disable Gutenberg CSS from this page',
-					'default' => '',
+					'default' => 'no',
 					'description' => __('If you don\'t use Gutenberg in the page, you can disabled its css to improve page performance.', 'pixfort-core'),
+					'hideBorderBottom'   => true,
 					'options' => array(
-						''   => "No",
+						'no'   => "No",
 						'yes'   => "Yes"
 					),
 				]
@@ -340,9 +369,6 @@ function pix_page_meta_add(){
 				
 
 			$pixfortBuilder->loadOptionsData();
-		?>
-			<!-- <div style="width:100%;text-align:center;" class="pixfort_headerbuilder_loading"><img src="<?php echo PIX_IMG_PLACEHOLDER; ?>" /></div> -->
-		<?php
 		
 			echo '<div id="fu3obnz"></div>';
 
@@ -389,7 +415,10 @@ function pix_page_save_data($post_id) {
 				$new = ""; // problem with "quick edit"
 				//continue;
 			}
-
+			if($field['id'] === 'pix-custom-intro-bg'){
+				$new = stripslashes($new);
+				$new = json_decode($new);
+			}
 			if( isset($new) && $new != $old) {
 				update_post_meta($post_id, $field['id'], $new);
 			}elseif('' == $new && $old) {

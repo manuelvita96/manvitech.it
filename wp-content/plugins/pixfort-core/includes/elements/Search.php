@@ -42,7 +42,7 @@ class PixSearch {
 
 
 		$nonce = wp_create_nonce("search_nonce");
-		$link = admin_url('admin-ajax.php?action=pix_ajax_searcht&nonce=' . $nonce);
+		$link = admin_url('admin-ajax.php?action=pix_ajax_search&nonce=' . $nonce);
 		$search_data = 'data-search-link="' . $link . '"';
 
 		$output  = '';
@@ -53,11 +53,18 @@ class PixSearch {
 		}
 		$class_names = join(' ', $classes);
 		$placeholder = esc_attr__('Search for something', 'pixfort-core');
-		$output  .= '<form class="pix-small-search pix-ajax-search-container position-relative bg-white shadow-sm rounded-lg pix-small-search ' . $class_names . '" ' . $c_style . ' ' . $anim_type . ' ' . $anim_delay_icon . ' method="get" action="' . esc_url(home_url('/')) . '">
+		$homeUrl = home_url('/');
+		if(function_exists('pll_home_url')){
+			$homeUrl = pll_home_url();
+		}
+		$output  .= '<form class="pix-small-search pix-ajax-search-container position-relative shadow-sm rounded-lg pix-small-search ' . $class_names . '" ' . $c_style . ' ' . $anim_type . ' ' . $anim_delay_icon . ' method="get" action="' . esc_url($homeUrl) . '">
                 <div class="d-flex">
                     <input type="search" class="form-control pix-ajax-search form-control-lg shadow-0 font-weight-bold text-body-default" name="s" autocomplete="off" placeholder="' . $placeholder . '" aria-label="Search" ' . $search_data . '>
-                    <button class="btn btn-search btn-white m-0 text-body-default" aria-label="Search" type="submit">' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/search.svg') . '</button>
-                </div>
+                    <button class="btn btn-search btn-white m-0 text-body-default" aria-label="Search" type="submit">' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/search.svg') . '</button>';
+					if(function_exists('pll_current_language')){
+						$output  .= '<input type="hidden" name="lang" value="'.pll_current_language().'">';
+					}
+                $output  .= '</div>
             </form>';
 		if (!empty($search_div)) {
 			$output  .= '</div>';

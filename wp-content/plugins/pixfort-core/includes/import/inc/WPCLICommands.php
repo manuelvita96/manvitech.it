@@ -1,6 +1,6 @@
 <?php
 /**
- * The class for WP-CLI commands for One Click Demo Import plugin.
+ * The class for WP-CLI commands for pixfort Demo Import.
  *
  * @package ocdi
  */

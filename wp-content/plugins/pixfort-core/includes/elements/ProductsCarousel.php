@@ -70,13 +70,12 @@ class PixProductsCarousel {
 		if (function_exists('vc_shortcode_custom_css_class')) {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
 		}
-		wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI . 'functions/css/elements/css/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
+		wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 		wp_enqueue_script('pix-flickity-js');
 		$output = '';
 		$classes = array();
 		$anim_type = '';
 		$anim_delay = '';
-		// array_push($classes, esc_attr( $css_class ));
 		if (!empty($align)) {
 			array_push($classes, $align);
 			array_push($classes, "w-100");
@@ -88,6 +87,13 @@ class PixProductsCarousel {
 			$autoplay_time = false;
 		} else {
 			$autoplay_time = (int)$autoplay_time;
+		}
+		if(is_rtl()){
+			if($slider_effect == 'pix-circular-left'){
+				$slider_effect = 'pix-circular-right';
+			}else if($slider_effect == 'pix-circular-right'){
+				$slider_effect = 'pix-circular-left';
+			}
 		}
 		$slider_data = '';
 		$pix_id = "pix-slider-" . rand(1, 200000000);
@@ -111,56 +117,15 @@ class PixProductsCarousel {
 
 
 
-		$style_arr = array(
-			"" => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
+		$extra_classes = [];
+		
+		$effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
+		array_push($extra_classes, $effectsClasses);
 
-		$hover_effect_arr = array(
-			""       => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
-
-		$add_hover_effect_arr = array(
-			""       => "",
-			"1"       => "fly-sm",
-			"2"       => "fly",
-			"3"       => "fly-lg",
-			"4"       => "scale-sm",
-			"5"       => "scale",
-			"6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-			"8"       => "scale-inverse",
-			"9"       => "scale-inverse-lg",
-		);
-
-
-		$extra_classes = array();
-		if ($style) {
-			array_push($extra_classes, $style_arr[$style]);
-		}
-		if ($hover_effect) {
-			array_push($extra_classes, $hover_effect_arr[$hover_effect]);
-		}
-		if ($add_hover_effect) {
-			array_push($extra_classes, $add_hover_effect_arr[$add_hover_effect]);
-		}
 		$extra_classes = join(' ', $extra_classes);
 		$extra_classes .= ' ' . $rounded_img;
-
-		// $output  .= '<div class="pix-shop-carousel main-carousel pix-overflow-p-visible pix-fix-x pix-slider-left pix-opacity-slider-1 pix-overflow-y-visible2 pix-slider-'.$slider_num.' pix-slider-dots '.$dots_style.'">';
 		$output  .= '<div class="' . $css_class . '">';
-		$output  .= '<div id="' . $pix_id . '" class="pix-main-slider pix-shop-carousel pix-fix-x2 ' . $visible_overflow . ' ' . $slider_style . ' ' . $slider_effect . ' ' . $slider_scale . ' ' . $visible_y . ' pix-slider-' . $slider_num . ' pix-slider-dots ' . $dots_style . ' ' . $dots_align . '" ' . $slider_data . '>';
+		$output  .= '<div id="' . $pix_id . '" class="pix-main-slider pix-shop-carousel ' . $visible_overflow . ' ' . $slider_style . ' ' . $slider_effect . ' ' . $slider_scale . ' ' . $visible_y . ' pix-slider-' . $slider_num . ' pix-slider-dots ' . $dots_style . ' ' . $dots_align . '" ' . $slider_data . '>';
 
 		$args = array(
 			// 'sku' => $groupSku,
@@ -201,7 +166,6 @@ class PixProductsCarousel {
 					// setup_postdata($GLOBALS['post'] =& $post_object);
 					// wc_get_template_part('content', 'product');
 					// $output .= get_template_part( 'woocommerce/pixfort/product-top-img' );
-
 					$output .= do_shortcode('[products test6="asd" ids="' . $sku_product->get_id() . '"]');
 					$output .= '</div>';
 					$output .= '</div>';

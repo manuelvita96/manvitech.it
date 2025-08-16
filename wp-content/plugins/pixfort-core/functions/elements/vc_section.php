@@ -87,7 +87,7 @@ $pix_section_params = array(
 
     array(
         "type" => "checkbox",
-        "heading" => __("Enable dark mode (Beta)", "pixfort-core"),
+        "heading" => __("Enable dark mode (Deprecated)", "pixfort-core"),
         "param_name" => "pix_dark_mode",
         "value" => array_flip(array(
             "yes"             => "Yes"
@@ -833,7 +833,7 @@ $pix_section_params = array_merge(
             'heading' => __('Responsive options', 'pixfort-core'),
             'param_name' => 'responsive_css',
             'group' => __('Design Options', 'pixfort-core'),
-            "description" => __("Input responsive values to override Desktop settings.<br />Note: Tablet landscape preview in WPBakery uses the Desktop values.", "essentials-core"),
+            "description" => __("Input responsive values to override Desktop settings.<br />Note: Tablet landscape preview in WPBakery uses the Desktop values.", "pixfort-core"),
             'value'   => '{}'
         ),
     )

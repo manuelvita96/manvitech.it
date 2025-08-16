@@ -198,7 +198,7 @@ if(empty(pix_plugin_get_option('google-api-key'))){
 $map_params = array_merge(array(
     array(
         'type'        => 'pix_param_section_notice',
-        'pix_title'  => 'Google Maps API key is not configured in theme options, for more information check <a target="_blank" href="https://essentials.pixfort.com/knowledge-base/using-advanced-google-maps-styles/">this article</a> from our knowledge base.',
+        'pix_title'  => 'Google Maps API key is not configured in theme options, for more information check <a target="_blank" href="'.\PixfortCore::instance()->adminCore->getParam('docs_google_maps').'">this article</a> from our knowledge base.',
         'param_name'	=> 'pix_maps_notice',
     )
 ), $map_params);

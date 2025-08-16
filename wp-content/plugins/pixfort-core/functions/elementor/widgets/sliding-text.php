@@ -6,8 +6,6 @@ class Pix_Eor_Sliding_Text extends Widget_Base {
 
 	public function __construct($data = [], $args = null) {
 		parent::__construct($data, $args);
-
-		wp_register_script('pix-sliding-text-handle', PIX_CORE_PLUGIN_URI . 'functions/elementor/js/sliding-text.js', ['elementor-frontend'], PIXFORT_PLUGIN_VERSION, true);
 	}
 
 	public function get_name() {
@@ -27,66 +25,21 @@ class Pix_Eor_Sliding_Text extends Widget_Base {
 	}
 
 	protected function register_controls() {
-		$colors = array(
-			"Body default"			=> "body-default",
-			"Heading default"		=> "heading-default",
-			"Primary"				=> "primary",
-			"Primary Gradient"		=> "gradient-primary",
-			"Secondary"				=> "secondary",
-			"White"					=> "white",
-			"Black"					=> "black",
-			"Green"					=> "green",
-			"Blue"					=> "blue",
-			"Red"					=> "red",
-			"Yellow"				=> "yellow",
-			"Brown"					=> "brown",
-			"Purple"				=> "purple",
-			"Orange"				=> "orange",
-			"Cyan"					=> "cyan",
-			// "Transparent"					=> "transparent",
-			"Gray 1"				=> "gray-1",
-			"Gray 2"				=> "gray-2",
-			"Gray 3"				=> "gray-3",
-			"Gray 4"				=> "gray-4",
-			"Gray 5"				=> "gray-5",
-			"Gray 6"				=> "gray-6",
-			"Gray 7"				=> "gray-7",
-			"Gray 8"				=> "gray-8",
-			"Gray 9"				=> "gray-9",
-			"Dark opacity 1"		=> "dark-opacity-1",
-			"Dark opacity 2"		=> "dark-opacity-2",
-			"Dark opacity 3"		=> "dark-opacity-3",
-			"Dark opacity 4"		=> "dark-opacity-4",
-			"Dark opacity 5"		=> "dark-opacity-5",
-			"Dark opacity 6"		=> "dark-opacity-6",
-			"Dark opacity 7"		=> "dark-opacity-7",
-			"Dark opacity 8"		=> "dark-opacity-8",
-			"Dark opacity 9"		=> "dark-opacity-9",
-			"Light opacity 1"		=> "light-opacity-1",
-			"Light opacity 2"		=> "light-opacity-2",
-			"Light opacity 3"		=> "light-opacity-3",
-			"Light opacity 4"		=> "light-opacity-4",
-			"Light opacity 5"		=> "light-opacity-5",
-			"Light opacity 6"		=> "light-opacity-6",
-			"Light opacity 7"		=> "light-opacity-7",
-			"Light opacity 8"		=> "light-opacity-8",
-			"Light opacity 9"		=> "light-opacity-9",
-			"Custom"				=> "custom"
-		);
+	
 		$this->start_controls_section(
 			'section_title',
 			[
-				'label' => __('Content', 'elementor'),
+				'label' => __('Content', 'pixfort-core'),
 			]
 		);
 
 		$this->add_control(
 			'content',
 			[
-				'label' => __('Text', 'elementor'),
+				'label' => __('Text', 'pixfort-core'),
 				'label_block' => true,
 				'type' => Controls_Manager::TEXTAREA,
-				'placeholder' => __('', 'elementor'),
+				'placeholder' => __('', 'pixfort-core'),
 				'dynamic'     => array(
 					'active'  => true
 				),
@@ -100,20 +53,23 @@ class Pix_Eor_Sliding_Text extends Widget_Base {
 				'label' => __('Position', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => [
-					'center' => __('Center','pixfort-core'),
-					'left' => __('Start','pixfort-core'),
-					'right' => __('End','pixfort-core'),
-                ],
+					'center' => __('Center', 'pixfort-core'),
+					'left' => __('Start', 'pixfort-core'),
+					'right' => __('End', 'pixfort-core'),
+				],
 				'default' => 'center',
 			]
 		);
-		$this->add_control(
+		$this->add_responsive_control(
 			'max_width',
 			[
 				'label' => __('Field max width', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::TEXT,
 				'default' => __('', 'pixfort-core'),
 				'placeholder' => __('Input the width with the unit (eg. 300px)', 'pixfort-core'),
+				'selectors' => [
+					'{{WRAPPER}} .d-inline-block, {{WRAPPER}} .pix-sliding-headline-2' => 'max-width: {{VALUE}} !important;display: inline-block;',
+				],
 			]
 		);
 
@@ -154,31 +110,6 @@ class Pix_Eor_Sliding_Text extends Widget_Base {
 				'default' => '',
 			]
 		);
-
-		// $this->add_responsive_control(
-		// 	'secondary_font2',
-		// 	[
-		// 		'label' => __( 'Secondary font', 'elementor' ),
-		// 		'type' => Controls_Manager::CHOOSE,
-		// 		'options' => [
-		// 			'' => [
-		// 				'title' => __( 'Default', 'elementor' ),
-		// 				'icon' => 'eicon-undo',
-		// 			],
-		// 			'--pix-body-font' => [
-		// 				'title' => __( 'Body Font', 'elementor' ),
-		// 				'icon' => 'eicon-text',
-		// 			],
-		// 			'--pix-heading-font' => [
-		// 				'title' => __( 'Heading (Secondary)', 'elementor' ),
-		// 				'icon' => 'eicon-heading',
-		// 			]
-		// 		],
-		// 		'selectors' => [
-		// 			'{{WRAPPER}} .pix-sliding-headline, {{WRAPPER}} .pix-sliding-headline span' => 'font-family: var({{VALUE}}) !important;',
-		// 		],
-		// 	]
-		// );
 
 		$this->add_control(
 			'secondary_font',
@@ -231,7 +162,7 @@ class Pix_Eor_Sliding_Text extends Widget_Base {
 			[
 				'label' => __('Title color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(),
 				'default' => 'heading-default',
 			]
 		);
@@ -254,9 +185,9 @@ class Pix_Eor_Sliding_Text extends Widget_Base {
 
 
 		$this->start_controls_section(
-			'advanced_animation',
+			'animation',
 			[
-				'label' => __('Advanced animation', 'pixfort-core'),
+				'label' => __('Animation', 'pixfort-core'),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -315,7 +246,7 @@ class Pix_Eor_Sliding_Text extends Widget_Base {
 		$this->start_controls_section(
 			'section_element_style',
 			[
-				'label' => __('Style', 'elementor'),
+				'label' => __('Style', 'pixfort-core'),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -341,14 +272,117 @@ class Pix_Eor_Sliding_Text extends Widget_Base {
 		);
 
 		$this->end_controls_section();
+
+		if (defined('IS_PIXFORT_THEME') || ( defined('PIXFORT_THEME_SLUG') && PIXFORT_THEME_SLUG === 'acquire') ) {
+			$this->start_controls_section(
+				'section_element_animation',
+				[
+					'label' => __('Advanced Animations', 'pixfort-core'),
+					'tab' => Controls_Manager::TAB_STYLE,
+				]
+			);
+
+			$this->add_responsive_control(
+				'pix_translate_y',
+
+				[
+					'label' => __('Vertical offset', 'pixfort-core'),
+					'type' => \Elementor\Controls_Manager::SLIDER,
+					'default' => [
+						'unit' => 'px',
+						'size' => '',
+					],
+					'range' => [
+						'px' => [
+							'min' => -100,
+							'max' => 100,
+							'step' => 1,
+						]
+					],
+					'render_type' => 'template',
+					'size_units' => ['px', 'em', 'rem', 'custom'],
+					'selectors' => [
+						'{{WRAPPER}}' => '--pix-translate-y: {{SIZE}}{{UNIT}};',
+					],
+				]
+			);
+			$this->add_responsive_control(
+				'pix_translate_x',
+
+				[
+					'label' => __('Horizontal offset', 'pixfort-core'),
+					'type' => \Elementor\Controls_Manager::SLIDER,
+					'default' => [
+						'unit' => 'px',
+						'size' => '',
+					],
+					'range' => [
+						'px' => [
+							'min' => -100,
+							'max' => 100,
+							'step' => 1,
+						]
+					],
+					'render_type' => 'template',
+					'size_units' => ['px', 'em', 'rem', 'custom'],
+					'selectors' => [
+						'{{WRAPPER}}' => '--pix-translate-x: {{SIZE}}{{UNIT}};',
+					],
+				]
+			);
+			$this->add_responsive_control(
+				'pix_blur',
+
+				[
+					'label' => __('Blur', 'pixfort-core'),
+					'type' => \Elementor\Controls_Manager::SLIDER,
+					'default' => [
+						'unit' => 'px',
+						'size' => '',
+					],
+					'range' => [
+						'px' => [
+							'min' => 0,
+							'max' => 20,
+							'step' => 1,
+						]
+					],
+					'render_type' => 'template',
+					'size_units' => ['px'],
+					// 'placeholder' => __( 'Leave empty for full size.', 'pixfort-core' ),
+					'selectors' => [
+						'{{WRAPPER}}' => '--pix-sliding-blur: {{SIZE}}{{UNIT}};',
+					],
+				]
+			);
+			$this->add_responsive_control(
+				'pix-overflow',
+				[
+					'label' => __('Mask items inside box', 'pixfort-core'),
+					'type' => \Elementor\Controls_Manager::SELECT,
+					'options' => [
+						'hidden' => __('Yes', 'pixfort-core'),
+						'visible' => __('No', 'pixfort-core'),
+					],
+					'default' => 'hidden',
+					'render_type' => 'template',
+					'selectors' => [
+						'{{WRAPPER}}' => '--pix-sliding-overflow: {{VALUE}};',
+					],
+				]
+
+			);
+
+			$this->end_controls_section();
+		}
 	}
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		if(empty($settings['el_id'])){
-			$settings['el_id'] = 'el-'.$this->get_id();
+		if (empty($settings['el_id'])) {
+			$settings['el_id'] = 'el-' . $this->get_id();
 		}
-		echo \PixfortCore::instance()->elementsManager->renderElement('SlidingText', $settings, $settings['content'] );
+		echo \PixfortCore::instance()->elementsManager->renderElement('SlidingText', $settings, $settings['content']);
 	}
 
 

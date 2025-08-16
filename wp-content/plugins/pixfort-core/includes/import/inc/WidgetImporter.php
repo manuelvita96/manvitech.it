@@ -1,6 +1,6 @@
 <?php
 /**
- * Class for the widget importer used in the One Click Demo Import plugin.
+ * Class for the widget importer used in the pixfort Demo Import.
  *
  * Code is mostly from the Widget Importer & Exporter plugin.
  *

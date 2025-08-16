@@ -13,9 +13,10 @@ class PixFancyBox {
         extract(shortcode_atts(array(
             'title'         => '',
             'text'         => '',
-            'link'         => '#',
+            'link'         => '',
             'target'         => '',
             'bg_img'         => '',
+            'bg_img_dark'         => '',
             'alt'         => '',
             'position'      => 'bottom',
             'bold'        => 'font-weight-bold',
@@ -46,51 +47,10 @@ class PixFancyBox {
             $css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
         }
 
-        $style_arr = array(
-            "" => "",
-            "1"       => "shadow-sm",
-            "2"       => "shadow",
-            "3"       => "shadow-lg",
-            "4"       => "shadow-inverse-sm",
-            "5"       => "shadow-inverse",
-            "6"       => "shadow-inverse-lg",
-        );
-
-        $hover_effect_arr = array(
-            ""       => "",
-            "1"       => "shadow-hover-sm",
-            "2"       => "shadow-hover",
-            "3"       => "shadow-hover-lg",
-            "4"       => "shadow-inverse-hover-sm",
-            "5"       => "shadow-inverse-hover",
-            "6"       => "shadow-inverse-hover-lg",
-        );
-
-        $add_hover_effect_arr = array(
-            ""       => "",
-            "1"       => "fly-sm",
-            "2"       => "fly",
-            "3"       => "fly-lg",
-            "4"       => "scale-sm",
-            "5"       => "scale",
-            "6"       => "scale-lg",
-            "7"       => "scale-inverse-sm",
-            "8"       => "scale-inverse",
-            "9"       => "scale-inverse-lg",
-        );
-
         $el_classes = ' ';
         $el_classes .= esc_attr($css_class) . ' ';
 
-        if ($style) {
-            $el_classes .= $style_arr[$style] . ' ';
-        }
-        if ($hover_effect) {
-            $el_classes .= $hover_effect_arr[$hover_effect] . ' ';
-        }
-        if ($add_hover_effect) {
-            $el_classes .= $add_hover_effect_arr[$add_hover_effect] . ' ';
-        }
+        $el_classes .= \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
 
         $anim_type = '';
         $anim_delay = '';
@@ -139,52 +99,49 @@ class PixFancyBox {
             }
         }
 
-        if ($bg_img) {
-            $imgSrcset = '';
-            if (is_string($bg_img) && substr($bg_img, 0, 4) === "http") {
-                $imgSrc = $bg_img;
-            } else {
-                if (!empty($bg_img['id'])) {
-                    $img = wp_get_attachment_image_src($bg_img['id'], "large");
-                    $imgSrcset = wp_get_attachment_image_srcset($bg_img['id']);
-                } else {
-                    $img = wp_get_attachment_image_src($bg_img, "large");
-                    $imgSrcset = wp_get_attachment_image_srcset($bg_img);
-                }
-                $imgSrc = $img[0];
-            }
-        }
         $output = '';
-        $bottom_blur = '';
 
         $overlay_custom_style = '';
         if (!empty($overlay_color) && $overlay_color == 'custom') {
-            $overlay_custom_style = 'style="background:' . $overlay_custom_color . ';"';
+            $overlay_custom_style = 'style="--pix-bg-color:' . $overlay_custom_color . ';"';
         }
 
 
         $output .= '<div class="card mb-3 mb-sm-0 pix-info-card ' . $el_classes . '" ' . $anim_type . ' ' . $anim_delay . '>';
         $output .= '<div class="card-inner">';
-        $output .= '<a href="' . $link . '" ' . $linkTarget . '>';
+        if(!empty($link)) {
+            $output .= '<a href="' . $link . '" ' . $linkTarget . '>';
+        }
+        
+        // Use getDynamicImage for the main image
+        if ($bg_img) {
+            $imageOutput = \PixfortCore::instance()->coreFunctions->getDynamicImage($bg_img, 'large', [
+                'class' => 'card-img animating fade-in-Img',
+                'alt' => $alt
+            ], isset($bg_img_dark) ? $bg_img_dark : null);
+            
+            if (!empty($imageOutput)) {
+                $output .= $imageOutput;
+            }
+        }
         if ($position == 'top') {
-            $output .= '<img class="card-img animating fade-in-Img" src="' . $imgSrc . '" alt="' . $alt . '">';
             $output .= '<div class="card-img-overlay p-0 animating fade-in-down">';
         } else {
-            $bottom_blur = 'bottom-blur';
             $output .= '<div class="card-img-overlay p-0 d-flex flex-column justify-content-end animating fade-in-up">';
         }
-        $output .= '<div class="card-img-overlay-content card-content-box bg-' . $overlay_color . ' pix-p-20" ' . $overlay_custom_style . '>';
+
+        $blurClass = '';
         if (!empty($enable_blur) || $enable_blur == 'yes') {
-            $output .= '<div class="card-img-blur ' . $bottom_blur . '" style="background-image:url(' . $imgSrc . ');"></div>';
+            $blurClass = 'pix-card-content-bg-blur';
         }
+        $output .= '<div class="card-img-overlay-content card-content-box bg-' . $overlay_color . ' pix-p-20 ' . $blurClass . '" ' . $overlay_custom_style . '>';
         $output .= '<h6 class="card-text ' . $content_bold . ' ' . $c_color . ' ' . $content_size . ' animate-in" data-anim-type="fade-in" data-anim-delay="800" style="' . $c_custom_color . '">' . $text . '</h6>';
         $output .= '<' . $title_tag . ' class="' . $class_names . ' animate-in" data-anim-type="fade-in" data-anim-delay="400" style="' . $t_custom_color . $t_size_style . '">' . $title . '</' . $title_tag . '>';
         $output .= '</div>';
         $output .= '</div>';
-        if ($position != 'top') {
-            $output .= '<img class="card-img-bottom animating fade-in-Img" src="' . $imgSrc . '" alt="' . $alt . '">';
+        if(!empty($link)) {
+            $output .= '</a>';
         }
-        $output .= '</a>';
         $output .= '</div>';
         $output .= '</div>';
 

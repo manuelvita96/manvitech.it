@@ -4,11 +4,11 @@ $pixfortBuilder->addOption(
 	'pix-typography-external-fonts',
 	[
 		'type'             => 'heading',
-		'label'         => 'External Fonts',
+		'label'         => __('External Fonts', 'pixfort-core'),
 		'tab'             => 'typographyAdvanced',
 		'icon'            => 'textRotate',
 		'linkText'            => __('How external fonts works?', 'pixfort-core'),
-        'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/how-to-use-external-fonts/',
+        'linkHref'            => \PixfortCore::instance()->adminCore->getParam('docs_external_fonts'),
         'linkIcon'            => 'bookmark'
 	]
 );
@@ -75,7 +75,7 @@ $pixfortBuilder->addOption(
         'style' => 'simple',
         'icon'  =>  'info',
         'linkOneText'  =>  __('Learn about external fonts', 'pixfort-core'),
-        'linkOneHref'  =>  'https://essentials.pixfort.com/knowledge-base/how-to-use-external-fonts/',
+        'linkOneHref'  =>  \PixfortCore::instance()->adminCore->getParam('docs_external_fonts'),
         'linkOneIcon'  =>  'bookmark'
     ]
 );
@@ -86,7 +86,7 @@ $pixfortBuilder->addOption(
 	'pix-typography-font-sizes',
 	[
 		'type'             => 'heading',
-		'label'         => 'Theme Font Sizes',
+		'label'         => __('Theme Font Sizes', 'pixfort-core'),
 		'tab'             => 'typographyAdvanced',
 		'icon'            => 'textHeight'
 	]

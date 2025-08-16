@@ -52,7 +52,7 @@ $pixfortBuilder->addOption(
 	'pix-blog-related-style',
 	[
 		'type' => 'radio',
-		'label' => 'Related Posts Style',
+		'label' => __('Related Posts Style', 'pixfort-core'),
 		'default' => 'full-img',
 		'tab'             => 'blogAdvanced',
 		'imageSize'       => '130',
@@ -60,17 +60,17 @@ $pixfortBuilder->addOption(
 		'height'			=> 86,
 		'options'        => array(
 			[
-				'name'            => 'Default',
+				'name'            => __('Default', 'pixfort-core'),
 				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/style-default.svg',
 				'value'            => 'default'
 			],
 			[
-				'name'            => 'With Padding',
+				'name'            => __('With Padding', 'pixfort-core'),
 				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/style-with-padding.svg',
 				'value'            => 'with-padding'
 			],
 			[
-				'name'            => 'Full Image',
+				'name'            => __('Full Image', 'pixfort-core'),
 				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/style-full-image.svg',
 				'value'            => 'full-img'
 			]

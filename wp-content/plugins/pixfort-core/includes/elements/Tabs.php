@@ -97,7 +97,7 @@ class PixTabs {
         if ($tabs_style == 'pix-pills-lines') {
             $lines_class = 'd-flex';
         }
-        $menu .= '<div class="nav ' . $lines_class . ' nav-pills pix_tabs_btns ' . $position . ' ' . $is_fill . ' ' . $tabs_style . ' mb-4 ' . $animate_class . '" data-anim-type="' . $animation . '" role="tablist" data-anim-delay="' . $delay . '" id="v-pills-tab"  aria-orientation="vertical">';
+        $menu .= '<div class="nav ' . $lines_class . ' nav-pills pix_tabs_btns ' . $position . ' ' . $is_fill . ' ' . $tabs_style . ' mb-4 ' . $animate_class . '" data-anim-type="' . $animation . '" role="tablist" data-anim-delay="' . $delay . '" id="v-pills-tab"  aria-orientation="horizontal">';
 
         if ($tabs_style == 'pix-pills-lines') {
             $menu .= '<div class="nav-item2 d-none d-sm-block flex-fill align-self-center pix-mr-20">';
@@ -115,33 +115,17 @@ class PixTabs {
             }
             $icon_html = '';
             if (!empty($item['icon'])) {
-                if(\PixfortCore::instance()->icons::$isEnabled) {
-                    if ($tabs_icon_position == 'top') {
-                        $icon_html .= \PixfortCore::instance()->icons->getIcon($item['icon'], 24, 'w-100 d-block text-center mt-2');
-                    } else {
-                        $icon_html .= \PixfortCore::instance()->icons->getIcon($item['icon'], 24, 'mr-1 mr-md-2');
-                    }
+                if ($tabs_icon_position == 'top') {
+                    $icon_html .= \PixfortCore::instance()->icons->getIcon($item['icon'], 24, 'w-100 d-block text-center mt-2');
                 } else {
-                    $item['icon'] = \PixfortCore::instance()->icons->verifyIconName($item['icon']);
-                    /*
-                    * Deprecated Icons 
-                    */
-                    if ($tabs_icon_position == 'top') {
-                        $icon_html = '<i class="w-100 ' . $item['icon'] . ' d-block text-center mt-2"></i> ';
-                    } else {
-                        $icon_html = '<i class="' . $item['icon'] . ' mr-1 mr-md-2"></i> ';
-                    }
-                    /*
-                    * End of Deprecated Icons
-                    */
+                    $icon_html .= \PixfortCore::instance()->icons->getIcon($item['icon'], 24, 'mr-1 mr-md-2');
                 }
-                
             }
             $menu .= '<div class="nav-item">';
             if ($tabs_icon_position == 'top') {
-                $menu .= '<a class="nav-link pix-tabs-btn text-24 pix-px-25 py-1 py-md-2 my-2 '.$active.' ' . $bold . '" data-id="' . $item['tab_id'] . '" role="tab" id="pix-tab-btn-' . $item['tab_id'] . '" data-toggle="pill" href="#pix-tab-' . $item['tab_id'] . '"  aria-controls="pix-tab-' . $item['tab_id'] . '">' . $icon_html . $title . '</a>';
+                $menu .= '<a class="nav-link pix-tabs-btn text-24 pix-px-25 py-1 py-md-2 my-2 ' . $active . ' ' . $bold . '" data-id="' . $item['tab_id'] . '" role="tab" id="pix-tab-btn-' . $item['tab_id'] . '" data-toggle="pill" href="#pix-tab-' . $item['tab_id'] . '"  aria-controls="pix-tab-' . $item['tab_id'] . '">' . $icon_html . $title . '</a>';
             } else {
-                $menu .= '<a class="nav-link pix-tabs-btn text-24 pix-px-25 py-1 py-md-2 my-2 '.$active.' ' . $bold . '" data-id="' . $item['tab_id'] . '" role="tab" id="pix-tab-btn-' . $item['tab_id'] . '" data-toggle="pill" href="#pix-tab-' . $item['tab_id'] . '"  aria-controls="pix-tab-' . $item['tab_id'] . '"><span class="d-inline-flex align-items-center">' . $icon_html . $title . '</span></a>';
+                $menu .= '<a class="nav-link pix-tabs-btn text-24 pix-px-25 py-1 py-md-2 my-2 ' . $active . ' ' . $bold . '" data-id="' . $item['tab_id'] . '" role="tab" id="pix-tab-btn-' . $item['tab_id'] . '" data-toggle="pill" href="#pix-tab-' . $item['tab_id'] . '"  aria-controls="pix-tab-' . $item['tab_id'] . '"><span class="d-inline-flex align-items-center">' . $icon_html . $title . '</span></a>';
             }
             $active = '';
 
@@ -165,5 +149,3 @@ class PixTabs {
         return $output;
     }
 }
-
-

@@ -51,7 +51,7 @@ class PixSlidingText {
 		if (!empty($el_class)) array_push($classes, $el_class);
 
 		if (empty($el_id)) {
-			$el_id = 'sliding-text-' . rand(1, 200000000);
+			$el_id = 'sliding-text-' . hash('md5', $content);
 		} else {
 			if (is_numeric($el_id[0])) {
 				$el_id = 'el' . $el_id;
@@ -69,18 +69,7 @@ class PixSlidingText {
 		$t_custom_color = '';
 		if (!empty($text_color)) {
 			if ($text_color != 'custom') {
-				// if($text_color==='gradient-primary'){
-				// 	array_push($classes, 'is-gradient-text' );
-				// 	$is_gradient_color = true;
-				// }
 				$t_color .= 'text-' . $text_color;
-
-				// if($text_color!='gradient-primary2'){
-				// 	$t_color .= 'text-'.$text_color;
-				// }else{
-				// 	array_push($classes, 'text-gradient-primary' );
-				// }
-
 			} else {
 				$t_custom_color = 'color:' . $text_custom_color . ';';
 			}
@@ -112,25 +101,30 @@ class PixSlidingText {
 			$letters_delay_value = (int) $letters_delay;
 			$words_delay = (int) $words_delay;
 			foreach ($items as $key => $value) {
-				if ($sliding_letters) {
-					$letters = preg_split('//u', $value, -1, PREG_SPLIT_NO_EMPTY);
-					$innerDelay = $delay;
-					$output .= '<span class="slide-in-container">';
-					if ($letters_delay === false || $letters_delay === '') {
-						if (count($letters)) $letters_delay_value = $words_delay / count($letters);
-					}
-					foreach ($letters as $k => $v) {
-						$output .= '<span class="pix-sliding-item pix-sliding-letter ' . $t_color . '" style="transition-delay: ' . $innerDelay . 'ms;' . $transitionFunction . '">' .  $v . '</span>';
-						$innerDelay += $letters_delay_value;
-					}
-					$output .= '</span> ';
+				if($value === 'pix_new_line'){
+					$output .= '<br />';
 				} else {
-					$output .= '<span class="slide-in-container ">';
-					if ($is_gradient_color) {
-						$output .= '<span class="pix-sliding-item-placeholder" style="opacity: 0; display: inline-block; pointer-events: none; visibility: hidden; padding: 10px 0; margin: -10px 0; overflow: hidden;">' . do_shortcode($value) . '</span> ';
+					if ($sliding_letters) {
+						$letters = preg_split('//u', $value, -1, PREG_SPLIT_NO_EMPTY);
+						$innerDelay = $delay;
+						$output .= '<span class="slide-in-container">';
+						if ($letters_delay === false || $letters_delay === '') {
+							if (count($letters)) $letters_delay_value = $words_delay / count($letters);
+						}
+						foreach ($letters as $k => $v) {
+							$output .= '<span class="pix-sliding-item pix-sliding-letter ' . $t_color . '" style="transition-delay: ' . $innerDelay . 'ms;' . $transitionFunction . '">' .  $v . '</span>';
+							$innerDelay += $letters_delay_value;
+						}
+						$output .= '</span> ';
+					} else {
+						$output .= '<span class="slide-in-container ">';
+						if ($is_gradient_color) {
+							$output .= '<span class="pix-sliding-item-placeholder" style="opacity: 0; display: inline-block; pointer-events: none; visibility: hidden; padding: 10px 0; margin: -10px 0; overflow: hidden;">' . do_shortcode($value) . '</span> ';
+						}
+						$output .= '<span class="pix-sliding-item ' . $t_color . '" style="transition-delay: ' . $delay . 'ms;' . $transitionFunction . '">' . do_shortcode($value) . '&#32;</span></span> ';
 					}
-					$output .= '<span class="pix-sliding-item ' . $t_color . '" style="transition-delay: ' . $delay . 'ms;' . $transitionFunction . '">' . do_shortcode($value) . '&#32;</span></span> ';
 				}
+				
 				$delay += (int) $words_delay;
 			}
 			$output .= '</' . $size . '>';
@@ -142,4 +136,3 @@ class PixSlidingText {
 		return $output;
 	}
 }
-

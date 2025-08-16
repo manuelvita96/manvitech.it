@@ -11,39 +11,38 @@ class PixButton {
 
 	function render($attr, $content = null) {
 		extract(shortcode_atts(array(
-			'btn_title_bold' => 'font-weight-bold',
-			'btn_italic' => '',
-			'btn_secondary_font' => '',
-			'btn_color'		=> 'primary',
-			'btn_remove_padding'		=> '',
-			'btn_text_align'		=> '',
-			'btn_style' 		=> '',
-			'btn_rounded' 		=> '',
-			'btn_effect' 		=> '',
-			'btn_icon' 		=> '',
-			'btn_icon_position' 		=> '',
-			'btn_icon_animation' 		=> '',
-			'btn_size' 		=> 'md',
-			'btn_text' 		=> 'Click here',
-			'btn_link' 		=> '',
-			'btn_target' 		=> false,
-			'btn_popup_id' 		=> '',
-			'btn_text_color' 		=> '',
+			'btn_title_bold' 				=> 'font-weight-bold',
+			'btn_italic' 					=> '',
+			'btn_secondary_font' 			=> '',
+			'btn_color'						=> 'primary',
+			'btn_remove_padding'			=> '',
+			'btn_text_align'				=> '',
+			'btn_style' 					=> '',
+			'btn_rounded' 					=> '',
+			'btn_effect' 					=> '',
+			'btn_icon' 						=> '',
+			'btn_icon_position' 			=> '',
+			'btn_icon_animation' 			=> '',
+			'btn_size' 						=> 'md',
+			'btn_text' 						=> 'Click here',
+			'btn_link' 						=> '',
+			'btn_target' 					=> false,
+			'btn_popup_id' 					=> '',
+			'btn_text_color' 				=> '',
 			'btn_text_custom_color' 		=> '',
-			'btn_hover_effect' 		=> '',
-			'btn_add_hover_effect' 		=> '',
-			'btn_shadow_class' 		=> '',
-			'btn_full' 		=> '',
-			'btn_div' 		=> '',
-			'btn_animation' 		=> '',
-			'btn_anim_delay' 		=> '0',
-			'btn_mb' 		=> 'mb-2',
-			'is_elementor' 		=> false,
-			'btn_extra_classes' 		=> '',
-			'btn_id' 		=> '',
-			'btn_class' 		=> '',
-			'css' 		=> '',
-
+			'btn_hover_effect' 				=> '',
+			'btn_add_hover_effect' 			=> '',
+			'btn_shadow_class' 				=> '',
+			'btn_full' 						=> '',
+			'btn_div' 						=> '',
+			'btn_animation' 				=> '',
+			'btn_anim_delay' 				=> '0',
+			'btn_mb' 						=> 'mb-2',
+			'is_elementor' 					=> false,
+			'btn_extra_classes' 			=> '',
+			'btn_id' 						=> '',
+			'btn_class' 					=> '',
+			'css' 							=> '',
 		), $attr));
 
 
@@ -57,54 +56,13 @@ class PixButton {
 			$btn_mb = 'm-0';
 		}
 
-		$effect_arr = array(
-			"" => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
-
-		$hover_effect_arr = array(
-			""       => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
-
-		$add_hover_effect_arr = array(
-			""       => "",
-			"1"       => "fly-sm",
-			"2"       => "fly",
-			"3"       => "fly-lg",
-			"4"       => "scale-sm",
-			"5"       => "scale",
-			"6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-			"8"       => "scale-inverse",
-			"9"       => "scale-inverse-lg",
-		);
-
 		$classes = ' ';
 		$classes .= $css_class . ' ';
 		$btn_inline_style = '';
 		$inner_class = '';
 		$icon_inner_class = '';
 
-		if ($btn_effect) {
-			$classes .= $effect_arr[$btn_effect] . ' ';
-		}
-		if ($btn_hover_effect) {
-			$classes .= $hover_effect_arr[$btn_hover_effect] . ' ';
-		}
-		if ($btn_add_hover_effect) {
-			$classes .= $add_hover_effect_arr[$btn_add_hover_effect] . ' ';
-		}
+		$classes .= \PixfortCore::instance()->coreFunctions->getEffectsClasses($btn_effect, $btn_hover_effect, $btn_add_hover_effect) . ' ';
 
 		if ($btn_text_color) {
 			if ($btn_text_color != 'custom') {
@@ -141,7 +99,7 @@ class PixButton {
 		} else {
 			if (strpos($btn_color, 'dark-') === 0 || strpos($btn_color, 'light-') === 0) {
 				$classes .= ' bg-' . $btn_color;
-				$classes .= ' btn-primary btn-custom-bg ';
+				$classes .= ' btn-gray-5 btn-custom-bg ';
 			} else {
 				$classes .= 'btn-' . $btn_color;
 			}
@@ -167,29 +125,31 @@ class PixButton {
 		if ($btn_target) {
 			$target_out = 'target="_blank" rel="noopener"';
 		}
-		$taget_out = '';
 		$icon_classes = '';
 		if (!empty($btn_icon_animation)) {
-			// 	$classes .= ' pix-hover-item ';
-			// 	$icon_classes .= $btn_icon_animation;
 			$classes .= ' pix-hover-item ';
 			$icon_classes = '';
-			if (is_rtl()) {
-				$icon_classes = ' pix-hover-right';
-				if (!empty($btn_icon_position)) {
-					if ($btn_icon_position == 'after') {
-						$icon_classes = ' pix-hover-left';
-					}
-				}
-			} else {
-				$icon_classes = ' pix-hover-left';
-				if (!empty($btn_icon_position)) {
-					if ($btn_icon_position == 'after') {
-						$icon_classes = ' pix-hover-right';
-					}
+			// if (is_rtl()) {
+			// 	$icon_classes = ' pix-hover-right';
+			// 	if (!empty($btn_icon_position)) {
+			// 		if ($btn_icon_position == 'after') {
+			// 			$icon_classes = ' pix-hover-left';
+			// 		}
+			// 	}
+			// } else {
+			// 	$icon_classes = ' pix-hover-left';
+			// 	if (!empty($btn_icon_position)) {
+			// 		if ($btn_icon_position == 'after') {
+			// 			$icon_classes = ' pix-hover-right';
+			// 		}
+			// 	}
+			// }
+			$icon_classes = ' pix-hover-left';
+			if (!empty($btn_icon_position)) {
+				if ($btn_icon_position == 'after') {
+					$icon_classes = ' pix-hover-right';
 				}
 			}
-			
 		}
 
 		$classes .= ' ' . $btn_remove_padding;
@@ -232,30 +192,20 @@ class PixButton {
 
 		$btn_icon_output = '';
 		if (!empty($btn_icon)) {
-			if (\PixfortCore::instance()->icons::$isEnabled) {
-				$iconPositionClasses = '';
-				if (is_rtl()) {
-					$iconPositionClasses = 'ml-2';
-					if (!empty($btn_icon_position)) {
-						$iconPositionClasses = 'mr-2';
-					}
-				} else {
-					$iconPositionClasses = 'mr-2';
-					if (!empty($btn_icon_position)) {
-						$iconPositionClasses = 'ml-2';
-					}
-				}
-				$btn_icon_output = \PixfortCore::instance()->icons->getIcon($btn_icon, 24, $btn_title_bold . ' ' . $icon_classes . ' ' . $icon_inner_class . ' ' . $iconPositionClasses);
-			} else {
-				$iconPositionClasses = 'mr-1';
+			$iconPositionClasses = '';
+			if (is_rtl()) {
+				$iconPositionClasses = 'ml-2';
 				if (!empty($btn_icon_position)) {
-					$iconPositionClasses = 'ml-1';
+					$iconPositionClasses = 'mr-2';
 				}
-				$btn_icon_output = \PixfortCore::instance()->icons->getFontIcon($btn_icon, $btn_title_bold . ' ' . $btn_icon . ' ' . $icon_classes . ' ' . $icon_inner_class . ' ' . $iconPositionClasses);
+			} else {
+				$iconPositionClasses = 'mr-2';
+				if (!empty($btn_icon_position)) {
+					$iconPositionClasses = 'ml-2';
+				}
 			}
+			$btn_icon_output = \PixfortCore::instance()->icons->getIcon($btn_icon, 24, $btn_title_bold . ' ' . $icon_classes . ' ' . $icon_inner_class . ' ' . $iconPositionClasses);
 		}
-
-
 
 		if (!empty($btn_link)) {
 			$output .= '<a ' . $btn_id . ' href="' . do_shortcode($btn_link) . '" class="btn ' . $btn_mb . ' ' . $btn_class . ' ' . $classes . ' btn-' . $btn_size . '" ' . $target_out . ' ' . $btn_inline_style . ' ' . $anim_type . ' ' . $anim_delay . ' ' . $popup_data . '>';
@@ -264,12 +214,10 @@ class PixButton {
 		}
 
 		if (!empty($btn_icon) && empty($btn_icon_position)) {
-			// $output .= '<i class="'.$btn_title_bold.' '. $btn_icon .' '.$icon_classes.' '.$icon_inner_class.' mr-1"></i> '; 
 			$output .= $btn_icon_output;
 		}
 		$output .= '<span class="' . $btn_title_bold . ' ' . $inner_class . '" ' . $btn_inline_style . '>' . do_shortcode($btn_text) . '</span>';
 		if (!empty($btn_icon) && !empty($btn_icon_position)) {
-			// $output .= ' <i class="'.$btn_title_bold.' '. $btn_icon .' '.$icon_classes.' '.$icon_inner_class.' ml-1"></i>'; 
 			$output .= $btn_icon_output;
 		}
 		if (!empty($btn_link)) {

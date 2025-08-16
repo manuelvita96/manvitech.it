@@ -8,13 +8,6 @@
 				let params = this.model.get( 'params' );
 
 				params = window.pixVerifyWPBakeryIcons(params, false, null, null, 'pix-icon');
-				// if(params&&params.hasOwnProperty('media_type')&&params.media_type){
-				// 	if(params.media_type==='duo_icon'){
-				// 		let oldParam = params.pix_duo_icon;	
-				// 		params.media_type = 'icon';
-				// 		params.icon = oldParam;
-				// 	}
-				// }
 				this.model.save( 'params', params );
 				params = this.model.get( 'params' );
 				

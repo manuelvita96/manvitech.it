@@ -4,11 +4,11 @@ $pixfortBuilder->addOption(
 	'pix-heading-shop-general',
 	[
 		'type'             => 'heading',
-		'label'         => 'Shop',
+		'label'         => __('Shop', 'pixfort-core'),
 		'tab'             => 'shopGeneral',
 		'icon'            => 'shop',
 		'linkText'            => __('Learn more about shop', 'pixfort-core'),
-		'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/create-a-shop-with-woocomerce/',
+		'linkHref'            => \PixfortCore::instance()->adminCore->getParam('docs_create_a_shop_with_woocommerce'),
 		'linkIcon'            => 'bookmark'
 	]
 );
@@ -30,7 +30,7 @@ $pixfortBuilder->addOption(
 	'shop-item-style',
 	[
 		'type' => 'radio',
-		'label' => 'Shop Item Style',
+		'label' => __('Shop Item Style', 'pixfort-core'),
 		'default' => 'default',
 		'tab'             => 'shopGeneral',
 		'imageSize'       => '130',
@@ -128,9 +128,10 @@ $pixfortBuilder->addOption(
 	[
 		'type' => 'select',
 		'label' => __('Shop Background Color', 'pixfort-core'),
-		'options' => array_flip($bg_colors),
+		'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['bg' => true, 'transparent' => true]),
+		'groups' => true,
 		'tab'             => 'shopGeneral',
-		'default'             => 'gray-1',
+		'default'         => \PixfortCore::instance()->adminCore->getParam('shop_bg_color', 'gray-1'),
 	]
 );
 $pixfortBuilder->addOption(

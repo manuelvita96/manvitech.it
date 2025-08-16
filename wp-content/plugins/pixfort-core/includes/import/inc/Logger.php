@@ -1,6 +1,6 @@
 <?php
 /**
- * Logger class used in the One Click Demo Import plugin
+ * Logger class used in the pixfort Demo Import
  *
  * @package ocdi
  */

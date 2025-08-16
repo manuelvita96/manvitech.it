@@ -49,38 +49,15 @@ class PixCircles {
 
 		$output = '';
 
-		$effect_arr = array(
-			"" => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
-
-		$hover_effect_arr = array(
-			""       => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
 		if (function_exists('vc_shortcode_custom_css_class')) {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($c_css, ' '));
 		}
-		wp_enqueue_style('pixfort-circles-style', PIX_CORE_PLUGIN_URI . 'functions/css/elements/css/circles.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
+		wp_enqueue_style('pixfort-circles-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/circles.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 
 		$classes = ' ';
 		$classes .= $animation_class . ' ';
-		if ($effect) {
-			$classes .= $effect_arr[$effect] . ' ';
-		}
-		if ($hover_effect) {
-			$classes .= $hover_effect_arr[$hover_effect] . ' ';
-		}
+		$classes .= \PixfortCore::instance()->coreFunctions->getEffectsClasses($effect, $hover_effect) . ' ';
+
 		$i = intval($delay);
 		$circles_html = '';
 
@@ -103,6 +80,9 @@ class PixCircles {
 						$imgSrc = $img;
 					} else {
 						if (!empty($value["img"]['id'])) {
+							if ( is_int( $value["img"]['id'] ) ) {
+								$value["img"]['id'] = apply_filters( 'wpml_object_id', $value["img"]['id'], 'attachment', true );
+							}
 							$img = wp_get_attachment_image_src($value["img"]['id'], "pix-woocommerce-md");
 							$imgSrcset = wp_get_attachment_image_srcset($value["img"]['id']);
 							$image_alt = get_post_meta($value["img"]['id'], '_wp_attachment_image_alt', TRUE);
@@ -119,17 +99,18 @@ class PixCircles {
 								$imgSrc = $value["img"]['url'];
 							}
 						} else {
+							if ( is_int( $value["img"] ) ) {
+								$value["img"] = apply_filters( 'wpml_object_id', $value["img"], 'attachment', true );
+							}
 							$img = wp_get_attachment_image_src($value["img"], "pix-woocommerce-md");
 							$imgSrcset = wp_get_attachment_image_srcset($value["img"]);
 							if (!empty($imgSrcset)) {
 								$imgSrcset = 'srcset="' . $imgSrcset . '"';
 								$imgSizes = 'sizes="' . wp_get_attachment_image_sizes($value["img"], "full") . '"';
 							}
-							// if(!empty($img[1]) && !empty($img[2])){
-							//     $imgWidth = 'width="'.$img[1].'"';
-							//     $imgHeight = 'height="'.$img[2].'"';
-							// }
-							$imgSrc = $img[0];
+							if (!empty($img[0])) {
+								$imgSrc = $img[0];
+							}
 							$image_alt = get_post_meta($value["img"], '_wp_attachment_image_alt', TRUE);
 						}
 					}
@@ -171,11 +152,11 @@ class PixCircles {
 			$circles_align = $mobile_align . ' ' . str_replace("justify-content-", "justify-content-sm-", $circles_align);
 		}
 
-		$output = '<div class="pix-circles-elem d-inline-block2 d-flex flex-column flex-sm-row w-100 text-center2 align-items-center2 ' . $circles_align . '  ' . esc_attr($css_class) . '">';
+		$output = '<div class="pix-circles-elem d-flex flex-column flex-sm-row w-100 ' . $circles_align . '  ' . esc_attr($css_class) . '">';
 		$output .= '<div class="pix-circles ' . $circles_size . ' d-inline-flex align-items-center align-middle ' . $circles_align . '">' . $circles_html . '</div>';
 		if (!empty($btn_text)) {
 			$output .= '<div class="' . $btnMargin . 'align-items-center align-items-center d-flex pt-md-0 pt-3 ' . $circles_align . '">';
-			$output .= \PixfortCore::instance()->elementsManager->renderElement('Button', $attr );
+			$output .= \PixfortCore::instance()->elementsManager->renderElement('Button', $attr);
 			$output .= '</div>';
 		}
 		$output .= '</div>';

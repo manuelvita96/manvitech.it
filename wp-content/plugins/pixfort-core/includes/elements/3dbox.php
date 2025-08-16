@@ -33,6 +33,7 @@ class Pix3dbox {
 			'item_link' 			=> false,
 			'content_align' 		=> 'left',
 			'bg_img' 				=> '',
+			'bg_img_dark' 			=> '',
 			'btn_text' 				=> '',
 			'item_css' 				=> '',
 			'animation'				=> '',
@@ -42,17 +43,19 @@ class Pix3dbox {
 		), $attr));
 
 		/* Variables */
-		$classes = array();
+		$classes = [];
 		$css_class = '';
 		$t_size_style = '';
 		$c_color = '';
 		$c_custom_color = '';
-		$imgSrc = '';
-		$imgSrcset = '';
+		// $imgSrc = '';
+		// $imgSrcset = '';
 		$custom_overlay_style = '';
 
 		if (function_exists('vc_shortcode_custom_css_class')) {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($item_css, ' '));
+			$title = pix_unescape_vc($title);
+			$text = pix_unescape_vc($text);
 		}
 		$css_class .= ' ' . $extra_classes;
 		$t_custom_color = '';
@@ -76,7 +79,7 @@ class Pix3dbox {
 		}
 
 		$class_names = join(' ', $classes);
-		
+
 		if (!empty($content_color)) {
 			if ($content_color != 'custom') {
 				$c_color = 'text-' . $content_color;
@@ -85,23 +88,22 @@ class Pix3dbox {
 			}
 		}
 
-		
-		if ($bg_img) {
-			if (is_string($bg_img) && substr($bg_img, 0, 4) === "http") {
-				$imgSrc = $bg_img;
-			} else {
-				if (!empty($bg_img['id'])) {
-					$img = wp_get_attachment_image_src($bg_img['id'], "large");
-					$imgSrcset = wp_get_attachment_image_srcset($bg_img['id']);
-				} else {
-					$img = wp_get_attachment_image_src($bg_img, "large");
-					$imgSrcset = wp_get_attachment_image_srcset($bg_img);
-				}
-				if (!empty($img[0])) {
-					$imgSrc = $img[0];
-				}
-			}
-		}
+		// if ($bg_img) {
+		// 	if (is_string($bg_img) && substr($bg_img, 0, 4) === "http") {
+		// 		$imgSrc = $bg_img;
+		// 	} else {
+		// 		if (!empty($bg_img['id'])) {
+		// 			$img = wp_get_attachment_image_src($bg_img['id'], "large");
+		// 			$imgSrcset = wp_get_attachment_image_srcset($bg_img['id']);
+		// 		} else {
+		// 			$img = wp_get_attachment_image_src($bg_img, "large");
+		// 			$imgSrcset = wp_get_attachment_image_srcset($bg_img);
+		// 		}
+		// 		if (!empty($img[0])) {
+		// 			$imgSrc = $img[0];
+		// 		}
+		// 	}
+		// }
 
 		$anim_class = '';
 		$anim_type = '';
@@ -112,21 +114,24 @@ class Pix3dbox {
 			$anim_delay_icon = 'data-anim-delay="' . $delay . '"';
 		}
 
-		
+
 		if (!empty($overlay_color)) {
 			if ($overlay_color == 'custom') {
-				$custom_overlay_style .= 'style="background:' . $custom_overlay_color . ';"';
+				$custom_overlay_style .= 'style="--pix-bg-color:' . $custom_overlay_color . ';"';
 			}
 		}
 
 		$output = '<div class=" mb-3 mb-md-0 ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . '>';
-		$output .= '<div class="card w-100 h-100 bg-' . $overlay_color . ' ' . $css_class . ' pix-hover-item ' . $rounded_img . ' position-relative overflow-hidden2 text-white tilt fancy_card" ' . $custom_overlay_style . '>';
+		$output .= '<div class="card w-100 h-100 bg-' . $overlay_color . ' ' . $css_class . ' pix-hover-item ' . $rounded_img . ' position-relative text-white tilt fancy_card" ' . $custom_overlay_style . '>';
 		if ($bg_img) {
-			// if (pix_plugin_get_option('pix-disable-lazy-images', false)) {
-				$output .= '<img srcset="' . $imgSrcset . '" src="' . $imgSrc . '" class="card-img pix-bg-image ' . $rounded_img . ' h-100 ' . $overlay_opacity . ' ' . $hover_overlay_opacity . '" alt="">';
-			// } else {
-			// 	$output .= '<img src="' . PIX_IMG_PLACEHOLDER . '" data-srcset="' . $imgSrcset . '" data-src="' . $imgSrc . '" class="pix-lazy card-img pix-bg-image ' . $rounded_img . ' h-100 ' . $overlay_opacity . ' ' . $hover_overlay_opacity . '" loading="lazy" alt="">';
-			// }
+			// $output .= '<img srcset="' . $imgSrcset . '" src="' . $imgSrc . '" class="card-img pix-bg-image ' . $rounded_img . ' h-100 ' . $overlay_opacity . ' ' . $hover_overlay_opacity . '" alt="">';
+			$imageOutput = \PixfortCore::instance()->coreFunctions->getDynamicImage($bg_img, 'large', [
+				'class' => 'card-img pix-bg-image ' . $rounded_img . ' h-100 ' . $overlay_opacity . ' ' . $hover_overlay_opacity
+			], $bg_img_dark);
+			if (!empty($imageOutput)) {
+				$output .= $imageOutput;
+			}
+			
 		}
 		if ($item_link) {
 			$output .= '<a href="' . $btn_link . '" class="card-img-overlay overflow-visible d-inline-block w-100 pix-img-overlay pix-p-20 d-flex align-items-end text-' . $content_align . '">';
@@ -134,11 +139,11 @@ class Pix3dbox {
 			$output .= '<div class="card-img-overlay overflow-visible d-inline-block w-100 pix-img-overlay pix-p-30 d-flex align-items-end text-' . $content_align . '">';
 		}
 		$output .= '<div class="w-100 ' . $content_classes . '">';
-		$output .= '<' . $title_tag . ' class="card-title  ' . $class_names . ' animate-in" style="' . $t_custom_color . $t_size_style . '">' . $title . '</' . $title_tag . '>';
-		$output .= '<p class="card-text pix-pt-10 ' . $c_color . ' ' . $content_size . '" style="' . $c_custom_color . '">' . strip_shortcodes($text) . '</p>';
+		$output .= '<' . $title_tag . ' class="card-title  ' . $class_names . ' animate-in" style="' . $t_custom_color . $t_size_style . '">' . do_shortcode($title) . '</' . $title_tag . '>';
+		$output .= '<p class="card-text pix-pt-10 ' . $c_color . ' ' . $content_size . '" style="' . $c_custom_color . '">' . do_shortcode($text) . '</p>';
 		if (!empty($btn_text)) {
 			$output .= '<div class="card-btn-div mt-4 d-inline-block w-100">';
-			$output .= \PixfortCore::instance()->elementsManager->renderElement('Button', $attr );
+			$output .= \PixfortCore::instance()->elementsManager->renderElement('Button', $attr);
 			$output .= '</div>';
 		}
 		$output .= '</div>';
@@ -152,4 +157,3 @@ class Pix3dbox {
 		return $output;
 	}
 }
-

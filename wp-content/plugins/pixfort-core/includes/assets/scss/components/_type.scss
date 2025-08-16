@@ -37,9 +37,9 @@ h4, .h4 { font-size: $h4-font-size; }
 h5, .h5 { font-size: $h5-font-size; }
 h6, .h6 { font-size: $h6-font-size; }
 
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { font-weight: 500; }
+// .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 { font-weight: 500; }
 
-@media screen and (max-width: 992px) {
+@media screen and (max-width: $mainMobileBreakpoint) {
     @if variable-exists(h1-font-size-tablet) {
         h1, .h1 { font-size: $h1-font-size-tablet; }
     }
@@ -65,13 +65,19 @@ h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6,
 .heading-font, .secondary-font {
     @if variable-exists(heading-font-weight) {
-        font-weight: $heading-font-weight !important;
-    }
+        // font-weight: $heading-font-weight !important;
+        font-weight: $heading-font-weight;
+    } 
     &.font-weight-bold, .font-weight-bold,
     &:is(strong), strong {
         @if variable-exists(heading-bold-font-weight) {
             font-weight: $heading-bold-font-weight !important;
         }
+    }
+}
+@if variable-exists(heading-font-weight) {
+    .heading-font, .secondary-font {
+        font-weight: $heading-font-weight !important;
     }
 }
 
@@ -91,23 +97,20 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 
 a {
     color: $link-color;
-    // transition: all 0.05s ease-in-out;
     @include hover {
         color: $link-hover-color;
-        -webkit-text-decoration: $link-hover-decoration;
                 text-decoration: $link-hover-decoration;
         transition: $transition-base;
     }
     &:focus,
     &.focus {
-        -webkit-text-decoration: $link-hover-decoration;
                 text-decoration: $link-hover-decoration;
         box-shadow: none;
     }
 
 }
 
-.wpb_text_column , .wpb_content_element, .comment, .product .tab-content {
+.wpb_text_column , .wpb_content_element, .comment, .product .tab-content, .elementor {
     ul {
         list-style: initial !important;
     }
@@ -146,7 +149,7 @@ a {
     font-weight: $display4-weight;
     line-height: $display-line-height;
 }
-@media screen and (max-width: 992px) {
+@media screen and (max-width: $mainMobileBreakpoint) {
     @if not variable-exists(h1-font-size-tablet) {
         h1, .h1 { font-size: $h1-font-size * $font_mobile_cof; }
     }

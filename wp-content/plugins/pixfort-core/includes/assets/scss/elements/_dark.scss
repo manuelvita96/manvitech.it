@@ -1,30 +1,17 @@
-.pix-dark, .pix-dark-hover:hover {
+.pix-invert-colors, .pix-dark-hover:hover {
+    
     .text-body-default, &.text-body-default {
         color: $dark-body-color !important;
         &.btn {
-            &:hover {
-                opacity: 0.75;
-                color: darken($dark-body-color, 10%) !important;
-            }
+            &:hover,
             &:focus,
             &:active {
                 color: darken($dark-body-color, 10%) !important;
             }
-
         }
     }
     .svg-body-default {
         color: $dark-body-color !important;
-        svg:not(.pixfort-icon), svg:not(.pixfort-icon) path {
-            fill: $dark-body-color !important;
-        }
-        &:hover,
-        &:focus,
-        &:active {
-            svg:not(.pixfort-icon), svg:not(.pixfort-icon) path {
-                fill: darken($dark-body-color, 10%) !important;
-            }
-        }
     }
     a.text-body-default {
         &:hover,
@@ -36,29 +23,9 @@
 
     .text-heading-default, &.text-heading-default {
         color: $dark-heading-color !important;
-        svg:not(.pixfort-icon) {
-            fill: $dark-heading-color;
-        }
-        &:hover,
-        &:focus,
-        &:active {
-            svg:not(.pixfort-icon), svg:not(.pixfort-icon) path {
-                fill: darken($dark-heading-color, 10%) !important;
-            }
-        }
     }
     .svg-heading-default {
         color: $dark-heading-color;
-        svg:not(.pixfort-icon), svg:not(.pixfort-icon) path {
-            fill: $dark-heading-color;
-        }
-        &:hover,
-        &:focus,
-        &:active {
-            svg:not(.pixfort-icon), svg:not(.pixfort-icon) path {
-                fill: darken($dark-heading-color, 10%) !important;
-            }
-        }
     }
     a.text-heading-default {
         &:hover,
@@ -88,7 +55,6 @@
 
 
     $dark-gray-colors: () !default;
-    // stylelint-disable-next-line scss/dollar-variable-default
     $dark-gray-colors: map-merge(
       (
         "gray-1": $gray-900,
@@ -106,25 +72,19 @@
     @each $color, $value in $dark-gray-colors {
       @include bg-variant(".bg-#{$color}", $value);
     }
-    .bg-white { background: $black !important; }
-    .bg-black { background: $white !important; }
+    .bg-white { 
+        --pix-bg-color: var(--pix-black);
+        background: var(--pix-black) !important; 
+    }
+    .bg-black { 
+        --pix-bg-color: var(--pix-white);
+        background: var(--pix-white) !important; 
+    }
     .pix-post-format-btn .pix-post-format-a:hover {
         background: $black !important;
-        i {
-            color: $dark-heading-color;
-        }
-        svg:not(.pixfort-icon) path {
-            fill: $dark-heading-color;
-        }
     }
     .pix-post-format-btn .pix-post-format-a.pix-post-btn-dark:hover {
-        background: $white !important;
-        i {
-            color: $heading-color;
-        }
-        svg:not(.pixfort-icon) path {
-            fill: $heading-color;
-        }
+        background: var(--pix-white) !important;
     }
     a.bg-white:hover {
         background-color: lighten($black, 20%) !important;
@@ -134,20 +94,24 @@
     }
 
 }
-.pix-is-dark{
+.pix-is-dark {
     .dropdown-item{
         .pix-dropdown-title, .pix-dropdown-title::after, &::after  {
             color: $dark-body-color !important;
+            --pix-menu-color: #{$dark-body-color} !important;
         }
         &:hover, &:focus, &:active {
             color: adjust-color(lighten($dark-body-color, 30%), $alpha: 0.3%) !important;
+            --pix-menu-color: #{adjust-color(lighten($dark-body-color, 30%), $alpha: 0.3%)} !important;
             background-color: rgba($white, 0.12);
             .pix-dropdown-title, .pix-dropdown-title::after, &::after {
                 color: adjust-color(lighten($dark-body-color, 30%), $alpha: 0.3%) !important;
+                --pix-menu-color: #{adjust-color(lighten($dark-body-color, 30%), $alpha: 0.3%)} !important;
             }
         }
         &.pix-nav-link:hover {
             color: adjust-color(lighten($dark-body-color, 30%), $alpha: 0.3%) !important;
+            --pix-menu-color: #{adjust-color(lighten($dark-body-color, 30%), $alpha: 0.3%)} !important;
         }
     }
 }

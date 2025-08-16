@@ -26,39 +26,6 @@ class PixHighlightBox {
 		), $attr));
 
 
-		$style_arr = array(
-			"" => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
-
-		$hover_effect_arr = array(
-			""       => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
-
-		$add_hover_effect_arr = array(
-			""       => "",
-			"1"       => "fly-sm",
-			"2"       => "fly",
-			"3"       => "fly-lg",
-			"4"       => "scale-sm",
-			"5"       => "scale",
-			"6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-			"8"       => "scale-inverse",
-			"9"       => "scale-inverse-lg",
-		);
-
 		$css_class = '';
 		$content_css_class = '';
 		if (function_exists('vc_shortcode_custom_css_class')) {
@@ -69,15 +36,7 @@ class PixHighlightBox {
 		$classes = ' ';
 		$classes .= esc_attr($css_class) . ' ';
 
-		if ($style) {
-			$classes .= $style_arr[$style] . ' ';
-		}
-		if ($hover_effect) {
-			$classes .= $hover_effect_arr[$hover_effect] . ' ';
-		}
-		if ($add_hover_effect) {
-			$classes .= $add_hover_effect_arr[$add_hover_effect] . ' ';
-		}
+		$classes .= \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect) . ' ';
 
 		$anim_attrs = '';
 		if (!empty($animation)) {
@@ -100,9 +59,15 @@ class PixHighlightBox {
 					$imgSrc = $img;
 				} else {
 					if (!empty($image['id'])) {
+						if ( is_int( $image['id'] ) ) {
+							$image['id'] = apply_filters( 'wpml_object_id', $image['id'], 'attachment', true );
+						}
 						$img = wp_get_attachment_image_src($image['id'], "full");
 						$imgSrcset = wp_get_attachment_image_srcset($image['id']);
 					} else {
+						if ( is_int( $image ) ) {
+							$image = apply_filters( 'wpml_object_id', $image, 'attachment', true );
+						}
 						$img = wp_get_attachment_image_src($image, "full");
 						$imgSrcset = wp_get_attachment_image_srcset($image);
 						$image_alt = get_post_meta($image, '_wp_attachment_image_alt', TRUE);
@@ -111,18 +76,10 @@ class PixHighlightBox {
 				}
 				$out_img .= '<div class="flex-column d-inline-flex position-relative col-md-6">';
 				if (empty($pix_infinite_animation) || $pix_infinite_animation == '') {
-					// if(pix_plugin_get_option('pix-disable-lazy-images', false)){
 					$out_img .= '<img class="card-img pix-fit-cover rounded-0 flex-grow-1 h-100" srcset="' . $imgSrcset . '" src="' . $imgSrc . '" alt="'.$image_alt.'" />';
-					// }else{
-					//     $out_img .= '<img class="pix-lazy card-img pix-fit-cover rounded-0 flex-grow-1 h-100" src="'.PIX_IMG_PLACEHOLDER .'" data-srcset="'.$imgSrcset.'" data-src="'.$imgSrc.'" loading="lazy" alt="" />';
-					// }
 				} else {
 					$out_img .= '<div class="' . $pix_infinite_animation . ' ' . $pix_infinite_speed . ' w-100 h-100" style="background-image:url(' . $imgSrc . ');">';
-					// if(pix_plugin_get_option('pix-disable-lazy-images', false)){
 					$out_img .= '<img style="opacity:0;" class="card-img pix-fit-cover rounded-0 flex-grow-1 h-100" srcset="' . $imgSrcset . '" src="' . $imgSrc . '" alt="'.$image_alt.'" />';
-					// }else{
-					//     $out_img .= '<img style="opacity:0;" class="pix-lazy card-img pix-fit-cover rounded-0 flex-grow-1 h-100" src="'.PIX_IMG_PLACEHOLDER .'" data-srcset="'.$imgSrcset.'" data-src="'.$imgSrc.'" loading="lazy" alt="" />';
-					// }
 					$out_img .= '</div>';
 				}
 

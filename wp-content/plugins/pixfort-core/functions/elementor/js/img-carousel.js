@@ -6,7 +6,7 @@ jQuery(window).on('elementor/frontend/init', () => {
         if (typeof window.Flickity !== 'undefined') {
             setTimeout(function () {
                 pix_main_slider($element);
-                init_tilts();
+                init_tilts($element);
             }, 2500);
         } else {
             setTimeout(function () {

@@ -39,6 +39,7 @@ class PixfortIcons {
     public function init() {
         if (!$this->checkIsEnabled()) {
             self::$isEnabled = false;
+            return;
         }
         add_action('wp_ajax_pix_icons_data', array($this, 'getIconsData'));
         add_action('wp_ajax_nopriv_pix_icons_data', array($this, 'getIconsData'));
@@ -60,25 +61,79 @@ class PixfortIcons {
 			if (!empty($content2)) {
 				array_push($svgDuoList, ['name' => $iconName, 'icon' => $content2]);
 			}
-		}
-		foreach ($pixfortSocialIconsList as $icon) {
-			$content = pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/includes/icons/assets/svg/Solid/' . $icon . '.svg');
-			if (!empty($content)) {
-				array_push($svgSolidList, ['name' => $icon, 'icon' => $content]);
+            // All SOLID ICONS
+            $content3 = pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/includes/icons/assets/svg/Solid/' . $iconName . '.svg');
+			if (!empty($content3)) {
+				array_push($svgSolidList, ['name' => $iconName, 'icon' => $content3]);
 			}
 		}
+		// foreach ($pixfortSocialIconsList as $icon) {
+		// 	$content = pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/includes/icons/assets/svg/Solid/' . $icon . '.svg');
+		// 	if (!empty($content)) {
+		// 		array_push($svgSolidList, ['name' => $icon, 'icon' => $content]);
+		// 	}
+		// }
 		require PIX_CORE_PLUGIN_DIR . '/includes/icons/mapping-duotone.php';
 		require PIX_CORE_PLUGIN_DIR . '/includes/icons/mapping.php';
-        ob_start('ob_gzhandler');
-        echo json_encode([
+        // Clear any previous output and buffers
+        while (ob_get_level()) {
+            ob_end_clean();
+        }
+
+        $response = [
             'LINE_ICONS' => $svgList,
             'DUO_ICONS' => $svgDuoList,
             'SOLID_ICONS' => $svgSolidList,
             'SOLID_ICONS_LIST' => $pixfortSocialIconsList,
             'MappingDuo' => $pix_icons_list,
             'MappingFonticons' => $pixfort_icons
-        ]);
-        ob_end_flush();
+        ];
+        
+        // Ensure no headers have been sent
+        if (!headers_sent()) {
+            // Set appropriate headers for JSON response
+            header('Content-Type: application/json');
+            
+            
+
+            $jsonData = json_encode($response);
+            
+            // Try compression only if content is larger than 1KB
+            if (strlen($jsonData) > 1024) {
+                $encoded = false;
+                
+                // Try gzip first if available
+                if (function_exists('gzencode') && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'gzip') !== false) {
+                    $compressed = gzencode($jsonData, 9);
+                    if ($compressed !== false) {
+                        header('Content-Encoding: gzip');
+                        echo $compressed;
+                        $encoded = true;
+                    }
+                }
+                
+                // If gzip failed, try deflate
+                if (!$encoded && function_exists('gzdeflate') && strpos($_SERVER['HTTP_ACCEPT_ENCODING'], 'deflate') !== false) {
+                    $compressed = gzdeflate($jsonData, 9);
+                    if ($compressed !== false) {
+                        header('Content-Encoding: deflate');
+                        echo $compressed;
+                        $encoded = true;
+                    }
+                }
+                
+                // If both compression methods failed, send uncompressed
+                if (!$encoded) {
+                    echo $jsonData;
+                }
+            } else {
+                // Small content, send uncompressed
+                echo $jsonData;
+            }
+        } else {
+            // Headers already sent, send uncompressed
+            echo json_encode($response);
+        }
         wp_die();
     }
 
@@ -87,12 +142,20 @@ class PixfortIcons {
     }
 
     function checkIsEnabled(){
-        $options = get_option("pix_options");
-        return !(isset($options['pix-disable-pixfort-icons']) && $options['pix-disable-pixfort-icons']);
+        $enabled = true;
+        // $options = get_option("pix_options");
+        // return !(isset($options['pix-disable-pixfort-icons']) && $options['pix-disable-pixfort-icons']);
+        $pix_disable_icons = get_option("pix_disable_icons");
+        if (isset($pix_disable_icons)&&$pix_disable_icons) {
+            $enabled = false;
+        }
+        // Use "update_option('pix_disable_icons', '');" to disable pixfort icons
+        return $enabled;
     }
 
     function verifyIconName($icon, $forceNew = false) {
         if(self::$isEnabled || $forceNew) {
+            if(!is_string($icon)) return $icon;
             if(strpos($icon, '/') === false){
                 if(!str_contains($icon, 'pixicon')){
                     // TODO: verify social solid icons mapping
@@ -170,10 +233,8 @@ class PixfortIcons {
                         $this->mappingListDuo = $pix_icons_list;
                     }
                     if(!empty($this->mappingListDuo[$filename])){
-                        $content = pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/includes/icons/assets/svg/Duotone/'.$this->mappingListDuo[$filename].'.svg');
-                        if(!empty($content)){
-                            return '<svg class="pixfort-icon '.$classes.'" width="'.$size.'" height="'.$size.'" '.$attrs.' data-name="Duotone/'.$filename.'" viewBox="2 2 20 20">'.$content.'</svg>';
-                        }
+                        $path = PIX_CORE_PLUGIN_DIR . '/includes/icons/assets/svg/Duotone/' . $this->mappingListDuo[$filename] . '.svg';
+                        return loadSvgContentWithCache($path, $classes, $size, $attrs, 'Duotone/' . $filename);
                     }
                 }else{
                     if(!$this->mappingList){
@@ -181,20 +242,45 @@ class PixfortIcons {
                         $this->mappingList = $pixfort_icons; 
                     }
                     if(!empty($this->mappingList[$filename])){
-                        $content = pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/includes/icons/assets/svg/Line/'.$this->mappingList[$filename].'.svg');
-                        if(!empty($content)){
-                            return '<svg class="pixfort-icon '.$classes.'" width="'.$size.'" height="'.$size.'" '.$attrs.' data-name="Line/'.$filename.'" viewBox="2 2 20 20">'.$content.'</svg>';
-                        }
+                        // $content = pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/includes/icons/assets/svg/Line/'.$this->mappingList[$filename].'.svg');
+                        // if(!empty($content)){
+                        //     return '<svg class="pixfort-icon '.$classes.'" width="'.$size.'" height="'.$size.'" '.$attrs.' data-name="Line/'.$filename.'" viewBox="2 2 20 20">'.$content.'</svg>';
+                        // }
+                        $path = PIX_CORE_PLUGIN_DIR . '/includes/icons/assets/svg/Line/' . $this->mappingList[$filename] . '.svg';
+                        return loadSvgContentWithCache($path, $classes, $size, $attrs, 'Line/' . $filename);
                     }
                 }
             }else{
-                $content = pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/includes/icons/assets/svg/'.$filename.'.svg');
-                if(!empty($content)){
-                    return '<svg class="pixfort-icon '.$classes.'" width="'.$size.'" height="'.$size.'" '.$attrs.' data-name="'.$filename.'" viewBox="2 2 20 20">'.$content.'</svg>';
-                }
+                // $cacheKey = 'pix_'.$filename;
+                // $content = get_transient($cacheKey);
+                // if ($content === false) {
+                //     $content = pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/includes/icons/assets/svg/'.$filename.'.svg');
+                //     set_transient($cacheKey, $content, HOUR_IN_SECONDS);
+                // } 
+                // if(!empty($content)){
+                //     return '<svg class="pixfort-icon '.$classes.'" width="'.$size.'" height="'.$size.'" '.$attrs.' data-name="'.$filename.'" viewBox="2 2 20 20">'.$content.'</svg>';
+                // }
+                $path = PIX_CORE_PLUGIN_DIR . '/includes/icons/assets/svg/' . $filename . '.svg';
+                return $this->loadSvgContentWithCache($path, $classes, $size, $attrs, $filename);
+
             }
         }
         return '<i class="'.$filename.' '.$classes.'"></i>';
+    }
+
+    // Helper function to load SVG content and return SVG markup
+    function loadSvgContentWithCache($path, $classes, $size, $attrs, $filename) {
+        // $cacheKey = 'pix_'.$filename;
+        // $content = get_transient($cacheKey);
+        // if ($content === false) {
+        //     $content = pix_load_inline_svg($path);
+        //     set_transient($cacheKey, $content, HOUR_IN_SECONDS);
+        // }
+        $content = pix_load_inline_svg($path);
+        if (!empty($content)) {
+            return '<svg class="pixfort-icon ' . $classes . '" width="' . $size . '" height="' . $size . '" ' . $attrs . ' data-name="' . $filename . '" viewBox="2 2 20 20">' . $content . '</svg>';
+        }
+        return '';
     }
 
     function getFontIcon( $filename, $classes = '', $attrs = '' ) {
@@ -265,7 +351,7 @@ class PixfortIcons {
                     // }
                     if(!empty($data['settings']['media_type'])){
                         if($data['settings']['media_type']==='duo_icon'){
-                            if(!empty($data['settings']['pix_duo_icon'])){
+                            if(!empty($data['settings']['pix_duo_icon'])) {
                                 $DuoValue = $data['settings']['pix_duo_icon'];
                                 $data['settings']['icon'] = $this->verifyIconName($DuoValue);
                                 $data['settings']['media_type'] = 'icon';

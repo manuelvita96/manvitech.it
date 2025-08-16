@@ -74,7 +74,7 @@ class PixNumbers {
 			}
 		}
 
-		$content_classes = array();
+		$content_classes = [];
 		$c_custom = '';
 		if (!empty($content_color)) {
 			if ($content_color != 'custom') {

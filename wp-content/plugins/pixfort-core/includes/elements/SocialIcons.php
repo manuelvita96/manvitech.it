@@ -132,13 +132,7 @@ class PixSocialIcons {
 					} else {
 						$output .= '<span class="' . $w_color . ' ' . $anim_class . ' d-inline-block ' . $items_style . ' ' . $i_size . ' ' . $icon_padding . '" ' . $anim_type . ' ' . $icon_delay . '>';
 					}
-					if(\PixfortCore::instance()->icons::$isEnabled) {
-						// var_dump($value["icon"]);
-						$output .= \PixfortCore::instance()->icons->getIcon($value["icon"], 24, '', $w_custom_style);
-					} else {
-						// $output .= '<i class="' . $value["icon"] . '" ' . $w_custom_style . '></i>';
-						$output .= \PixfortCore::instance()->icons->getFontIcon($value["icon"], '', $w_custom_style);
-					}
+					$output .= \PixfortCore::instance()->icons->getIcon($value["icon"], 24, '', $w_custom_style);
 					if (!empty($value['item_link'])) {
 						$output .= '</a>';
 					} else {
@@ -155,4 +149,3 @@ class PixSocialIcons {
 		return $output;
 	}
 }
-

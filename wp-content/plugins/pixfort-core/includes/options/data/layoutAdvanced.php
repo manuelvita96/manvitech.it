@@ -4,7 +4,7 @@ $pixfortBuilder->addOption(
     'pic-custom-css',
     [
         'type' => 'code',
-        'label' => 'Custom CSS',
+        'label' => __('Custom CSS', 'pixfort-core'),
         'tab'             => 'layoutAdvanced',
         'description'     => __('Add custom CSS to your website.', 'pixfort-core'),
     ]
@@ -13,7 +13,7 @@ $pixfortBuilder->addOption(
     'pix-custom-js-header',
     [
         'type' => 'code',
-        'label' => 'Custom JS (in Header)',
+        'label' => __('Custom JS (in Header)', 'pixfort-core'),
         'tab'             => 'layoutAdvanced',
         'mode'             => 'javascript',
         'description'     => __('Add custom Javascript code to your website header.', 'pixfort-core'),
@@ -23,7 +23,7 @@ $pixfortBuilder->addOption(
     'pix-custom-js-footer',
     [
         'type' => 'code',
-        'label' => 'Custom JS (in Footer)',
+        'label' => __('Custom JS (in Footer)', 'pixfort-core'),
         'tab'             => 'layoutAdvanced',
         'mode'             => 'javascript',
         'description'     => __('Add custom Javascript code to your website footer.', 'pixfort-core'),
@@ -33,7 +33,7 @@ $pixfortBuilder->addOption(
     'pix-custom-header-includes',
     [
         'type' => 'code',
-        'label' => 'Custom Header Tags Include',
+        'label' => __('Custom Header Tags Include', 'pixfort-core'),
         'tab'             => 'layoutAdvanced',
         'mode'             => 'html',
         'description'     => __('Add custom code to your website header (for example external tags and scripts).', 'pixfort-core'),
@@ -52,9 +52,9 @@ $pixfortBuilder->addOption(
     'pix-mobile-breakpoint',
     [
         'type' => 'text',
-        'label' => __('Custom Mobile Breakpoint', 'pixfort-core'),
+        'label' => __('Custom Header Breakpoint', 'pixfort-core'),
         'tab'             => 'layoutAdvanced',
-        'description' => __('Input a custom screen width in pixels to change the default breakpoint in which the mobile elements (for example the Mobile Header) will be displayed (the default is 992px).', 'pixfort-core'),
+        'description' => __('Set a custom screen width (in pixels) to adjust the default breakpoint at which the header switches from the Desktop Header to the Tablet & Mobile Header (the default value is 1024px).', 'pixfort-core'),
         'hideBorderBottom'      => true,
     ]
 );

@@ -24,9 +24,12 @@ class PixClients {
 
 		$css_class = '';
 		$classes = array();
-		if (function_exists('vc_shortcode_custom_css_class')) {
+		if (function_exists('vc_shortcode_custom_css_class') && defined('VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG')) {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
 		}
+
+		wp_enqueue_style('pixfort-clients-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/clients.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
+
 		$el_style = '';
 		if ($style == 'no-effect') {
 			$el_style = $style;
@@ -55,7 +58,6 @@ class PixClients {
 
 		if (!intval($in_row)) $in_row = 6;
 
-
 		$elementor = false;
 		$clients_arr = array();
 		if (is_array($clients)) {
@@ -83,7 +85,7 @@ class PixClients {
 				if ($key % $in_row == 0) {
 					$output .= '<div class="d-none d-md-block clearfix w-100 col-12"></div>';
 				}
-				$output .= '<div class="col-md col-' . $in_row_mobile . ' -' . $in_row . ' ' . $class_names . ' text-center client2 d-inline-block2 d-inline-flex ' . $style . '">';
+				$output .= '<div class="col-md col-' . $in_row_mobile . ' -' . $in_row . ' ' . $class_names . ' text-center d-inline-block2 d-inline-flex ' . $style . '">';
 
 				if (empty($value['title'])) {
 					$value['title'] = '';
@@ -93,7 +95,7 @@ class PixClients {
 					$target = '_blank';
 				}
 				if (!empty($value['link'])) {
-					$output .= '<a target="' . $target . '" href="' . $value['link'] . '" class="client2 align-self-center py-3 d-inline-block w-100" title="' . $value['title'] . '">';
+					$output .= '<a target="' . $target . '" href="' . $value['link'] . '" class="align-self-center py-3 d-inline-block w-100" title="' . $value['title'] . '">';
 				} else {
 					$title = '';
 					if (!empty($value['title'])) {
@@ -102,40 +104,20 @@ class PixClients {
 					$output .= '<div class="py-3 d-inline-block align-self-center w-100" title="' . $title . '">';
 				}
 				if (!empty($value['image'])) {
-					$imgSrc = '';
-					$imgSrcset = '';
-					$imgSizes = '';
-					$imgWidth = '';
-					$imgHeight = '';
-					if (is_string($value['image']) && substr($value['image'], 0, 4) === "http") {
-						$img = $value['image'];
-						$imgSrc = $img;
-					} else {
-						if ($elementor) {
-							$img = wp_get_attachment_image_src($value['image']['id'], "full");
-							$imgSrcset = wp_get_attachment_image_srcset($value['image']['id']);
-							$imgSizes = wp_get_attachment_image_sizes($value['image']['id'], "full");
-						} else {
-							$img = wp_get_attachment_image_src($value['image'], "full");
-							$imgSrcset = wp_get_attachment_image_srcset($value['image']);
-							$imgSizes = wp_get_attachment_image_sizes($value['image'], "full");
-						}
-						if (!empty($img[1]) && !empty($img[2])) {
-							$imgWidth = 'width="' . $img[1] . '"';
-							$imgHeight = 'height="' . $img[2] . '"';
-						}
-						if (!empty($img[0])) {
-							$imgSrc = $img[0];
-						}
-					}
 					$title = '';
 					if (!empty($value['title'])) {
 						$title = $value['title'];
 					}
-					if (empty($imgSrcset)) {
-						$output .= '<img src="' . $imgSrc . '" ' . $imgWidth . ' ' . $imgHeight . ' class="animate-in" alt="' . $title . '" data-anim-type="' . $animation . '" data-anim-delay="' . $delay . '">';
-					} else {
-						$output .= '<img src="' . $imgSrc . '" srcset="' . $imgSrcset . '" sizes="' . $imgSizes . '" ' . $imgWidth . ' ' . $imgHeight . ' class="animate-in" alt="' . $title . '" data-anim-type="' . $animation . '" data-anim-delay="' . $delay . '">';
+					
+					$imageOutput = \PixfortCore::instance()->coreFunctions->getDynamicImage($value['image'], 'full', [
+						'class' => 'animate-in',
+						'alt' => $title,
+						'data-anim-type' => $animation,
+						'data-anim-delay' => $delay
+					], isset($value['image_dark']) ? $value['image_dark'] : null);
+					
+					if (!empty($imageOutput)) {
+						$output .= $imageOutput;
 					}
 				}
 				if (!empty($value['link'])) {

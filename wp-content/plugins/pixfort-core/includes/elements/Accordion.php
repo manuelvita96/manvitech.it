@@ -1,6 +1,6 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
+if (! defined('ABSPATH')) {
 	exit; // Exit if accessed directly.
 }
 
@@ -27,7 +27,7 @@ class PixAccordion {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
 		}
 		$output = '';
-		$output .= '<div class="accordion w-100 accordion-card bg-white2 rounded-lg2 ' . $css_class . '" id="accordion-' . $accordion_id . '">';
+		$output .= '<div class="accordion w-100 accordion-card ' . $css_class . '" id="accordion-' . $accordion_id . '">';
 		$output .= do_shortcode($content);
 		$output .= '</div>';
 		return $output;

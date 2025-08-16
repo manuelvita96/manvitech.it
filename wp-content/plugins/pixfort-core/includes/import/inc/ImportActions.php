@@ -1,6 +1,6 @@
 <?php
 /**
- * Class for the import actions used in the One Click Demo Import plugin.
+ * Class for the import actions used in the pixfort Demo Import.
  * Register default WP actions for OCDI plugin.
  *
  * @package ocdi

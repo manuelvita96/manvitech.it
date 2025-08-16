@@ -44,18 +44,39 @@ class PixChart {
 		), $attr));
 
 		$css_class = '';
+		$gradiant = false;
 		if (function_exists('vc_shortcode_custom_css_class')) {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($chart_css, ' '));
 		}
-		wp_enqueue_style('pixfort-chart-style', PIX_CORE_PLUGIN_URI . 'functions/css/elements/css/chart.min.css');
+		wp_enqueue_style('pixfort-chart-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/chart.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 
-		if (!$color1) {
+		
+		if(isset($attr['__globals__']) && !empty($attr['__globals__']['color1'])) {
+			$color1 = '--pix-chart-color-1';
+		} elseif (empty($color1)) {
 			$color1 = '#59a3fc';
 		}
-		$gradiant = false;
-		if ($color2) {
+
+		if(isset($attr['__globals__']) && !empty($attr['__globals__']['color2'])) {
+			$color2 = '--pix-chart-color-2';
+			$gradiant = true;
+		} 
+		if(empty($color3)) {
+			if(isset($attr['__globals__']) && !empty($attr['__globals__']['color3'])) {
+				$color3 = '--pix-chart-color-3';
+			}
+		} 
+
+		if(empty($track_color)) {
+			if(isset($attr['__globals__']) && !empty($attr['__globals__']['track_color'])) {
+				$track_color = '--pix-chart-track-color';
+			}
+		}
+		
+		if (!empty($color2)) {
 			$gradiant = true;
 		}
+		
 		if ($color1 == "#") $color1 = '';
 		if ($color2 == "#") $color2 = '';
 		if ($color3 == "#") $color3 = '';
@@ -146,7 +167,6 @@ class PixChart {
 		$output = '<div class="chart_box ' . $divAlign . ' ' . $css_class . '">';
 		if ($animate) $output .= '<div class="animate" data-anim-type="' . $animate . '">';
 		if ($gradiant) {
-			// $output .= '<div class="chart" data-percent="'. intval($percent) .'" data-colors=\''.$json_colors.'\' data-gradient-1="'.  $color .'" data-gradient-2="'.  $color2 .'">';
 			$output .= '<div class="chart ' . $chartAlign . '" data-percent="' . intval($percent) . '" data-track="' . $track_color . '" data-gradient-1="' .  $color1 . '" data-gradient-2="' .  $color2 . '" data-gradient-3="' .  $color3 . '">';
 		} else {
 			$output .= '<div class="chart ' . $chartAlign . '" data-percent="' . intval($percent) . '" data-track="' . $track_color . '" data-barColor="' .  $color1 . '">';

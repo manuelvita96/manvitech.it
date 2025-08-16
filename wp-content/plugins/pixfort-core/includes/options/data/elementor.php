@@ -3,27 +3,21 @@
 /*
 *   Elementor
 */
-$pixfortBuilder->addOption(
-    'pix-disable-elementor-demo',
-    [
-        'type' => 'checkbox',
-        'label' => __('Disable pixfort Demo Blocks', 'pixfort-core'),
-        'description' => __('If you disable pixfort Templates blocks from Elementor library you will see the default Elementor blocks instead.', 'pixfort-core'),
-        'options'         => array('1' => 'On', '0' => 'Off'),
-        'default'           => '0',
-        'tab'             => 'elementor'
-    ]
-);
-$pixfortBuilder->addOption(
-    'pix-add-default-container',
-    [
-        'type' => 'checkbox',
-        'label' => __('Add Default Page Container in Elementor', 'pixfort-core'),
-        'options'         => array('1' => 'On', '0' => 'Off'),
-        'default'           => '0',
-        'tab'             => 'elementor'
-    ]
-);
+if (!defined('IS_PIXFORT_THEME')) {
+    if (!empty(pix_plugin_get_option('pix-add-default-container'))) {
+        // Deprecated option
+        $pixfortBuilder->addOption(
+            'pix-add-default-container',
+            [
+                'type' => 'checkbox',
+                'label' => __('Add Default Page Container in Elementor', 'pixfort-core'),
+                'options'         => array('1' => 'On', '0' => 'Off'),
+                'default'           => '0',
+                'tab'             => 'elementor'
+            ]
+        );
+    }
+}
 $pixfortBuilder->addOption(
     'pix-enable-elementor-loader',
     [
@@ -39,7 +33,7 @@ $pixfortBuilder->addOption(
     'pix-disable-elementor-theme-fonts',
     [
         'type' => 'checkbox',
-        'label' => __('Disable Adding Theme fonts Inside Elementor', 'pixfort-core'),
+        'label' => __('Disable Using Theme fonts Inside Elementor', 'pixfort-core'),
         'options'         => array('1' => 'On', '0' => 'Off'),
         'default'           => '0',
         'tab'             => 'elementor',

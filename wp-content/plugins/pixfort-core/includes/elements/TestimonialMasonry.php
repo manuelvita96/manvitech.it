@@ -22,7 +22,7 @@ class PixTestimonialMasonry {
 		}
 		$output = '';
 		if (!empty($testimonials)) {
-			wp_enqueue_style( 'pixfort-masonry-style', PIX_CORE_PLUGIN_URI.'functions/css/elements/css/masonry.min.css', false, PIXFORT_PLUGIN_VERSION);
+			wp_enqueue_style( 'pixfort-masonry-style', PIX_CORE_PLUGIN_URI.'includes/assets/css/elements/masonry.min.css', false, PIXFORT_PLUGIN_VERSION);
 			wp_enqueue_script('pix-flickity-js');
 			$output .= '<div class="pix_masonry">';
 			$output .= '<div class="grid-sizer"></div>';

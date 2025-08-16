@@ -110,3 +110,4 @@
 #elementor-navigator__elements.elementor-navigator-list__promotion {
     height: calc(100% - 49px) !important;
 }
+.elementor-tags-list__teaser { display: none !important; }

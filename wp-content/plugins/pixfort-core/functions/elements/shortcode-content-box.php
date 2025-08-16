@@ -274,7 +274,7 @@ $content_box_params_2 = array(
         "type" => "checkbox",
         "heading" => __( "Stick box on the top", "pixfort-core" ),
         "value" => array("Yes" => "sticky-top"),
-        "description" => __("The parent row should enable equal columns option.", "essentials"),
+        "description" => __("The parent row should enable equal columns option.", "pixfort-core"),
     ),
 
     array (
@@ -295,14 +295,14 @@ $content_box_params_2 = array(
         "heading" => __( "Inline box size", "pixfort-core" ),
         "param_name" => "content_inline",
         "value" => array("Yes" => "1"),
-        "description" => __("Make the box match content size (not full width).", "essentials"),
+        "description" => __("Make the box match content size (not full width).", "pixfort-core"),
     ),
 
     array (
         'param_name' 	=> 'pix_scale_in',
         'type' 			=> 'dropdown',
         'heading' 		=> __('Image Scale In effect', 'pixfort-core'),
-        "description" => __( "Scale the image down to the default size when scrolling.", "js_composer"),
+        "description" => __( "Scale the image down to the default size when scrolling.", "pixfort-core"),
         'admin_label'	=> false,
         'value'			=> array_flip(array(
             '' 		=> 'Disabled',
@@ -314,9 +314,9 @@ $content_box_params_2 = array(
 
     array(
         "type" => "textfield",
-        "heading" => __("Extra class name", "essentials"),
+        "heading" => __("Extra class name", "pixfort-core"),
         "param_name" => "el_class",
-        "description" => __("If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "essentials"),
+        "description" => __("If you wish to style particular content element differently, then use this field to add a class name and then refer to it in your css file.", "pixfort-core"),
         'value'       => 'mb-2',
     ),
 
@@ -331,7 +331,7 @@ $content_box_params_2 = array(
       'heading' => __( 'Responsive options', 'pixfort-core' ),
       'param_name' => 'responsive_css',
       'group' => __( 'Design options', 'pixfort-core' ),
-      "description" => __( "Input responsive values to override Desktop settings.<br />Note: Tablet landscape preview in WPBakery uses the Desktop values.", "essentials-core" ),
+      "description" => __( "Input responsive values to override Desktop settings.<br />Note: Tablet landscape preview in WPBakery uses the Desktop values.", "pixfort-core" ),
       'value'   => '{}'
       ),
 

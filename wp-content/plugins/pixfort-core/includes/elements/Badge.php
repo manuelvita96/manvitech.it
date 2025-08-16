@@ -43,40 +43,6 @@ class PixBadge {
 		}
 		$css_class .= ' ' . $extra_classes;
 
-		$style_arr = array(
-			"" => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
-
-		$hover_effect_arr = array(
-			""       => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
-
-		$add_hover_effect_arr = array(
-			""       => "",
-			"1"       => "fly-sm",
-			"2"       => "fly",
-			"3"       => "fly-lg",
-			"4"       => "scale-sm",
-			"5"       => "scale",
-			"6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-			"8"       => "scale-inverse",
-			"9"       => "scale-inverse-lg",
-		);
-
-
 		$classes = array();
 		$span_classes = array();
 		if ($bold != 'font-weight-bold') $bold = 'font-weight-normal';
@@ -85,22 +51,16 @@ class PixBadge {
 		if (!empty($secondary_font)) array_push($classes, $secondary_font);
 		if (!empty($rounded)) array_push($classes, $rounded);
 
-		if ($style) {
-			array_push($classes, $style_arr[$style]);
-		}
-		if ($hover_effect) {
-			array_push($classes, $hover_effect_arr[$hover_effect]);
-		}
-		if ($add_hover_effect) {
-			array_push($classes, $add_hover_effect_arr[$add_hover_effect]);
-		}
+
+		$effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
+		array_push($classes, $effectsClasses);
 
 		$span_custom_style = '';
 
 		if (!empty($text_color)) {
 			if ($text_color != 'custom') {
 				array_push($span_classes, 'text-' . $text_color);
-				if(str_contains($text_color, 'gradient')){
+				if (str_contains($text_color, 'gradient')) {
 					array_push($span_classes, 'pix-bg-attachment-scroll text-bg-img');
 				}
 			} else {
@@ -116,7 +76,7 @@ class PixBadge {
 		if (!empty($bg_color)) {
 			if ($bg_color != 'custom') {
 				array_push($classes, 'bg-' . $bg_color);
-				if(str_contains($bg_color, 'gradient')){
+				if (str_contains($bg_color, 'gradient')) {
 					array_push($classes, 'pix-bg-attachment-scroll text-bg-img');
 				}
 			} else {
@@ -146,8 +106,12 @@ class PixBadge {
 			$output .= '<a href="' . $link . '" target="' . $target . '">';
 		}
 
-		$margin1 = is_rtl() ? 'ml-1' : 'mr-1';
-		$output .= '<span class="pix-badge-element ' . $text_size . ' d-inline-flex '.$margin1.' ' . $anim . '" ' . $anim_type . ' ' . $anim_delay . '>';
+		$margin1 = '';
+		if (defined('PIXFORT_THEME_SLUG') && PIXFORT_THEME_SLUG == 'essentials') {
+			// Deprecated
+			$margin1 = is_rtl() ? 'ml-1' : 'mr-1';
+		}
+		$output .= '<span class="pix-badge-element ' . $text_size . ' d-inline-flex ' . $margin1 . ' ' . $anim . '" ' . $anim_type . ' ' . $anim_delay . '>';
 		$output .= '<span class="badge ' . $class_names . ' ' . $css_class . '" style="' . $t_custom_style . ' ' . $custom_css . '">';
 		$output .= '<span class="' . $span_class_names . '" style="' . $span_custom_style . '">';
 		$output .= do_shortcode($text);
@@ -164,5 +128,3 @@ class PixBadge {
 		return $output;
 	}
 }
-
-

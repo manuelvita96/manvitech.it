@@ -1,12 +1,11 @@
 <?php
+
 namespace Elementor;
 
 class Pix_Eor_Menu extends Widget_Base {
 
 	public function __construct($data = [], $args = null) {
 		parent::__construct($data, $args);
-
-		// wp_register_script( 'pix-alert-handle', PIX_CORE_PLUGIN_URI.'functions/elementor/js/alert.js', [ 'elementor-frontend' ], PIXFORT_PLUGIN_VERSION, true );
 	}
 
 	public function get_name() {
@@ -22,37 +21,36 @@ class Pix_Eor_Menu extends Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'pixfort' ];
+		return ['pixfort'];
 	}
 
 	public function get_help_url() {
-		return 'https://essentials.pixfort.com/knowledge-base/';
+		return \PixfortCore::instance()->adminCore->getParam('docs_link');
 	}
 
 	protected function register_controls() {
 		$this->start_controls_section(
 			'section_title',
 			[
-				'label' => __( 'Content', 'elementor' ),
+				'label' => __('Content', 'pixfort-core'),
 			]
 		);
 		$menus = wp_get_nav_menus();
 		// var_dump($menus);
-        $menusList = array();
-        foreach ($menus as $key => $value) {
-            $menusList[$value->slug] = $value->name;
-        }
+		$menusList = array();
+		foreach ($menus as $key => $value) {
+			$menusList[$value->slug] = $value->name;
+		}
 
 		$this->add_control(
 			'menu',
 			[
-				'label' => __( 'Style', 'pixfort-core' ),
+				'label' => __('Style', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => $menusList,
 			]
 		);
 		$this->end_controls_section();
-		
 	}
 
 	protected function render() {
@@ -65,9 +63,7 @@ class Pix_Eor_Menu extends Widget_Base {
 	// }
 
 	public function get_script_depends() {
-		if(is_user_logged_in()) return [ 'pix-global' ];
+		if (is_user_logged_in()) return ['pix-global'];
 		return [];
 	}
-
-
 }

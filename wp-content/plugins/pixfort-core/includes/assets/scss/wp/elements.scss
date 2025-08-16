@@ -1,12 +1,4 @@
 /**
-* FAQ
-*/
-.pix-faq {
-    .pix-faq-icon {
-        top: 2px;
-    }
-}
-/**
 * IMG
 */
 .pix-img-element { transform: translateZ(0px); }
@@ -31,7 +23,7 @@ body.pix-sections-stack {
 /**
 * Site padding layout
 */
-@media screen and (max-width: 991px) {
+@media screen and (max-width: ($mainMobileBreakpoint - 1)) {
     body.pix-p-5,
     body.pix-p-10,
     body.pix-p-15,
@@ -91,17 +83,14 @@ body.pix-sections-stack {
         font-weight: $font-weight-bold;
         border-radius: 5px;
         transition: $transition-base;
-        i {
-            font-size: 20px;
-        }
         &.current {
-            background: #fff;
-            color: $heading-color;
+            background: var(--pix-base-background, #fff);
+            color: var(--pix-heading-default);
             box-shadow: $box-shadow-sm !important;
             cursor: default;
         }
         &:hover {
-            color: $heading-color;
+            color: var(--pix-heading-default);
         }
     }
 }
@@ -112,16 +101,16 @@ body.pix-sections-stack {
 */
 .pix-portfolio-nav {
     .portfolio_filter {
-        color: $body-color;
+        color: var(--pix-body-default);
         font-weight: $font-weight-bold;
         transition: $transition-base;
         &.is-checked {
-            background: #fff;
-            color: $heading-color;
+            background: var(--pix-base-background, #fff);
+            color: var(--pix-heading-default);
             box-shadow: $box-shadow-sm !important;
         }
         &:hover {
-            color: $heading-color;
+            color: var(--pix-heading-default);
         }
     }
     &.is-dark .portfolio_filter:not(.is-checked) {
@@ -146,7 +135,7 @@ body.pix-sections-stack {
             padding: 10px 20px 0 20px;
         }
         .pixfort-likes {
-            background: $white;
+            background: var(--pix-base-background, #fff);
             box-shadow: $box-shadow-sm !important;
             &:hover {
                 box-shadow: $box-shadow-sm !important;
@@ -242,7 +231,7 @@ body.pix-sections-stack {
 
 }
 
-@media screen and (max-width: 991px) {
+@media screen and (max-width: ($mainMobileBreakpoint - 1)) {
     .pix-banner {
         .pix-banner-text, .pix-banner-countdown, .pix-banner-btn {
             width: 100%;
@@ -257,54 +246,10 @@ body.pix-sections-stack {
 .pix-is-safari .pix-portfolio-site-content .site-content {
     clear: initial;
 }
-
-// // PixFort Sections Stack
-// .pix-sections-stack:not(.vc_editor) {
-//     .site-content {
-//         width: 100vw;
-//         z-index: 99;
-//         .pix-stacks-section,
-//         .entry-content2 > section ,
-//         .elementor-section-wrap > section, .elementor-section-wrap > div
-//         {
-//             &:not([data-vc-full-width="true"]){
-//                 width: 100% !important;
-//                 left: 0px !important;
-//                 margin-left: 0 !important;
-//             }
-//             &[data-vc-full-width="true"]{
-//                 left: 15px !important;
-//             }
-//             min-height: 100%;
-//             position: fixed !important;
-//             top: 0px;
-
-//         }
-//     }
-
-//     .site-footer2 {
-//         width: 100% !important;
-//         position: fixed !important;
-//         left: 0px !important;
-//         margin-left: 0 !important;
-//     }
-
-//     .sticky-overlay {
-//         z-index: 8;
-//         pointer-events: none;
-//         opacity: 1;
-//         transition: none 0s ease 0s;background:#000;position:fixed;width:100%;height:100%;
-//         top: 0;
-//     }
-// }
-// .pix-sections-stack .elementor-section.elementor-section-boxed > .elementor-container {
-//     max-width: auto;
-// }
 .pix-is-sticky-footer .site {
     background: #fff;
 }
-.site-content, .pix-main-intro, .pix-portfolio-site-content,
-.pix-topbar {
+.site-content, .pix-main-intro, .pix-portfolio-site-content {
     z-index: 2;
     position: relative;
 }
@@ -312,17 +257,7 @@ body.pix-sections-stack {
     z-index: 3;
 }
 .pix-header-mobile {
-    z-index: 3;
     position: relative;
-}
-header.pix-header-mobile {
-    z-index: 4;
-}
-.pix-topbar.pix-header-mobile {
-    z-index: 5;
-}
-.pix-header-mobile.pix-stack-mobile {
-    z-index: 3;
 }
 .pix-sticky-footer.pix-sticky-footer-style {
     width: 100% !important;
@@ -425,225 +360,6 @@ header.pix-header-mobile {
     100% { transform: rotate(360deg); }
 }
 
-/* --------------------------------
-PixFort Slides
--------------------------------- */
-.cd-nav-trigger {
-    display: none;
-}
-
-#pix-vertical-nav {
-    position: fixed;
-    right: 40px;
-    top: 50%;
-    bottom: auto;
-    transform: translateY(-50%);
-    z-index: 99999999;
-    li {
-        text-align: right;
-        a {
-            display: inline-block;
-            /* prevent weird movements on hover when you use a CSS3 transformation - webkit browsers */
-            backface-visibility: hidden;
-            &:after {
-                content: "";
-                display: table;
-                clear: both;
-            }
-            span {
-                float: right;
-                display: inline-block;
-                transform: scale(0.7);
-            }
-            &:hover {
-                span {
-                    transform: scale(1);
-                }
-                .pix-label {
-                    opacity: 1;
-                }
-            }
-            &.is-selected .pix-dot {
-                opacity: 1;
-            }
-        }
-    }
-
-    .pix-dot {
-        position: relative;
-        /* we set a top value in order to align the dot with the label. If you change label's font, you may need to change this top value*/
-        top: 6px;
-        height: 14px;
-        width: 14px;
-        border-radius: 50%;
-        background-color: #fff;
-        opacity: 0.5;
-        transition: transform 0.2s, background-color 0.5s;
-        transform-origin: 50% 50%;
-        box-shadow: $box-shadow-sm !important;
-    }
-    .pix-label {
-        position: relative;
-        margin-right: 10px;
-        padding: 0px 10px;
-        background-color: #fff;
-        color: var(--text-heading-default);
-        border-radius: 5px;
-        box-shadow: $box-shadow-sm !important;
-        font-size: 14px;
-        font-weight: $font-weight-bold;
-        transition: transform 0.2s, opacity 0.2s;
-        opacity: 0;
-        transform-origin: 100% 50%;
-    }
-
-}
-.pix-dark-v-nav {
-    #pix-vertical-nav {
-        .pix-dot {
-            background: #000;
-        }
-    }
-}
-
-@media only screen and (min-width: 768px) {
-    .touch .cd-nav-trigger, .touch #pix-vertical-nav {
-        bottom: 40px;
-    }
-}
-
-.pix-photo-stack {
-    // position: relative;
-    // width: 100%;
-    // display: inline-block;
-    img,.img-el {
-        position: relative;
-        display: inline-block;
-        width: 100%;
-        height: auto;
-    }
-    &.pix-img-2 {
-        .img-el {
-            position: relative;
-            display: inline-block;
-            width: 65%;
-            height: auto;
-        }
-        .img-el:nth-child(1) {
-            top: 0;
-            left: 0;
-            float: left;
-            z-index: 10;
-        }
-        .img-el:nth-child(2){
-            top: 30%;
-            z-index: 9;
-            right: 0;
-            float: right;
-            position: absolute;
-        }
-    }
-    &.pix-img-n {
-        .img-el {
-            position: relative;
-            display: block;
-            width: 100%;
-            height: auto;
-        }
-        .img-el:nth-child(1){
-            margin-top: 20%;
-            left: 0;
-            float: left;
-            z-index: 10;
-            width: 70%;
-        }
-        .img-el:nth-child(2){
-            top: 60%;
-            width: 55%;
-            z-index: 9;
-            right: 0;
-            float: right;
-            position: absolute;
-        }
-        .img-el:nth-child(3){
-            top: 0;
-            width: 40%;
-            z-index: 8;
-            right: 0;
-            float: right;
-            position: absolute;
-        }
-        .img-el:nth-child(4){
-            top: 10%;
-            width: 45%;
-            z-index: 7;
-            left: 20%;
-            float: left;
-            position: absolute;
-        }
-    }
-}
-.pix-content-stack {
-    width: 100%;
-    position: relative;
-    display: inline-block;
-    .img-el {
-        width: 75%;
-        height: auto;
-    }
-    .content-el {
-        transition: $transition-base;
-        position: absolute;
-        width: 45%;
-        right: 0;
-        top: 10%;
-        .content-el-inner {
-            transition: $transition-base;
-            min-height: 50px;
-            display: inline-block;
-            width: 100%;
-        }
-    }
-    &.pix-left-content {
-        .img-el {
-            margin-left: 25%;
-        }
-        .content-el {
-            left: 0;
-        }
-    }
-}
-@media screen and (min-width: 992px) and (max-width: 1200px) {
-    .pix-content-stack {
-        .img-el {
-            width: 87%;
-        }
-        .content-el {
-            width: 53.7%;
-        }
-        &.pix-left-content {
-            .img-el {
-                margin-left: 13%;
-            }
-        }
-    }
-}
-@media screen and (max-width: 992px) {
-    .pix-content-stack {
-        .img-el {
-            width: 100%;
-            height: auto;
-            margin-left: 0 !important;
-        }
-        .content-el {
-            position: relative;
-            top:0;
-            margin-top: -100px;
-            width: 100%;
-        }
-    }
-}
-
 
 
 .pix-popup-footer-div, .pix-popup-footer-div * {
@@ -668,31 +384,19 @@ PixFort Slides
         line-height: 100px;
         opacity: 0.9;
         transition: opacity 0.2s ease, transform 0.2s ease;
-        i, svg {
+        svg {
             line-height: 100px;
-            font-size: 40px;
-            color: $body-color;
+            font-size: 34px;
+            max-height: 60px;
+            color: var(--pix-body-default);
             transition: color 0.2s ease;
             backface-visibility: hidden;
         }
-        svg:not(.pixfort-icon) {
-            line-height: 100px;
-            width: 50px;
-            height: 50px;
-            vertical-align: inherit !important;
-            path {
-                fill: $body-color;
-                transition: $transition-base;
-            }
-        }
         &:hover {
             opacity: 1;
-            background: $white !important;
-            i, svg {
-                color: $heading-color;
-            }
-            svg:not(.pixfort-icon) path {
-                fill: $heading-color;
+            background: var(--pix-dynamic-background, #fff) !important;
+            svg {
+                color: var(--pix-heading-default);
             }
         }
     }
@@ -706,10 +410,9 @@ PixFort Slides
 }
 
 
-.pix-feature-list i {
-    width: 1.25em;
-}
-
+// .pix-feature-list i {
+//     width: 1.25em;
+// }
 
 .jarallax {
     position: relative;
@@ -767,15 +470,14 @@ PixFort Slides
 /**
  * Highlighed Text
  */
-
 .pix-highlight-bg {
-    background-image: linear-gradient(#ffd900, #ffd900);
+    --pix-highlight-bg: #ffd900;
+    background-image: linear-gradient(var(--pix-highlight-bg), var(--pix-highlight-bg));
     background-repeat: no-repeat;
     background-position: 0% 100%;
     opacity: 1;
     visibility: visible !important;
     background-size: 0% 30%;
-    // position: relative;
     backface-visibility: hidden;
     * {
         backface-visibility: hidden;
@@ -809,18 +511,29 @@ body.render {
     }
 }
 
-// @media (max-width: 992px) {
-//     .jconfirm-box {
-//         // mobile fix
-//         overflow: visible !important;
-//     }
-// }
-.pix-main-intro-placeholder { min-height: 60px; }
-@media (max-width: 991px) {
-    .pix-main-intro .pix-main-intro-placeholder.d-block {
-        display: none !important;
-    }
+
+@media (min-width: ($mainMobileBreakpoint - 1)) {
+    // body:has(.pix-header-boxed), body:has(.pix-header-transparent) {
+    //     .pix-main-intro-placeholder { min-height: 60px; }
+    // }
     .pix-main-intro-placeholder {
+        display: var(--pix-header-height-display, none);
+        width: 100%;
+        min-height: var(--pix-header-height, 0px);
+        clear: both;
+    }
+}
+@media (max-width: ($mainMobileBreakpoint - 1)) {
+    // .pix-main-intro .pix-main-intro-placeholder.d-block {
+    //     display: none !important;
+    // }
+    // .pix-main-intro-placeholder {
+    //     clear: both;
+    // }
+    .pix-main-intro-placeholder {
+        display: var(--pix-header-height-mobile-display, none);
+        width: 100%;
+        min-height: var(--pix-header-height-mobile, 0px);
         clear: both;
     }
 }
@@ -833,11 +546,6 @@ body.render {
     &:not(:hover), &.shadow-hover-none:hover {
         border-radius: 0px !important;
     }
-    // &:hover {
-    //     &.shadow-hover-none {
-    //         border-radius: 0px !important;
-    //     }
-    // }
     &:hover {
         &.shadow-sm,
         &.shadow,
@@ -861,12 +569,7 @@ body.render {
     min-height: 100%;
 }
 
-/**
-* WPBakery map
-*/
-.wpb_gmaps_widget .wpb_wrapper {
-    padding: 0px;
-}
+
 /**
 * Review
 */
@@ -898,3 +601,21 @@ body.render {
 }
 
 .pix-runtime-canvas { max-width: 100%;display: block;margin-left: auto;margin-right: auto; }
+
+
+/**
+* Post
+*/
+.pix-post-meta-categories,
+.pix-post-meta-badges {
+    line-height: 1;
+    display: flex;
+    gap: 4px;
+    flex-wrap: wrap;
+    .pix-badge-element {
+        margin-right: 0px !important;
+    }
+}
+.pix-post-meta-badges {
+    justify-self: flex-end;
+}

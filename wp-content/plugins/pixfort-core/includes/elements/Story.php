@@ -49,7 +49,8 @@ class PixStory {
 		if (function_exists('vc_shortcode_custom_css_class')) {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
 		}
-		wp_enqueue_style('pixfort-story-style', PIX_CORE_PLUGIN_URI . 'functions/css/elements/css/story.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
+		wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
+		wp_enqueue_style('pixfort-story-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/story.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 		wp_enqueue_script('pix-flickity-js');
 		$images = [];
 		if (is_array($stories)) {
@@ -59,68 +60,37 @@ class PixStory {
 				$images = vc_param_group_parse_atts($stories);
 			}
 		}
-		// $images = vc_param_group_parse_atts( $stories );
-		$style_arr = array(
-			"" => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
-
-		$hover_effect_arr = array(
-			""       => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
-
-		$add_hover_effect_arr = array(
-			""       => "",
-			"1"       => "fly-sm",
-			"2"       => "fly",
-			"3"       => "fly-lg",
-			"4"       => "scale-sm",
-			"5"       => "scale",
-			"6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-			"8"       => "scale-inverse",
-			"9"       => "scale-inverse-lg",
-		);
 
 		$imgs_arr = array();
 
 		$popup_class = '';
 		if (!empty($images)) {
-			$popup_class = 'pix-story-popup';
 			foreach ($images as $key => $value) {
 				if (!empty($value['img'])) {
-
+					$popup_class = 'pix-story-popup';
 					$img = '';
 					if (is_string($value['img']) && substr($value['img'], 0, 4) === "http") {
 						$img = $value['img'];
 					} else {
 						if (is_array($value['img']) && !empty($value['img']['id'])) {
+							if ( is_int( $value['img']['id'] ) ) {
+								$value['img']['id'] = apply_filters( 'wpml_object_id', $value['img']['id'], 'attachment', true );
+							}
 							$img = wp_get_attachment_image_src($value['img']['id'], "full");
-							// $imgSrcset = wp_get_attachment_image_srcset($image['id']);
 						} else {
+							if ( is_int( $value['img'] ) ) {
+								$value['img'] = apply_filters( 'wpml_object_id', $value['img'], 'attachment', true );
+							}
 							$img = wp_get_attachment_image_src($value['img'], "full");
-							// $imgSrcset = wp_get_attachment_image_srcset($image);
 						}
-						$img = $img[0];
+						if (!empty($img[0])) {
+							$img = $img[0];
+						}
 					}
-
-					// $img = wp_get_attachment_image_src($value['img'], "full");
-					// $img = $img[0];
 					array_push($imgs_arr, $img);
+					// $link = '#';
 				}
 			}
-			$link = '#';
 		}
 		$output = '';
 		if (!empty($image)) {
@@ -129,15 +99,8 @@ class PixStory {
 			$anim_type = '';
 			$anim_delay = '';
 
-			if ($style) {
-				array_push($classes, $style_arr[$style]);
-			}
-			if ($hover_effect) {
-				array_push($classes, $hover_effect_arr[$hover_effect]);
-			}
-			if ($add_hover_effect) {
-				array_push($classes, $add_hover_effect_arr[$add_hover_effect]);
-			}
+			$effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
+			array_push($classes, $effectsClasses);
 
 			if (empty($outer_border)) {
 				array_push($classes, 'pix-no-bg');
@@ -221,13 +184,18 @@ class PixStory {
 						'alt'	=> $alt
 					);
 					if (is_array($image) && !empty($image)) {
+						if ( is_int( $image['id'] ) ) {
+							$image['id'] = apply_filters( 'wpml_object_id', $image['id'], 'attachment', true );
+						}
 						$full_image = wp_get_attachment_image($image['id'], $size, false, $attrs);
 					} else {
+						if ( is_int( $image ) ) {
+							$image = apply_filters( 'wpml_object_id', $image, 'attachment', true );
+						}
 						$full_image = wp_get_attachment_image($image, $size, false, $attrs);
 					}
 				}
 
-				// $output .= '<img class="rounded-circle bg-white pix-fit-cover '.$inner_border.' img-fluid hover-effect" src="'.$imgSrc.'" alt="'. $alt .'" '.$inline_style.'/>';
 				$output .= $full_image;
 				$output .= '</div>';
 				if (!empty($title)) $output .= '<div class="pix-px-5 ' . $text_size . ' ' . $c_color . ' ' . $position . ' ' . $text_classes . '" ' . $c_custom_color . '>' .  $title  . '</div>';
@@ -261,12 +229,6 @@ class PixStory {
 
 				$size_num = (int)$width;
 				$size = array($size_num, $size_num);
-				// $attrs = array(
-				// 	'class'	=> 'rounded-circle bg-white pix-fit-cover img-fluid hover-effect '.$inner_border,
-				// 	'style'	=> $inline_style,
-				// 	'alt'	=> $alt
-				// );
-				// $full_image = wp_get_attachment_image( $image, $size, false, $attrs );
 				$full_image = '';
 				if (is_string($image) && substr($image, 0, 4) === "http") {
 					$full_image = '<img class="rounded-circle bg-white pix-fit-cover img-fluid hover-effect ' . $inner_border . '" style="' . $inline_style . '" alt="' . $alt . '" src="' . $image . '"  />';
@@ -277,23 +239,23 @@ class PixStory {
 						'alt'	=> $alt
 					);
 					if (is_array($image) && !empty($image)) {
+						if ( is_int( $image['id'] ) ) {
+							$image['id'] = apply_filters( 'wpml_object_id', $image['id'], 'attachment', true );
+						}
 						$full_image = wp_get_attachment_image($image['id'], $size, false, $attrs);
 					} else {
+						if ( is_int( $image ) ) {
+							$image = apply_filters( 'wpml_object_id', $image, 'attachment', true );
+						}
 						$full_image = wp_get_attachment_image($image, $size, false, $attrs);
 					}
 				}
-
-
-
 				$output .= '<div class="pix-story d-inline-block ' . $align . ' ' . $css_class . '"  ' . $jarallax . '>';
 				$output .= '<div class="story-img pix-bg-attachment-scroll pix-bg-custom ' . $class_names . '" ' . $custom_outer_style . '>';
 				$output .= $full_image;
 				$output .= '</div>';
 				if (!empty($title)) $output .= '<div class="pix-px-5 ' . $text_size . ' ' . $c_color . ' ' . $position . ' ' . $text_classes . '" ' . $c_custom_color . '>' .  $title  . '</div>';
 				$output .= '</div>';
-
-
-
 				if (!empty($pix_infinite_animation)) {
 					$output .= '</div>';
 				}
@@ -306,9 +268,6 @@ class PixStory {
 			}
 		}
 
-
-
 		return $output;
 	}
 }
-

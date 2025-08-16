@@ -7,11 +7,11 @@ $pixfortBuilder->addOption(
     'pix-heading-404-page',
     [
         'type'             => 'heading',
-        'label'         => 'Custom 404 Page',
+        'label'         => __('Custom 404 Page', 'pixfort-core'),
         'tab'             => 'page404',
         'icon'            => 'fileWarning',
         'linkText'            => __('Learn about 404 page', 'pixfort-core'),
-        'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/create-custom-404-error-page/',
+        'linkHref'            => \PixfortCore::instance()->adminCore->getParam('docs_create_404_page'),
         'linkIcon'            => 'bookmark'
     ]
 );
@@ -24,7 +24,7 @@ $pixfortBuilder->addOption(
         'options'         => array('1' => 'On', '0' => 'Off'),
         'default'           => '0',
         'tab'             => 'page404',
-        'tooltipText'     => __('A 404 page will show when the requested webpage does not exist. <br/><br/> For detailed information about customizing the back to top button check this article from our knowledge base: ', 'pixfort-core') . '<br/><a target="_blank" href="https://essentials.pixfort.com/knowledge-base/create-custom-404-error-page/" target="_blank" class="text-primary font-semibold">https://essentials.pixfort.com/knowledge-base/create-custom-404-error-page/</a>',
+        'tooltipText'     => __('A 404 page will show when the requested webpage does not exist. <br/><br/> For detailed information about customizing the back to top button check this article from our knowledge base: ', 'pixfort-core') . '<br/><a target="_blank" href="'.\PixfortCore::instance()->adminCore->getParam('docs_create_404_page').'" target="_blank" class="text-primary font-semibold">'.\PixfortCore::instance()->adminCore->getParam('docs_create_404_page').'</a>',
         'hideBorderBottom'   => true
     ]
 );

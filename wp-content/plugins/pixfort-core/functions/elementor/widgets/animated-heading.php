@@ -7,7 +7,7 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 	public function __construct($data = [], $args = null) {
 		parent::__construct($data, $args);
 
-		wp_register_style('pixfort-animated-heading-style', PIX_CORE_PLUGIN_URI . 'functions/css/elements/css/animated-heading.min.css', false, PIXFORT_PLUGIN_VERSION);
+		wp_register_style('pixfort-animated-heading-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/animated-heading.min.css', false, PIXFORT_PLUGIN_VERSION);
 		wp_register_script('pix-animated-heading-handle', PIX_CORE_PLUGIN_URI . 'functions/elementor/js/animated-heading.js', ['elementor-frontend'], PIXFORT_PLUGIN_VERSION, true);
 	}
 
@@ -28,72 +28,25 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 	}
 
 	public function get_help_url() {
-		return 'https://essentials.pixfort.com/knowledge-base/';
+		return \PixfortCore::instance()->adminCore->getParam('docs_link');
 	}
 
 	protected function register_controls() {
-		$colors = array(
-			"Body default"			=> "body-default",
-			"Heading default"		=> "heading-default",
-			"Primary"				=> "primary",
-			"Primary Gradient"		=> "gradient-primary",
-			"Secondary"				=> "secondary",
-			"White"					=> "white",
-			"Black"					=> "black",
-			"Green"					=> "green",
-			"Blue"					=> "blue",
-			"Red"					=> "red",
-			"Yellow"				=> "yellow",
-			"Brown"					=> "brown",
-			"Purple"				=> "purple",
-			"Orange"				=> "orange",
-			"Cyan"					=> "cyan",
-			// "Transparent"					=> "transparent",
-			"Gray 1"				=> "gray-1",
-			"Gray 2"				=> "gray-2",
-			"Gray 3"				=> "gray-3",
-			"Gray 4"				=> "gray-4",
-			"Gray 5"				=> "gray-5",
-			"Gray 6"				=> "gray-6",
-			"Gray 7"				=> "gray-7",
-			"Gray 8"				=> "gray-8",
-			"Gray 9"				=> "gray-9",
-			"Dark opacity 1"		=> "dark-opacity-1",
-			"Dark opacity 2"		=> "dark-opacity-2",
-			"Dark opacity 3"		=> "dark-opacity-3",
-			"Dark opacity 4"		=> "dark-opacity-4",
-			"Dark opacity 5"		=> "dark-opacity-5",
-			"Dark opacity 6"		=> "dark-opacity-6",
-			"Dark opacity 7"		=> "dark-opacity-7",
-			"Dark opacity 8"		=> "dark-opacity-8",
-			"Dark opacity 9"		=> "dark-opacity-9",
-			"Light opacity 1"		=> "light-opacity-1",
-			"Light opacity 2"		=> "light-opacity-2",
-			"Light opacity 3"		=> "light-opacity-3",
-			"Light opacity 4"		=> "light-opacity-4",
-			"Light opacity 5"		=> "light-opacity-5",
-			"Light opacity 6"		=> "light-opacity-6",
-			"Light opacity 7"		=> "light-opacity-7",
-			"Light opacity 8"		=> "light-opacity-8",
-			"Light opacity 9"		=> "light-opacity-9",
-			"Custom"				=> "custom"
-		);
-
 
 		$this->start_controls_section(
 			'section_title',
 			[
-				'label' => __('Content', 'elementor'),
+				'label' => __('Content', 'pixfort-core'),
 			]
 		);
 
 		$this->add_control(
 			'title',
 			[
-				'label' => __('Title', 'elementor'),
+				'label' => __('Title', 'pixfort-core'),
 				'label_block' => true,
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __('Enter your title', 'elementor'),
+				'placeholder' => __('Enter your title', 'pixfort-core'),
 				'dynamic'     => array(
 					'active'  => true
 				),
@@ -105,11 +58,14 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 		$repeater->add_control(
 			'word',
 			[
-				'label' => __('Word', 'elementor'),
+				'label' => __('Word', 'pixfort-core'),
 				'label_block' => true,
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __('Enter the word', 'elementor'),
+				'placeholder' => __('Enter the word', 'pixfort-core'),
 				'default' => '',
+				'dynamic'     => array(
+					'active'  => true
+				),
 			]
 		);
 		$repeater->add_control(
@@ -128,7 +84,7 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 			[
 				'label' => __('Different Color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultValue' => ['' => __('Default', 'pixfort-core')]]),
 				'default' => '',
 				// 'condition' => [
 				// 	'has_color' => true,
@@ -160,10 +116,10 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 		$this->add_control(
 			'text_after',
 			[
-				'label' => __('Text after', 'elementor'),
+				'label' => __('Text after', 'pixfort-core'),
 				'label_block' => true,
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __('Enter Text after', 'elementor'),
+				'placeholder' => __('Enter Text after', 'pixfort-core'),
 				'default' => '',
 				'dynamic'     => array(
 					'active'  => true
@@ -173,10 +129,10 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 		$this->add_control(
 			'slogan',
 			[
-				'label' => __('Slogan', 'elementor'),
+				'label' => __('Slogan', 'pixfort-core'),
 				'label_block' => true,
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __('Enter Text after', 'elementor'),
+				'placeholder' => __('Enter Text after', 'pixfort-core'),
 				'default' => '',
 				'dynamic'     => array(
 					'active'  => true
@@ -206,11 +162,11 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 			[
 				'label' => __('Position', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array(
-					'left'			=> 'Left',
-					'center'		=> 'Center',
-					'right' 		=> 'Right',
-				),
+				'options' => [
+					'left'			=> __('Start', 'pixfort-core'),
+					'center'		=> __('Center', 'pixfort-core'),
+					'right' 		=> __('End', 'pixfort-core'),
+				],
 				'default' => 'center',
 			]
 		);
@@ -223,7 +179,7 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 		$this->start_controls_section(
 			'section_title_format',
 			[
-				'label' => __('Text format', 'elementor'),
+				'label' => __('Text format', 'pixfort-core'),
 			]
 		);
 
@@ -324,7 +280,7 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 			[
 				'label' => __('Title color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(),
 				'default' => 'heading-default',
 			]
 		);
@@ -353,7 +309,7 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 		$this->start_controls_section(
 			'section_slogan',
 			[
-				'label' => __('Slogan format', 'elementor'),
+				'label' => __('Slogan format', 'pixfort-core'),
 			]
 		);
 
@@ -396,7 +352,7 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 			[
 				'label' => __('Title color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(),
 				'default' => 'primary',
 			]
 		);
@@ -421,7 +377,7 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 		$this->start_controls_section(
 			'section_advanced',
 			[
-				'label' => __('Advanced', 'elementor'),
+				'label' => __('Advanced', 'pixfort-core'),
 			]
 		);
 
@@ -456,7 +412,7 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 		$this->start_controls_section(
 			'section_element_style_slogan',
 			[
-				'label' => __('Slogan Style', 'elementor'),
+				'label' => __('Slogan Style', 'pixfort-core'),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -464,23 +420,23 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 		$this->add_responsive_control(
 			'slogan_align',
 			[
-				'label' => __('Alignment', 'elementor'),
+				'label' => __('Alignment', 'pixfort-core'),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __('Left', 'elementor'),
+						'title' => __('Left', 'pixfort-core'),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __('Center', 'elementor'),
+						'title' => __('Center', 'pixfort-core'),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __('Right', 'elementor'),
+						'title' => __('Right', 'pixfort-core'),
 						'icon' => 'eicon-text-align-right',
 					],
 					'justify' => [
-						'title' => __('Justified', 'elementor'),
+						'title' => __('Justified', 'pixfort-core'),
 						'icon' => 'eicon-text-align-justify',
 					],
 				],
@@ -516,7 +472,7 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 		$this->start_controls_section(
 			'section_element_style',
 			[
-				'label' => __('Heading Style', 'elementor'),
+				'label' => __('Heading Style', 'pixfort-core'),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -525,23 +481,23 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 		$this->add_responsive_control(
 			'align',
 			[
-				'label' => __('Alignment', 'elementor'),
+				'label' => __('Alignment', 'pixfort-core'),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'left' => [
-						'title' => __('Left', 'elementor'),
+						'title' => __('Left', 'pixfort-core'),
 						'icon' => 'eicon-text-align-left',
 					],
 					'center' => [
-						'title' => __('Center', 'elementor'),
+						'title' => __('Center', 'pixfort-core'),
 						'icon' => 'eicon-text-align-center',
 					],
 					'right' => [
-						'title' => __('Right', 'elementor'),
+						'title' => __('Right', 'pixfort-core'),
 						'icon' => 'eicon-text-align-right',
 					],
 					'justify' => [
-						'title' => __('Justified', 'elementor'),
+						'title' => __('Justified', 'pixfort-core'),
 						'icon' => 'eicon-text-align-justify',
 					],
 				],
@@ -572,7 +528,7 @@ class Pix_Eor_Animated_Heading extends Widget_Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		echo \PixfortCore::instance()->elementsManager->renderElement('AnimatedHeading', $settings );
+		echo \PixfortCore::instance()->elementsManager->renderElement('AnimatedHeading', $settings);
 	}
 
 

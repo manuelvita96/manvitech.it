@@ -4,11 +4,11 @@ $pixfortBuilder->addOption(
 	'pix-heading-blog-general',
 	[
 		'type'             => 'heading',
-		'label'         => 'Blog',
+		'label'         => __('Blog', 'pixfort-core'),
 		'tab'             => 'blogGeneral',
 		'icon'            => 'blog',
 		'linkText'            => __('Learn more about blog', 'pixfort-core'),
-		'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/how-to-create-the-blog-page/',
+		'linkHref'            => \PixfortCore::instance()->adminCore->getParam('docs_how_to_create_blog_page'),
 		'linkIcon'            => 'bookmark'
 	]
 );
@@ -25,7 +25,7 @@ $pixfortBuilder->addOption(
 	'blog-page-layout',
 	[
 		'type' => 'radio',
-		'label' => 'Blog Posts Layout',
+		'label' => __('Blog Posts Layout', 'pixfort-core'),
 		'default' => 'default',
 		'tab'             => 'blogGeneral',
 		'imageSize'       => '130',
@@ -89,11 +89,17 @@ $pixfortBuilder->addOption(
 		],
 	]
 );
+$sidebarStartImg = PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/sidebar-left.svg';
+$sidebarEndImg = PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/sidebar-right.svg';
+if(is_rtl()){
+	$sidebarStartImg = PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/sidebar-right.svg';
+	$sidebarEndImg = PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/sidebar-left.svg';
+}
 $pixfortBuilder->addOption(
 	'blog-page-template',
 	[
 		'type' => 'radio',
-		'label' => 'Blog Layout',
+		'label' => __('Blog Layout', 'pixfort-core'),
 		'default' => 'right-sidebar',
 		'tab'             => 'blogGeneral',
 		'imageSize'       => '130',
@@ -117,23 +123,30 @@ $pixfortBuilder->addOption(
 				'value'            => 'full-page-width'
 			],
 			[
-				'name'            => 'Right Sidebar',
-				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/sidebar-right.svg',
+				'name'            => 'Sidebar End',
+				'image'            => $sidebarEndImg,
 				'value'            => 'right-sidebar'
 			],
 			[
-				'name'            => 'Left Sidebar',
-				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/sidebar-left.svg',
+				'name'            => 'Sidebar Left',
+				'image'            => $sidebarStartImg,
 				'value'            => 'left-sidebar'
 			]
 		),
 	]
 );
+
+$styleImageStart = PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/style-left-image.svg';
+$styleImageEnd = PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/style-right-image.svg';
+if(is_rtl()){
+	$styleImageStart = PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/style-right-image.svg';
+	$styleImageEnd = PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/style-left-image.svg';
+}
 $pixfortBuilder->addOption(
 	'blog-style',
 	[
 		'type' => 'radio',
-		'label' => 'Blog Posts Style',
+		'label' => __('Blog Posts Style', 'pixfort-core'),
 		'default' => 'default',
 		'tab'             => 'blogGeneral',
 		'imageSize'       => '130',
@@ -151,13 +164,13 @@ $pixfortBuilder->addOption(
 				'value'            => 'with-padding'
 			],
 			[
-				'name'            => 'Left image',
-				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/style-left-image.svg',
+				'name'            => 'Image Start',
+				'image'            => $styleImageStart,
 				'value'            => 'left-img'
 			],
 			[
-				'name'            => 'Right image',
-				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/style-right-image.svg',
+				'name'            => 'Image End',
+				'image'            => $styleImageEnd,
 				'value'            => 'right-img'
 			],
 			[
@@ -168,11 +181,18 @@ $pixfortBuilder->addOption(
 		),
 	]
 );
+
+$blogLayoutSidebarStartImg = PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/sidebar-left.svg';
+$blogLayoutSidebarEndImg = PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/sidebar-right.svg';
+if(is_rtl()){
+	$blogLayoutSidebarStartImg = PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/sidebar-right.svg';
+	$blogLayoutSidebarEndImg = PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/sidebar-left.svg';
+}
 $pixfortBuilder->addOption(
 	'blog-layout',
 	[
 		'type' => 'radio',
-		'label' => 'Post Layout',
+		'label' => __('Post Layout', 'pixfort-core'),
 		'default' => 'default',
 		'tab'             => 'blogGeneral',
 		'imageSize'       => '130',
@@ -181,23 +201,23 @@ $pixfortBuilder->addOption(
 		'description' => __('Layout for post pages.', 'pixfort-core'),
 		'options'        => array(
 			[
-				'name'            => 'Default',
+				'name'            => __('Default', 'pixfort-core'),
 				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/default-layout.svg',
 				'value'            => 'default'
 			],
 			[
-				'name'            => 'Normal width',
+				'name'            => __('Normal width', 'pixfort-core'),
 				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/default-layout-normal.svg',
 				'value'            => 'default-normal'
 			],
 			[
-				'name'            => 'Right sidebar',
-				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/sidebar-right.svg',
+				'name'            => __('Sidebar End', 'pixfort-core'),
+				'image'            => $blogLayoutSidebarEndImg,
 				'value'            => 'right-sidebar'
 			],
 			[
-				'name'            => 'Left Sidebar',
-				'image'            => PIX_CORE_PLUGIN_URI . 'includes/assets/core-options/thumbnails/blog/sidebar-left.svg',
+				'name'            => __('Sidebar Start', 'pixfort-core'),
+				'image'            => $blogLayoutSidebarStartImg,
 				'value'            => 'left-sidebar'
 			]
 		),
@@ -234,8 +254,9 @@ $pixfortBuilder->addOption(
 	[
 		'type' => 'select',
 		'label' => __('Blog Background Color', 'pixfort-core'),
-		'options' => array_flip($bg_colors),
-		'default'             => 'gray-1',
+		'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['bg' => true, 'transparent' => true]),
+		'groups' => true,
+		'default'         => \PixfortCore::instance()->adminCore->getParam('blog_bg_color', 'gray-1'),
 		'tab'             => 'blogGeneral',
 	]
 );

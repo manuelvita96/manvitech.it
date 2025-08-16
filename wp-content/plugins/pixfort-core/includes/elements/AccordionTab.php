@@ -1,7 +1,7 @@
 <?php
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
+if (! defined('ABSPATH')) {
+    exit; // Exit if accessed directly.
 }
 
 class PixAccordionTab {
@@ -38,49 +38,16 @@ class PixAccordionTab {
         $output = '';
         $icon_out = '';
         if (!empty($media_type)) {
-            if(\PixfortCore::instance()->icons::$isEnabled) {
-                if (!empty($media_type)&&$media_type === "duo_icon") {
-                    $icon = $pix_duo_icon;
-                }
-                $icon_style = '';
-                if (!empty($custom_icon_color)) {
-                    $icon_style = 'style="color:' . $custom_icon_color . ';"';
-                }
-                $icon_out = '<span class="d-inline-block text-' . $icon_color . ' svg-20 pix-mr-10" ' . $icon_style . '>';
-                $icon_out .= \PixfortCore::instance()->icons->getIcon($icon);
-                $icon_out .= '</span>';
-                
-            } else {
-                /*
-                * Deprecated Icons 
-                */
-                $icon = \PixfortCore::instance()->icons->verifyIconName($icon);
-                if ($media_type == 'icon') {
-                    if (!empty($icon)) {
-                        if(!str_contains($icon, 'pixicon') && !str_contains($icon, 'Line/') && !str_contains($icon, 'Solid/')) {
-                            $pix_duo_icon = $icon;
-                            $media_type = "duo_icon";
-                        } else {
-                            $icon_style = '';
-                            if (!empty($custom_icon_color)) {
-                                $icon_style = 'style="color:' . $custom_icon_color . ';"';
-                            }
-                            $icon_out = '<i class="' . $icon . ' text-' . $icon_color . ' text-20 pix-mr-10" ' . $icon_style . '></i> ';
-                        }
-                    }
-                }
-                if ($media_type == 'duo_icon') {
-                    if (!empty($pix_duo_icon)) {
-                        $icon_out = '<span class="d-inline-block text-' . $icon_color . ' svg-20 pix-mr-10">';
-                        $icon_out .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $pix_duo_icon . '.svg');
-                        $icon_out .= '</span>';
-                    }
-                }
-                /*
-                * End of Deprecated Icons
-                */
+            if (!empty($media_type) && $media_type === "duo_icon") {
+                $icon = $pix_duo_icon;
             }
-            
+            $icon_style = '';
+            if (!empty($custom_icon_color)) {
+                $icon_style = 'style="color:' . $custom_icon_color . ';"';
+            }
+            $icon_out = '<span class="d-inline-block text-' . $icon_color . ' svg-20 pix-mr-10" ' . $icon_style . '>';
+            $icon_out .= \PixfortCore::instance()->icons->getIcon($icon);
+            $icon_out .= '</span>';
         }
         $title_classes = pix_get_text_format_classes($bold, $italic, $secondary_font);
         $title_classes .= ' text-' . $title_color;

@@ -4,11 +4,11 @@ $pixfortBuilder->addOption(
 	'pix-heading-pages-intro',
 	[
 		'type'             => 'heading',
-		'label'         => 'Pages Intro',
+		'label'         => __('Pages Intro', 'pixfort-core'),
 		'tab'             => 'pagesIntro',
 		'icon'            => 'intro',
 		'linkText'            => __('Learn more about intro section', 'pixfort-core'),
-		'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/customize-page-intro-section/',
+		'linkHref'            => \PixfortCore::instance()->adminCore->getParam('docs_customize_page_intro_section'),
 		'linkIcon'            => 'bookmark'
 	]
 );
@@ -21,7 +21,7 @@ $pixfortBuilder->addOption(
         'options'         => array('1' => 'On', '0' => 'Off'),
         'default'           => '1',
         'tab'             => 'pagesIntro',
-        'tooltipText'     => __('The Intro Section is the first section in the page after the header, which contains the page title and breadcrumbs.', 'pixfort-core') . '<br/><br/>' . __('For more information ', 'pixfort-core') . '<a target="_blank" href="https://essentials.pixfort.com/knowledge-base/customize-page-intro-section/" target="_blank" class="text-primary font-semibold">check this article</a>',
+        'tooltipText'     => __('The Intro Section is the first section in the page after the header, which contains the page title and breadcrumbs.', 'pixfort-core') . '<br/><br/>' . __('For more information ', 'pixfort-core') . '<a target="_blank" href="'.\PixfortCore::instance()->adminCore->getParam('docs_customize_page_intro_section').'" target="_blank" class="text-primary font-semibold">check this article</a>',
         'tooltipImage'   => PIX_CORE_PLUGIN_URI . '/includes/assets/core-options/tooltips/core-options-tooltip-page-intro-section.webp',
     ]
 );
@@ -29,7 +29,7 @@ $pixfortBuilder->addOption(
     'pages-divider-style',
     [
         'type' => 'radio',
-        'label' => 'Pages Divider style',
+        'label' => __('Pages Divider style', 'pixfort-core'),
         'default' => '0',
         'tab'             => 'pagesIntro',
         'imageSize'       => '130',
@@ -89,21 +89,117 @@ $pixfortBuilder->addOption(
         ],
     ]
 );
-$pixfortBuilder->addOption(
-    'pages-intro-light',
-    [
-        'type' => 'checkbox',
-        'label' => __('Enable light Pages intro text', 'pixfort-core'),
-        'description' => __('Disable to display dark text in the intro.', 'pixfort-core'),
-        'options'         => array('1' => 'On', '0' => 'Off'),
-        'default'           => '1',
-        'tab'             => 'pagesIntro',
-        'dependency' => [
-            'field' => 'pages-with-intro',
-            'val' => ['1', true]
-        ],
-    ]
-);
+
+
+// if(PixfortCore::instance()->getThemeParam('dynamic_colors')) {
+    $pixfortBuilder->addOption(
+        'pages-intro-light',
+        [
+            'type' => 'deleted',
+            'label' => __('Enable light Pages intro text', 'pixfort-core'),
+            'description' => __('Disable to display dark text in the intro.', 'pixfort-core'),
+            'options'         => array('1' => 'On', '0' => 'Off'),
+            'default'           => '',
+            'tab'             => 'pagesIntro',
+            'dependency' => [
+                'field' => 'pages-with-intro',
+                'val' => ['1', true]
+            ],
+        ]
+    );
+    $defaultIntroTitleColor = 'heading-default';
+    $defaultIntroTitleColorCustom = '#495057';
+    $defaultIntroBreadcrumbsColor = 'body-default';
+    $defaultIntroBreadcrumbsColorCustom = '#6c757d';
+    
+    if (!empty(pix_plugin_get_option('pages-intro-light'))) {
+        if (pix_plugin_get_option('pages-intro-light')==='1') {
+            $defaultIntroTitleColor = pix_plugin_get_option('opt-dark-heading-color');
+            $defaultIntroTitleColorCustom = pix_plugin_get_option('opt-custom-dark-heading-color');
+            $defaultIntroBreadcrumbsColor = pix_plugin_get_option('opt-dark-body-color');
+            $defaultIntroBreadcrumbsColorCustom = pix_plugin_get_option('opt-custom-dark-body-color');
+        }
+    }
+
+    $pixfortBuilder->addOption(
+        'pages-intro-title-color',
+        [
+            'type' => 'select',
+            'label' => __('Pages Intro title color', 'pixfort-core'),
+            'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultValue' => false]),
+            'groups' => true,
+            'default'             => $defaultIntroTitleColor,
+            'tab'             => 'pagesIntro',
+            'dependency' => [
+                'field' => 'pages-with-intro',
+                'val' => ['1', true]
+            ],
+        ]
+    );
+    $pixfortBuilder->addOption(
+        'pages-intro-title-color-custom',
+        [
+            'type'             => 'color',
+            'tab'             => 'pagesIntro',
+            'label'         => __('Custom Pages Intro title color', 'pixfort-core'),
+            'default'         => $defaultIntroTitleColorCustom,
+            'disableAlpha'         => true,
+            'hideBorderBottom'      => true,
+            'dependency' => [
+                'field' => 'pages-intro-title-color',
+                'val' => ['custom']
+            ]
+        ]
+    );
+    $pixfortBuilder->addOption(
+        'pages-intro-breadcrumbs-color',
+        [
+            'type' => 'select',
+            'label' => __('Pages Intro Breadcrumbs color', 'pixfort-core'),
+            'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultValue' => false]),
+            'groups' => true,
+            'default'             => $defaultIntroBreadcrumbsColor,
+            'tab'             => 'pagesIntro',
+            'dependency' => [
+                'field' => 'pages-with-intro',
+                'val' => ['1', true]
+            ],
+        ]
+    );
+    $pixfortBuilder->addOption(
+        'pages-intro-breadcrumbs-color-custom',
+        [
+            'type'             => 'color',
+            'tab'             => 'pagesIntro',
+            'label'         => __('Custom Pages Intro Breadcrumbs color', 'pixfort-core'),
+            'default'         => $defaultIntroBreadcrumbsColorCustom,
+            'disableAlpha'         => true,
+            'hideBorderBottom'      => true,
+            'dependency' => [
+                'field' => 'pages-intro-breadcrumbs-color',
+                'val' => ['custom']
+            ]
+        ]
+    );
+
+// } else {
+//     $pixfortBuilder->addOption(
+//         'pages-intro-light',
+//         [
+//             'type' => 'checkbox',
+//             'label' => __('Enable light Pages intro text', 'pixfort-core'),
+//             'description' => __('Disable to display dark text in the intro.', 'pixfort-core'),
+//             'options'         => array('1' => 'On', '0' => 'Off'),
+//             'default'           => '1',
+//             'tab'             => 'pagesIntro',
+//             'dependency' => [
+//                 'field' => 'pages-with-intro',
+//                 'val' => ['1', true]
+//             ],
+//         ]
+//     );
+// }
+
 $pixfortBuilder->addOption(
     'pages-intro-align',
     [
@@ -127,7 +223,9 @@ $pixfortBuilder->addOption(
     [
         'type' => 'select',
         'label' => __('Pages Intro overlay color', 'pixfort-core'),
-        'options' => array_flip($bg_colors_no_custom),
+        // 'options' => array_flip($bg_colors_no_custom),
+        'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['bg' => true, 'transparent' => true, 'defaultValue' => false, 'custom' => false]),
+		'groups' => true,
         'default'             => 'primary',
         'tab'             => 'pagesIntro',
         'dependency' => [
@@ -156,10 +254,15 @@ $pixfortBuilder->addOption(
                 'pix-opacity-1'   => "90%",
                 'pix-opacity-0'   => "100%",
         ],
+        // 'dependency' => [
+        //     'field' => 'pages-with-intro',
+        //     'val' => ['1', true]
+        // ],
         'dependency' => [
-            'field' => 'pages-with-intro',
-            'val' => ['1', true]
-        ],
+            'field' => 'pages-intro-img',
+            'val' => ['0', false, ''],
+            'op'                => '!='
+        ]
     ]
 );
 $pixfortBuilder->addOption(

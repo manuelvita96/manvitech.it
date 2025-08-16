@@ -5,10 +5,31 @@ namespace Elementor;
 class Pix_Eor_Slider extends Widget_Base {
 
 	public function __construct($data = [], $args = null) {
+		if (!empty($data['settings'])) {
+			if (!empty($data['settings']['items'])) {
+				foreach ($data['settings']['items'] as $key => $value) {
+					if (!empty($data['settings']['items'][$key]['link']) && !is_array($data['settings']['items'][$key]['link'])) {
+						if (array_key_exists('target', $data['settings']['items'][$key]) && $data['settings']['items'][$key]['target'] === 'yes') {
+							$data['settings']['items'][$key]['link'] = [
+								'url' => $data['settings']['items'][$key]['link'],
+								'is_external' => true,
+								'nofollow' => false,
+							];
+						} else {
+							$data['settings']['items'][$key]['link'] = [
+								'url' => $data['settings']['items'][$key]['link'],
+								'nofollow' => false,
+							];
+						}
+					}
+					$data['settings']['items'][$key]['target'] = false;
+				}
+			}
+		}
 		parent::__construct($data, $args);
 
-		wp_register_script('pix-slider-handle', PIX_CORE_PLUGIN_URI . 'functions/elementor/js/slider.js', ['elementor-frontend'], PIXFORT_PLUGIN_VERSION, true);
-		wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI.'functions/css/elements/css/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
+		if (is_user_logged_in()) wp_register_script('pix-slider-handle', PIX_CORE_PLUGIN_URI . 'functions/elementor/js/slider.js', ['elementor-frontend'], PIXFORT_PLUGIN_VERSION, true);
+		if (is_user_logged_in()) wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 	}
 
 	public function get_name() {
@@ -28,7 +49,7 @@ class Pix_Eor_Slider extends Widget_Base {
 	}
 
 	public function get_help_url() {
-		return 'https://essentials.pixfort.com/knowledge-base/';
+		return \PixfortCore::instance()->adminCore->getParam('docs_link');
 	}
 
 	protected function register_controls() {
@@ -77,61 +98,7 @@ class Pix_Eor_Slider extends Widget_Base {
 			"Light opacity 9"		=> "light-opacity-9",
 			"Custom"				=> "custom"
 		);
-		$bg_colors = array(
-			"Primary"				=> "primary",
-			"Primary Light"			=> "primary-light",
-			"Primary Gradient"		=> "gradient-primary",
-			"Primary Gradient Light"		=> "gradient-primary-light",
-			"Secondary"				=> "secondary",
-			"Secondary Light"		=> "secondary-light",
-			"White"					=> "white",
-			"Black"					=> "black",
-			"Green"					=> "green",
-			"Green Light"			=> "green-light",
-			"Blue"					=> "blue",
-			"Blue Light"			=> "blue-light",
-			"Red"					=> "red",
-			"Red Light"				=> "red-light",
-			"Yellow"				=> "yellow",
-			"Yellow Light"			=> "yellow-light",
-			"Brown"					=> "brown",
-			"Brown Light"			=> "brown-light",
-			"Purple"				=> "purple",
-			"Purple Light"			=> "purple-light",
-			"Orange"				=> "orange",
-			"Orange Light"			=> "orange-light",
-			"Cyan"					=> "cyan",
-			"Cyan Light"			=> "cyan-light",
-			"Transparent"			=> "transparent",
-			"Gray 1"				=> "gray-1",
-			"Gray 2"				=> "gray-2",
-			"Gray 3"				=> "gray-3",
-			"Gray 4"				=> "gray-4",
-			"Gray 5"				=> "gray-5",
-			"Gray 6"				=> "gray-6",
-			"Gray 7"				=> "gray-7",
-			"Gray 8"				=> "gray-8",
-			"Gray 9"				=> "gray-9",
-			"Dark opacity 1"		=> "dark-opacity-1",
-			"Dark opacity 2"		=> "dark-opacity-2",
-			"Dark opacity 3"		=> "dark-opacity-3",
-			"Dark opacity 4"		=> "dark-opacity-4",
-			"Dark opacity 5"		=> "dark-opacity-5",
-			"Dark opacity 6"		=> "dark-opacity-6",
-			"Dark opacity 7"		=> "dark-opacity-7",
-			"Dark opacity 8"		=> "dark-opacity-8",
-			"Dark opacity 9"		=> "dark-opacity-9",
-			"Light opacity 1"		=> "light-opacity-1",
-			"Light opacity 2"		=> "light-opacity-2",
-			"Light opacity 3"		=> "light-opacity-3",
-			"Light opacity 4"		=> "light-opacity-4",
-			"Light opacity 5"		=> "light-opacity-5",
-			"Light opacity 6"		=> "light-opacity-6",
-			"Light opacity 7"		=> "light-opacity-7",
-			"Light opacity 8"		=> "light-opacity-8",
-			"Light opacity 9"		=> "light-opacity-9",
-			"Custom"				=> "custom"
-		);
+		
 		$this->start_controls_section(
 			'section_title',
 			[
@@ -157,6 +124,9 @@ class Pix_Eor_Slider extends Widget_Base {
 			[
 				'label' => __('Image', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::MEDIA,
+				'dynamic'     => array(
+					'active'  => true
+				),
 			]
 		);
 		$repeater->add_control(
@@ -166,6 +136,9 @@ class Pix_Eor_Slider extends Widget_Base {
 				'type' => Controls_Manager::TEXT,
 				'default' => __('', 'pixfort-core'),
 				'label_block' => true,
+				'dynamic'     => array(
+					'active'  => true
+				),
 			]
 		);
 		$repeater->add_control(
@@ -175,6 +148,9 @@ class Pix_Eor_Slider extends Widget_Base {
 				'type' => Controls_Manager::TEXT,
 				'default' => __('', 'pixfort-core'),
 				'label_block' => true,
+				'dynamic'     => array(
+					'active'  => true
+				),
 			]
 		);
 		$repeater->add_control(
@@ -184,36 +160,49 @@ class Pix_Eor_Slider extends Widget_Base {
 				'type' => Controls_Manager::TEXT,
 				'default' => __('', 'pixfort-core'),
 				'label_block' => true,
+				'dynamic'     => array(
+					'active'  => true
+				),
 			]
 		);
 		$repeater->add_control(
 			'btn_text',
 			[
-				'label' => __('Button text', 'pixfort-core'),
+				'label' => __('Button Text', 'pixfort-core'),
 				'type' => Controls_Manager::TEXT,
 				'default' => __('', 'pixfort-core'),
 				'label_block' => true,
+				'dynamic'     => array(
+					'active'  => true
+				),
 			]
 		);
 		$repeater->add_control(
 			'link',
 			[
 				'label' => __('Link', 'pixfort-core'),
-				'type' => Controls_Manager::TEXT,
-				'default' => __('', 'pixfort-core'),
+				'type' => Controls_Manager::URL,
+				'default' => [
+					'url' => '',
+					'is_external' => false,
+					'nofollow' => true,
+				],
+				'dynamic'     => array(
+					'active'  => true
+				),
 			]
 		);
-		$repeater->add_control(
-			'target',
-			[
-				'label' => __('Open in a new tab', 'pixfort-core'),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __('Yes', 'pixfort-core'),
-				'label_off' => __('No', 'pixfort-core'),
-				'return_value' => 'yes',
-				'default' => 'yes',
-			]
-		);
+		// $repeater->add_control(
+		// 	'target',
+		// 	[
+		// 		'label' => __('Open in a new tab', 'pixfort-core'),
+		// 		'type' => \Elementor\Controls_Manager::SWITCHER,
+		// 		'label_on' => __('Yes', 'pixfort-core'),
+		// 		'label_off' => __('No', 'pixfort-core'),
+		// 		'return_value' => 'yes',
+		// 		'default' => 'yes',
+		// 	]
+		// );
 		$repeater->add_control(
 			'btn_popup_id',
 			[
@@ -296,7 +285,7 @@ class Pix_Eor_Slider extends Widget_Base {
 				'label' => __('Circles color', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'gradient-primary',
-				'options' => array_flip($bg_colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(['bg' => true, 'transparent' => true]),
 				'condition' => [
 					'nav_style' => 'circles',
 				],
@@ -309,7 +298,7 @@ class Pix_Eor_Slider extends Widget_Base {
 			[
 				'label' => __('Overlay color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(),
 				'default' => 'black',
 			]
 		);
@@ -471,7 +460,7 @@ class Pix_Eor_Slider extends Widget_Base {
 			[
 				'label' => __('Title color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(),
 				'default' => 'heading-default',
 			]
 		);
@@ -540,7 +529,7 @@ class Pix_Eor_Slider extends Widget_Base {
 			[
 				'label' => __('Content color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(),
 				'default' => 'body-default',
 			]
 		);
@@ -815,40 +804,16 @@ class Pix_Eor_Slider extends Widget_Base {
 			]
 		);
 
-
-		if (\PixfortCore::instance()->icons::$isEnabled) {
-			$this->add_control(
-				'btn_icon',
-				[
-					'label' => esc_html__('pixfort Icon', 'pixfort-core'),
-					'type' => \Elementor\CustomControl\PixfortIconSelector_Control::PixfortIconSelector,
-					'default' => '',
-				]
-			);
-		} else {
-			$fontiocns_opts = array();
-			$fontiocns_opts[''] = array('title' => 'None', 'url' => '');
-			if (function_exists('vc_iconpicker_type_pixicons')) {
-				$pixicons = vc_iconpicker_type_pixicons(array());
-				foreach ($pixicons as $key) {
-					// echo '<br />';
-					$fontiocns_opts[array_keys($key)[0]] = array(
-						'title'	=> array_keys($key)[0],
-						'url'	=> array_keys($key)[0]
-					);
-				}
-			}
-			$this->add_control(
-				'btn_icon',
-				[
-					'label' => esc_html__('Icon', 'pixfort-core'),
-					'type' => \Elementor\CustomControl\FonticonSelector_Control::FonticonSelector,
-					'options'	=> $fontiocns_opts,
-					'default' => '',
-				]
-			);
-		}
+		$this->add_control(
+			'btn_icon',
+			[
+				'label' => esc_html__('pixfort Icon', 'pixfort-core'),
+				'type' => \Elementor\CustomControl\PixfortIconSelector_Control::PixfortIconSelector,
+				'default' => '',
+			]
+		);
 		
+
 
 		$this->add_control(
 			'btn_icon_position',
@@ -971,9 +936,22 @@ class Pix_Eor_Slider extends Widget_Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		echo \PixfortCore::instance()->elementsManager->renderElement('Slider', $settings );
+		if (!empty($settings)) {
+			if (!empty($settings['items'])) {
+				foreach ($settings['items'] as $key => $value) {
+					if (!empty($settings['items'][$key]['link']['is_external'])) {
+						$settings['items'][$key]['target'] = $settings['items'][$key]['link']['is_external'];
+					}
+					if (!empty($settings['items'][$key]['link']['custom_attributes'])) {
+						$settings['items'][$key]['link_atts'] = $settings['items'][$key]['link']['custom_attributes'];
+					}
+					$settings['items'][$key]['link'] = $settings['items'][$key]['link']['url'];
+				}
+			}
+		}
+		echo \PixfortCore::instance()->elementsManager->renderElement('Slider', $settings);
 	}
-	
+
 	public function get_script_depends() {
 		if (is_user_logged_in()) return ['pix-global', 'pix-slider-handle'];
 		return [];

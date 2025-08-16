@@ -4,11 +4,11 @@ $pixfortBuilder->addOption(
     'pix-heading-typography-general',
     [
         'type'             => 'heading',
-        'label'         => 'Typography',
+        'label'         => __('Typography', 'pixfort-core'),
         'tab'             => 'typographyGeneral',
         'icon'            => 'typography',
         'linkText'            => __('How theme typography works?', 'pixfort-core'),
-        'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/theme-typography/',
+        'linkHref'            => \PixfortCore::instance()->adminCore->getParam('docs_theme_typography'),
         'linkIcon'            => 'bookmark'
     ]
 );
@@ -46,10 +46,12 @@ $pixfortBuilder->addOption(
     [
         'type' => 'select',
         'label' => __('Body Color', 'pixfort-core'),
-        'options' => array_flip($main_colors),
+        // 'options' => array_flip($main_colors),
+        'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultColors' => false, 'gradients' => false]),
+        'groups' => true,
         'tab'             => 'typographyGeneral',
         'description'     => __('Default body text color for light backgrounds.', 'pixfort-core'),
-        'tooltipText'     => __('Light font colors (Body Color and Heading Color) : are the base font colors for Body and Heading fonts used by default across your website, and it\'s mainly used for text with light background.', 'pixfort-core') . '<br/><br/>' . __('For more information ', 'pixfort-core') . '<a target="_blank" href="https://essentials.pixfort.com/knowledge-base/theme-typography/" target="_blank" class="text-primary font-semibold">check this article</a>',
+        'tooltipText'     => __('Light font colors (Body Color and Heading Color) : are the base font colors for Body and Heading fonts used by default across your website, and it\'s mainly used for text with light background.', 'pixfort-core') . '<br/><br/>' . __('For more information ', 'pixfort-core') . '<a target="_blank" href="'.\PixfortCore::instance()->adminCore->getParam('docs_theme_typography').'" target="_blank" class="text-primary font-semibold">check this article</a>',
         'default'  => 'gray-5',
         'hideBorderBottom'      => true,
     ]
@@ -69,34 +71,38 @@ $pixfortBuilder->addOption(
         ]
     ]
 );
-$pixfortBuilder->addOption(
-    'opt-dark-body-color',
-    [
-        'type' => 'select',
-        'label' => __('Dark Body Color', 'pixfort-core'),
-        'options' => array_flip($main_colors),
-        'tab'             => 'typographyGeneral',
-        'description'     => __('Body text color for dark backgrounds.', 'pixfort-core'),
-        'tooltipText'     => __('Dark font colors (Dark Body Color and Dark Heading Color): are special colors used for text with dark background, the option to use dark colors is only available in specific places in the theme, especially for parts that can\'t be controlled via the page builder (like the intro section, pixfort Widgets, etc.).', 'pixfort-core') . '<br/><br/>' . __('For more information ', 'pixfort-core') . '<a target="_blank" href="https://essentials.pixfort.com/knowledge-base/theme-typography/" target="_blank" class="text-primary font-semibold">check this article</a>',
-        'default'  => 'light-opacity-7',
-        'hideBorderBottom'      => true,
-    ]
-);
-$pixfortBuilder->addOption(
-    'opt-custom-dark-body-color',
-    [
-        'type'             => 'color',
-        'tab'             => 'typographyGeneral',
-        'label'         => __('Custom Dark Body Color', 'pixfort-core'),
-        'default'         => '#eee',
-        'disableAlpha'         => true,
-        'hideBorderBottom'      => true,
-        'dependency' => [
-            'field' => 'opt-dark-body-color',
-            'val' => ['custom']
+if(defined('PIXFORT_THEME_SLUG') && PIXFORT_THEME_SLUG !== 'acquire') {
+    $pixfortBuilder->addOption(
+        'opt-dark-body-color',
+        [
+            'type' => 'select',
+            'label' => __('Dark Body Color', 'pixfort-core'),
+            // 'options' => array_flip($main_colors),
+            'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultColors' => false, 'gradients' => false]),
+            'groups' => true,
+            'tab'             => 'typographyGeneral',
+            'description'     => __('Body text color for dark backgrounds.', 'pixfort-core'),
+            'tooltipText'     => __('Dark font colors (Dark Body Color and Dark Heading Color): are special colors used for text with dark background, the option to use dark colors is only available in specific places in the theme, especially for parts that can\'t be controlled via the page builder (like the intro section, pixfort Widgets, etc.).', 'pixfort-core') . '<br/><br/>' . __('For more information ', 'pixfort-core') . '<a target="_blank" href="'.\PixfortCore::instance()->adminCore->getParam('docs_theme_typography').'" target="_blank" class="text-primary font-semibold">check this article</a>',
+            'default'  => 'light-opacity-7',
+            'hideBorderBottom'      => true,
         ]
-    ]
-);
+    );
+    $pixfortBuilder->addOption(
+        'opt-custom-dark-body-color',
+        [
+            'type'             => 'color',
+            'tab'             => 'typographyGeneral',
+            'label'         => __('Custom Dark Body Color', 'pixfort-core'),
+            'default'         => '#eee',
+            'disableAlpha'         => true,
+            'hideBorderBottom'      => true,
+            'dependency' => [
+                'field' => 'opt-dark-body-color',
+                'val' => ['custom']
+            ]
+        ]
+    );
+}
 $pixfortBuilder->addOption(
     'opt-regular-font-weight',
     [
@@ -159,10 +165,12 @@ $pixfortBuilder->addOption(
     [
         'type' => 'select',
         'label' => __('Heading Color', 'pixfort-core'),
-        'options' => array_flip($main_colors),
+        // 'options' => array_flip($main_colors),
+        'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultColors' => false, 'gradients' => false]),
+        'groups' => true,
         'tab'             => 'typographyGeneral',
         'description'     => __('Heading text color for light backgrounds.', 'pixfort-core'),
-        'tooltipText'     => __('Light font colors (Body Color and Heading Color) : are the base font colors for Body and Heading fonts used by default across your website, and it\'s mainly used for text with light background.', 'pixfort-core') . '<br/><br/>' . __('For more information ', 'pixfort-core') . '<a target="_blank" href="https://essentials.pixfort.com/knowledge-base/theme-typography/" target="_blank" class="text-primary font-semibold">check this article</a>',
+        'tooltipText'     => __('Light font colors (Body Color and Heading Color) : are the base font colors for Body and Heading fonts used by default across your website, and it\'s mainly used for text with light background.', 'pixfort-core') . '<br/><br/>' . __('For more information ', 'pixfort-core') . '<a target="_blank" href="'.\PixfortCore::instance()->adminCore->getParam('docs_theme_typography').'" target="_blank" class="text-primary font-semibold">check this article</a>',
         'default'  => 'gray-7',
         'hideBorderBottom'      => true,
     ]
@@ -182,33 +190,37 @@ $pixfortBuilder->addOption(
         ]
     ]
 );
-$pixfortBuilder->addOption(
-    'opt-dark-heading-color',
-    [
-        'type' => 'select',
-        'label' => __('Dark Heading Color', 'pixfort-core'),
-        'options' => array_flip($main_colors),
-        'tab'             => 'typographyGeneral',
-        'description'     => __('Heading text color for dark backgrounds.', 'pixfort-core'),
-        'tooltipText'     => __('Dark font colors (Dark Body Color and Dark Heading Color): are special colors used for text with dark background, the option to use dark colors is only available in specific places in the theme, especially for parts that can\'t be controlled via the page builder (like the intro section, pixfort Widgets, etc.)', 'pixfort-core') . '<br/><br/>' . __('For more information ', 'pixfort-core') . '<a target="_blank" href="https://essentials.pixfort.com/knowledge-base/theme-typography/" target="_blank" class="text-primary font-semibold">check this article</a>',
-        'default'  => 'white',
-        'hideBorderBottom'      => true,
-    ]
-);
-$pixfortBuilder->addOption(
-    'opt-custom-dark-heading-color',
-    [
-        'type'             => 'color',
-        'tab'             => 'typographyGeneral',
-        'label'         => __('Custom Dark Heading Color', 'pixfort-core'),
-        'default'         => '#fff',
-        'disableAlpha'         => true,
-        'dependency' => [
-            'field' => 'opt-dark-heading-color',
-            'val' => ['custom']
+if(defined('PIXFORT_THEME_SLUG') && PIXFORT_THEME_SLUG !== 'acquire') {
+    $pixfortBuilder->addOption(
+        'opt-dark-heading-color',
+        [
+            'type' => 'select',
+            'label' => __('Dark Heading Color', 'pixfort-core'),
+            // 'options' => array_flip($main_colors),
+            'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['defaultColors' => false, 'gradients' => false]),
+            'groups' => true,
+            'tab'             => 'typographyGeneral',
+            'description'     => __('Heading text color for dark backgrounds.', 'pixfort-core'),
+            'tooltipText'     => __('Dark font colors (Dark Body Color and Dark Heading Color): are special colors used for text with dark background, the option to use dark colors is only available in specific places in the theme, especially for parts that can\'t be controlled via the page builder (like the intro section, pixfort Widgets, etc.)', 'pixfort-core') . '<br/><br/>' . __('For more information ', 'pixfort-core') . '<a target="_blank" href="'.\PixfortCore::instance()->adminCore->getParam('docs_theme_typography').'" target="_blank" class="text-primary font-semibold">check this article</a>',
+            'default'  => 'white',
+            'hideBorderBottom'      => true,
         ]
-    ]
-);
+    );
+    $pixfortBuilder->addOption(
+        'opt-custom-dark-heading-color',
+        [
+            'type'             => 'color',
+            'tab'             => 'typographyGeneral',
+            'label'         => __('Custom Dark Heading Color', 'pixfort-core'),
+            'default'         => '#fff',
+            'disableAlpha'         => true,
+            'dependency' => [
+                'field' => 'opt-dark-heading-color',
+                'val' => ['custom']
+            ]
+        ]
+    );
+}
 $pixfortBuilder->addOption(
     'opt-heading-font-weight',
     [
@@ -247,7 +259,7 @@ $pixfortBuilder->addOption(
         'style' => 'simple',
         // 'icon'  =>  'info',
         'linkOneText'  =>  __('Learn about Theme Typography', 'pixfort-core'),
-        'linkOneHref'  =>  'https://essentials.pixfort.com/knowledge-base/theme-typography/',
+        'linkOneHref'  =>  \PixfortCore::instance()->adminCore->getParam('docs_theme_typography'),
         'linkOneIcon'  =>  'bookmark'
     ]
 );

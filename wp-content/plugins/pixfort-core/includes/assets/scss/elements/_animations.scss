@@ -35,27 +35,13 @@
 	opacity: 1 !important;
 }
 
-.pix-sliding-headline {
-	opacity: 0;
-	&.pix-ready {
-		opacity: 1;
-	}
-	.slide-in-container {
-		-webkit-clip-path: polygon(0 -20%, 100% -20%, 120% 120%, 0% 120%);
-		        clip-path: polygon(0 -20%, 100% -20%, 120% 120%, 0% 120%);
-	}
-	&.animated .slide-in-container {
-		overflow: visible;
-	}
-}
-
 @keyframes fadeInImg {
 	0% {
 		transform: scale(1.2);
 		filter: brightness(50%);
 	}
 	100% {
-		transform: scale(1);
+		transform: none;
 		filter: brightness(100%);
 	}
 }
@@ -144,11 +130,7 @@
 [data-anim-type="pix-3d-left-in-big"],
 [data-anim-type="pix-3d-up-in-big"],
 [data-anim-type="pix-3d-down-in-big"] {
-// [data-anim-type^='pix-3d-'] {
-	// visibility: visible !important;
-	// transform-style: flat;
 	backface-visibility: hidden;
-	// perspective: 1000;
 	&:not(.animated) {
 		transition-property: opacity, transform !important;
 		transition-duration: 0.8s !important;
@@ -175,16 +157,17 @@
 		visibility: hidden;
 		padding: 10px 0;
 		margin: -10px 0;
-		overflow: hidden;
+		overflow: var(--pix-sliding-overflow,hidden);
 	}
 	.pix-sliding-item {
-		transition-property: transform, opacity;
+		transition-property: transform, opacity, filter;
 		display: inline-block;
 		animation: none;
 		visibility: visible !important;
 		transform-style: flat;
 		backface-visibility: visible;
-		transform: translateY(1.4em);
+		transform: translateY(var(--pix-translate-y,1.4em)) translateX(var(--pix-translate-x,0));
+		filter: blur(var(--pix-sliding-blur, none));
 		padding: 10px 0;
 		margin: -10px 0;
 		overflow: visible;
@@ -196,9 +179,9 @@
 	}
 	&:not(.animated) .pix-sliding-item {
 		opacity: 0;
-		transition-property: transform !important;
+		transition-property: transform, filter, opacity !important;
 		transition-duration: 0.8s;
-		transition-timing-function: all 1.2s cubic-bezier(0.13, 0.91, 0.42, 1);
+		transition-timing-function: all 7.2s cubic-bezier(0.13, 0.91, 0.42, 1);
 		will-change: auto;
 	}
 	.pix-sliding-letter.text-gradient-primary {
@@ -207,12 +190,16 @@
 	&.pix-animate .pix-sliding-item {
 		opacity: 1 !important;
 		transform: none;
+		filter: none;
 		&.text-gradient-primary {
 			margin-top: 0;
 		}
 	}
 	.slide-in-container {
 		white-space: nowrap;
+	}
+	.slide-in-container:not(.animated) {
+		overflow: var(--pix-sliding-overflow,hidden);
 	}
 }
 
@@ -301,7 +288,7 @@
 	&.pix-img-scale,
 	.pix-img-scale {
 		transition: all 1s cubic-bezier(0.365, 0.84, 0.44, 1);
-		transform: scale(1);
+		transform: none;
 	}
 	&.pix-slide-up,
 	.pix-slide-up {

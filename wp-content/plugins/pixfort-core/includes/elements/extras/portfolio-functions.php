@@ -236,12 +236,11 @@ if (!function_exists('pix_portfolio_style_mini')) {
             $img_src = $full_image_url;
             if ($is_col) $output .= '<div class="col-12 pb-4 grid-item ' . $item_class . '" data-category="transition">';
             $output .= '<a href="' . get_permalink() . '" class=" fly-sm">';
-            $output .= '<div class="card bg-white ' . $rounded_img . ' overflow-hidden fly-sm shadow shadow-hover pix-mb-302 animate-in" data-anim-type="fade-in" data-anim-delay="200">';
+            $output .= '<div class="card pix-base-background ' . $rounded_img . ' overflow-hidden fly-sm shadow shadow-hover pix-mb-302 animate-in" data-anim-type="fade-in" data-anim-delay="200">';
             $output .= $img_src;
             $output .= '<div class="card-body">';
             $output .= '<div class="d-flex justify-content-between align-items-center">';
             $output .= '<h6 class="card-title mb-0 text-heading-default"><strong>' . get_the_title() . '</strong></h6>';
-            // $output .= '<i class="pixicon-angle-right text-heading-default font-weight-bold"></i>';
             $arrowIcon = is_rtl() ? 'Line/pixfort-icon-arrow-left-2' : 'Line/pixfort-icon-arrow-right-2';
             $output .= \PixfortCore::instance()->icons->getIcon($arrowIcon, 24, 'text-heading-default');
             $output .= '</div>';
@@ -274,11 +273,13 @@ if (!function_exists('pix_portfolio_style_default')) {
 
             if (is_array($customCats) && array_key_exists(get_post_type(), $customCats)) {
                 $terms = get_the_terms(get_the_ID(), $customCats[get_post_type()]);
+            } elseif (get_post_type()==='portfolio') {
+                $terms = get_the_terms(get_the_ID(), 'portfolio-types');
             } else {
                 $terms = get_the_terms(get_the_ID(), 'category');
             }
 
-
+            
             if (is_array($terms)) {
                 foreach ($terms as $term) {
                     $item_class[] = 'category-' . $term->slug;
@@ -304,7 +305,7 @@ if (!function_exists('pix_portfolio_style_default')) {
             $item_text_class = implode(' ', $item_text_class);
 
             if ($is_col) $output .= '<div class="col-12 pb-4 grid-item ' . $item_class . '" data-category="transition">';
-            $output .= '<div class="card bg-white ' . $rounded_img . ' overflow-hidden fly-sm shadow w-100 animate-in" data-anim-type="fade-in" data-anim-delay="200">';
+            $output .= '<div class="card pix-base-background ' . $rounded_img . ' overflow-hidden fly-sm shadow w-100 animate-in" data-anim-type="fade-in" data-anim-delay="200">';
             $attrs = array(
                 'class'    => 'card-img img-fluid card-img-top rounded-0',
                 // 'style'	=> 'height:225px !important;width:100%;object-fit: cover;',

@@ -4,11 +4,11 @@ $pixfortBuilder->addOption(
 	'pix-heading-portfolio-general',
 	[
 		'type'             => 'heading',
-		'label'         => 'Portfolio',
+		'label'         => __('Portfolio', 'pixfort-core'),
 		'tab'             => 'portfolioGeneral',
 		'icon'            => 'portfolio',
 		'linkText'            => __('Learn more about portfolio', 'pixfort-core'),
-		'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/how-to-create-the-portfolio-page/',
+		'linkHref'            => \PixfortCore::instance()->adminCore->getParam('docs_how_to_create_portfolio_page'),
 		'linkIcon'            => 'bookmark'
 	]
 );
@@ -25,7 +25,7 @@ $pixfortBuilder->addOption(
 	'portfolio-page-style',
 	[
 		'type' => 'radio',
-		'label' => 'Portfolio Item Style',
+		'label' => __('Portfolio Item Style', 'pixfort-core'),
 		'default' => 'default',
 		'tab'             => 'portfolioGeneral',
 		'imageSize'       => '130',
@@ -169,11 +169,12 @@ $pixfortBuilder->addOption(
 $pixfortBuilder->addOption(
 	'portfolio-bg-color',
 	[
-		'type' => 'select',
-		'label' => __('Portfolio Background Color', 'pixfort-core'),
-		'options' => array_flip($bg_colors),
-		'tab'             => 'portfolioGeneral',
-		'default'             => 'gray-1',
+		'type' 			=> 'select',
+		'label' 		=> __('Portfolio Background Color', 'pixfort-core'),
+		'options' 		=> \PixfortCore::instance()->coreFunctions->getColorsArray(['bg' => true, 'transparent' => true]),
+		'groups' 		=> true,
+		'tab'           => 'portfolioGeneral',
+		'default'       => \PixfortCore::instance()->adminCore->getParam('portfolio_bg_color', 'gray-1'),
 	]
 );
 $pixfortBuilder->addOption(

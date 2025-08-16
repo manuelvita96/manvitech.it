@@ -42,7 +42,8 @@ class PixFeatureList {
 			}
 		}
 		if (empty($element_id)) {
-			$element_id = 'duo-icon-' . rand(1, 200000000);
+			$element_id = 'accordion-' . hash('md5', json_encode($features));
+			// 	$element_id = 'duo-icon-' . rand(1, 200000000);
 		}
 		$i_color = '';
 		$i_custom_color = '';
@@ -69,18 +70,15 @@ class PixFeatureList {
 			$anim_delay = 'data-anim-delay="' . $delay . '"';
 			$anim_class = 'animate-in';
 		}
-		$elementor = false;
 		if (is_array($features)) {
 			$features_arr = $features;
-			$elementor = true;
 		} else {
 			if (function_exists('vc_param_group_parse_atts')) {
 				$features_arr = vc_param_group_parse_atts($features);
 			}
 		}
-		// $features_arr = vc_param_group_parse_atts( $features );
-
-		$output = '<div id="' . $element_id . '" class="slide-in-container w-100  ' . esc_attr($css_class) . '" >';
+		
+		$output = '<div id="' . $element_id . '" class="w-100  ' . esc_attr($css_class) . '" >';
 		$output .= '<div class="py-2 ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay . '>';
 		if (is_array($features_arr)) {
 			foreach ($features_arr as $key => $value) {
@@ -146,49 +144,18 @@ class PixFeatureList {
 					$margin10 = 'pix-ml-10';
 					$margin2 = 'ml-2';
 				}
-				if(\PixfortCore::instance()->icons::$isEnabled) {
-						$icon = $value['icon'];
-						// var_dump($value['pix_duo_icon']);
-						if (isset($value['media_type'])&&$value['media_type'] === "duo_icon") {
-							$icon = $value['pix_duo_icon'];
-						}
-						if(!empty($icon)){
-							$output .= '<div class="d-inline-flex align-items-center ' . $margin10 . ' ' . $i_color . '" style="font-size:1.2em;position:relative;line-height:1em;text-align:center;">';
-							$output .= \PixfortCore::instance()->icons->getIcon($icon);
-							$output .= '</div>';
-						}						
-				} else {
-					/*
-					* Deprecated Icons 
-					*/
-					
-					$icon = \PixfortCore::instance()->icons->verifyIconName($value['icon']);
-					
-					if (!empty($value['media_type'])) {
-						if ($value['media_type'] == "icon") {
-							if(!str_contains($icon, 'pixicon') && !str_contains($icon, 'Line/') && !str_contains($icon, 'Solid/')) {
-								$value['pix_duo_icon'] = $icon;
-								$value['media_type'] = "duo_icon";
-							} elseif (!empty($value['icon'])) {
-								$output .= '<i class="' . $icon . ' ' . $margin2 . ' ' . $i_color . '" ' . $i_custom_color . '></i>';
-							}
-						} 
-						if ($value['media_type'] == "duo_icon") {
-							if (!empty($value['pix_duo_icon'])) {
-								$output .= '<div class="' . $margin10 . ' ' . $i_color . '" style="width:1.5em;min-width:1.5em;height:1.5em;min-width:1.5em;position:relative;line-height:1em;text-align:center;">';
-								$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $value['pix_duo_icon'] . '.svg');
-								$output .= '</div>';
-							}
-						}
-					} else {
-						if (!empty($icon)) {
-							$output .= '<i class="' . $icon . ' ' . $margin2 . ' ' . $i_color . '" ' . $i_custom_color . '></i>';
-						}
+				if(isset($value['icon'])) {
+					$icon = $value['icon'];
+					if (isset($value['media_type'])&&$value['media_type'] === "duo_icon") {
+						$icon = $value['pix_duo_icon'];
 					}
-					/*
-					* End of Deprecated Icons
-					*/
-				}
+					if(!empty($icon)){
+						$output .= '<div class="d-inline-flex align-items-center ' . $margin10 . ' ' . $i_color . '" style="font-size:1.2em;position:relative;line-height:1em;text-align:center;">';
+						$output .= \PixfortCore::instance()->icons->getIcon($icon);
+						$output .= '</div>';
+					}						
+				}						
+				
 				
 				if (!empty($text)) $output .= '<span class="' . $c_color . '">' . do_shortcode($text) . '</span>';
 				if (!empty($link) && !empty($link['url'])) {

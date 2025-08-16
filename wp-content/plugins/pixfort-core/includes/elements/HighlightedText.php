@@ -97,6 +97,7 @@ class PixHighlightedText {
 					'custom_height'			=> '',
 					'image'		=> '',
 					'image_size'		=> '',
+					'image_dark'		=> '',
 					'rounded_img'		=> '',
 					'style'		=> '',
 					'hover_effect'		=> '',
@@ -153,55 +154,13 @@ class PixHighlightedText {
 				if (!empty($is_highlighted)) {
 					if ($is_highlighted == 'image') {
 						if (!empty($image)) {
-
-							$style_arr = array(
-								"" => "",
-								"1"       => "shadow-sm",
-								"2"       => "shadow",
-								"3"       => "shadow-lg",
-								"4"       => "shadow-inverse-sm",
-								"5"       => "shadow-inverse",
-								"6"       => "shadow-inverse-lg",
-							);
-
-							$hover_effect_arr = array(
-								""       => "",
-								"1"       => "shadow-hover-sm",
-								"2"       => "shadow-hover",
-								"3"       => "shadow-hover-lg",
-								"4"       => "shadow-inverse-hover-sm",
-								"5"       => "shadow-inverse-hover",
-								"6"       => "shadow-inverse-hover-lg",
-							);
-
-							$add_hover_effect_arr = array(
-								""       => "",
-								"1"       => "fly-sm",
-								"2"       => "fly",
-								"3"       => "fly-lg",
-								"4"       => "scale-sm",
-								"5"       => "scale",
-								"6"       => "scale-lg",
-								"7"       => "scale-inverse-sm",
-								"8"       => "scale-inverse",
-								"9"       => "scale-inverse-lg",
-							);
 							$imageClasses = array();
-							if ($style) {
-								array_push($imageClasses, $style_arr[$style]);
-							}
-							if ($hover_effect) {
-								array_push($imageClasses, $hover_effect_arr[$hover_effect]);
-							}
-							if ($add_hover_effect) {
-								array_push($imageClasses, $add_hover_effect_arr[$add_hover_effect]);
-							}
+
+							$effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
+							array_push($imageClasses, $effectsClasses);
+
 							array_push($imageClasses, $repeaterClass);
 
-							$imgSrc = '';
-							$imgWidth = '';
-							$imgHeight = '';
-							$size_style = '';
 							$size = 'full';
 							if (!empty($rounded_img) && $rounded_img === 'rounded-circle') {
 								$size = "thumbnail";
@@ -218,7 +177,6 @@ class PixHighlightedText {
 									$image_height = $image_size.'px';
 								}
 								array_push($imageClasses, $item_id);
-								// $size_style = 'width:' . $image_size . 'px;height:auto;display:inline-block;position:relative;';
 								$customStyle .= '.' . $item_id . ' img { width:' . $image_size . 'px;height:'.$image_height.';display:inline-block;position:relative; }';
 								if(empty($disable_resp_img)||!$disable_resp_img){
 									$mobileImgSize = $image_size * 0.6;
@@ -226,47 +184,21 @@ class PixHighlightedText {
 									$customStyle .= '@media (min-width:576px) and (max-width:920px) { .' . $item_id . ' img { width:' . $tabletImgSize . 'px;height: auto; }}';
 									$customStyle .= '@media only screen and (max-width:576px) { .' . $item_id . ' img { width:' . $mobileImgSize . 'px;height: auto; }}';
 								}
-								// $handle = 'pix-highlighted-text-'.$item_id;
-								// wp_register_style($handle, false);
-								// wp_enqueue_style($handle);
-								// wp_add_inline_style($handle, $customStyle);
 								\PixfortCore::instance()->elementsManager::pixAddInlineStyle( $customStyle );
 							}
 							
-							if (is_string($image) && substr($image, 0, 4) === "http") {
-								$img = $image;
-								$imgSrc = $img;
-							} else {
-								if (!empty($image['id'])) {
-									$img = wp_get_attachment_image_src($image['id'], $size);
-								} else {
-									$img = wp_get_attachment_image_src($image, $size);
-								}
-								if (!empty($img[0])) $imgSrc = $img[0];
-								if (!empty($img[1]) && !empty($img[2])) {
-									$imgWidth = 'width="' . $img[1] . '"';
-									$imgHeight = 'height="' . $img[2] . '"';
-									if (!empty($image_size)) {
-										$ratio = (int) $img[2] / (int) $img[1];
-										$newHeight = $image_size * $ratio;
-										$imgHeight = 'height="' . $newHeight . '"';
-										$imgWidth = 'width="' . $image_size . '"';
-									}
-								}
-							}
-							// $anim_type = '';
-            				// $anim_delay = '';
 							if(!empty($item_animation)){
-								// $anim_type = 'data-anim-type="'.$item_animation.'"';
-								// $anim_delay = 'data-anim-delay="'.$item_delay.'"';
 								array_push($imageClasses, 'animate-in');
 							}
 							array_push($imageClasses, $rounded_img);
 							$image_class_names = join(' ', $imageClasses);
 
-							$output .= '<div class="d-inline-flex mx-2 ' . $image_class_names . '" '.$anim_type.' '.$anim_delay.' style="vertical-align: middle;line-height:1;">';
-							$output .= '<img class="pix-fit-cover '.$rounded_img. ' ' . $class_names . '" src="' . $imgSrc . '" ' . $imgWidth . ' ' . $imgHeight . ' style="' . $size_style . '" alt="">';
-							$output .= '</div>';
+							$output .= '<span class="d-inline-flex mx-2 ' . $image_class_names . '" '.$anim_type.' '.$anim_delay.' style="vertical-align: middle;line-height:1;">';
+							$output .= \PixfortCore::instance()->coreFunctions->getDynamicImage($image, $size, [
+								'alt' => '',
+								'class' => 'pix-fit-cover ' . $rounded_img . ' ' . $class_names
+							], $image_dark);
+							$output .= '</span>';
 						}
 					} else {
 
@@ -298,13 +230,10 @@ class PixHighlightedText {
 						}
 						if (!empty($customStyle)) {
 							$bgClasses .= ' ' . $item_id;
-							// wp_register_style('pix-highlighted-text-handle', false);
-							// wp_enqueue_style('pix-highlighted-text-handle');
-							// wp_add_inline_style('pix-highlighted-text-handle', $customStyle);
 							\PixfortCore::instance()->elementsManager::pixAddInlineStyle( $customStyle );
 						}
-						if (preg_match('/\[(\w+)[^\]]*\]/', $text)) {
-							$output .= '<span id="'.$item_id.'" class="pix-highlight-bg '.$bgClasses.' animate-in" data-anim-type="highlight-grow" data-anim-delay="200"><span '.$anim_type.' '. $anim_delay .' class="pix-highlighted-text d-inline-block ' . $classes . ' '.$item_color_class.'">' . do_shortcode($text) . '</span></span>';
+						if (empty($anim_type)||preg_match('/\[(\w+)[^\]]*\]/', $text)) {
+							$output .= '<span id="'.$item_id.'" class="pix-highlight-bg '.$bgClasses.' animate-in" data-anim-type="highlight-grow" data-anim-delay="200"><span '.$anim_type.' '. $anim_delay .' class="pix-highlighted-text ' . $classes . ' '.$item_color_class.'">' . do_shortcode($text) . '</span></span>';
 						} else {
 							$itemsString = do_shortcode($text);
 							$itemsArray = explode(" ", $itemsString);
@@ -329,11 +258,13 @@ class PixHighlightedText {
 						// wp_add_inline_style('pix-highlighted-text-handle', $customStyle);
 						\PixfortCore::instance()->elementsManager::pixAddInlineStyle( $customStyle );
 					}
-					if (preg_match('/\[(\w+)[^\]]*\]/', $text)) {
+					if (empty($anim_type)||preg_match('/\[(\w+)[^\]]*\]/', $text)) {
 						$output .= '<span id="' . $item_id . '"  class="'.$repeaterClass.'"><span '.$anim_type.' '. $anim_delay .' class="pix-highlighted-text  ' . $classes . ' '.$item_color_class.'">' . do_shortcode($text) . '</span></span>';
 					} else {
 						$itemsString = do_shortcode($text);
 						$itemsArray = explode(" ", $itemsString);
+						// $itemsArray = preg_split('/[\s-]+/', $itemsString);
+
 						if (!empty($itemsArray)) {
 							$output .= '<span id="' . $item_id . '"  class="'.$repeaterClass.'">';
 							foreach ($itemsArray as $key => $itemValue) {
@@ -348,7 +279,7 @@ class PixHighlightedText {
 					
 				}
 				if (!empty($new_line)) {
-					$output .= '</br>';
+					$output .= '<br />';
 				}
 			}
 			$output .= '</' . $title_tag . '>';

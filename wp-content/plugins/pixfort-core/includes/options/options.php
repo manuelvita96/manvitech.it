@@ -42,17 +42,53 @@ function pixGetDashboardData () {
 	/*
 	* Links
 	*/
+	$data['site_link'] = site_url();
 	$data['headers_link'] = admin_url('edit.php?post_type=pixheader');
 	$data['footers_link'] = admin_url('edit.php?post_type=pixfooter');
 	$data['popups_link'] = admin_url('edit.php?post_type=pixpopup');
+
+	$data['docs_link'] = \PixfortCore::instance()->adminCore->getParam('docs_link');
+	$data['changelog_link'] = \PixfortCore::instance()->adminCore->getParam('changelog_link');
+	$data['support_link'] = \PixfortCore::instance()->adminCore->getParam('support_link');
+
+	$data['docs_create_header'] = \PixfortCore::instance()->adminCore->getParam('docs_create_header');
+	$data['docs_create_footer'] = \PixfortCore::instance()->adminCore->getParam('docs_create_footer');
+	$data['docs_create_popup'] = \PixfortCore::instance()->adminCore->getParam('docs_create_popup');
+	$data['docs_import_demo_content'] = \PixfortCore::instance()->adminCore->getParam('docs_import_demo_content');
+	$data['docs_update_theme'] = \PixfortCore::instance()->adminCore->getParam('docs_update_theme');
+	$data['docs_pixfort_templates'] = \PixfortCore::instance()->adminCore->getParam('docs_pixfort_templates');
+	$data['docs_how_to_create_menus'] = \PixfortCore::instance()->adminCore->getParam('docs_how_to_create_menus');
+	$data['docs_how_to_add_dividers'] = \PixfortCore::instance()->adminCore->getParam('docs_how_to_add_dividers');
+	$data['docs_how_to_translate_website'] = \PixfortCore::instance()->adminCore->getParam('docs_how_to_translate_website');
+	$data['docs_create_a_shop_with_woocommerce'] = \PixfortCore::instance()->adminCore->getParam('docs_create_a_shop_with_woocommerce');
+
+	$data['docs_how_to_create_scroll_links'] = \PixfortCore::instance()->adminCore->getParam('docs_how_to_create_scroll_links');
+	$data['docs_how_to_create_blog_page'] = \PixfortCore::instance()->adminCore->getParam('docs_how_to_create_blog_page');
+	$data['docs_how_to_create_portfolio_page'] = \PixfortCore::instance()->adminCore->getParam('docs_how_to_create_portfolio_page');
+	$data['docs_how_to_speed_up_website'] = \PixfortCore::instance()->adminCore->getParam('docs_how_to_speed_up_website');
+	$data['docs_how_to_translate_website'] = \PixfortCore::instance()->adminCore->getParam('docs_how_to_translate_website');
+	
+	$data['docs_server_configuration'] = \PixfortCore::instance()->adminCore->getParam('docs_server_configuration');
+	$data['docs_installing_theme'] = \PixfortCore::instance()->adminCore->getParam('docs_installing_theme');
+	$data['docs_how_to_reset'] = \PixfortCore::instance()->adminCore->getParam('docs_how_to_reset');
+	$data['docs_plugin_failed_installation'] = \PixfortCore::instance()->adminCore->getParam('docs_plugin_failed_installation');
+	$data['docs_troubleshooting_errors'] = \PixfortCore::instance()->adminCore->getParam('docs_troubleshooting_errors');
+	$data['docs_contact_form_7'] = \PixfortCore::instance()->adminCore->getParam('docs_contact_form_7');
 
 	/*
 	* Activation data
 	*/
 
 	if (defined('PIXFORT_THEME_SLUG') && PIXFORT_THEME_SLUG) {
+		$key = false;
 		switch (PIXFORT_THEME_SLUG) {
 			case 'essentials':
+				$key = get_option('envato_purchase_code_27889640');
+				break;
+			case 'acquire':
+				$key = get_option('envato_purchase_code_27889640');
+				break;
+			case 'inspiron':
 				$key = get_option('envato_purchase_code_27889640');
 				break;
 			case 'pixfort':
@@ -170,48 +206,48 @@ function pixDisplayOptions($print = true) {
 		__("Light opacity 9", 'pixfort-core')        => "light-opacity-9"
 	);
 
-	$main_colors = array(
-		__("Primary", 'pixfort-core')               => "primary",
-		__("Secondary", 'pixfort-core')             => "secondary",
-		__("White", 'pixfort-core')                 => "white",
-		__("Black", 'pixfort-core')                 => "black",
-		__("Green", 'pixfort-core')                 => "green",
-		__("Blue", 'pixfort-core')                  => "blue",
-		__("Red", 'pixfort-core')                   => "red",
-		__("Yellow", 'pixfort-core')                => "yellow",
-		__("Brown", 'pixfort-core')                 => "brown",
-		__("Purple", 'pixfort-core')                => "purple",
-		__("Orange", 'pixfort-core')                => "orange",
-		__("Cyan", 'pixfort-core')                  => "cyan",
-		__("Gray 1", 'pixfort-core')                => "gray-1",
-		__("Gray 2", 'pixfort-core')                => "gray-2",
-		__("Gray 3", 'pixfort-core')                => "gray-3",
-		__("Gray 4", 'pixfort-core')                => "gray-4",
-		__("Gray 5", 'pixfort-core')                => "gray-5",
-		__("Gray 6", 'pixfort-core')                => "gray-6",
-		__("Gray 7", 'pixfort-core')                => "gray-7",
-		__("Gray 8", 'pixfort-core')                => "gray-8",
-		__("Gray 9", 'pixfort-core')                => "gray-9",
-		__("Dark opacity 1", 'pixfort-core')        => "dark-opacity-1",
-		__("Dark opacity 2", 'pixfort-core')        => "dark-opacity-2",
-		__("Dark opacity 3", 'pixfort-core')        => "dark-opacity-3",
-		__("Dark opacity 4", 'pixfort-core')        => "dark-opacity-4",
-		__("Dark opacity 5", 'pixfort-core')        => "dark-opacity-5",
-		__("Dark opacity 6", 'pixfort-core')        => "dark-opacity-6",
-		__("Dark opacity 7", 'pixfort-core')        => "dark-opacity-7",
-		__("Dark opacity 8", 'pixfort-core')        => "dark-opacity-8",
-		__("Dark opacity 9", 'pixfort-core')        => "dark-opacity-9",
-		__("Light opacity 1", 'pixfort-core')       => "light-opacity-1",
-		__("Light opacity 2", 'pixfort-core')       => "light-opacity-2",
-		__("Light opacity 3", 'pixfort-core')       => "light-opacity-3",
-		__("Light opacity 4", 'pixfort-core')       => "light-opacity-4",
-		__("Light opacity 5", 'pixfort-core')       => "light-opacity-5",
-		__("Light opacity 6", 'pixfort-core')       => "light-opacity-6",
-		__("Light opacity 7", 'pixfort-core')       => "light-opacity-7",
-		__("Light opacity 8", 'pixfort-core')       => "light-opacity-8",
-		__("Light opacity 9", 'pixfort-core')       => "light-opacity-9",
-		__("Custom", 'pixfort-core')                => "custom"
-	);
+	// $main_colors = array(
+	// 	__("Primary", 'pixfort-core')               => "primary",
+	// 	__("Secondary", 'pixfort-core')             => "secondary",
+	// 	__("White", 'pixfort-core')                 => "white",
+	// 	__("Black", 'pixfort-core')                 => "black",
+	// 	__("Green", 'pixfort-core')                 => "green",
+	// 	__("Blue", 'pixfort-core')                  => "blue",
+	// 	__("Red", 'pixfort-core')                   => "red",
+	// 	__("Yellow", 'pixfort-core')                => "yellow",
+	// 	__("Brown", 'pixfort-core')                 => "brown",
+	// 	__("Purple", 'pixfort-core')                => "purple",
+	// 	__("Orange", 'pixfort-core')                => "orange",
+	// 	__("Cyan", 'pixfort-core')                  => "cyan",
+	// 	__("Gray 1", 'pixfort-core')                => "gray-1",
+	// 	__("Gray 2", 'pixfort-core')                => "gray-2",
+	// 	__("Gray 3", 'pixfort-core')                => "gray-3",
+	// 	__("Gray 4", 'pixfort-core')                => "gray-4",
+	// 	__("Gray 5", 'pixfort-core')                => "gray-5",
+	// 	__("Gray 6", 'pixfort-core')                => "gray-6",
+	// 	__("Gray 7", 'pixfort-core')                => "gray-7",
+	// 	__("Gray 8", 'pixfort-core')                => "gray-8",
+	// 	__("Gray 9", 'pixfort-core')                => "gray-9",
+	// 	__("Dark opacity 1", 'pixfort-core')        => "dark-opacity-1",
+	// 	__("Dark opacity 2", 'pixfort-core')        => "dark-opacity-2",
+	// 	__("Dark opacity 3", 'pixfort-core')        => "dark-opacity-3",
+	// 	__("Dark opacity 4", 'pixfort-core')        => "dark-opacity-4",
+	// 	__("Dark opacity 5", 'pixfort-core')        => "dark-opacity-5",
+	// 	__("Dark opacity 6", 'pixfort-core')        => "dark-opacity-6",
+	// 	__("Dark opacity 7", 'pixfort-core')        => "dark-opacity-7",
+	// 	__("Dark opacity 8", 'pixfort-core')        => "dark-opacity-8",
+	// 	__("Dark opacity 9", 'pixfort-core')        => "dark-opacity-9",
+	// 	__("Light opacity 1", 'pixfort-core')       => "light-opacity-1",
+	// 	__("Light opacity 2", 'pixfort-core')       => "light-opacity-2",
+	// 	__("Light opacity 3", 'pixfort-core')       => "light-opacity-3",
+	// 	__("Light opacity 4", 'pixfort-core')       => "light-opacity-4",
+	// 	__("Light opacity 5", 'pixfort-core')       => "light-opacity-5",
+	// 	__("Light opacity 6", 'pixfort-core')       => "light-opacity-6",
+	// 	__("Light opacity 7", 'pixfort-core')       => "light-opacity-7",
+	// 	__("Light opacity 8", 'pixfort-core')       => "light-opacity-8",
+	// 	__("Light opacity 9", 'pixfort-core')       => "light-opacity-9",
+	// 	__("Custom", 'pixfort-core')                => "custom"
+	// );
 
 	$popup_posts = get_posts([
 		'post_type' => 'pixpopup',
@@ -257,7 +293,10 @@ function pixDisplayOptions($print = true) {
 			$headers[$value->ID] = $value->post_title;
 		}
 	}
-	$headers['default'] = "Default";
+	$website_header = pix_plugin_get_option('pix-header');
+	if ($website_header && $website_header === 'default') {
+		$headers['default'] = "Default";
+	} 
 	$headers['disable'] = "Disable";
 
 	$footer_posts = get_posts([
@@ -273,7 +312,12 @@ function pixDisplayOptions($print = true) {
 			$footers[$value->ID] = $value->post_title;
 		}
 	}
-	$footers[''] = "Disabled";
+	$website_footer = pix_plugin_get_option('pix-footer');
+	if ($website_footer && $website_footer === '') {
+		$footers[''] = "Disable";
+	} else {
+		$footers['disable'] = "Disable";
+	}
 
 	$bg_colors = $bg_colors_no_custom;
 	$bg_colors['Custom'] = "custom";
@@ -291,7 +335,7 @@ function pixDisplayOptions($print = true) {
 	$pixfortDashboardLink = admin_url('admin.php?page=pixfort-theme-dashboard');
 	$pixfortDemoImportLink = false;
 	if (class_exists('PIX_OCDI')) {
-		$pixfortDemoImportLink = admin_url('admin.php?page=pix-one-click-demo-import');
+		$pixfortDemoImportLink = admin_url('admin.php?page=pixfort-options#/demo-import');
 	}
 	$previewSiteLink = site_url();
 
@@ -300,6 +344,9 @@ function pixDisplayOptions($print = true) {
 	if (defined('PIXFORT_THEME_SLUG') && PIXFORT_THEME_SLUG) {
 		switch (PIXFORT_THEME_SLUG) {
 			case 'essentials':
+				$code = get_option('envato_purchase_code_27889640');
+				break;
+			case 'acquire':
 				$code = get_option('envato_purchase_code_27889640');
 				break;
 			case 'pixfort':
@@ -316,6 +363,11 @@ function pixDisplayOptions($print = true) {
 	if (!$print) {
 		$pixfortBuilder->setDisplay( false );
 	}
+
+	$version = PIXFORT_PLUGIN_VERSION;
+	if(defined('PIXFORT_THEME_VERSION')){
+		$version = PIXFORT_THEME_VERSION;
+	}
 	
 	$pixfortBuilder->initOptions(
 		'core-options',
@@ -328,14 +380,13 @@ function pixDisplayOptions($print = true) {
 					'icon'      => 'general',
 					'tabs'     => [
 						'settings'    => ['title'    => __('General', 'pixfort-core'), 'icon' => 'general'],
-						'popups'    => ['title'    => __('Popups', 'pixfort-core'), 'icon' => 'general'],
 						'sidebars'    => ['title'    => __('Sidebars', 'pixfort-core'), 'icon' => 'general'],
 						'apiKeys'    => ['title'    => __('API Keys', 'pixfort-core'), 'icon' => 'general'],
-						'cookies'    => ['title'    => __('Cookies consent', 'pixfort-core'), 'icon' => 'general'],
+						'cookies'    => ['title'    => __('Cookie Consent', 'pixfort-core'), 'icon' => 'general'],
 						'pageTransition'    => ['title'    => __('Page Transition', 'pixfort-core'), 'icon' => 'general'],
 						'page404'    => ['title'    => __('404 Page', 'pixfort-core'), 'icon' => 'general'],
 						'elementor'    => ['title'    => __('Elementor', 'pixfort-core'), 'icon' => 'general'],
-						'advanced'    => ['title'    => 'Advanced', 'icon' => 'advanced'],
+						'advanced'    => ['title'    => __('Advanced', 'pixfort-core'), 'icon' => 'advanced'],
 					]
 				],
 				'layout'    => [
@@ -347,8 +398,26 @@ function pixDisplayOptions($print = true) {
 						'banner'    => ['title'    => __('Banner', 'pixfort-core'), 'icon' => 'triggers'],
 						'search'    => ['title'    => __('Search', 'pixfort-core'), 'icon' => 'triggers'],
 						'socialIcons'    => ['title'    => __('Social Icons', 'pixfort-core'), 'icon' => 'triggers'],
+						// 'colors'    => ['title'    => __('Colors', 'pixfort-core'), 'icon' => 'triggers'],
+						'layoutAdvanced'    => ['title'    => __('Advanced', 'pixfort-core'), 'icon' => 'design'],
+					]
+				],
+				'design'    => [
+					'title'     => __('Design System', 'pixfort-core'),
+					'icon'      => 'design',
+					'tabs'     => [
 						'colors'    => ['title'    => __('Colors', 'pixfort-core'), 'icon' => 'triggers'],
-						'layoutAdvanced'    => ['title'    => 'Advanced', 'icon' => 'design'],
+						'buttons'    => ['title'    => __('Buttons', 'pixfort-core'), 'icon' => 'triggers'],
+						'icons'    => ['title'    => __('Icons', 'pixfort-core'), 'icon' => 'triggers'],
+					]
+				],
+				'typography'    => [
+					'title'     => __('Typography', 'pixfort-core'),
+					'icon'      => 'typography',
+					'tabs'     => [
+						'typographyGeneral'    => ['title'    => __('General', 'pixfort-core')],
+						'typographyAdvanced'    => ['title'    => __('Advanced', 'pixfort-core')],
+						// 'icons'    => ['title'    => __('Icons', 'pixfort-core')],
 					]
 				],
 				'blog'    => [
@@ -376,15 +445,7 @@ function pixDisplayOptions($print = true) {
 						'pagesIntro'    => ['title'    => __('Intro', 'pixfort-core')],
 					]
 				],
-				'typography'    => [
-					'title'     => __('Typography', 'pixfort-core'),
-					'icon'      => 'typography',
-					'tabs'     => [
-						'typographyGeneral'    => ['title'    => __('General', 'pixfort-core')],
-						'typographyAdvanced'    => ['title'    => __('Advanced', 'pixfort-core')],
-						'icons'    => ['title'    => __('Icons', 'pixfort-core')],
-					]
-				],
+				
 				'shop'    => [
 					'title'     => __('Shop', 'pixfort-core'),
 					'icon'      => 'shop',
@@ -403,13 +464,13 @@ function pixDisplayOptions($print = true) {
 				],
 
 			],
-			'version' => PIXFORT_PLUGIN_VERSION,
+			'version' => $version,
 			'active' => $active,
 			'pixfortDashboardLink' => $pixfortDashboardLink,
 			'pixfortDemoImportLink' => $pixfortDemoImportLink,
 			'previewSiteLink' => $previewSiteLink,
-			'helpLink' => 'https://essentials.pixfort.com/knowledge-base',
-			'DemoImportLink' => 'https://essentials.pixfort.com/knowledge-base',
+			'helpLink' => \PixfortCore::instance()->adminCore->getParam('docs_link'),
+			'DemoImportLink' => \PixfortCore::instance()->adminCore->getParam('docs_link'),
 			'dashboard_data' => pixGetDashboardData()
 		]
 	);
@@ -446,11 +507,11 @@ function pixDisplayOptions($print = true) {
 		'pix-heading-header',
 		[
 			'type'             => 'heading',
-			'label'         => 'Header',
+			'label'         => __('Header', 'pixfort-core'),
 			'tab'             => 'header',
 			'icon'            => 'header',
 			'linkText'            => __('Learn about website header', 'pixfort-core'),
-			'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/creating-website-header/',
+			'linkHref'            => \PixfortCore::instance()->adminCore->getParam('docs_create_header'),
 			'linkIcon'            => 'bookmark'
 		]
 	);
@@ -460,7 +521,7 @@ function pixDisplayOptions($print = true) {
 			'type' => 'select',
 			'label' => __('Website Header', 'pixfort-core'),
 			'description' => __('The default header displayed on all website pages.', 'pixfort-core'),
-			'tooltipText'   => __('The headers in your website can be customized using the Header Builder (WordPress Admin Panel → Headers).', 'pixfort-core'),
+			'tooltipText'   => __('The headers in your website can be customized using the Header Builder (WordPress Admin Panel → Theme Builder → Headers).', 'pixfort-core'),
 			'tooltipImage'   => PIX_CORE_PLUGIN_URI . '/includes/assets/core-options/tooltips/core-options-tooltip-website-header.webp',
 			'tab'             => 'header',
 			'default'   => 'default',
@@ -481,7 +542,7 @@ function pixDisplayOptions($print = true) {
 			'style' => 'simple',
 			'icon'  =>  'info',
 			'linkOneText'  =>  __('Learn more about Headers', 'pixfort-core'),
-			'linkOneHref'  =>  'https://essentials.pixfort.com/knowledge-base/creating-website-header/',
+			'linkOneHref'  =>  \PixfortCore::instance()->adminCore->getParam('docs_create_header'),
 			'linkOneIcon'  =>  'bookmark'
 		]
 	);
@@ -492,11 +553,11 @@ function pixDisplayOptions($print = true) {
 		'pix-heading-footer',
 		[
 			'type'             => 'heading',
-			'label'         => 'Footer',
+			'label'         => __('Footer', 'pixfort-core'),
 			'tab'             => 'footer',
 			'icon'            => 'footer',
 			'linkText'  =>  __('Learn about website footer', 'pixfort-core'),
-			'linkHref'  =>  'https://essentials.pixfort.com/knowledge-base/creating-website-footer/',
+			'linkHref'  =>  \PixfortCore::instance()->adminCore->getParam('docs_create_footer'),
 			'linkIcon'  =>  'bookmark'
 		]
 	);
@@ -506,7 +567,7 @@ function pixDisplayOptions($print = true) {
 			'type' => 'select',
 			'label' => __('Website Footer', 'pixfort-core'),
 			'description' => __('The default footer displayed on all website pages.', 'pixfort-core'),
-			'tooltipText'   => __('The footers in your website can be customized using the Footer Builder (WordPress Admin Panel → Footers).', 'pixfort-core'),
+			'tooltipText'   => __('The footers in your website can be customized using the Footer Builder (WordPress Admin Panel → Theme Builder → Footers).', 'pixfort-core'),
 			'tooltipImage'   => PIX_CORE_PLUGIN_URI . '/includes/assets/core-options/tooltips/core-options-tooltip-website-footer.webp',
 			'tab'             => 'footer',
 			'default'   => 'default',
@@ -533,7 +594,9 @@ function pixDisplayOptions($print = true) {
 			'tab'             => 'footer',
 			'tooltipText'   => __('Sticky Footer Fade Color refers to an overlay color that gradually disappears as the sticky footer appears on the page.', 'pixfort-core'),
 			'default'   => 'gradient-primary',
-			'options' => array_flip($bg_colors),
+			// 'options' => array_flip($bg_colors),
+			'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['bg' => true, 'transparent' => true]),
+			'groups' => true,
 			'hideBorderBottom'   => false,
 			'dependency' => [
 				'field' => 'pix-sticky-footer',
@@ -570,7 +633,7 @@ function pixDisplayOptions($print = true) {
 			'style' => 'simple',
 			'icon'  =>  'info',
 			'linkOneText'  =>  __('Learn more about Footers', 'pixfort-core'),
-			'linkOneHref'  =>  'https://essentials.pixfort.com/knowledge-base/creating-website-footer/',
+			'linkOneHref'  =>  \PixfortCore::instance()->adminCore->getParam('docs_create_footer'),
 			'linkOneIcon'  =>  'bookmark'
 		]
 	);
@@ -581,7 +644,7 @@ function pixDisplayOptions($print = true) {
 		'pix-heading-banner',
 		[
 			'type'             => 'heading',
-			'label'         => 'Banner',
+			'label'         => __('Banner', 'pixfort-core'),
 			'tab'             => 'banner',
 			'icon'            => 'megaphone'
 		]
@@ -604,7 +667,7 @@ function pixDisplayOptions($print = true) {
 		'banner-id',
 		[
 			'type' => 'text',
-			'label' => 'Banner ID',
+			'label' => __('Banner ID', 'pixfort-core'),
 			'tab'             => 'banner',
 			'description' => __('Changing the ID will reset the closed state for all users (all users will start to see the banner again).', 'pixfort-core'),
 			'default'  => 'Banner-1',
@@ -619,7 +682,7 @@ function pixDisplayOptions($print = true) {
 		'banner-text',
 		[
 			'type' => 'text',
-			'label' => 'Banner Text',
+			'label' => __('Banner Text', 'pixfort-core'),
 			'tab'             => 'banner',
 			'dependency' => [
 				'field' => 'show-banner',
@@ -631,8 +694,10 @@ function pixDisplayOptions($print = true) {
 		'banner-bg',
 		[
 			'type' => 'select',
-			'label' => 'Banner Background Color',
-			'options' => array_flip($bg_colors),
+			'label' => __('Banner Background Color', 'pixfort-core'),
+			// 'options' => array_flip($bg_colors),
+			'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['bg' => true, 'transparent' => true]),
+			'groups' => true,
 			'tab'             => 'banner',
 			'dependency' => [
 				'field' => 'show-banner',
@@ -703,7 +768,9 @@ function pixDisplayOptions($print = true) {
 			'description' => __('Pick the text color.', 'pixfort-core'),
 			'tab'             => 'banner',
 			'default'   => 'gray-9',
-			'options' => array_flip($colors),
+			// 'options' => array_flip($colors),
+			'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(),
+            'groups' => true,
 			'dependency' => [
 				'field' => 'show-banner',
 				'val' => ['1', true]
@@ -742,7 +809,7 @@ function pixDisplayOptions($print = true) {
 		'banner-btn-text',
 		[
 			'type' => 'text',
-			'label' => 'Banner Button Text',
+			'label' => __('Banner Button Text', 'pixfort-core'),
 			'tab'             => 'banner',
 			'default'  => 'Check it Now',
 			'dependency' => [
@@ -755,7 +822,7 @@ function pixDisplayOptions($print = true) {
 		'banner-btn-link',
 		[
 			'type' => 'text',
-			'label' => 'Banner Link',
+			'label' => __('Banner Link', 'pixfort-core'),
 			'tab'             => 'banner',
 			'default'             => '#',
 			'dependency' => [
@@ -954,8 +1021,8 @@ function pixDisplayOptions($print = true) {
 		[
 			'type' => 'export',
 			'label' => __('Export Options', 'pixfort-core'),
-			'description' => __('Here you can copy/download your current saved Theme options settings.', 'pixfort-core'),
-			// 'description' => __('Here you can copy/download your current saved Theme options settings. Keep this safe as you can use it as a backup should anything go wrong, or you can use it to restore your settings on this site (or any other site).', 'pixfort-core'),
+			'description' => __('Here you can copy/download your current saved Theme Options settings.', 'pixfort-core'),
+			// 'description' => __('Here you can copy/download your current saved Theme Options settings. Keep this safe as you can use it as a backup should anything go wrong, or you can use it to restore your settings on this site (or any other site).', 'pixfort-core'),
 			'tab'             => 'importExportGeneral',
 			'hideBorderBottom'      => true,
 		]
@@ -973,13 +1040,12 @@ function pixDisplayOptions($print = true) {
 			'style' => 'clean',
 			'icon'  =>  'info',
 			// 'linkOneText'  =>  __('Check article', 'pixfort-core'),
-			// 'linkOneHref'  =>  'https://essentials.pixfort.com/knowledge-base/how-to-add-social-icons/#pix_section_missing_social_icon',
+			// 'linkOneHref'  =>  \PixfortCore::instance()->adminCore->getParam('docs_how_to_add_social_icons') . '#pix_section_missing_social_icon',
 			// 'linkOneIcon'  =>  'bookmark'
 		]
 	);
 
 	require_once PIXFORT_PLUGIN_DIR . 'includes/options/data/settings.php';
-	require_once PIXFORT_PLUGIN_DIR . 'includes/options/data/popups.php';
 	require_once PIXFORT_PLUGIN_DIR . 'includes/options/data/sidebars.php';
 	require_once PIXFORT_PLUGIN_DIR . 'includes/options/data/apiKeys.php';
 	require_once PIXFORT_PLUGIN_DIR . 'includes/options/data/cookies.php';
@@ -990,6 +1056,7 @@ function pixDisplayOptions($print = true) {
 	require_once PIXFORT_PLUGIN_DIR . 'includes/options/data/social.php';
 	require_once PIXFORT_PLUGIN_DIR . 'includes/options/data/search.php';
 	require_once PIXFORT_PLUGIN_DIR . 'includes/options/data/colors.php';
+	require_once PIXFORT_PLUGIN_DIR . 'includes/options/data/buttons.php';
 	require_once PIXFORT_PLUGIN_DIR . 'includes/options/data/layoutAdvanced.php';
 	require_once PIXFORT_PLUGIN_DIR . 'includes/options/data/blogGeneral.php';
 	require_once PIXFORT_PLUGIN_DIR . 'includes/options/data/blogIntro.php';
@@ -1013,7 +1080,7 @@ function pixDisplayOptions($print = true) {
 		if ($theme_option_notice) {
 ?>
 			<div class="notice pixfort-admin-notice notice-warning is-dismissible2">
-				<div class="notice-text"><?php echo esc_attr__('There was an error while saving the theme options (Styling will not be applied until fixing the issue), please check the following error meesage:', 'essentials'); ?></div>
+				<div class="notice-text"><?php echo esc_attr__('There was an error while saving the theme options (Styling will not be applied until fixing the issue), please check the following error meesage:', 'pixfort-core'); ?></div>
 				<div class="pix-theme-options-err-msg">
 					<pre><?php echo esc_attr($theme_option_notice); ?></pre>
 				</div>
@@ -1042,15 +1109,31 @@ function pixDisplayOptions($print = true) {
 			}
 		}
 		if (!empty($_GET['pixinfo'])) {
-			echo '<div class="bg-white p-3 rounded-lg shadow-sm mr-4 mt-4 border border-gray-200">';
+			echo '<div class="bg-white p-3 rounded-lg shadow-sm mr-4 mt-4 xl:py-6 p-4 md:py-5 md:px-6 xl:px-8 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">';
+			echo '<div><strong>License status:</strong> ' . get_option('pixfort_license_status') . '</div>';
 			echo '<strong>Purchase code:</strong><div>' . get_option('envato_purchase_code_27889640') . '</div>';
 			echo '<div><strong>pixfort key:</strong> ' . get_option('pixfort_key') . '</div>';
 			echo '<div><strong>pixfort site URL:</strong> ' . get_option('pixfort_site_theme_url') . '</div>';
 			echo '<div><strong>Main license key:</strong> ' . get_option('pixfort_license_key') . '</div>';
+			echo '<div><strong>pixfort purchase key:</strong> ' . get_option('pixfort_purchase_code_1') . '</div>';
+			
+			// Convert timestamp to readable date format
+			$created_at = get_option('pixfort_key_created_at');
+			$created_at_display = !empty($created_at) ? date('F j, Y g:i a', intval($created_at)/1000) : '';
 			echo '<div><strong>Activation URL:</strong> ' . get_option('pixfort_key_url') . '</div>';
-			echo '<div><strong>Activation date:</strong> ' . get_option('pixfort_key_created_at') . '</div>';
+			echo '<div><strong>Activation date:</strong> ' . $created_at_display . ' <small>(' . $created_at . ')</small></div>';
+			
+			// Convert timestamp to readable date format
+			$expires_at = get_option('pixfort_key_expires_at');
+			$expires_at_display = !empty($expires_at) ? date('F j, Y g:i a', intval($expires_at)/1000) : '';
+			echo '<div><strong>Expiration date:</strong> ' . $expires_at_display . ' <small>(' . $expires_at . ')</small></div>';
+			
 			echo '<div><strong>License update:</strong> ' . get_option('pix_license_update_fail') . '</div>';
+			echo '<div><strong>Site type:</strong> ' . get_option('pixfort_site_type') . '</div>';
+			
 			echo '<strong>site_url:</strong> '. site_url();
+			echo '<br>';
+			echo '<a href="'. site_url() .'/wp-admin/admin.php?page=pixfort-options&pixfort_dis=12">Deactivate</a> ';
 			echo '</div>';
 		}
 

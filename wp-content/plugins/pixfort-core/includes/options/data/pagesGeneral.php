@@ -4,7 +4,7 @@ $pixfortBuilder->addOption(
 	'pix-heading-pages-general',
 	[
 		'type'             => 'heading',
-		'label'         => 'Pages',
+		'label'         => __('Pages', 'pixfort-core'),
 		'tab'             => 'pagesGeneral',
 		'icon'            => 'pages',
 		// 'linkText'            => __('Learn more about pages', 'pixfort-core'),
@@ -16,9 +16,11 @@ $pixfortBuilder->addOption(
 	'pages-bg-color',
 	[
 		'type' => 'select',
-		'label' => __('Pages Background Color', 'pixfort-core'),
+		'label' => __('Page Background Color', 'pixfort-core'),
 		'description'         => __('Default background color for website pages.', 'pixfort-core'),
-		'options' => array_flip($bg_colors),
+		// 'options' => array_flip($bg_colors),
+		'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['bg' => true, 'transparent' => true]),
+		'groups' => true,
 		'tab'             => 'pagesGeneral',
 		'default'             => 'gray-1',
 	]
@@ -28,7 +30,7 @@ $pixfortBuilder->addOption(
 	[
 		'type'             => 'color',
 		'tab'             => 'pagesGeneral',
-		'label'         => __('Custom Pages Background Color', 'pixfort-core'),
+		'label'         => __('Custom Page Background Color', 'pixfort-core'),
 		'default'         => '#FFFFFF',
 		'disableAlpha'         => true,
 		'dependency' => [
@@ -41,7 +43,7 @@ $pixfortBuilder->addOption(
 		'sidebar-page',
 		[
 		'type' => 'select',
-		'label' => __('Pages Sidebar', 'pixfort-core'),
+		'label' => __('Page Sidebar', 'pixfort-core'),
 		'description'         => __('Sidebars can be managed from Settings → Sidebars tab.', 'pixfort-core'),
 		'options' => $sidebars,
 		'default'             => 'sidebar-1',
@@ -52,7 +54,7 @@ $pixfortBuilder->addOption(
 	'sidebar-page-sticky',
 	[
 		'type' => 'select',
-		'label' => __('Pages Sidebar Sticky', 'pixfort-core'),
+		'label' => __('Sticky Page Sidebar', 'pixfort-core'),
 		'options' => [
 			'sticky-bottom'   => __('Sticky bottom', 'pixfort-core'),
 			'sticky-top'   => __('Sticky Top', 'pixfort-core'),
@@ -66,7 +68,7 @@ $pixfortBuilder->addOption(
 	'pix-enable-page-line-breaks',
 	[
 		'type' => 'checkbox',
-		'label' => __('Enable Default Pages Line Breaks', 'pixfort-core'),
+		'label' => __('Enable Default Page Line Breaks', 'pixfort-core'),
 		'description' => __('Note: this is an advanced option and depending on your WordPress or server configuration WordPress may add line break tags incorrectly in some areas or in the used External third party plugins.', 'pixfort-core'),
 		'options'         => array('1' => 'On', '0' => 'Off'),
 		'default'           => '0',

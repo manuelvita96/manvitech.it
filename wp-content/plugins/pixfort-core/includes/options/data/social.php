@@ -4,11 +4,11 @@ $pixfortBuilder->addOption(
     'pix-heading-social',
     [
         'type'             => 'heading',
-        'label'         => 'Social Icons',
+        'label'         => __('Social Icons', 'pixfort-core'),
         'tab'             => 'socialIcons',
         'icon'            => 'social',
         'linkText'            => __('Learn more about social icons', 'pixfort-core'),
-		'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/how-to-add-social-icons/',
+		'linkHref'            => \PixfortCore::instance()->adminCore->getParam('docs_how_to_add_social_icons'),
 		'linkIcon'            => 'bookmark'
     ]
 );
@@ -293,7 +293,7 @@ $pixfortBuilder->addOption(
         'style' => 'simple',
         'icon'  =>  'info',
         'linkOneText'  =>  __('Check article', 'pixfort-core'),
-        'linkOneHref'  =>  'https://essentials.pixfort.com/knowledge-base/how-to-add-social-icons/#pix_section_missing_social_icon',
+        'linkOneHref'  =>  \PixfortCore::instance()->adminCore->getParam('docs_how_to_add_social_icons').'#pix_section_missing_social_icon',
         'linkOneIcon'  =>  'bookmark'
     ]
 );

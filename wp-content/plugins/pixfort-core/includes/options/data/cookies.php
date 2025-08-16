@@ -7,11 +7,11 @@ $pixfortBuilder->addOption(
     'pix-heading-cookies',
     [
         'type'             => 'heading',
-        'label'         => 'Cookie Consent Banner',
+        'label'         => __('Cookie Consent Banner', 'pixfort-core'),
         'tab'             => 'cookies',
         'icon'            => 'cookie',
         'linkText'            => __('Learn about cookie conset', 'pixfort-core'),
-        'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/how-to-add-cookies-consent/',
+        'linkHref'            => \PixfortCore::instance()->adminCore->getParam('docs_add_cookies'),
         'linkIcon'            => 'bookmark'
     ]
 );

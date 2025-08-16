@@ -47,7 +47,7 @@ class PopupType {
             'name'                     => __('Popups', 'pixfort-core'),
             'singular_name'         => __('Popup item', 'pixfort-core'),
             'add_new'                 => __('Add New Popup', 'pixfort-core'),
-            'add_new_item'             => __('Add New Popup item', 'pixfort-core'),
+            'add_new_item'             => __('Add New Popup Item', 'pixfort-core'),
             'edit_item'             => __('Edit Popup item', 'pixfort-core'),
             'new_item'                 => __('New Popup item', 'pixfort-core'),
             'view_item'             => __('View Popup item', 'pixfort-core'),
@@ -326,11 +326,11 @@ class PopupType {
                 'tabs'  => [
                     'general'    => ['title'    => __('General', 'pixfort-core'), 'icon' => 'general'],
                     'triggers'    => ['title'    => __('Triggers', 'pixfort-core'), 'icon' => 'triggers'],
-                    'design'    => ['title'    => 'Design', 'icon' => 'design'],
-                    'launcher'    => ['title'    => 'Launcher', 'icon' => 'launcher'],
-                    'advanced'    => ['title'    => 'Advanced', 'icon' => 'advanced'],
+                    'design'    => ['title'    => __('Design', 'pixfort-core'), 'icon' => 'design'],
+                    'launcher'    => ['title'    => __('Launcher', 'pixfort-core'), 'icon' => 'launcher'],
+                    'advanced'    => ['title'    => __('Advanced', 'pixfort-core'), 'icon' => 'advanced'],
                 ],
-                'helpLink' => 'https://essentials.pixfort.com/knowledge-base/how-to-add-popups/'
+                'helpLink' => \PixfortCore::instance()->adminCore->getParam('docs_create_popup'),
             ]
         );
 
@@ -339,7 +339,7 @@ class PopupType {
             'popup-condition',
             [
                 'type' => 'conditions',
-                'label' => 'Display Conditions',
+                'label' => __('Display Conditions', 'pixfort-core'),
                 'default' => '',
                 'tab'             => 'general',
                 'tooltipText'   => '<strong>Note:</strong> After setting the display conditions, in order to show the popup in the selected pages don\'t forget to choose the popup triggers from the <strong>"Triggers"</strong> tab.',
@@ -371,43 +371,43 @@ class PopupType {
             'pix-popup-width',
             [
                 'type' => 'radio',
-                'label' => 'Popup Width',
+                'label' => __('Popup Width', 'pixfort-core'),
                 'default' => 'popup-width-md',
                 'tab'             => 'general',
                 'description' => __('Choose the width of your popup.', 'pixfort-core'),
                 'options'        => array(
                     [
-                        'name'            => 'Extra Small',
+                        'name'            => __('Extra Small', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/width/popup-extra-small.svg',
                         'value'            => 'popup-width-xs'
                     ],
                     [
-                        'name'            => 'Small',
+                        'name'            => __('Small', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/width/popup-small.svg',
                         'value'            => 'popup-width-sm'
                     ],
                     [
-                        'name'            => 'Medium',
+                        'name'            => __('Medium', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/width/popup-medium.svg',
                         'value'            => 'popup-width-md'
                     ],
                     [
-                        'name'            => 'Large',
+                        'name'            => __('Large', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/width/popup-large.svg',
                         'value'            => 'popup-width-lg'
                     ],
                     [
-                        'name'            => 'Extra Large',
+                        'name'            => __('Extra Large', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/width/popup-extra-large.svg',
                         'value'            => 'popup-width-xl'
                     ],
                     [
-                        'name'            => 'Full Width',
+                        'name'            => __('Full Width', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/width/popup-full-width.svg',
                         'value'            => 'popup-width-full'
                     ],
                     [
-                        'name'            => 'Content Width',
+                        'name'            => __('Content Width', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/width/popup-content-width.svg',
                         'value'            => 'popup-width-content'
                     ]
@@ -419,24 +419,24 @@ class PopupType {
             'pix-popup-height',
             [
                 'type' => 'radio',
-                'label' => 'Popup Height',
+                'label' => __('Popup Height', 'pixfort-core'),
                 'default' => 'popup-height-content',
                 'hideBorderBottom'  => true,
                 'tab'             => 'general',
                 'description' => __('Choose the height of your popup.', 'pixfort-core'),
                 'options'        => array(
                     [
-                        'name'            => 'Content Height',
+                        'name'            => __('Content Height', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/height/popup-height-content.svg',
                         'value'            => 'popup-height-content'
                     ],
                     [
-                        'name'            => 'Full Height',
+                        'name'            => __('Full Height', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/height/popup-height-full.svg',
                         'value'            => 'popup-height-full'
                     ],
                     [
-                        'name'            => 'Custom',
+                        'name'            => __('Custom', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/height/popup-height-custom.svg',
                         'value'            => 'popup-height-custom'
                     ]
@@ -448,7 +448,7 @@ class PopupType {
             'popup-height-custom',
             [
                 'type'              => 'text',
-                'label'             => 'Custom Height',
+                'label'             => __('Custom Height', 'pixfort-core'),
                 // 'default'           => '500px',
                 'placeholder'       => 'Examples: 500px, 60%, etc...',
                 'showBorderTop'     => true,
@@ -469,7 +469,7 @@ class PopupType {
             [
                 'type'             => 'checkbox',
                 'tab'             => 'triggers',
-                'label'         => 'Show Popup on Page Load',
+                'label'         => __('Show Popup on Page Load', 'pixfort-core'),
                 'default'         => '0',
                 'options'        => array('1' => 'On', '0' => 'Off'),
                 'description' => __('Popup will show after loading the page.', 'pixfort-core'),
@@ -479,7 +479,7 @@ class PopupType {
             'popup-onpageload-after',
             [
                 'type' => 'text',
-                'label' => 'Delay Time on Page Load',
+                'label' => __('Delay Time on Page Load', 'pixfort-core'),
                 'default' => '0',
                 'tab'             => 'triggers',
                 'description' => __('Show popup after a delay time, leave empty to display directly.', 'pixfort-core'),
@@ -498,7 +498,7 @@ class PopupType {
             [
                 'type'             => 'checkbox',
                 'tab'             => 'triggers',
-                'label'         => 'Show Popup on Page Exit',
+                'label'         => __('Show Popup on Page Exit', 'pixfort-core'),
                 'description' => __('Popup will show when the user cursor exit the browser window.', 'pixfort-core'),
                 'default'         => '0',
                 'options'        => array('1' => 'On', '0' => 'Off'),
@@ -510,7 +510,7 @@ class PopupType {
             [
                 'type'             => 'checkbox',
                 'tab'             => 'triggers',
-                'label'         => 'Show Popup on Scroll',
+                'label'         => __('Show Popup on Scroll', 'pixfort-core'),
                 'default'         => '0',
                 'options'        => array('1' => 'On', '0' => 'Off'),
                 'description'     => __('Popup will show when scrolling the page.', 'pixfort-core'),
@@ -520,7 +520,7 @@ class PopupType {
             'popup-onscroll-percentage',
             [
                 'type' => 'range',
-                'label' => 'On Scroll Percentage',
+                'label' => __('On Scroll Percentage', 'pixfort-core'),
                 'description' => __('Show popup when scrolling a specific percentage of the page.', 'pixfort-core'),
                 'default' => '50',
                 'tab'             => 'triggers',
@@ -538,7 +538,7 @@ class PopupType {
             [
                 'type'             => 'checkbox',
                 'tab'             => 'triggers',
-                'label'         => 'Show Popup on Scroll to Element',
+                'label'         => __('Show Popup on Scroll to Element', 'pixfort-core'),
                 'default'         => '0',
                 'options'        => array('1' => 'On', '0' => 'Off'),
                 'description' => __('Popup will show when the user reaches a specific element in the page.', 'pixfort-core'),
@@ -549,12 +549,12 @@ class PopupType {
             'popup-onscrollelement-selector',
             [
                 'type' => 'text',
-                'label' => 'Element Selector',
+                'label' => __('Element Selector', 'pixfort-core'),
                 'default' => '',
                 'tab'             => 'triggers',
                 'description' => __('Input the selector of the element (css selector).', 'pixfort-core'),
                 'tooltipText'   => 'CSS selectors define the pattern to select elements to which a set of CSS rules are then applied. <br/> For more information about <strong>CSS selectors</strong> you can check <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Selectors" target="_blank"><strong>this article.</strong></a>',
-                'placeholder'   => 'Example: .class',
+                'placeholder'   => __('Example: .class', 'pixfort-core'),
                 'dependency' => [
                     'field' => 'popup-onscrollelement',
                     'val' => [true, 'true']
@@ -566,8 +566,8 @@ class PopupType {
             [
                 'type'             => 'checkbox',
                 'tab'             => 'triggers',
-                'label'         => 'Display up to X times',
-                'tooltipText'   => 'When enabling this option, you can choose how many times you want to show the popup for each user (each popup dismiss counts as 1 time).',
+                'label'         => __('Display up to X times', 'pixfort-core'),
+                'tooltipText'   => __('When enabling this option, you can choose how many times you want to show the popup for each user (each popup dismiss counts as 1 time).', 'pixfort-core'),
                 'default'         => '0',
                 'options'        => array('1' => 'On', '0' => 'Off'),
                 'description'     => __('The popup will be displayed a specific number of times for each user (each popup dismiss counts as 1 time).', 'pixfort-core'),
@@ -582,8 +582,8 @@ class PopupType {
             'pix-showtimes',
             [
                 'type' => 'range',
-                'label' => 'Display Count',
-                'tooltipText'   => 'For example, if you set this display count to 3 the popup will be shown to each user 3 times (each popup dismiss counts as 1 time).',
+                'label' => __('Display Count', 'pixfort-core'),
+                'tooltipText'   => __('For example, if you set this display count to 3 the popup will be shown to each user 3 times (each popup dismiss counts as 1 time).', 'pixfort-core'),
                 'default' => '1',
                 'tab'             => 'triggers',
                 'min'             => '1',
@@ -599,7 +599,7 @@ class PopupType {
             'pix-popup-id',
             [
                 'type' => 'pixid',
-                'label' => 'Reset Display Count',
+                'label' => __('Reset Display Count', 'pixfort-core'),
                 'description' => __('The reset display count will apply to all users.', 'pixfort-core'),
                 'default' => '',
                 'auto' => false,
@@ -614,7 +614,7 @@ class PopupType {
             'popup-openfromlink',
             [
                 'type' => 'text',
-                'label' => 'Open from Link',
+                'label' => __('Open from Link', 'pixfort-core'),
                 'default' => '0',
                 'hideBorderBottom'  => true,
                 'tab'             => 'triggers',
@@ -634,7 +634,7 @@ class PopupType {
             'pix-heading-position',
             [
                 'type'             => 'heading',
-                'label'         => 'Position',
+                'label'         => __('Position', 'pixfort-core'),
                 'tab'             => 'design',
                 'icon'            => 'position'
             ]
@@ -643,7 +643,7 @@ class PopupType {
             'pix-position-alert',
             [
                 'type'             => 'alert',
-                'label'         => 'Popup position is attached to Launcher',
+                'label'         => __('Popup position is attached to Launcher', 'pixfort-core'),
                 'tab'             => 'design',
                 'description'     => __('The popup position is set to <strong>"Attach Popup to Launcher"</strong> in the <strong>Launcher</strong> tab. Therefore, the Horizontal and Vertical positions below will be ignored in the pages that contain the popup launcher.', 'pixfort-core'),
                 'hidePaddingBottom' => true,
@@ -659,7 +659,7 @@ class PopupType {
             'pix-popup-position-x',
             [
                 'type' => 'radio',
-                'label' => 'Horizontal Position',
+                'label' => __('Horizontal Position', 'pixfort-core'),
                 'default' => 'popup-horizontal-center',
                 'tab'             => 'design',
                 'description' => __('Choose popup horizontal position.', 'pixfort-core'),
@@ -686,7 +686,7 @@ class PopupType {
             'pix-popup-position-y',
             [
                 'type' => 'radio',
-                'label' => 'Vertical Position',
+                'label' => __('Vertical Position', 'pixfort-core'),
                 'default' => 'popup-vertical-center',
                 'tab'             => 'design',
                 'description' => __('Choose popup vertical position.', 'pixfort-core'),
@@ -713,7 +713,7 @@ class PopupType {
             'popup-padding',
             [
                 'type' => 'range',
-                'label' => 'Popup Margin',
+                'label' => __('Popup Margin', 'pixfort-core'),
                 'description' => __('The spacing around the popup (in pixels).', 'pixfort-core'),
                 'responsive' => true,
                 'hideBorderBottom'  => true,
@@ -729,7 +729,7 @@ class PopupType {
             'pix-heading-style',
             [
                 'type'             => 'heading',
-                'label'         => 'Style',
+                'label'         => __('Style', 'pixfort-core'),
                 'tab'             => 'design',
                 'icon'            => 'style'
             ]
@@ -739,28 +739,28 @@ class PopupType {
             'pix-popup-shadow',
             [
                 'type' => 'radio',
-                'label' => 'Shadow',
+                'label' => __('Shadow', 'pixfort-core'),
                 'default' => 'popup-shadow-none',
                 'tab'             => 'design',
                 'description' => __('Choose popup shadow.', 'pixfort-core'),
                 'options'        => array(
                     [
-                        'name'            => 'None',
+                        'name'            => __('None', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/shadows/popup-shadow-none.svg',
                         'value'            => 'popup-shadow-none'
                     ],
                     [
-                        'name'            => 'Small',
+                        'name'            => __('Small', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/shadows/popup-shadow-small.svg',
                         'value'            => 'popup-shadow-small'
                     ],
                     [
-                        'name'            => 'Medium',
+                        'name'            => __('Medium', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/shadows/popup-shadow-medium.svg',
                         'value'            => 'popup-shadow-medium'
                     ],
                     [
-                        'name'            => 'Large',
+                        'name'            => __('Large', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/shadows/popup-shadow-large.svg',
                         'value'            => 'popup-shadow-large'
                     ]
@@ -771,11 +771,12 @@ class PopupType {
             'popup-background-color',
             [
                 'type'             => 'select',
-                'label'         => 'Background Color',
+                'label'         => __('Background Color', 'pixfort-core'),
                 'default'         => 'transparent',
                 'tab'             => 'design',
-                'default_options'   => 'colors',
-                'options'   => [],
+                // 'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['blur' => true,'lightBasicText' => true, 'transparent' => true, 'dynamicBlur' => true]),
+                'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['lightBasicText' => true, 'transparent' => true]),
+                'groups' => true,
             ]
         );
         $pixfortBuilder->addOption(
@@ -783,7 +784,7 @@ class PopupType {
             [
                 'type'             => 'color',
                 'tab'             => 'design',
-                'label'         => 'Background Custom Color',
+                'label'         => __('Background Custom Color', 'pixfort-core'),
                 'default'         => '#fff',
                 'disableAlpha'         => false,
                 'dependency' => [
@@ -796,7 +797,7 @@ class PopupType {
             'popup-border-radius',
             [
                 'type' => 'range',
-                'label' => 'Border Radius',
+                'label' => __('Border Radius', 'pixfort-core'),
                 'responsive' => true,
                 'default' => [
                     'desktop'   => '0'
@@ -811,7 +812,7 @@ class PopupType {
             [
                 'type'              => 'checkbox',
                 'tab'               => 'design',
-                'label'             => 'Visible Content Overflow',
+                'label'             => __('Visible Content Overflow', 'pixfort-core'),
                 'default'           => '',
                 'description'       => __('Make the content that overflow outside the popup visible instead of hiding it.', 'pixfort-core'),
                 'options'           => array('1' => 'On', '0' => 'Off'),
@@ -821,22 +822,22 @@ class PopupType {
             'pix-popup-animation',
             [
                 'type'             => 'select',
-                'label'         => 'Popup Animation',
+                'label'         => __('Popup Animation', 'pixfort-core'),
                 'default'         => 'animation-none',
                 'hideBorderBottom'  => true,
                 'tab'             => 'design',
                 'options'        => array(
-                    'animation-none'            => 'None',
-                    'animation-scale'            => 'Scale',
-                    'animation-fade'            => 'Fade in',
-                    'animation-fade-in-left'   => 'Fade in left',
-                    'animation-fade-in-right'   => 'Fade in right',
-                    'animation-fade-in-up'   => 'Fade in up',
-                    'animation-fade-in-down'   => 'Fade in down',
-                    'animation-fade-in-bottom-left'   => 'Fade in bottom left',
-                    'animation-fade-in-bottom-right'   => 'Fade in bottom right',
-                    'animation-fade-in-top-left'   => 'Fade in top left',
-                    'animation-fade-in-top-right'   => 'Fade in top right',
+                    'animation-none'            => __('None', 'pixfort-core'),
+                    'animation-scale'            => __('Scale', 'pixfort-core'),
+                    'animation-fade'            => __('Fade in', 'pixfort-core'),
+                    'animation-fade-in-left'   => __('Fade in left', 'pixfort-core'),
+                    'animation-fade-in-right'   => __('Fade in right', 'pixfort-core'),
+                    'animation-fade-in-up'   => __('Fade in up', 'pixfort-core'),
+                    'animation-fade-in-down'   => __('Fade in down', 'pixfort-core'),
+                    'animation-fade-in-bottom-left'   => __('Fade in bottom left', 'pixfort-core'),
+                    'animation-fade-in-bottom-right'   => __('Fade in bottom right', 'pixfort-core'),
+                    'animation-fade-in-top-left'   => __('Fade in top left', 'pixfort-core'),
+                    'animation-fade-in-top-right'   => __('Fade in top right', 'pixfort-core'),
                 ),
             ]
         );
@@ -847,7 +848,7 @@ class PopupType {
             'pix-heading-backdrop',
             [
                 'type'             => 'heading',
-                'label'         => 'Backdrop',
+                'label'         => __('Backdrop', 'pixfort-core'),
                 'tab'             => 'design',
                 'icon'            => 'canvas'
             ]
@@ -857,11 +858,11 @@ class PopupType {
             [
                 'type'              => 'checkbox',
                 'tab'               => 'design',
-                'label'             => 'Disable Popup Backdrop',
+                'label'             => __('Disable Popup Backdrop', 'pixfort-core'),
                 'default'           => '0',
                 'hideBorderBottom'  => true,
-                'description'       => 'If the backdrop is disabled the page content in the background will be accessible while the popup is opened.',
-                'tooltipText'   => '<strong>Popup Backdrop</strong> is the overlay layer that appears behind the popup.',
+                'description'       => __('If the backdrop is disabled the page content in the background will be accessible while the popup is opened.', 'pixfort-core'),  
+                'tooltipText'   => '<strong>'.__('Popup Backdrop', 'pixfort-core').'</strong> '. __('is the overlay layer that appears behind the popup.', 'pixfort-core'),
                 'tooltipImage'   => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/tooltips/popup-tooltip-popup-backdrop.png',
                 'options'           => array('1' => 'On', '0' => 'Off'),
             ]
@@ -870,12 +871,12 @@ class PopupType {
             'popup-backdrop-color',
             [
                 'type'              => 'select',
-                'label'             => 'Backdrop Color',
+                'label'             => __('Backdrop Color', 'pixfort-core'),
                 'default'           => 'dark-opacity-8',
                 'tab'               => 'design',
-                'default_options'   => 'colors',
+                'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['blur' => true,'lightBasicText' => true, 'transparent' => true, 'dynamicBlur' => true]),
+                'groups' => true,
                 'showBorderTop'   => true,
-                'options'           => [],
                 'dependency'        => [
                     'field'             => 'pix-disable-backdrop',
                     'val'               => ['1', true, 'true'],
@@ -888,7 +889,7 @@ class PopupType {
             [
                 'type'              => 'color',
                 'tab'               => 'design',
-                'label'             => 'Backdrop Custom Color',
+                'label'             => __('Backdrop Custom Color', 'pixfort-core'),
                 'default'           => 'rgba(0,0,0,0.8)',
                 'disableAlpha'      => false,
                 'dependency'        => [
@@ -901,8 +902,8 @@ class PopupType {
             'popup-backdrop-blur',
             [
                 'type' => 'range',
-                'label' => 'Backdrop Blur',
-                'tooltipText'   => 'Applies a Gaussian blur to the backdrop.',
+                'label' => __('Backdrop Blur', 'pixfort-core'),
+                'tooltipText'   => __('Applies a Gaussian blur to the backdrop.', 'pixfort-core'),
                 'tab'             => 'design',
                 'min'             => '0',
                 'max'             => '100',
@@ -918,7 +919,7 @@ class PopupType {
             [
                 'type'              => 'checkbox',
                 'tab'               => 'design',
-                'label'             => 'Disable Popup Backdrop Close',
+                'label'             => __('Disable Popup Backdrop Close', 'pixfort-core'),
                 'default'           => '',
                 'hideBorderBottom'  => true,
                 'description'       => __('By default clicking on the Backdrop will close the Popup, enable this option if you want to prevent closing the popup.', 'pixfort-core'),
@@ -937,7 +938,7 @@ class PopupType {
             'pix-heading-close',
             [
                 'type'             => 'heading',
-                'label'         => 'Close Button',
+                'label'         => __('Close Button', 'pixfort-core'),
                 'tab'             => 'design',
                 'icon'            => 'cross'
             ]
@@ -946,23 +947,23 @@ class PopupType {
             'pix-popup-close-x',
             [
                 'type'              => 'radio',
-                'label'             => 'Close Button Align',
+                'label'             => __('Close Button Align', 'pixfort-core'),
                 'default'           => 'popup-close-right',
                 'tab'               => 'design',
                 'description'       => __('Choose the close button align.', 'pixfort-core'),
                 'options'           => array(
                     [
-                        'name'          => 'None',
+                        'name'          => __('None', 'pixfort-core'),
                         'image'         => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/close/popup-close-none.svg',
                         'value'         => 'popup-close-none'
                     ],
                     [
-                        'name'          => 'Left',
+                        'name'          => __('Left', 'pixfort-core'),
                         'image'         => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/close/popup-close-left.svg',
                         'value'         => 'popup-close-left'
                     ],
                     [
-                        'name'          => 'Right',
+                        'name'          => __('Right', 'pixfort-core'),
                         'image'         => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/close/popup-close-inside.svg',
                         'value'         => 'popup-close-right'
                     ],
@@ -973,19 +974,19 @@ class PopupType {
             'pix-popup-close-y',
             [
                 'type'              => 'radio',
-                'label'             => 'Close Button Position',
+                'label'             => __('Close Button Position', 'pixfort-core'),
                 'default'           => 'popup-close-ouside',
                 'tab'               => 'design',
                 'checkPosition'     => 'left',
                 'description'       => __('Choose the close button position.', 'pixfort-core'),
                 'options'           => array(
                     [
-                        'name'          => 'Outside',
+                        'name'          => __('Outside', 'pixfort-core'),
                         'image'         => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/close/popup-close-outside.svg',
                         'value'         => 'popup-close-ouside'
                     ],
                     [
-                        'name'          => 'Inside',
+                        'name'          => __('Inside', 'pixfort-core'),
                         'image'         => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/close/popup-close-inside.svg',
                         'value'         => 'popup-close-inside'
                     ],
@@ -996,30 +997,51 @@ class PopupType {
                 ]
             ]
         );
-        $pixfortBuilder->addOption(
-            'popup-close-color',
-            [
-                'type'              => 'color',
-                'tab'               => 'design',
-                'label'             => 'Close Icon Color',
-                'default'           => '#eee',
-                'description' => __('Choose the icon color for the close button.', 'pixfort-core'),
-                'disableAlpha'      => false,
-                'dependency'        => [
-                    'field'             => 'pix-popup-close-x',
-                    'val'               => ['popup-close-left', 'popup-close-right']
+        if(PixfortCore::instance()->dynamicColors) {
+            $pixfortBuilder->addOption(
+                'popup-close-color',
+                [
+                    'type'              => 'color',
+                    'tab'               => 'design',
+                    'label'             => __('Close Icon Color', 'pixfort-core'),
+                    'default'           => '#eee',
+                    'dynamic'           => true,
+                    'description' => __('Choose the icon color for the close button.', 'pixfort-core'),
+                    'disableAlpha'      => false,
+                    'dependency'        => [
+                        'field'             => 'pix-popup-close-x',
+                        'val'               => ['popup-close-left', 'popup-close-right']
+                    ]
                 ]
-            ]
-        );
+            );
+        } else {
+            $pixfortBuilder->addOption(
+                'popup-close-color',
+                [
+                    'type'              => 'color',
+                    'tab'               => 'design',
+                    'label'             => __('Close Icon Color', 'pixfort-core'),
+                    'default'           => '#eee',
+                    'description' => __('Choose the icon color for the close button.', 'pixfort-core'),
+                    'disableAlpha'      => false,
+                    'dependency'        => [
+                        'field'             => 'pix-popup-close-x',
+                        'val'               => ['popup-close-left', 'popup-close-right']
+                    ]
+                ]
+            );    
+        }
+        
         $pixfortBuilder->addOption(
             'pix-close-icon',
             [
                 'type' => 'radio',
-                'label' => 'Close Button Icon',
+                'label' => __('Close Button Icon', 'pixfort-core'),
                 'hideBorderBottom'  => true,
                 'default' => 'line/pixfort-icon-cross-1',
                 'tab'             => 'design',
                 'description' => __('Choose the icon for the close button.', 'pixfort-core'),
+                'disableCheck'  => true,
                 'options'        => array(
                     [
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/backend-icons/line/pixfort-icon-cross-1.svg',
@@ -1077,10 +1099,10 @@ class PopupType {
             [
                 'type'              => 'checkbox',
                 'tab'               => 'design',
-                'label'             => 'Disable Close via Escape Key',
+                'label'             => __('Disable Close via Escape Key', 'pixfort-core'),
                 'default'           => '',
                 'hideBorderBottom'  => true,
-                'tooltipText'   => 'By default clicking on the Escape key will close the popup, enable this option if you want to prevent closing the popup using the Escape key.',
+                'tooltipText'   => __('By default clicking on the Escape key will close the popup, enable this option if you want to prevent closing the popup using the Escape key.', 'pixfort-core'),
                 'description'       => __('Prevent closing the popup via the Escape key.', 'pixfort-core'),
                 'options'           => array('1' => 'On', '0' => 'Off'),
             ]
@@ -1093,7 +1115,7 @@ class PopupType {
             [
                 'type'             => 'checkbox',
                 'tab'             => 'launcher',
-                'label'         => 'Enable Popup Launcher',
+                'label'         => __('Enable Popup Launcher', 'pixfort-core'),
                 'description' => __('Add popup Launcher to your page.', 'pixfort-core'),
                 'hideBorderBottom'  => true,
                 'default'         => '0',
@@ -1106,7 +1128,7 @@ class PopupType {
             'pix-heading-launcher-position',
             [
                 'type'             => 'heading',
-                'label'         => 'Position',
+                'label'         => __('Position', 'pixfort-core'),
                 'tab'             => 'launcher',
                 'icon'            => 'position',
                 'dependency'        => [
@@ -1119,18 +1141,18 @@ class PopupType {
             'pix-launcher-position',
             [
                 'type' => 'radio',
-                'label' => 'Launcher Position',
+                'label' => __('Launcher Position', 'pixfort-core'),
                 'default' => 'launcher-bottom-right',
                 'tab'             => 'launcher',
                 'description' => __('Choose Launcher position.', 'pixfort-core'),
                 'options'        => array(
                     [
-                        'name'            => 'Left',
+                        'name'            => __('Left', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/launcher-position/launcher-bottom-left.svg',
                         'value'            => 'launcher-bottom-left'
                     ],
                     [
-                        'name'            => 'Right',
+                        'name'            => __('Right', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/launcher-position/launcher-bottom-right.svg',
                         'value'            => 'launcher-bottom-right'
                     ]
@@ -1145,7 +1167,7 @@ class PopupType {
             'pix-launcher-bottom-value',
             [
                 'type' => 'range',
-                'label' => 'Launcher Bottom Spacing',
+                'label' => __('Launcher Bottom Spacing', 'pixfort-core'),
                 'description' => __('The space between the Launcher and bottom of the screen (in pixels).', 'pixfort-core'),
                 'responsive' => true,
                 'default' => [
@@ -1164,7 +1186,7 @@ class PopupType {
             'pix-launcher-horizontal-value',
             [
                 'type' => 'range',
-                'label' => 'Launcher Horizontal Spacing',
+                'label' => __('Launcher Horizontal Spacing', 'pixfort-core'),
                 'description' => __('The space between the Launcher and side of the screen (in pixels).', 'pixfort-core'),
                 'responsive' => true,
                 'hideBorderBottom'  => false,
@@ -1185,7 +1207,7 @@ class PopupType {
             [
                 'type'             => 'checkbox',
                 'tab'             => 'launcher',
-                'label'         => 'Attach Popup to Launcher',
+                'label'         => __('Attach Popup to Launcher', 'pixfort-core'),
                 'default'         => '0',
                 'options'        => array('1' => 'On', '0' => 'Off'),
                 'description'     => __('The popup will be on top of the Launcher automatically depending on the selected Launcher position above.', 'pixfort-core'),
@@ -1203,7 +1225,7 @@ class PopupType {
             [
                 'type'             => 'checkbox',
                 'tab'             => 'launcher',
-                'label'         => 'Display Launcher Above Popup',
+                'label'         => __('Display Launcher Above Popup', 'pixfort-core'),
                 'showBorderTop'  => true,
                 'hideBorderBottom'  => true,
                 'default'         => '0',
@@ -1221,7 +1243,7 @@ class PopupType {
             'pix-heading-launcher-logo',
             [
                 'type'             => 'heading',
-                'label'         => 'Logo',
+                'label'         => __('Logo', 'pixfort-core'),
                 'tab'             => 'launcher',
                 'icon'            => 'logo',
                 'dependency'        => [
@@ -1234,19 +1256,19 @@ class PopupType {
             'pix-launcher-logo',
             [
                 'type' => 'radio',
-                'label' => 'Launcher Logo',
+                'label' => __('Launcher Logo', 'pixfort-core'),
                 'default' => 'launcher-logo-icon',
                 'hideBorderBottom'  => true,
                 'tab'             => 'launcher',
                 'description' => __('Choose Launcher Logo.', 'pixfort-core'),
                 'options'        => array(
                     [
-                        'name'            => 'Default Icons',
+                        'name'            => __('Default Icons', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/launcher-logo/popup-launcher-default-icons.svg',
                         'value'            => 'launcher-logo-icon'
                     ],
                     [
-                        'name'            => 'Custom Logo',
+                        'name'            => __('Custom Logo', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/launcher-logo/popup-launcher-custom-logo.svg',
                         'value'            => 'launcher-logo-image'
                     ],
@@ -1262,7 +1284,7 @@ class PopupType {
             'pix-launcher-icon',
             [
                 'type' => 'radio',
-                'label' => 'Launcher Logo',
+                'label' => __('Launcher Logo', 'pixfort-core'),
                 'default' => 'line/pixfort-icon-bolt-1',
                 'showBorderTop'  => true,
                 'hideBorderBottom'  => true,
@@ -1373,7 +1395,7 @@ class PopupType {
             'pix-heading-launcher-style',
             [
                 'type'             => 'heading',
-                'label'         => 'Style',
+                'label'         => __('Style', 'pixfort-core'),
                 'tab'             => 'launcher',
                 'icon'            => 'style',
                 'dependency'        => [
@@ -1386,11 +1408,11 @@ class PopupType {
             'pix-launcher-background-color',
             [
                 'type'             => 'select',
-                'label'         => 'Launcher Background Color',
+                'label'         => __('Launcher Background Color', 'pixfort-core'),
                 'default'         => 'white',
                 'tab'             => 'launcher',
-                'default_options'   => 'colors',
-                'options'   => [],
+                'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['blur' => true,'lightBasicText' => true, 'transparent' => true]),
+                'groups' => true,
                 'dependency'        => [
                     'field'             => 'pix-enable-launcher',
                     'val'               => ['true', true]
@@ -1402,7 +1424,7 @@ class PopupType {
             [
                 'type'             => 'color',
                 'tab'             => 'launcher',
-                'label'         => 'Background Custom Color',
+                'label'         => __('Background Custom Color', 'pixfort-core'),
                 'default'         => 'rgba(255,255,255,1)',
                 'disableAlpha'         => false,
                 'dependency' => [
@@ -1415,12 +1437,12 @@ class PopupType {
             'pix-launcher-icon-color',
             [
                 'type'             => 'select',
-                'label'         => 'Launcher Icon Color',
+                'label'         => __('Launcher Icon Color', 'pixfort-core'),
                 'default'         => 'primary',
                 'tab'             => 'launcher',
-                'tooltipText'   => 'The color of the Launcher icon in case of using one of the default icons, in addition to the color of the close icon of the Launcher.',
-                'default_options'   => 'colors',
-                'options'   => [],
+                'tooltipText'   => __('The color of the Launcher icon in case of using one of the default icons, in addition to the color of the close icon of the Launcher.', 'pixfort-core'),
+                'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['blur' => true,'lightBasicText' => true, 'transparent' => true]),
+                'groups' => true,
                 'dependency'        => [
                     'field'             => 'pix-enable-launcher',
                     'val'               => ['true', true]
@@ -1432,7 +1454,7 @@ class PopupType {
             [
                 'type'             => 'color',
                 'tab'             => 'launcher',
-                'label'         => 'Icon Custom Color',
+                'label'         => __('Icon Custom Color', 'pixfort-core'),
                 'default'         => '#333',
                 'disableAlpha'         => false,
                 'dependency' => [
@@ -1445,29 +1467,29 @@ class PopupType {
             'pix-popup-launcher-shadow',
             [
                 'type' => 'radio',
-                'label' => 'Launcher Shadow',
+                'label' => __('Launcher Shadow', 'pixfort-core'),
                 'default' => 'launcher-shadow-none',
                 'hideBorderBottom'  => true,
                 'tab'             => 'launcher',
                 'description' => __('Choose Launcher shadow.', 'pixfort-core'),
                 'options'        => array(
                     [
-                        'name'            => 'None',
+                        'name'            => __('None', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/launcher-shadows/popup-launcher-shadow-none.svg',
                         'value'            => 'launcher-shadow-none'
                     ],
                     [
-                        'name'            => 'Small',
+                        'name'            => __('Small', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/launcher-shadows/popup-launcher-shadow-small.svg',
                         'value'            => 'launcher-shadow-small'
                     ],
                     [
-                        'name'            => 'Medium',
+                        'name'            => __('Medium', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/launcher-shadows/popup-launcher-shadow-medium.svg',
                         'value'            => 'launcher-shadow-medium'
                     ],
                     [
-                        'name'            => 'Large',
+                        'name'            => __('Large', 'pixfort-core'),
                         'image'            => PIX_CORE_PLUGIN_URI . '/includes/assets/popups/thumbnails/launcher-shadows/popup-launcher-shadow-large.svg',
                         'value'            => 'launcher-shadow-large'
                     ]
@@ -1482,47 +1504,46 @@ class PopupType {
             'pix-display-devices',
             [
                 'type' => 'multi-select',
-                'label' => 'Display on Devices',
+                'label' => __('Display on Devices', 'pixfort-core'),
                 'tab'             => 'advanced',
-                'placeholder'   => 'All Devices',
+                'placeholder'   => __('All Devices', 'pixfort-core'),
                 'options' => [
                     [
-                        'name'            => 'Desktop',
+                        'name'            => __('Desktop', 'pixfort-core'),
                         'value'            => 'desktop'
                     ],
                     [
-                        'name'            => 'Tablet',
+                        'name'            => __('Tablet', 'pixfort-core'),
                         'value'            => 'tablet'
                     ],
                     [
-                        'name'            => 'Mobile',
+                        'name'            => __('Mobile', 'pixfort-core'),
                         'value'            => 'mobile'
                     ]
                 ],
                 'description' => __('Choose on which screen sizes the popup will be displayed by the triggers.', 'pixfort-core'),
                 'tooltipText'       => '<strong>Note:</strong> The display on devices option concerns all the triggers except "<strong>Open from Link</strong>" which will open the popup from any device size. <br><br>
                 <strong>Tip:</strong> The Responsive Breakpoints are:<br>
-                    <strong>Desktop</strong> ≥ 992px <br>
-                    992px > <strong>Tablet</strong> ≥ 576px <br>
+                    <strong>Desktop</strong> ≥ 1024px <br>
+                    1024px > <strong>Tablet</strong> ≥ 576px <br>
                     576px &#62; <strong>Mobile</strong>',
             ]
         );
+        
+        $docsPopupCustomCssLink = \PixfortCore::instance()->adminCore->getParam('docs_popup_custom_css');
         $pixfortBuilder->addOption(
             'popup-custom-css',
             [
                 'type'             => 'code',
                 'tab'             => 'advanced',
-                'label'         => 'Custom CSS',
+                'label'         => __('Custom CSS', 'pixfort-core'),
                 'hideBorderBottom'  => true,
                 'default'         => '',
                 'description'     => __('Add custom CSS to be loaded with the Popup.', 'pixfort-core'),
-                'tooltipText'   => 'To apply the custom css only in this Popup please make sure to add the Popup class:</br> <strong>.pix-popup-' . get_the_ID() . '</strong> before any css statement.</br></br>For more information please check <a href="https://essentials.pixfort.com/knowledge-base/popup-custom-css/" target="_blank"><strong>this article</strong></a> from our knowledge base.',
+                'tooltipText'   => __('To apply the custom css only in this Popup please make sure to add the Popup class:</br> <strong>.pix-popup-' . get_the_ID() . '</strong> before any css statement.</br></br>For more information please check <a href="'.$docsPopupCustomCssLink.'" target="_blank"><strong>this article</strong></a> from our knowledge base.', 'pixfort-core'),
             ]
         );
         $pixfortBuilder->loadOptionsData();
-        ?>
-        <!-- <div style="width:100%;text-align:center;" class="pixfort_headerbuilder_loading"><img src="<?php echo PIX_IMG_PLACEHOLDER; ?>" /></div> -->
-        <?php
         echo '<div id="fu3obnz"></div>';
         echo '</tbody>';
         echo '</table>';
@@ -1651,13 +1672,34 @@ class PopupType {
                 ];
             }
         }
-        $popupCssVars = [
-            'popup-close-color' =>  '--pix-dialog-close-color',
-        ];
+        // $popupCssVars = [
+        //     'popup-close-color' =>  '--pix-dialog-close-color',
+        // ];
         $itemOptions['customStyle'] = [];
         foreach ($popupCssVars as $key => $value) {
             if ($varValue = get_post_meta($popup, $key, true)) {
                 $itemOptions['customStyle'][$value] = $varValue;
+            }
+        }
+        if ($closeColorValue = get_post_meta($popup, 'popup-close-color', true)) {
+            // Try to parse as JSON first
+            $parsedValue = null;
+            if (is_string($closeColorValue)) {
+                $parsedValue = json_decode($closeColorValue);
+            }
+            
+            // If it's a valid JSON object with a light property, use that
+            if (is_object($parsedValue) && !empty($parsedValue->light)) {
+                $itemOptions['customStyle']['--pix-dialog-close-color'] = $parsedValue->light;
+                if(!empty($parsedValue->dark)) {
+                    $itemOptions['customStyle']['--pix-dialog-close-color-dark'] = $parsedValue->dark;
+                } else {
+                    $itemOptions['customStyle']['--pix-dialog-close-color-dark'] = $parsedValue->light;
+                }
+            } else {
+                // Otherwise use the value directly
+                $itemOptions['customStyle']['--pix-dialog-close-color'] = $closeColorValue;
+                $itemOptions['customStyle']['--pix-dialog-close-color-dark'] = $closeColorValue;
             }
         }
         $responsiveOptions = [
@@ -1698,7 +1740,11 @@ class PopupType {
                     $itemOptions['customStyle']['--pix-dialog-background-color'] = $backgroundCustomColor;
                 }
             } else {
-                $itemOptions['customStyle']['--pix-dialog-background-color'] = 'var(--text-' . $backgroundColor . ')';
+                $itemOptions['customStyle']['--pix-dialog-background-color'] = 'var(--pix-' . $backgroundColor . ')';
+                if($backgroundColor === 'dynamic-blur' || $backgroundColor === 'dark-blur' || $backgroundColor === 'light-blur') {
+                    $itemOptions['customStyle']['--pix-dialog-background-display-blur'] = 'block';
+                    // $itemOptions['customStyle']['--pix-dialog-container-backdrop-blur'] = '20px';
+                }
             }
         }
         if ($backdropColor = get_post_meta($popup, 'popup-backdrop-color', true)) {
@@ -1707,7 +1753,7 @@ class PopupType {
                     $itemOptions['customStyle']['--pix-dialog-backdrop-bg'] = $backdropCustomColor;
                 }
             } else {
-                $itemOptions['customStyle']['--pix-dialog-backdrop-bg'] = 'var(--text-' . $backdropColor . ')';
+                $itemOptions['customStyle']['--pix-dialog-backdrop-bg'] = 'var(--pix-' . $backdropColor . ')';
             }
         }
 
@@ -1770,7 +1816,7 @@ class PopupType {
             }
             if ($launcherBg = get_post_meta($popup, 'pix-launcher-background-color', true)) {
                 if ($launcherBg !== 'custom') {
-                    $launcherOptions['launcherStyle']['--pix-launcher-background-color'] = 'var(--text-' . $launcherBg . ')';
+                    $launcherOptions['launcherStyle']['--pix-launcher-background-color'] = 'var(--pix-' . $launcherBg . ')';
                 } else {
                     if ($launcherCustomBgColor = get_post_meta($popup, 'pix-launcher-background-custom-color', true)) {
                         $launcherOptions['launcherStyle']['--pix-launcher-background-color'] = $launcherCustomBgColor;
@@ -1779,7 +1825,7 @@ class PopupType {
             }
             if ($launcherColor = get_post_meta($popup, 'pix-launcher-icon-color', true)) {
                 if ($launcherColor !== 'custom') {
-                    $launcherOptions['launcherStyle']['--pix-launcher-color'] = 'var(--text-' . $launcherColor . ')';
+                    $launcherOptions['launcherStyle']['--pix-launcher-color'] = 'var(--pix-' . $launcherColor . ')';
                 } else {
                     if ($launcherCustomColor = get_post_meta($popup, 'pix-launcher-icon-custom-color', true)) {
                         $launcherOptions['launcherStyle']['--pix-launcher-color'] = $launcherCustomColor;
@@ -1895,6 +1941,9 @@ class PopupType {
                     if (!empty($wp_styles->registered['elementor-frontend'])) {
                         unset($wp_styles->registered['elementor-frontend']);
                     }
+                    if(!empty($wp_styles->registered['js_composer_front'])){
+                        unset( $wp_styles->registered['js_composer_front'] );	
+                    }
                     ob_start();
                     ob_flush();
                     wp_footer();
@@ -1915,7 +1964,9 @@ class PopupType {
                     // Get all loaded Styles (CSS)
                     foreach ($wp_styles->queue as $style) :
                         if (!empty($wp_styles->registered[$style]->src) && $wp_styles->registered[$style]->src) {
-                            $result['styles'][$wp_styles->registered[$style]->handle] =  $wp_styles->registered[$style];
+                            if($wp_styles->registered[$style]->handle!=='js_composer_front'){
+                                $result['styles'][$wp_styles->registered[$style]->handle] =  $wp_styles->registered[$style];
+                            }
                         }
                     endforeach;
                 } else {
@@ -1931,7 +1982,7 @@ class PopupType {
                         'pixfort-carousel-style'             => 'carousel',
                     ];
                     foreach ($defaultStyles as $Key => $style) :
-                        $result['styles'][$Key] =  PIX_CORE_PLUGIN_URI . 'functions/css/elements/css/' . $style . '.min.css';
+                        $result['styles'][$Key] =  PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/' . $style . '.min.css';
                     endforeach;
                 }
                 $popupOptions = [];
@@ -2057,7 +2108,11 @@ class PopupType {
                 echo '<a id="pix_launcher_' . $popup . '" aria-label="' . get_the_title($popup) . '" class="pix-popup-launcher pix-launcher-' . $popup . ' d-none overflow-hidden rounded-circle ' . $launcherClasses . '" href="#" data-href="#pix_popup_' . $popup . '" data-id="' . $popup . '">';
                 if ($launcherLogo = get_post_meta($popup, 'pix-launcher-logo', true)) {
                     if ($launcherLogo === 'launcher-logo-image' && $launcherLogoImage = get_post_meta($popup, 'pix-launcher-logo-image', true)) {
-                        echo '<span class="pix-launcher-main">' . wp_get_attachment_image($launcherLogoImage, "full") . '</span>';
+                        if(function_exists('pixGetImageID')){
+                            $imageArray = pixGetImageID($launcherLogoImage);
+                            $imageID = $imageArray['light'];
+                            echo '<span class="pix-launcher-main">' . wp_get_attachment_image($imageID, "full") . '</span>';
+                        }
                     } else {
                         $launcherIcon = 'line/pixfort-icon-bolt-1';
                         if (get_post_meta($popup, 'pix-launcher-icon', true)) {
@@ -2170,7 +2225,11 @@ class PopupType {
                 $launcher .= '<a id="pix_launcher_' . $popup . '" aria-label="' . get_the_title($popup) . '" class="pix-popup-launcher pix-launcher-' . $popup . ' d-none overflow-hidden rounded-circle ' . $launcherClasses . '" href="#" data-href="#pix_popup_' . $popup . '" data-id="' . $popup . '">';
                 if ($launcherLogo = get_post_meta($popup, 'pix-launcher-logo', true)) {
                     if ($launcherLogo === 'launcher-logo-image' && $launcherLogoImage = get_post_meta($popup, 'pix-launcher-logo-image', true)) {
-                        $launcher .= '<span class="pix-launcher-main">' . wp_get_attachment_image($launcherLogoImage, 'full') . '</span>';
+                        if(function_exists('pixGetImageID')){
+                            $imageArray = pixGetImageID($launcherLogoImage);
+                            $imageID = $imageArray['light'];
+                            $launcher .= '<span class="pix-launcher-main">' . wp_get_attachment_image($imageID, 'full') . '</span>';
+                        }
                     } else {
                         $launcherIcon = 'line/pixfort-icon-bolt-1';
                         if (get_post_meta($popup, 'pix-launcher-icon', true)) {

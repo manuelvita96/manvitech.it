@@ -7,9 +7,12 @@ class pix_recent_posts extends WP_Widget {
 			// Base ID of your widget
 			'pix_recent_posts',
 			// Widget name will appear in UI
-			__('PixFort Recent Posts', 'pixfort-core'),
+			__('pixfort Legacy Recent Posts', 'pixfort-core'),
 			// Widget description
-			array('description' => __('Recent post list with images', 'pixfort-core'),)
+			[
+				'description' => __('Recent post list with images', 'pixfort-core'),
+				'show_instance_in_rest' => true
+			]
 		);
 	}
 
@@ -37,6 +40,10 @@ class pix_recent_posts extends WP_Widget {
 				// 'category_name' => 'staff,news'
 			)
 		));
+		$imgDivStyle = 'top: 50%; left: 50%; transform: translate(-50%, -50%);z-index:-1;';
+		if(is_rtl()) {
+			$imgDivStyle = 'top: 50%; right: 50%; transform: translate(50%, -50%);z-index:-1;';
+		}
 		if ($r->have_posts()) :
 ?>
 			<ul>
@@ -58,12 +65,12 @@ class pix_recent_posts extends WP_Widget {
 					<li class="pix-dark position-relative d-inline-block w-100">
 						<div class=" w-100 overflow-hidden pix-hover-item shadow shadow-hover fly-sm  d-block pix-mb-10  rounded-xl" title="<?php echo esc_attr(get_the_title() ? get_the_title() : get_the_ID()); ?>">
 							<div class="card bg-heading-default">
-								<div class="align-self-center pix-opacity-4 pix-hover-opacity-6 position-absolute pix-fit-cover w-100" style="top: 50%; left: 50%; transform: translate(-50%, -50%);z-index:-1;">
+								<div class="align-self-center pix-opacity-4 pix-hover-opacity-6 position-absolute pix-fit-cover w-100" style="<?php echo $imgDivStyle; ?>">
 									<?php
 									echo $img_src;
 									?>
 								</div>
-								<div class="card-img-overlay2 pix-p-20 d-flex flex-wrap h-100">
+								<div class="pix-p-20 d-flex flex-wrap h-100">
 									<div class="d-flex align-items-center justify-content-between w-100">
 										<a class=" pix-opacity-7 pix-hover-opacity-10" href="<?php the_permalink() ?>">
 											<h6 class="card-title text-heading-default mb-0 font-weight-bold line-clamp-2 "><?php if (get_the_title()) the_title();

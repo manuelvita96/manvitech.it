@@ -41,87 +41,46 @@ class PixIcon {
 			'css' => '',
 		), $attr));
 
-		$style_arr = array(
-			"" 		  => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
-		$hover_effect_arr = array(
-			""        => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
-		$add_hover_effect_arr = array(
-			""        => "",
-			"1"       => "fly-sm",
-			"2"       => "fly",
-			"3"       => "fly-lg",
-			"4"       => "scale-sm",
-			"5"       => "scale",
-			"6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-			"8"       => "scale-inverse",
-			"9"       => "scale-inverse-lg",
-		);
-
 		$css_class = '';
 		if (function_exists('vc_shortcode_custom_css_class')) {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
 			if (!array_key_exists('_element_id', $attr)) {
-				if(\PixfortCore::instance()->icons::$isEnabled ) {
-					if(strpos($icon, '/') === false){
-						if($media_type === "duo_icon") {
-							if (!empty($pix_duo_icon)) {
-								if(!empty($icon_size)&&$icon_size!==''){
-									if(!isset($has_icon_bg)||empty($has_icon_bg)||($has_icon_bg!=='yes'&&$has_icon_bg!=='true')){
-										$icon_size = (int) $icon_size * 1.8;
-									}
-									$icon_size = round((int) $icon_size * 0.75);
+				if(strpos($icon, '/') === false){
+					if($media_type === "duo_icon") {
+						if (!empty($pix_duo_icon)) {
+							if(!empty($icon_size)&&$icon_size!==''){
+								if(!isset($has_icon_bg)||empty($has_icon_bg)||($has_icon_bg!=='yes'&&$has_icon_bg!=='true')){
+									$icon_size = (int) $icon_size * 1.8;
 								}
-								if(isset($icon_position) && $icon_position === 'left'){
-									if(isset($padding_title) && strpos($padding_title, 'px') !== false){
-										$padding_title = (int) $padding_title;
-										if($padding_title >=3) $padding_title -= 3;
-										$padding_title = $padding_title . 'px';
-									}
-								}
+								$icon_size = round((int) $icon_size * 0.75);
 							}
-						}
-						if($media_type === "icon"&&!empty($icon)) {
-							if(strpos($icon, 'pixicon') !== false){
-								if(empty($has_icon_bg) || $has_icon_bg === ''){
-									$has_icon_bg = 'yes';
-									$icon_bg_color = 'transparent';
-								}
-							}
-							if (strpos($icon, 'pixicon') === false) { 
-								if(!empty($icon_size)&&$icon_size!==''){
-									if(!isset($has_icon_bg)||empty($has_icon_bg)|| ($has_icon_bg!=='yes'&&$has_icon_bg !== 'true')){
-										$icon_size = (int) $icon_size * 1.8;
-									}
-									$icon_size = round((int) $icon_size * 0.75);
+							if(isset($icon_position) && $icon_position === 'left'){
+								if(isset($padding_title) && strpos($padding_title, 'px') !== false){
+									$padding_title = (int) $padding_title;
+									if($padding_title >=3) $padding_title -= 3;
+									$padding_title = $padding_title . 'px';
 								}
 							}
 						}
 					}
-				} else {
-					if(strpos($icon, 'Duotone/') !== false){
-						if(!empty($icon_size)&&$icon_size!==''){
-							if(!isset($has_icon_bg)||empty($has_icon_bg)|| ($has_icon_bg!=='yes'&&$has_icon_bg !== 'true') ){
-								$icon_size = (int) $icon_size / 1.8;
+					if($media_type === "icon"&&!empty($icon)) {
+						if(strpos($icon, 'pixicon') !== false){
+							if(empty($has_icon_bg) || $has_icon_bg === ''){
+								$has_icon_bg = 'yes';
+								$icon_bg_color = 'transparent';
 							}
-							$icon_size = round((int) $icon_size / 0.75);
+						}
+						if (strpos($icon, 'pixicon') === false) { 
+							if(!empty($icon_size)&&$icon_size!==''){
+								if(!isset($has_icon_bg)||empty($has_icon_bg)|| ($has_icon_bg!=='yes'&&$has_icon_bg !== 'true')){
+									$icon_size = (int) $icon_size * 1.8;
+								}
+								$icon_size = round((int) $icon_size * 0.75);
+							}
 						}
 					}
 				}
+				
 			}
 		}
 		$css_class = esc_attr($css_class);
@@ -130,9 +89,9 @@ class PixIcon {
 		}
 		// target
 		if ($target) {
-			$target = 'target="_blank"';
+			$target = '_blank';
 		} else {
-			$target = false;
+			$target = '_self';
 		}
 		if (empty($el_id)) {
 			$el_id = 'duo-icon-' . rand(1, 200000000);
@@ -173,15 +132,9 @@ class PixIcon {
 			$anim_type = 'data-anim-type="' . $animation . '"';
 			$anim_delay_icon = 'data-anim-delay="' . $delay . '"';
 		}
-		if ($style) {
-			array_push($classes, $style_arr[$style]);
-		}
-		if ($hover_effect) {
-			array_push($classes, $hover_effect_arr[$hover_effect]);
-		}
-		if ($add_hover_effect) {
-			array_push($classes, $add_hover_effect_arr[$add_hover_effect]);
-		}
+		
+		$effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
+        array_push($classes, $effectsClasses);
 
 		$class_names = join(' ', $classes);
 
@@ -196,29 +149,21 @@ class PixIcon {
 		// }
 		$icon_size = (int) $icon_size;
 		$icon_size_div = $icon_size;
-		if(\PixfortCore::instance()->icons::$isEnabled ) {
-			if (!empty($has_icon_bg) ) {
-				if ($media_type == "char") {
-					$icon_size_div = $icon_size * 2;
-				// } elseif(str_contains($icon, 'Duotone/')) {
-				// 	$icon_size_div = $icon_size * 2.4;
-				} else {
-					$icon_size_div = $icon_size * 1.8;
-				}
+		if (!empty($has_icon_bg) ) {
+			if ($media_type == "char") {
+				$icon_size_div = $icon_size * 2;
+			// } elseif(str_contains($icon, 'Duotone/')) {
+			// 	$icon_size_div = $icon_size * 2.4;
 			} else {
-				if($media_type == "char") {
-					$icon_size_div = $icon_size * 1.8;
-				// } elseif(str_contains($icon, 'Duotone/')) {
-				// 	$icon_size_div = $icon_size * 1.3;
-				} else {
-					$icon_size_div = $icon_size;
-				}
+				$icon_size_div = (int) ($icon_size * 1.8);
 			}
 		} else {
-			if (!empty($has_icon_bg) && $media_type == "char") {
-				$icon_size_div = $icon_size * 2;
+			if($media_type == "char") {
+				$icon_size_div = (int) ($icon_size * 1.8);
+			// } elseif(str_contains($icon, 'Duotone/')) {
+			// 	$icon_size_div = $icon_size * 1.3;
 			} else {
-				$icon_size_div = $icon_size * 1.8;
+				$icon_size_div = $icon_size;
 			}
 		}
 
@@ -230,6 +175,7 @@ class PixIcon {
 		}
 		$size = 'large';
 		$size_style = '';
+		$imgSrc = '';
 		if (!empty($circle)) {
 			$size = "thumbnail";
 			$circle = 'rounded-circle';
@@ -240,15 +186,28 @@ class PixIcon {
 		}
 		if ($image) {
 			if (empty($image_size)) {
+				if ( is_int( $image ) ) {
+					$image = apply_filters( 'wpml_object_id', $image, 'attachment', true );
+				}
 				$img = wp_get_attachment_image_src($image, $size);
-				$imgSrc = $img[0];
+				if (!empty($img[0])) {
+					$imgSrc = $img[0];
+				}
 			} else {
 				if (!empty($image['id'])) {
+					if ( is_int( $image['id'] ) ) {
+						$image['id'] = apply_filters( 'wpml_object_id', $image['id'], 'attachment', true );
+					}
 					$img = wp_get_attachment_image_src($image['id'], $size);
 				} else {
+					if ( is_int( $image ) ) {
+						$image = apply_filters( 'wpml_object_id', $image, 'attachment', true );
+					}
 					$img = wp_get_attachment_image_src($image, $size);
 				}
-				$imgSrc = $img[0];
+				if (!empty($img[0])) {
+					$imgSrc = $img[0];
+				}
 			}
 		}
 		$link_data = '';
@@ -275,94 +234,30 @@ class PixIcon {
 		}
 		$output .= '<div id="' . $el_id . '" class="pix-icon ' . $classes . ' ' . $css_class . '">';
 
-		if(\PixfortCore::instance()->icons::$isEnabled) {
-			if ($media_type == "icon"||$media_type == "duo_icon") {
-				if ($media_type == "duo_icon") {
-					$icon = $pix_duo_icon;
-				}
-				
-				if (!empty($has_icon_bg)) {
-					$output .= '<div class="pix-icon-bg rounded-circle d-inline-block feature_img ' . $i_bg_color . ' ' . $class_names . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $i_bg_custom_color . ' width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' d-inline-flex align-middle">' . \PixfortCore::instance()->icons->getIcon($icon, $icon_size) . '</span></div>';
-				} else {
-					$output .= '<div class="pix-icon-bg feature_img d-inline-block ' . $class_names . ' ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' d-inline-flex align-middle">'.\PixfortCore::instance()->icons->getIcon($icon, $icon_size).'</span></div>';
-				}
-			}
-		} else {
-			/*
-			* Deprecated Icons 
-			*/
-			if ($media_type == "icon") {
-				if(!str_contains($icon, 'pixicon') && !str_contains($icon, 'Line/') && !str_contains($icon, 'Solid/') ){
-					$pix_duo_icon = $icon;
-					$media_type = "duo_icon";
-				} else {
-					if (!empty($has_icon_bg)) {
-						$output .= '<div class="rounded-circle d-inline-block feature_img ' . $class_names . ' ' . $i_bg_color . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $i_bg_custom_color . ' width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;">';
-						$output .= \PixfortCore::instance()->icons->getFontIcon($icon, $i_color . ' align-middle d-inline-block', 'style="font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '"');
-						$output .= '</div>';
-					} else {		
-						$output .= '<div class="feature_img d-inline-block ' . $class_names . ' ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;">';
-						$output .= \PixfortCore::instance()->icons->getFontIcon($icon, $i_color . ' align-middle d-inline-block', 'style="font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '"');
-						$output .= '</div>';
-					}
-				}
-			}
+		if ($media_type == "icon"||$media_type == "duo_icon") {
 			if ($media_type == "duo_icon") {
-				if (!empty($pix_duo_icon)) {
-					$pix_duo_icon = \PixfortCore::instance()->icons->verifyIconName($pix_duo_icon);
-					if (!empty($has_icon_bg)&&$has_icon_bg!=='') {
-						$output .= '<div class="rounded-circle d-inline-block2 d-inline-flex align-items-center justify-content-center line-height-0 ' . $i_bg_color . ' ' . $class_names . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $i_bg_custom_color . ' width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;text-align:center;">';
-						$output .= '<div class="' . $i_color . '" style="display:inline-block;width:' . $icon_size . 'px;height:' . $icon_size . 'px;' . $i_custom_color . ';font-size:' . $icon_size . 'px;">';
-						$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $pix_duo_icon . '.svg');
-						$output .= '</div>';
-						$output .= '</div>';
-					} else {
-						$output .= '<div class="mr-32 d-inline-block ' . $i_color . ' ' . $class_names . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;">';
-						$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $pix_duo_icon . '.svg');
-						$output .= '</div>';
-					}
-				}
+				$icon = $pix_duo_icon;
 			}
-			/*
-			* End of Deprecated Icons
-			*/
+			
+			if (!empty($has_icon_bg)) {
+				$output .= '<div class="pix-icon-bg rounded-circle feature_img position-relative d-inline-flex align-items-center justify-content-center ' . $i_bg_color . ' ' . $class_names . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $i_bg_custom_color . ' width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' d-inline-flex align-middle">' . \PixfortCore::instance()->icons->getIcon($icon, $icon_size) . '</span></div>';
+			} else {
+				$output .= '<div class="pix-icon-bg feature_img position-relative d-inline-block ' . $class_names . ' ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' d-inline-flex align-middle">'.\PixfortCore::instance()->icons->getIcon($icon, $icon_size).'</span></div>';
+			}
 		}
+		
 
-		// if ($media_type == "icon") {
-		// 	if (!empty($has_icon_bg)) {
-		// 		$output .= '<div class="rounded-circle d-inline-block feature_img ' . $class_names . ' ' . $i_bg_color . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $i_bg_custom_color . ' width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><i style="display:inline-block;font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle ' . $icon . '"></i></div>';
-		// 	} else {
-		// 		$output .= '<div class="feature_img d-inline-block ' . $class_names . ' ' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><i style="display:inline-block;font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle ' . $icon . '"></i></div>';
-		// 	}
-		// }
 		if ($media_type == "image") {
-			$output .= '<div class="feature_img ' . $class_names . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $size_style . '"><img style="width:' . $image_size . ';height:' . $image_size . ';" class="img-fluid2 pix-fit-cover ' . $circle . '" src="' . $imgSrc . '" alt=""></div>';
+			$output .= '<div class="feature_img position-relative ' . $class_names . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $size_style . '"><img style="width:' . $image_size . ';height:' . $image_size . ';" class="pix-fit-cover ' . $circle . '" src="' . $imgSrc . '" alt=""></div>';
 		}
 		if ($media_type == "char") {
 			if (!empty($has_icon_bg)) {
-				$output .= '<div class="rounded-circle d-inline-block feature_img ' . $i_bg_color . ' ' . $class_names . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $i_bg_custom_color . ' width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="display:inline-block;font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle">' . $char . '</span></div>';
+				$output .= '<div class="rounded-circle d-inline-block feature_img position-relative ' . $i_bg_color . ' ' . $class_names . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $i_bg_custom_color . ' width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="display:inline-block;font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle">' . $char . '</span></div>';
 			} else {
-				$output .= '<div class="d-inline-block feature_img ' . $class_names . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="display:inline-block;font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle">' . $char . '</span></div>';
+				$output .= '<div class="d-inline-block feature_img position-relative ' . $class_names . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="display:inline-block;font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle">' . $char . '</span></div>';
 			}
 		}
 		
-		
-		// if ($media_type == "duo_icon") {
-		// 	if (!empty($pix_duo_icon)) {
-		// 		if (!empty($has_icon_bg)) {
-		// 			$output .= '<div class="rounded-circle d-inline-block2 d-inline-flex align-items-center justify-content-center line-height-0 ' . $i_bg_color . ' ' . $class_names . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="' . $i_bg_custom_color . ' width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;text-align:center;">';
-		// 			$output .= '<div class="' . $i_color . '" style="display:inline-block;width:' . $icon_size . 'px;height:' . $icon_size . 'px;' . $i_custom_color . ';font-size:' . $icon_size . 'px;">';
-		// 			$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $pix_duo_icon . '.svg');
-		// 			$output .= '</div>';
-		// 			$output .= '</div>';
-		// 		} else {
-		// 			// $output .= '<div class="mr-3 '.$i_color.' '.$anim_class.'" '.$anim_type.' '.$anim_delay_icon.' style="width:'.$icon_size_div.'px;height:'.$icon_size_div.'px;position:relative;line-height:'.$icon_size_div.'px;text-align:center;"><span style="display:inline-block;font-size:'.$icon_size.'px;line-height:'.$icon_size.'px;">';
-		// 			$output .= '<div class="mr-32 d-inline-block ' . $i_color . ' ' . $class_names . '" ' . $anim_type . ' ' . $anim_delay_icon . ' style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;">';
-		// 			$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $pix_duo_icon . '.svg');
-		// 			$output .= '</div>';
-		// 		}
-		// 	}
-		// }
 		$output .= '</div>';
 		if (!empty($link)) {
 			$output .= '</a>';

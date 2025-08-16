@@ -7,7 +7,7 @@ class Pix_Eor_Marquee extends Widget_Base {
 	public function __construct($data = [], $args = null) {
 		$data = \PixfortCore::instance()->icons->verifyElementorData($data, true, 'items', 'item_type');
 		parent::__construct($data, $args);
-		if (is_user_logged_in()) wp_enqueue_style('pixfort-marquee-style', PIX_CORE_PLUGIN_URI.'functions/css/elements/css/marquee.min.css');
+		if (is_user_logged_in()) wp_enqueue_style('pixfort-marquee-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/marquee.min.css');
 		wp_register_script('pix-marquee-handle', PIX_CORE_PLUGIN_URI . 'functions/elementor/js/marquee.js', ['elementor-frontend'], PIXFORT_PLUGIN_VERSION, true);
 	}
 
@@ -28,62 +28,17 @@ class Pix_Eor_Marquee extends Widget_Base {
 	}
 
 	public function get_help_url() {
-		return 'https://essentials.pixfort.com/knowledge-base/';
+		return \PixfortCore::instance()->adminCore->getParam('docs_link');
 	}
 
 	protected function register_controls() {
-		$colors = array(
-			"Body default"			=> "body-default",
-			"Heading default"		=> "heading-default",
-			"Primary"				=> "primary",
-			"Primary Gradient"		=> "gradient-primary",
-			"Secondary"				=> "secondary",
-			"White"					=> "white",
-			"Black"					=> "black",
-			"Green"					=> "green",
-			"Blue"					=> "blue",
-			"Red"					=> "red",
-			"Yellow"				=> "yellow",
-			"Brown"					=> "brown",
-			"Purple"				=> "purple",
-			"Orange"				=> "orange",
-			"Cyan"					=> "cyan",
-			// "Transparent"					=> "transparent",
-			"Gray 1"				=> "gray-1",
-			"Gray 2"				=> "gray-2",
-			"Gray 3"				=> "gray-3",
-			"Gray 4"				=> "gray-4",
-			"Gray 5"				=> "gray-5",
-			"Gray 6"				=> "gray-6",
-			"Gray 7"				=> "gray-7",
-			"Gray 8"				=> "gray-8",
-			"Gray 9"				=> "gray-9",
-			"Dark opacity 1"		=> "dark-opacity-1",
-			"Dark opacity 2"		=> "dark-opacity-2",
-			"Dark opacity 3"		=> "dark-opacity-3",
-			"Dark opacity 4"		=> "dark-opacity-4",
-			"Dark opacity 5"		=> "dark-opacity-5",
-			"Dark opacity 6"		=> "dark-opacity-6",
-			"Dark opacity 7"		=> "dark-opacity-7",
-			"Dark opacity 8"		=> "dark-opacity-8",
-			"Dark opacity 9"		=> "dark-opacity-9",
-			"Light opacity 1"		=> "light-opacity-1",
-			"Light opacity 2"		=> "light-opacity-2",
-			"Light opacity 3"		=> "light-opacity-3",
-			"Light opacity 4"		=> "light-opacity-4",
-			"Light opacity 5"		=> "light-opacity-5",
-			"Light opacity 6"		=> "light-opacity-6",
-			"Light opacity 7"		=> "light-opacity-7",
-			"Light opacity 8"		=> "light-opacity-8",
-			"Light opacity 9"		=> "light-opacity-9",
-			"Custom"				=> "custom"
-		);
+	
 
 
 		$this->start_controls_section(
 			'section_title',
 			[
-				'label' => __('Content', 'elementor'),
+				'label' => __('Content', 'pixfort-core'),
 			]
 		);
 
@@ -91,102 +46,40 @@ class Pix_Eor_Marquee extends Widget_Base {
 
 		$repeater = new \Elementor\Repeater();
 
-		
-
-		if(\PixfortCore::instance()->icons::$isEnabled) {
-			$repeater->add_control(
-				'item_type',
-				[
-					'label' => __('Item type', 'pixfort-core'),
-					'type' => \Elementor\Controls_Manager::SELECT,
-					'options' => array_flip(array(
-						__("Text", 'pixfort-core')  => "text",
-						__("Image", 'pixfort-core') => "image",
-						__("Icon", 'pixfort-core') => "icon",
-						// __("Duo tone icon", 'pixfort-core') => "duo_icon"
-					)),
-					'default' => 'text',
-				]
-			);
-			$repeater->add_control(
-				'icon',
-				[
-					'label' => esc_html__('pixfort Icon', 'pixfort-core'),
-					'type' => \Elementor\CustomControl\PixfortIconSelector_Control::PixfortIconSelector,
-					'default' => '',
-					'condition' => [
-						'item_type' => 'icon',
-					],
-				]
-			);
-		} else {
-			$repeater->add_control(
-				'item_type',
-				[
-					'label' => __('Item type', 'pixfort-core'),
-					'type' => \Elementor\Controls_Manager::SELECT,
-					'options' => array_flip(array(
-						__("Text", 'pixfort-core')  => "text",
-						__("Image", 'pixfort-core') => "image",
-						__("Icon", 'pixfort-core') => "icon",
-						__("Duo tone icon", 'pixfort-core') => "duo_icon"
-					)),
-					'default' => 'text',
-				]
-			);
-			require PIX_CORE_PLUGIN_DIR.'/functions/images/icons_list.php';
-			$due_opts = array();
-			foreach ($pix_icons_list as $key) {
-				$due_opts[$key] = array(
-					'title'	=> $key,
-					'url'	=> PIX_CORE_PLUGIN_URI.'functions/images/icons/'.$key.'.svg'
-				);
-			}
-			$repeater->add_control(
-				'pix_duo_icon',
-				[
-					'label' => __('Duo tone icons', 'pixfort-core'),
-					'type' => \Elementor\CustomControl\IconSelector_Control::IconSelector,
-					'options'	=> $due_opts,
-					'default' => '',
-					'condition' => [
-						'item_type' => 'duo_icon',
-					],
-				]
-			);
-			$fontiocns_opts = array();
-			$fontiocns_opts[''] = array('title' => 'None', 'url' => '' );
-			if (function_exists('vc_iconpicker_type_pixicons')) {
-			$pixicons = vc_iconpicker_type_pixicons( array() );
-				foreach ($pixicons as $key) {
-					$fontiocns_opts[array_keys($key)[0]] = array(
-						'title'	=> array_keys($key)[0],
-						'url'	=> array_keys($key)[0]
-					);
-				}
-				}
-			$repeater->add_control(
-				'icon',
-				[
-					'label' => __('Icon', 'pixfort-core'),
-					'type' => \Elementor\CustomControl\FonticonSelector_Control::FonticonSelector,
-					'options'	=> $fontiocns_opts,
-					'default' => '',
-					'condition' => [
-						'item_type' => 'icon',
-					],
-				]
-			);
-		}
-
+		$repeater->add_control(
+			'item_type',
+			[
+				'label' => __('Item type', 'pixfort-core'),
+				'type' => \Elementor\Controls_Manager::SELECT,
+				'options' => array_flip(array(
+					__("Text", 'pixfort-core')  => "text",
+					__("Image", 'pixfort-core') => "image",
+					__("Icon", 'pixfort-core') => "icon",
+					// __("Duo tone icon", 'pixfort-core') => "duo_icon"
+				)),
+				'default' => 'text',
+			]
+		);
+		$repeater->add_control(
+			'icon',
+			[
+				'label' => esc_html__('pixfort Icon', 'pixfort-core'),
+				'type' => \Elementor\CustomControl\PixfortIconSelector_Control::PixfortIconSelector,
+				'default' => '',
+				'condition' => [
+					'item_type' => 'icon',
+				],
+			]
+		);
+	
 
 		$repeater->add_control(
 			'text',
 			[
-				'label' => __('Text', 'elementor'),
+				'label' => __('Text', 'pixfort-core'),
 				'label_block' => true,
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __('Enter the text', 'elementor'),
+				'placeholder' => __('Enter the text', 'pixfort-core'),
 				'default' => '',
 				'dynamic'     => array(
 					'active'  => true
@@ -241,31 +134,33 @@ class Pix_Eor_Marquee extends Widget_Base {
 		$repeater->add_control(
 			'text_image',
 			[
-				'label' => __( 'Use image as text color', 'pixfort-core' ),
+				'label' => __('Use image as text color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::MEDIA,
 				'dynamic'     => array(
-                    'active'  => true
-                ),
+					'active'  => true
+				),
 				'condition' => [
 					'item_type' => 'text',
 				],
 			]
 		);
-		
-		
-		$repeater->add_control(
-			'image',
-			[
-				'label' => __( 'Image', 'pixfort-core' ),
-				'type' => \Elementor\Controls_Manager::MEDIA,
-				'dynamic'     => array(
-                    'active'  => true
-                ),
-				'condition' => [
-					'item_type' => 'image',
-				],
-			]
-		);
+
+
+		// $repeater->add_control(
+		// 	'image',
+		// 	[
+		// 		'label' => __('Image', 'pixfort-core'),
+		// 		'type' => \Elementor\Controls_Manager::MEDIA,
+		// 		'dynamic'     => array(
+		// 			'active'  => true
+		// 		),
+		// 		'condition' => [
+		// 			'item_type' => 'image',
+		// 		],
+		// 	]
+		// );
+		getElementorDynamicImageControls($repeater, 'image', 'image_dark', [ 'item_type' => 'image' ]);
+
 		$repeater->add_control(
 			'image_size',
 			[
@@ -284,16 +179,16 @@ class Pix_Eor_Marquee extends Widget_Base {
 		$repeater->add_control(
 			'rounded_img',
 			[
-				'label' => __( 'Rounded corners', 'pixfort-core' ),
+				'label' => __('Rounded corners', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'rounded-0',
 				'options' => [
-					'rounded-0' 		=> __( 'No', 'pixfort-core' ),
-					'rounded' 			=> __( 'Rounded', 'pixfort-core' ),
-					'rounded-lg' 		=> __( 'Rounded Large', 'pixfort-core' ),
-					'rounded-xl' 		=> __( 'Rounded 5px', 'pixfort-core' ),
-					'rounded-10' 		=> __( 'Rounded 10px', 'pixfort-core' ),
-					'rounded-circle'	=>	__('Circle','pixfort-core')
+					'rounded-0' 		=> __('No', 'pixfort-core'),
+					'rounded' 			=> __('Rounded', 'pixfort-core'),
+					'rounded-lg' 		=> __('Rounded Large', 'pixfort-core'),
+					'rounded-xl' 		=> __('Rounded 5px', 'pixfort-core'),
+					'rounded-10' 		=> __('Rounded 10px', 'pixfort-core'),
+					'rounded-circle'	=>	__('Circle', 'pixfort-core')
 				],
 				'condition' => [
 					'item_type' => 'image',
@@ -303,7 +198,7 @@ class Pix_Eor_Marquee extends Widget_Base {
 		$repeater->add_control(
 			'style',
 			[
-				'label' => __( 'Shadow Style', 'pixfort-core' ),
+				'label' => __('Shadow Style', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => array(
 					"" => "Default",
@@ -323,7 +218,7 @@ class Pix_Eor_Marquee extends Widget_Base {
 		$repeater->add_control(
 			'hover_effect',
 			[
-				'label' => __( 'Shadow Hover Style', 'pixfort-core' ),
+				'label' => __('Shadow Hover Style', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => array(
 					""       => "None",
@@ -343,19 +238,19 @@ class Pix_Eor_Marquee extends Widget_Base {
 		$repeater->add_control(
 			'add_hover_effect',
 			[
-				'label' => __( 'Hover Animation', 'pixfort-core' ),
+				'label' => __('Hover Animation', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => array(
 					""       => "None",
-				  "1"       => "Fly Small",
-				  "2"       => "Fly Medium",
-				  "3"       => "Fly Large",
-				  "4"       => "Scale Small",
-				  "5"       => "Scale Medium",
-				  "6"       => "Scale Large",
-				  "7"       => "Scale Inverse Small",
-				  "8"       => "Scale Inverse Medium",
-				  "9"       => "Scale Inverse Large",
+					"1"       => "Fly Small",
+					"2"       => "Fly Medium",
+					"3"       => "Fly Large",
+					"4"       => "Scale Small",
+					"5"       => "Scale Medium",
+					"6"       => "Scale Large",
+					"7"       => "Scale Inverse Small",
+					"8"       => "Scale Inverse Medium",
+					"9"       => "Scale Inverse Large",
 				),
 				'default' => '',
 				'condition' => [
@@ -366,22 +261,22 @@ class Pix_Eor_Marquee extends Widget_Base {
 		$repeater->add_control(
 			'link',
 			[
-				'label' => __( 'Link', 'pixfort-core' ),
+				'label' => __('Link', 'pixfort-core'),
 				'type' => Controls_Manager::URL,
-				'placeholder' => __( '', 'pixfort-core' ),
+				'placeholder' => __('', 'pixfort-core'),
 				'default' => [
 					'url' => '',
 					'is_external' => false,
 					'nofollow' => true,
 				],
 				'dynamic'     => array(
-                    'active'  => true
-                ),
+					'active'  => true
+				),
 			]
 		);
 
 
-		
+
 
 		$this->add_control(
 			'items',
@@ -409,7 +304,7 @@ class Pix_Eor_Marquee extends Widget_Base {
 			[
 				'label' => __('Content color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(),
 				'default' => '',
 			]
 		);
@@ -430,17 +325,17 @@ class Pix_Eor_Marquee extends Widget_Base {
 		$this->add_control(
 			'content_size',
 			[
-				'label' => __( 'Content size', 'pixfort-core' ),
+				'label' => __('Content size', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
 				'options' => array_flip(array(
-		            __('H1','pixfort-core') 	=> 'h1',
- 				   __('H2','pixfort-core')	    => 'h2',
- 				   __('H3','pixfort-core')	    => 'h3',
- 				   __('H4','pixfort-core')	    => 'h4',
- 				   __('H5','pixfort-core')	    => 'h5',
- 				   __('H6','pixfort-core')	    => 'h6',
- 				   __('Custom','pixfort-core')	    => 'custom',
-		        )),
+					__('H1', 'pixfort-core') 	=> 'h1',
+					__('H2', 'pixfort-core')	    => 'h2',
+					__('H3', 'pixfort-core')	    => 'h3',
+					__('H4', 'pixfort-core')	    => 'h4',
+					__('H5', 'pixfort-core')	    => 'h5',
+					__('H6', 'pixfort-core')	    => 'h6',
+					__('Custom', 'pixfort-core')	    => 'custom',
+				)),
 				'default' => 'h1',
 			]
 		);
@@ -465,10 +360,10 @@ class Pix_Eor_Marquee extends Widget_Base {
 		$this->add_control(
 			'content_custom_size',
 			[
-				'label' => __('Content custom text Size', 'elementor'),
+				'label' => __('Content custom text Size', 'pixfort-core'),
 				'label_block' => false,
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __('Enter custom size', 'elementor'),
+				'placeholder' => __('Enter custom size', 'pixfort-core'),
 				'default' => '',
 				'condition' => [
 					'content_size' => 'custom',
@@ -508,6 +403,9 @@ class Pix_Eor_Marquee extends Widget_Base {
 				'default' => ''
 			]
 		);
+
+
+
 		$this->add_control(
 			'pix_colored_hover',
 			[
@@ -531,7 +429,7 @@ class Pix_Eor_Marquee extends Widget_Base {
 		$this->start_controls_section(
 			'advanced_section',
 			[
-				'label' => __( 'Advanced', 'pixfort-core' ),
+				'label' => __('Advanced', 'pixfort-core'),
 				'tab' => \Elementor\Controls_Manager::TAB_CONTENT,
 			]
 		);
@@ -580,7 +478,7 @@ class Pix_Eor_Marquee extends Widget_Base {
 		$this->start_controls_section(
 			'section_element_style',
 			[
-				'label' => __('Style', 'elementor'),
+				'label' => __('Style', 'pixfort-core'),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -604,18 +502,39 @@ class Pix_Eor_Marquee extends Widget_Base {
 			]
 		);
 
+		// $this->add_responsive_control(
+		// 	'pix_fade_mask',
+		// 	[
+		// 		'label' => __('Fade mask', 'pixfort-core'),
+		// 		'type' => \Elementor\Controls_Manager::SLIDER,
+		// 		'default' => [],
+		// 		'size_units' => [ 'px', '%' ],
+		// 		'range' => [
+		// 			'px' => [
+		// 				'min' => 0,
+		// 				'max' => 400,
+		// 				'step' => 1,
+		// 			],
+		// 			'%' => [
+		// 				'min' => 0,
+		// 				'max' => 100,
+		// 			],
+		// 		],
+		// 		'selectors' => [
+		// 			'{{WRAPPER}} .pix-marquee' => 'mask-image: linear-gradient(90deg,transparent 0,#fff {{SIZE}}{{UNIT}},#fff calc(100% - {{SIZE}}{{UNIT}}),transparent 100%)',
+		// 		],
+		// 	]
+		// );
+
 		$this->end_controls_section();
-
-
-
 	}
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		if(empty($settings['element_id'])){
-			$settings['element_id'] = 'el-'.$this->get_id();
+		if (empty($settings['element_id'])) {
+			$settings['element_id'] = 'el-' . $this->get_id();
 		}
-		echo \PixfortCore::instance()->elementsManager->renderElement('Marquee', $settings );
+		echo \PixfortCore::instance()->elementsManager->renderElement('Marquee', $settings);
 	}
 
 

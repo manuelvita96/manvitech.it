@@ -55,9 +55,8 @@ class PixVideoPopup {
 		$span_custom_style .= 'width:' . $size . 'px;';
 		$span_custom_style .= 'height:' . $size . 'px;';
 		if ((int)$size) {
-			$fize = (int)$size / 2;
-			$icon_custom_style .= 'height:' . $fize . 'px;';
-			$icon_custom_style .= 'width:' . $fize . 'px;';
+			$fize = (int)$size / 3.3;
+			$icon_custom_style .= 'font-size:' . $fize . 'px;';
 		}
 		if (!empty($bg_color)) {
 			if ($text_color != 'custom') {
@@ -86,11 +85,11 @@ class PixVideoPopup {
 		$output .= '<span class="rounded-circle d-inline-block2 d-inline-flex align-items-center justify-content-center line-height-0 pix-p-10 scale shadow-lg ' . $span_classes_names . '" ' . $span_custom_style . '>';
 		if ($icon_style == 'due') {
 			$output .= '<span class="' . $icon_classes_names . '" ' . $icon_custom_style . '>';
-			$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/play_arrow.svg');
+			$output .= \PixfortCore::instance()->icons->getIcon('Solid/pixfort-icon-play-2', 50, 'm-0 p-0');
 			$output .= '</span>';
 		} else {
 			$output .= '<span class="' . $icon_classes_names . '" ' . $icon_custom_style . '>';
-			$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/play_arrow_outline.svg');
+			$output .= \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-play-1', 50, 'm-0 p-0');
 			$output .= '</span>';
 		}
 		$output .= '</span>';

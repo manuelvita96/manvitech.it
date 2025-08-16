@@ -87,23 +87,29 @@ jQuery(document).ready(function($) {
     	// });
 
     	$('.vc_shortcode-link').each(function(i, elem){
-    		var img = $(elem).find('i');
+    		let img = $(elem).find('i');
     		$(elem).find('i').remove();
-    		var content = '<div class="pixfort_element_text">'+$(elem).html()+'</div>';
+    		let content = '<div class="pixfort_element_text">'+$(elem).html()+'</div>';
     		$(elem).html('');
-    		var img_div = $('<div class="pixfort_elemet_img_div"></div>');
+    		let img_div = $('<div class="pixfort_elemet_img_div"></div>');
     		img_div.append(img);
     		$(elem).append(img_div);
     		$(elem).append(content);
 
     	});
 
+
     	$('.pixfort_element_nav').each(function(i, elem){
+			let tag = $(this).attr('data-tag');
+			if(window.vc_user_mapper && window.vc_user_mapper[tag]){
+				$(this).find('i, img').each(function(i, el){					
+					let img = '<img loading="lazy" class="pixfort_element_img" src="'+window.vc_user_mapper[tag].icon+'" >';
+					$(el).replaceWith(img);
+				});
+			}
     		$(this).find('i').each(function(i, el){
     			var style = $(el).currentStyle || window.getComputedStyle(el, false);
     			var bi = style.backgroundImage.slice(4, -1).replace(/"/g, "");
-    			// var url = $(this).find('i').css('background-image');
-    			// console.log(bi);
     			var img = '<img loading="lazy" class="pixfort_element_img" src="'+bi+'" >';
     			$(el).replaceWith(img);
     		});
@@ -258,15 +264,6 @@ jQuery(document).ready(function($) {
 
                 }
             });
-            if(vc.frame_window){
-                if(typeof vc.frame_window.pix_cb_fn !== "undefined"){
-                    vc.frame_window.pix_cb_fn(function(){
-                        setTimeout(function(){
-                            $('.vc_ui-help-block a').attr('href', 'https://essentials.pixfort.com/knowledge-base');
-                        }, 100);
-                    });
-                }
-            }
 
 
     }, 3000);
@@ -377,10 +374,6 @@ function init_update(){
 	    	},
 	    	pix_update: function () {
 				var that = this;
-
-				if(vc.frame_window){
-					vc.frame_window.update_collapse();
-				}
 	    	},
 	    	updated: function () {
 	            // console && console.log('InlineShortcodeView_test_element: updated called.');
@@ -415,10 +408,6 @@ function init_update(){
 	    		return this;
 	    	},
 	    	pix_update: function () {
-
-				if(vc.frame_window){
-					vc.frame_window.update_collapse();
-				}
 	    	},
 	    	updated: function () {
 	            // console && console.log('InlineShortcodeView_test_element: updated called.');
@@ -1155,13 +1144,6 @@ function init_update(){
 				let params = this.model.get( 'params' );
 
 				params = window.pixVerifyWPBakeryIcons(params, false, null, null, 'pix-icon');
-				// if(params&&params.hasOwnProperty('media_type')&&params.media_type){
-				// 	if(params.media_type==='duo_icon'){
-				// 		let oldParam = params.pix_duo_icon;	
-				// 		params.media_type = 'icon';
-				// 		params.icon = oldParam;
-				// 	}
-				// }
 				this.model.save( 'params', params );
 				params = this.model.get( 'params' );
 				
@@ -1303,16 +1285,14 @@ function init_update(){
 	    	render: function () {
 	            // console && console.log('InlineShortcodeView_pix_map: render called.');
 	    		window.InlineShortcodeView_pix_map.__super__.render.call(this); // it is recommended to call parent method to avoid new versions problems.
-	            // vc.frame_window.init_pix_maps(this.$el);
-	            vc.frame_window.pixLoadMaps(this.$el);
+	            if(vc.frame_window.pixLoadMaps) vc.frame_window.pixLoadMaps(this.$el);
 	    		return this;
 	    	},
 
 	    	updated: function () {
 	            // console && console.log('InlineShortcodeView_pix_map: updated called.');
 	    		window.InlineShortcodeView_pix_map.__super__.updated.call(this);
-	            // vc.frame_window.init_pix_maps(this.$el);
-	            vc.frame_window.pixLoadMaps(this.$el);
+	            if(vc.frame_window.pixLoadMaps) vc.frame_window.pixLoadMaps(this.$el);
 	            return this;
 	    	},
 	    	parentChanged: function () {
@@ -1851,7 +1831,7 @@ function init_update(){
 
 
 				var iframe = document.getElementById('vc_inline-frame');
-				var iframeDoc = iframe.contentDocument || iframeWin.document;
+				// var iframeDoc = iframe.contentDocument || iframeWin.document;
 
 
 	            this.pix_update();

@@ -59,14 +59,6 @@ class PixCountdown {
 			}
 		}
 
-		// $output = '<div class="slide-in-container w-100 '.$position.' '. esc_attr( $css_class ) .'" >';
-		// if(empty($animation)){
-		// 	$output .= '<p class="'. $size .' '.$c_color.' '.$position.'" '.$c_custom_color.'><span class="">'. do_shortcode( $content ) .'</span></p>';
-		// }else{
-		// 	$output .= '<p class="'. $size .' '.$c_color.' '.$position.'" '.$c_custom_color.'><span class="animate-in d-inline-block" data-anim-delay="' . $delay .'" data-anim-type="'. $animation .'">'. do_shortcode( $content ) .'</span></p>';
-		// }
-		// $output .= '</div>';
-
 		$numbers_tag = 'div';
 		if ($numbers_size !== 'custom') {
 			$numbers_tag = $numbers_size;

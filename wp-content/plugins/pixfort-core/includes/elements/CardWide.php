@@ -43,40 +43,6 @@ class PixCardWide {
 			'css'                   => '',
 		), $attr));
 
-
-		$style_arr = array(
-			"" => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
-
-		$hover_effect_arr = array(
-			""       => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
-
-		$add_hover_effect_arr = array(
-			""       => "",
-			"1"       => "fly-sm",
-			"2"       => "fly",
-			"3"       => "fly-lg",
-			"4"       => "scale-sm",
-			"5"       => "scale",
-			"6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-			"8"       => "scale-inverse",
-			"9"       => "scale-inverse-lg",
-		);
-
 		$custom_link_atts = '';
 		if (!empty($link) && is_array($link)) {
 			if (!empty($link['is_external'])) {
@@ -108,15 +74,8 @@ class PixCardWide {
 		$classes = ' ';
 		$classes .= esc_attr($css_class) . ' ';
 
-		if ($style) {
-			$classes .= $style_arr[$style] . ' ';
-		}
-		if ($hover_effect) {
-			$classes .= $hover_effect_arr[$hover_effect] . ' ';
-		}
-		if ($add_hover_effect) {
-			$classes .= $add_hover_effect_arr[$add_hover_effect] . ' ';
-		}
+		
+		$classes .= \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect) . ' ';
 
 		$title_classes = pix_get_text_format_classes($bold, $italic, $secondary_font, $color);
 		$text_classes = pix_get_text_format_classes($text_bold, $text_italic, $text_secondary_font, $text_color);
@@ -156,17 +115,20 @@ class PixCardWide {
 
 		$out_img = '';
 		if (!empty($image)) {
-			// $imgSrcset = '';
 			$imgSrc = '';
 			if (is_string($image) && substr($image, 0, 4) === "http") {
 				$imgSrc = $image;
 			} else {
 				if (!empty($image['id'])) {
+					if ( is_int( $image['id'] ) ) {
+						$image['id'] = apply_filters( 'wpml_object_id', $image['id'], 'attachment', true );
+					}
 					$img = wp_get_attachment_image_src($image['id'], "full");
-					// $imgSrcset = wp_get_attachment_image_srcset($image['id']);
 				} else {
+					if ( is_int( $image ) ) {
+						$image = apply_filters( 'wpml_object_id', $image, 'attachment', true );
+					}
 					$img = wp_get_attachment_image_src($image, "full");
-					// $imgSrcset = wp_get_attachment_image_srcset($image);
 				}
 				if (!empty($img[0])) {
 					$imgSrc = $img[0];
@@ -189,11 +151,16 @@ class PixCardWide {
 				$imgSrc = $feature_image;
 			} else {
 				if (!empty($feature_image['id'])) {
+					if ( is_int( $feature_image['id'] ) ) {
+						$feature_image['id'] = apply_filters( 'wpml_object_id', $feature_image['id'], 'attachment', true );
+					}
 					$img = wp_get_attachment_image_src($feature_image['id'], "full");
-					// $imgSrcset = wp_get_attachment_image_srcset($feature_image['id']);
 				} else {
+					if ( is_int( $feature_image ) ) {
+						$feature_image = apply_filters( 'wpml_object_id', $feature_image, 'attachment', true );
+					}
 					$img = wp_get_attachment_image_src($feature_image, "full");
-					// $imgSrcset = wp_get_attachment_image_srcset($feature_image);
+					
 				}
 				if (!empty($img[0])) {
 					$imgSrc = $img[0];

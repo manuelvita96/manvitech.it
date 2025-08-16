@@ -51,7 +51,6 @@ class PixEvent {
 				$output .= '<style type="text/css">';
 				$output .= esc_attr($icon_css);
 				$output .= '</style>';
-				// wp_add_inline_style( 'pix-event-icon-color', $icon_css );
 			}
 		} else {
 			$i_color = $c_color;
@@ -76,7 +75,6 @@ class PixEvent {
 				$features_arr = vc_param_group_parse_atts($features);
 			}
 		}
-		// $features_arr = vc_param_group_parse_atts( $features );
 
 		$output .= '<div class="w-100 ' . esc_attr($css_class) . '" >';
 		$output .= '<div class="" id="' . $element_id . '">';
@@ -85,22 +83,15 @@ class PixEvent {
 					  <tbody>';
 
 		foreach ($features_arr as $key => $value) {
-			// $output .= '<div class="'.$content_size.' '.$c_color.'  py-2" '.$c_custom_color.'>';
-			//          if(!empty($value['icon'])) {
-			//              $output .= '<i class="'.$value['icon'].' mr-2 '.$i_color.'" '.$i_custom_color.'></i>';
-			//          }
-			//          if(!empty($value['text'])) $output .= $value['text'];
-			// $output .= '</div>';
 			$time = empty($value['time']) ? '' : $value['time'];
 			$title = empty($value['title']) ? '' : $value['title'];
 			$text = empty($value['text']) ? '' : $value['text'];
 			$output .= '<tr class="' . $anim_class . '" ' . $anim_type . ' ' . $anim_delay . '>';
-			// $output .= '<th scope="row" class="' . $i_color . '">' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/blog/blog-post-date-icon.svg') . '</th>';
-							  $output .= '<th scope="row" class="'.$i_color.' text-18">'.\PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-clock-1').'</th>';
-							  $output .= '<td class="text-left ' . $c_color . '">' . $time . '</td>';
-							  $output .= '<td class="' . $c_color . '">' . $title . '</td>';
-							  $output .= '<td class="text-right ' . $c_color . '">' . $text . '</td>';
-							  $output .= '</tr>';
+			$output .= '<th scope="row" class="' . $i_color . ' text-18">' . \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-clock-1') . '</th>';
+			$output .= '<td class="text-left ' . $c_color . '">' . $time . '</td>';
+			$output .= '<td class="' . $c_color . '">' . $title . '</td>';
+			$output .= '<td class="text-right ' . $c_color . '">' . $text . '</td>';
+			$output .= '</tr>';
 			$delay += 100;
 			$anim_delay = 'data-anim-delay="' . $delay . '"';
 		}
@@ -108,13 +99,9 @@ class PixEvent {
 		$output .= '
 						  </tbody>
 						</table>';
-
-
-
 		$output .= '</div>';
 		$output .= '</div>';
 
 		return $output;
 	}
 }
-

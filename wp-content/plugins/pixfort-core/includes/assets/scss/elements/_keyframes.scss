@@ -91,29 +91,27 @@
 	animation: pix_bounce 3s ease-in-out infinite;
 }
 
-.pix-bounce-sm {
+.pix-bounce-sm,
+.pix-bounce-md,
+.pix-bounce-lg,
+.pix-scale-sm,
+.pix-scale-md,
+.pix-scale-lg,
+.pix-fade {
 	will-change: transform;
-	animation-name: pix_bounce_sm;
 	animation-duration: 5s;
 	animation-timing-function: ease-in-out;
 	animation-fill-mode: both;
 	animation-iteration-count: infinite;
+}
+.pix-bounce-sm {
+	animation-name: pix_bounce_sm;
 }
 .pix-bounce-md {
-	will-change: transform;
 	animation-name: pix_bounce_md;
-	animation-duration: 5s;
-	animation-timing-function: ease-in-out;
-	animation-fill-mode: both;
-	animation-iteration-count: infinite;
 }
 .pix-bounce-lg {
-	will-change: transform;
 	animation-name: pix_bounce_lg;
-	animation-duration: 5s;
-	animation-timing-function: ease-in-out;
-	animation-fill-mode: both;
-	animation-iteration-count: infinite;
 }
 
 @keyframes pix_fade {
@@ -129,68 +127,50 @@
 }
 @keyframes pix_scale_sm {
 	0% {
-		transform: scale(1);
+		transform: none;
 	}
 	50% {
 		transform: scale(1.1);
 	}
 	100% {
-		transform: scale(1);
+		transform: none;
 	}
 }
 @keyframes pix_scale_md {
 	0% {
-		transform: scale(1);
+		transform: none;
 	}
 	50% {
 		transform: scale(1.4);
 	}
 	100% {
-		transform: scale(1);
+		transform: none;
 	}
 }
 @keyframes pix_scale_lg {
 	0% {
-		transform: scale(1);
+		transform: none;
 	}
 	50% {
 		transform: scale(1.8);
 	}
 	100% {
-		transform: scale(1);
+		transform: none;
 	}
 }
+
+
 .pix-scale-sm {
-	will-change: transform;
 	animation-name: pix_scale_sm;
-	animation-duration: 5s;
-	animation-timing-function: ease-in-out;
-	animation-fill-mode: both;
-	animation-iteration-count: infinite;
 }
 .pix-scale-md {
-	will-change: transform;
 	animation-name: pix_scale_md;
-	animation-duration: 5s;
-	animation-timing-function: ease-in-out;
-	animation-fill-mode: both;
-	animation-iteration-count: infinite;
 }
 .pix-scale-lg {
-	will-change: transform;
 	animation-name: pix_scale_lg;
-	animation-duration: 5s;
-	animation-timing-function: ease-in-out;
-	animation-fill-mode: both;
-	animation-iteration-count: infinite;
 }
 .pix-fade {
-	will-change: transform;
 	animation-name: pix_fade;
-	animation-duration: 5s;
-	animation-timing-function: ease-in-out;
-	animation-fill-mode: both;
-	animation-iteration-count: infinite;
 }
 
 .pix-bounce-sm,

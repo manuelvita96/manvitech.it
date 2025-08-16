@@ -1449,7 +1449,7 @@ class Source_Custom_Local extends Source_Base {
 	 * @param string $file_name File name.
 	 * @param int    $file_size File size.
 	 */
-	private function send_file_headers( $file_name, $file_size ) {
+	protected function send_file_headers( $file_name, $file_size ) {
 		header( 'Content-Type: application/octet-stream' );
 		header( 'Content-Disposition: attachment; filename=' . $file_name );
 		header( 'Expires: 0' );

@@ -1,18 +1,17 @@
 jQuery(window).on('elementor/frontend/init', () => {
     const addSectionHandler = ( $element ) => {
-        var attr = $element.attr('data-pix-dividers');
+        let attr = $element.attr('data-pix-dividers');
         if (typeof attr !== 'undefined' && attr !== false) {
             let isCol = $element.hasClass('elementor-column');
-            // console.log($element);
             if(isCol){
                 $element.find('> .elementor-column-wrap, > .elementor-widget-wrap').addClass('pix-elementor-section-dividers')
                 $element.find('> .elementor-column-wrap, > .elementor-widget-wrap').prepend($element.attr('data-pix-dividers'));
             }else{
                 $element.addClass('pix-elementor-section-dividers')
-                $element.prepend($element.attr('data-pix-dividers'));
+                $element.prepend(attr);
             }
             // $element.attr('data-pix-dividers', '');
-            pix_animation($element, true);
+            if(window.pix_animation) window.pix_animation($element, true);
             if(window.init_dividerShapes) window.init_dividerShapes($element);
                     // $element
                     //     .find('.pix-shape-dividers')

@@ -52,6 +52,12 @@ class PixText {
 			$output .= '<div class="d-inline-block" style="max-width:' . $max_width . ';">';
 		}
 		if ($content_type === 'advanced') {
+			$content_wysiwyg = shortcode_unautop( $content_wysiwyg );
+			$content_wysiwyg = do_shortcode( $content_wysiwyg );
+			$content_wysiwyg = wptexturize( $content_wysiwyg );
+			if ( $GLOBALS['wp_embed'] instanceof \WP_Embed ) {
+				$content_wysiwyg = $GLOBALS['wp_embed']->autoembed( $content_wysiwyg );
+			}
 			if (empty($animation)) {
 				$output .= '<p class="' . $remove_pb_padding . ' ' . $position . ' ' . $text_classes . '">' .  do_shortcode($content_wysiwyg)  . '</p>';
 			} else {
@@ -74,6 +80,3 @@ class PixText {
 		return $output;
 	}
 }
-
-
-

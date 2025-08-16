@@ -80,6 +80,7 @@ class PixComparisonTable {
 			'col_3_color' 	=> 'heading-default',
 			'col_3_custom_color' 	=> '',
 
+			'element_id'		=> '',
 			'css' 		=> '',
 		), $attr));
 
@@ -167,7 +168,15 @@ class PixComparisonTable {
 		}
 
 		$output = '';
-		$element_id = "pix-event-" . wp_rand(0, 10000000);
+
+		if (empty($element_id)) {
+			$element_id = 'pix-comparison-' . rand(1, 200000000);
+		} else {
+			if (is_numeric($element_id[0])) {
+				$element_id = 'el' . $element_id;
+			}
+		}
+
 		$elementor = false;
 		if (is_array($items)) {
 			$items_arr = $items;
@@ -191,7 +200,7 @@ class PixComparisonTable {
 					#' . $element_id . ' .pix_comparison_1_title::before {
 					    content: "' . $contentTitle . '";
 						font-weight: bold;
-						color:  var(--text-' . $col_1_color . ');
+						color:  var(--pix-' . $col_1_color . ');
 						padding-bottom:5px;
 						display:block;
 					}
@@ -210,7 +219,7 @@ class PixComparisonTable {
 					#' . $element_id . ' .pix_comparison_2_title::before {
 					    content: "' . $contentTitle . '";
 						font-weight: bold;
-						color:  var(--text-' . $col_2_color . ');
+						color:  var(--pix-' . $col_2_color . ');
 						padding-bottom:5px;
 						display:block;
 					}
@@ -228,7 +237,7 @@ class PixComparisonTable {
 					#' . $element_id . ' .pix_comparison_3_title::before {
 					    content: "' . $contentTitle . '";
 						font-weight: bold;
-						color:  var(--text-' . $col_3_color . ');
+						color:  var(--pix-' . $col_3_color . ');
 						padding-bottom:5px;
 						display:block;
 					}
@@ -239,20 +248,24 @@ class PixComparisonTable {
 			if ($items_line_color == 'custom') {
 				$customStyle .= '#' . $element_id . ' .pix-bottom-line { border-color: ' . $items_line_custom_color . ' !important; }';
 			} else {
-				$customStyle .= '#' . $element_id . ' .pix-bottom-line { border-color: var(--text-' . $items_line_color . ') !important; }';
+				$customStyle .= '#' . $element_id . ' .pix-bottom-line { border-color: var(--pix-' . $items_line_color . ') !important; }';
 			}
 			if ($head_line_color == 'custom') {
 				$customStyle .= '#' . $element_id . ' .pix-comparison-head.pix-bottom-line { border-color: ' . $head_line_custom_color . ' !important; }';
 			} else {
-				$customStyle .= '#' . $element_id . ' .pix-comparison-head.pix-bottom-line { border-color: var(--text-' . $head_line_color . ') !important; }';
+				$customStyle .= '#' . $element_id . ' .pix-comparison-head.pix-bottom-line { border-color: var(--pix-' . $head_line_color . ') !important; }';
 			}
 		}
 
 
-		$css_handel = 'pix-comparison-' . $element_id;
-		wp_register_style($css_handel, false);
-		wp_enqueue_style($css_handel);
-		wp_add_inline_style($css_handel, $customStyle);
+		// $css_handel = 'pix-comparison-' . $element_id;
+		// wp_register_style($css_handel, false);
+		// wp_enqueue_style($css_handel);
+		// wp_add_inline_style($css_handel, $customStyle);
+		\PixfortCore::instance()->elementsManager::pixAddInlineStyle( $customStyle );
+		if (is_user_logged_in() && (defined('DOING_AJAX') && DOING_AJAX)) {
+			$output .= '<style>' . $customStyle . '</style>';
+		}
 
 		$output .= '<div class="w-100 ' . esc_attr($css_class) . '" >';
 		$output .= '<div class="container" id="' . $element_id . '">';
@@ -383,11 +396,7 @@ class PixComparisonTable {
 				$title_out = \PixfortCore::instance()->elementsManager->renderElement('Heading', $item_title );
 				$output .= $title_out;
 				if (!empty($title_tooltip)) {
-					if(\PixfortCore::instance()->icons::$isEnabled) {
-						$output .= '<span class="' . $descriptions_title_size . ' mb-0 d-inline-flex align-items-center"><span data-toggle="tooltip" data-placement="auto" title="'.$title_tooltip.'" class="d-inline-flex align-middle align-self-center text-'.$descriptions_title_color.' ' . $margin2 . ' mb-0 line-height-0" style="cursor: help;font-size:70%;'.$custom_tooltip_color.'">'.\PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-question-mark-circle-1').'</span></span>';
-					} else {
-						$output .= '<span class="' . $descriptions_title_size . ' mb-0"><i data-toggle="tooltip" data-placement="auto" title="' . $title_tooltip . '" class="text-' . $descriptions_title_color . ' ml-2 mb-0 line-height-0 pixicon-question-circle" style="cursor: help;font-size:70%;' . $custom_tooltip_color . '"></i></span>';
-					}
+					$output .= '<span class="' . $descriptions_title_size . ' mb-0 d-inline-flex align-items-center"><span data-toggle="tooltip" data-placement="auto" title="'.$title_tooltip.'" class="d-inline-flex align-middle align-self-center text-'.$descriptions_title_color.' ' . $margin2 . ' mb-0 line-height-0" style="cursor: help;font-size:70%;'.$custom_tooltip_color.'">'.\PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-question-mark-circle-1').'</span></span>';
 				}
 				$output .= '</div>';
 			}
@@ -406,40 +415,13 @@ class PixComparisonTable {
 			$output .= '<div class="text-center ' . $columns_classes . ' d-flex align-items-center justify-content-center ' . $col_1_color_class . '" ' . $tooltip_1_out . '>';
 
 			if (!empty($col_1_media_type)&&$col_1_media_type!=='none') {
-				if(\PixfortCore::instance()->icons::$isEnabled) {
-						if ($col_1_media_type == "duo_icon") {
-							$col_1_icon = $col_1_pix_duo_icon;
-						}
-						if (!empty($col_1_icon)) {
-							$output .= '<div class="' . $margin10 . ' ' . $col_1_color_class . '" style="position:relative;text-align:center;">';
-							$output .= \PixfortCore::instance()->icons->getIcon($col_1_icon);
-							$output .= '</div>';
-						}
-				} else {
-					/*
-					* Deprecated Icons 
-					*/
-					$col_1_icon = \PixfortCore::instance()->icons->verifyIconName($col_1_icon);
-					if ($col_1_media_type == "icon") {
-						if(!str_contains($col_1_icon, 'pixicon') && !str_contains($col_1_icon, 'Line/') && !str_contains($col_1_icon, 'Solid/')) {
-							$col_1_pix_duo_icon = $col_1_icon;
-							$col_1_media_type = "duo_icon";
-						} else {
-							if (!empty($col_1_icon)) {
-								$output .= '<i class="' . $col_1_icon . ' mr-2 ' . $col_1_color_class . '"></i>';
-							}
-						}
-					}
-					if ($col_1_media_type == "duo_icon") {
-						if (!empty($col_1_pix_duo_icon)) {
-							$output .= '<div class="pix-mr-10 ' . $col_1_color_class . '" style="width:1.5em;height:1.5em;position:relative;line-height:1em;text-align:center;">';
-							$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $col_1_pix_duo_icon . '.svg');
-							$output .= '</div>';
-						}
-					} 
-					/*
-					* End of Deprecated Icons
-					*/
+				if ($col_1_media_type == "duo_icon") {
+					$col_1_icon = $col_1_pix_duo_icon;
+				}
+				if (!empty($col_1_icon)) {
+					$output .= '<div class="d-inline-flex align-items-center ' . $margin10 . ' ' . $col_1_color_class . '" style="position:relative;text-align:center;min-height:1.8rem;">';
+					$output .= \PixfortCore::instance()->icons->getIcon($col_1_icon);
+					$output .= '</div>';
 				}
 			}
 			$output .= do_shortcode($col_1_text);
@@ -455,57 +437,15 @@ class PixComparisonTable {
 				$output .= '<div class="col mt-2 mt-sm-0 text-center pix_comparison_2_title d-md-flex align-items-center justify-content-center">';
 				$output .= '<div class="text-center ' . $columns_classes . ' d-flex align-items-center justify-content-center ' . $col_2_color_class . '" ' . $tooltip_2_out . '>';
 				if (!empty($col_2_media_type)&&$col_2_media_type!=='none') {
-					if(\PixfortCore::instance()->icons::$isEnabled) {
-							if ($col_2_media_type == "duo_icon") {
-								$col_2_icon = $col_2_pix_duo_icon;
-							}
-							if (!empty($col_2_icon)) {
-								$output .= '<div class="d-inline-flex align-items-center ' . $margin10 . ' ' . $col_2_color_class . '" style="position:relative;text-align:center;">';
-								$output .= \PixfortCore::instance()->icons->getIcon($col_2_icon);
-								$output .= '</div>';
-							}
-					} else {
-						/*
-						* Deprecated Icons 
-						*/
-						$col_2_icon = \PixfortCore::instance()->icons->verifyIconName($col_2_icon);
-						if ($col_2_media_type == "icon") {
-							if(!str_contains($col_2_icon, 'pixicon') && !str_contains($col_2_icon, 'Line/') && !str_contains($col_2_icon, 'Solid/')) {
-								$col_2_pix_duo_icon = $col_2_icon;
-								$col_2_media_type = "duo_icon";
-							} else {
-								if (!empty($col_2_icon)) {
-									$output .= '<i class="' . $col_2_icon . ' mr-2 ' . $col_2_color_class . '"></i>';
-								}
-							}
-						}
-						if ($col_2_media_type == "duo_icon") {
-							if (!empty($col_2_pix_duo_icon)) {
-								$output .= '<div class="d-inline-flex align-items-center pix-mr-10 ' . $col_2_color_class . '" style="font-size:1.5em;height:1.5em;position:relative;line-height:1em;text-align:center;">';
-								$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $col_2_pix_duo_icon . '.svg');
-								$output .= '</div>';
-							}
-						} 
-						/*
-						* End of Deprecated Icons
-						*/
+					if ($col_2_media_type == "duo_icon") {
+						$col_2_icon = $col_2_pix_duo_icon;
+					}
+					if (!empty($col_2_icon)) {
+						$output .= '<div class="d-inline-flex align-items-center ' . $margin10 . ' ' . $col_2_color_class . '" style="position:relative;text-align:center;min-height:1.8rem;">';
+						$output .= \PixfortCore::instance()->icons->getIcon($col_2_icon);
+						$output .= '</div>';
 					}
 				}
-				// if (!empty($col_2_media_type)) {
-				// 	if ($col_2_media_type == "duo_icon") {
-				// 		if (!empty($col_2_pix_duo_icon)) {
-				// 			$output .= '<div class="pix-mr-10 ' . $col_2_color_class . '" style="width:1.5em;height:1.5em;position:relative;line-height:1em;text-align:center;">';
-				// 			$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $col_2_pix_duo_icon . '.svg');
-				// 			$output .= '</div>';
-				// 		}
-				// 	} else {
-				// 		if ($col_2_media_type == "icon") {
-				// 			if (!empty($col_2_icon)) {
-				// 				$output .= '<i class="' . $col_2_icon . ' mr-2 ' . $col_2_color_class . '"></i>';
-				// 			}
-				// 		}
-				// 	}
-				// }
 				$output .= $col_2_text;
 				$output .= '</div>';
 				$output .= '</div>';
@@ -519,57 +459,15 @@ class PixComparisonTable {
 				$output .= '<div class="col mt-2 mt-sm-0 text-center pix_comparison_3_title d-md-flex align-items-center justify-content-center">';
 				$output .= '<div class="text-center ' . $columns_classes . ' d-flex align-items-center justify-content-center ' . $col_3_color_class . '" ' . $tooltip_3_out . '>';
 				if (!empty($col_3_media_type)&&$col_3_media_type!=='none') {
-					if(\PixfortCore::instance()->icons::$isEnabled) {
-							if ($col_3_media_type == "duo_icon") {
-								$col_3_icon = $col_3_pix_duo_icon;
-							}
-							if (!empty($col_3_icon)) {
-								$output .= '<div class="d-inline-flex align-items-center ' . $margin10 . ' ' . $col_3_color_class . '" style="position:relative;text-align:center;">';
-								$output .= \PixfortCore::instance()->icons->getIcon($col_3_icon);
-								$output .= '</div>';
-							}
-					} else {
-						/*
-						* Deprecated Icons 
-						*/
-						$col_3_icon = \PixfortCore::instance()->icons->verifyIconName($col_3_icon);
-						if ($col_3_media_type == "icon") {
-							if(!str_contains($col_3_icon, 'pixicon') && !str_contains($col_3_icon, 'Line/') && !str_contains($col_3_icon, 'Solid/')) {
-								$col_3_pix_duo_icon = $col_3_icon;
-								$col_3_media_type = "duo_icon";
-							} else {
-								if (!empty($col_3_icon)) {
-									$output .= '<i class="' . $col_3_icon . ' mr-2 ' . $col_3_color_class . '"></i>';
-								}
-							}
-						}
-						if ($col_3_media_type == "duo_icon") {
-							if (!empty($col_3_pix_duo_icon)) {
-								$output .= '<div class="pix-mr-10 ' . $col_3_color_class . '" style="width:1.5em;height:1.5em;position:relative;line-height:1em;text-align:center;">';
-								$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $col_3_pix_duo_icon . '.svg');
-								$output .= '</div>';
-							}
-						} 
-						/*
-						* End of Deprecated Icons
-						*/
+					if ($col_3_media_type == "duo_icon") {
+						$col_3_icon = $col_3_pix_duo_icon;
+					}
+					if (!empty($col_3_icon)) {
+						$output .= '<div class="d-inline-flex align-items-center ' . $margin10 . ' ' . $col_3_color_class . '" style="position:relative;text-align:center;min-height:1.8rem;">';
+						$output .= \PixfortCore::instance()->icons->getIcon($col_3_icon);
+						$output .= '</div>';
 					}
 				}
-				// if (!empty($col_3_media_type)) {
-				// 	if ($col_3_media_type == "duo_icon") {
-				// 		if (!empty($col_3_pix_duo_icon)) {
-				// 			$output .= '<div class="pix-mr-10 ' . $col_3_color_class . '" style="width:1.5em;height:1.5em;position:relative;line-height:1em;text-align:center;">';
-				// 			$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $col_3_pix_duo_icon . '.svg');
-				// 			$output .= '</div>';
-				// 		}
-				// 	} else {
-				// 		if ($col_3_media_type == "icon") {
-				// 			if (!empty($col_3_icon)) {
-				// 				$output .= '<i class="' . $col_3_icon . ' mr-2 ' . $col_3_color_class . '"></i>';
-				// 			}
-				// 		}
-				// 	}
-				// }
 				$output .= $col_3_text;
 				$output .= '</div>';
 				$output .= '</div>';

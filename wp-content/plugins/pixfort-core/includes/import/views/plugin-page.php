@@ -19,7 +19,7 @@ if (!empty($this->import_files) && isset($_GET['import-mode']) && 'manual' === $
 <div class="ocdi  wrap  about-wrap">
 
 	<?php ob_start(); ?>
-	<h1 class="ocdi__title "><?php esc_html_e('pixfort One Click Demo Import', 'pixfort-core'); ?></h1>
+	<h1 class="ocdi__title "><?php esc_html_e('pixfort Demo Import', 'pixfort-core'); ?></h1>
 	<?php
 	$plugin_title = ob_get_clean();
 
@@ -44,7 +44,7 @@ if (!empty($this->import_files) && isset($_GET['import-mode']) && 'manual' === $
 	<div class="ocdi__intro-notice  notice  notice-warning  is-dismissible">
 		<p><?php esc_html_e('Before you begin, make sure all the required plugins are activated.', 'pixfort-core'); ?></p>
 		<p>
-			<?php esc_html_e('Note that it\'s recommended to import the demo content into a fresh WordPress installation to prevent an conflicts, if you want to reset you WordPress before importing the demo content you can check ', 'pixfort-core'); ?><a href="https://essentials.pixfort.com/knowledge-base/how-to-reset-your-wordpress" target="_blank">this article</a><?php esc_html_e(' from our knowledge base.', 'pixfort-core'); ?>
+			<?php esc_html_e('Note that it\'s recommended to import the demo content into a fresh WordPress installation to prevent an conflicts, if you want to reset you WordPress before importing the demo content you can check ', 'pixfort-core'); ?><a href="<?php echo esc_url(\PixfortCore::instance()->adminCore->getParam('docs_how_to_reset')); ?>" target="_blank">this article</a><?php esc_html_e(' from our knowledge base.', 'pixfort-core'); ?>
 		</p>
 	</div>
 
@@ -53,7 +53,7 @@ if (!empty($this->import_files) && isset($_GET['import-mode']) && 'manual' === $
 	?>
 		<div class="ocdi__intro-notice  notice  pixfort-admin-notice  is-dismissible">
 			<div class="notice-text"><?php esc_html_e('It seems that you are using Elementor on your website! Please make sure to follow these steps before importing Elementor demo content.', 'pixfort-core'); ?></div>
-			<a href="https://essentials.pixfort.com/knowledge-base/how-to-import-elementor-demo-content/" target="_blank" class="button button-primary">Check the article on Essentials knowledge base</a>
+			<a href="<?php echo esc_url(\PixfortCore::instance()->adminCore->getParam('docs_import_elementor_demo')); ?>" target="_blank" class="button button-primary">Check the article on our knowledge base</a>
 		</div>
 	<?php
 	}
@@ -71,7 +71,7 @@ if (!empty($this->import_files) && isset($_GET['import-mode']) && 'manual' === $
 
 		<ul>
 			<li><?php esc_html_e('No existing posts, pages, categories, images, custom post types will be deleted or modified.', 'pixfort-core'); ?></li>
-			<li><?php esc_html_e('When choosing to import Theme options, the current Theme options values will be overridden with the imported options.', 'pixfort-core'); ?></li>
+			<li><?php esc_html_e('When choosing to import Theme Options, the current Theme Options values will be overridden with the imported options.', 'pixfort-core'); ?></li>
 			<li><?php esc_html_e('Posts, pages, images, widgets, menus and other theme settings will get imported.', 'pixfort-core'); ?></li>
 			<li><?php esc_html_e('Please click on the Import button only once and wait, it can take a couple of minutes.', 'pixfort-core'); ?></li>
 		</ul>

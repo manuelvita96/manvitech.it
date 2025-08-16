@@ -47,55 +47,13 @@ class PixContentBox {
 		}
 		$css_class .= ' ' . pix_responsive_css_class($responsive_css) . ' ';
 
-
-		$style_arr = array(
-			"" => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
-
-		$hover_effect_arr = array(
-			""       => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
-
-		$add_hover_effect_arr = array(
-			""       => "",
-			"1"       => "fly-sm",
-			"2"       => "fly",
-			"3"       => "fly-lg",
-			"4"       => "scale-sm",
-			"5"       => "scale",
-			"6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-			"8"       => "scale-inverse",
-			"9"       => "scale-inverse-lg",
-		);
-
-
 		$classes = ' ';
 		$classes .= esc_attr($css_class) . ' ';
 		$classes .= $text_color . ' ';
 		$classes .= $rounded_box . ' ';
 
-		if ($style) {
-			$classes .= $style_arr[$style] . ' ';
-		}
-		if ($hover_effect) {
-			$classes .= $hover_effect_arr[$hover_effect] . ' ';
-		}
-		if ($add_hover_effect) {
-			$classes .= $add_hover_effect_arr[$add_hover_effect] . ' ';
-		}
+		$classes .= \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect) . ' ';
+
 		if ($pix_bg_gradient_hover) {
 			$classes .= 'pix-hover-item pix-dark-hover ';
 		}

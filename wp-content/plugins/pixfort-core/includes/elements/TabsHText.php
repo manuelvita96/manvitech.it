@@ -39,7 +39,7 @@ class PixTabsHText {
         if ($tabs_style == 'pix-pills-lines') {
             $lines_class = 'd-flex';
         }
-        $menu .= '<div class="nav ' . $lines_class . ' nav-pills pix_tabs_btns ' . $position . ' ' . $is_fill . ' ' . $tabs_style . ' mb-4" role="tablist" id="v-pills-tab"  aria-orientation="vertical">';
+        $menu .= '<div class="nav ' . $lines_class . ' nav-pills pix_tabs_btns ' . $position . ' ' . $is_fill . ' ' . $tabs_style . ' mb-4" role="tablist" id="v-pills-tab"  aria-orientation="horizontal">';
 
         if ($tabs_style == 'pix-pills-lines') {
             $menu .= '<div class="nav-item2 d-none d-sm-block flex-fill align-self-center pix-mr-20">';
@@ -73,42 +73,27 @@ class PixTabsHText {
 
             $icon_html = '';
             if (!empty($icon)) {
-                if(\PixfortCore::instance()->icons::$isEnabled) {
-                    if ($tabs_icon_position == 'top') {
-                        $icon_html .= \PixfortCore::instance()->icons->getIcon($icon, 24, 'w-100 d-inline-flex align-items-center text-center mt-2');
-                    } else {
-                        $margin2 = is_rtl() ? 'ml-2' : 'mr-2';
-                        $icon_html .= \PixfortCore::instance()->icons->getIcon($icon, 24, $margin2);
-                    }
+                if ($tabs_icon_position == 'top') {
+                    $icon_html .= \PixfortCore::instance()->icons->getIcon($icon, 24, 'w-100 d-inline-flex align-items-center text-center mt-2');
                 } else {
-                    /*
-                    * Deprecated Icons 
-                    */
-                    if ($tabs_icon_position == 'top') {
-                        // $icon_html = '<i class="w-100 ' . $icon . ' d-block text-center mt-2"></i> ';
-                        $icon_html .= \PixfortCore::instance()->icons->getFontIcon($icon, 'w-100 d-block text-center mt-2');
-                    } else {
-                        // $icon_html = '<i class="' . $icon . ' mr-2"></i> ';
-                        $icon_html .= \PixfortCore::instance()->icons->getFontIcon($icon, 'mr-2');
-                    }
-                    /*
-                    * End of Deprecated Icons
-                    */
+                    $margin2 = is_rtl() ? 'ml-2' : 'mr-2';
+                    $icon_html .= \PixfortCore::instance()->icons->getIcon($icon, 24, $margin2);
                 }
             }
             $menu .= '<div class="nav-item">';
             if ($tabs_icon_position == 'top') {
-                $menu .= '<a class="nav-link pix-tabs-btn text-24 pix-px-25 py-2 my-2 font-weight-bold '.$active.' ' . $bold . ' ' . $italic . ' ' . $secondary_font . '" data-id="' . $tab_id . '" role="tab" id="pix-tab-btn-' . $tab_id . '" data-toggle="pill" href="#pix-tab-' . $tab_id . '"  aria-controls="pix-tab-' . $tab_id . '">' . $icon_html . $title . '</a>';
+                $menu .= '<a class="nav-link pix-tabs-btn text-24 pix-px-25 py-2 my-2 font-weight-bold '.$active.' ' . $bold . ' ' . $italic . ' ' . $secondary_font . '" data-id="' . $tab_id . '" role="tab" id="pix-tab-btn-' . $tab_id . '" data-toggle="pill" href="#pix-tab-' . $tab_id . '"  aria-controls="pix-tab-' . $tab_id . '">' . $icon_html . do_shortcode($title) . '</a>';
             } else {
-                $menu .= '<a class="nav-link pix-tabs-btn text-24 pix-px-25 py-2 my-2 d-flex align-items-center justify-content-center font-weight-bold '.$active.' ' . $bold . ' ' . $italic . ' ' . $secondary_font . '" data-id="' . $tab_id . '" role="tab" id="pix-tab-btn-' . $tab_id . '" data-toggle="pill" href="#pix-tab-' . $tab_id . '"  aria-controls="pix-tab-' . $tab_id . '">' . $icon_html . $title . '</a>';
+                $menu .= '<a class="nav-link pix-tabs-btn text-24 pix-px-25 py-2 my-2 d-flex align-items-center justify-content-center font-weight-bold '.$active.' ' . $bold . ' ' . $italic . ' ' . $secondary_font . '" data-id="' . $tab_id . '" role="tab" id="pix-tab-btn-' . $tab_id . '" data-toggle="pill" href="#pix-tab-' . $tab_id . '"  aria-controls="pix-tab-' . $tab_id . '">' . $icon_html . do_shortcode($title) . '</a>';
             }
             $menu .= '</div>';
 
-            $tabs .= '<div class="tab-pane '.$active.' ' . $transition . ' show ' . $el_class . '" role="tabpanel" data-toggle2="tab" id="pix-tab-' . $tab_id . '" data-bold="' . $bold . '" data-italic="' . $italic . '" data-secondary="' . $secondary_font . '" data-id="' . $tab_id . '" data-icon="' . $icon . '" data-title="' . $title . '" aria-labelledby="pix-tab-' . $tab_id . '">';
+            $tabs .= '<div class="tab-pane '.$active.' ' . $transition . ' show ' . $el_class . '" role="tabpanel" id="pix-tab-' . $tab_id . '" data-bold="' . $bold . '" data-italic="' . $italic . '" data-secondary="' . $secondary_font . '" data-id="' . $tab_id . '" data-icon="' . $icon . '" data-title="' . $title . '" aria-labelledby="pix-tab-' . $tab_id . '">';
             $active = '';
             if (!empty($content_type) && $content_type === 'template') {
                 if (!empty($pix_template_id)) {
                     if (class_exists('\Elementor\Plugin')) {
+                        $pix_template_id = apply_filters('wpml_object_id', $pix_template_id, 'page', true);
                         $tabs .= \Elementor\plugin::instance()->frontend->get_builder_content_for_display($pix_template_id);
                     }
                 }

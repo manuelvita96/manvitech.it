@@ -24,12 +24,12 @@ class CustomGradient_Control extends Base_Data_Control {
      */
     public function enqueue() {
 
-        wp_enqueue_script('spectrum-picker', PIX_CORE_PLUGIN_URI . 'functions/js/params/spectrum.min.js', array('jquery'), PLUGIN_VERSION, true);
-        wp_enqueue_script('pixfort-gradien-picker', PIX_CORE_PLUGIN_URI . 'functions/js/params/grapick.min.js', array('jquery'), PLUGIN_VERSION, true);
-        wp_enqueue_style('spectrum-picker', PIX_CORE_PLUGIN_URI . '/functions/js/params/spectrum.min.css', false, PLUGIN_VERSION, 'all');
-        wp_enqueue_style('pix-gradient-picker', PIX_CORE_PLUGIN_URI . '/functions/js/params/grapick.min.css', false, PLUGIN_VERSION, 'all');
+        wp_enqueue_script('spectrum-picker', PIX_CORE_PLUGIN_URI . 'functions/js/params/spectrum.min.js', ['jquery'], PIXFORT_PLUGIN_VERSION, true);
+        wp_enqueue_script('pixfort-gradien-picker', PIX_CORE_PLUGIN_URI . 'functions/js/params/grapick.min.js', ['jquery'], PIXFORT_PLUGIN_VERSION, true);
+        wp_enqueue_style('spectrum-picker', PIX_CORE_PLUGIN_URI . '/functions/js/params/spectrum.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
+        wp_enqueue_style('pix-gradient-picker', PIX_CORE_PLUGIN_URI . '/functions/js/params/grapick.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 
-        wp_enqueue_script('pixfort-elementor-gradient-selector', PIX_CORE_PLUGIN_URI . 'functions/elementor/includes/js/gradient.js', array('jquery'), PLUGIN_VERSION, true);
+        wp_enqueue_script('pixfort-elementor-gradient-selector', PIX_CORE_PLUGIN_URI . 'functions/elementor/includes/js/gradient.js', ['jquery', 'elementor-editor'], PIXFORT_PLUGIN_VERSION, true);
     }
 
     /**
@@ -40,6 +40,7 @@ class CustomGradient_Control extends Base_Data_Control {
             'label_block' => true,
             'toggle' => true,
             'options' => [],
+            'render_type' => 'ui',
         ];
     }
 

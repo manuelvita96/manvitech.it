@@ -4,7 +4,7 @@ namespace OCDI;
 
 class PixfortOptionsImporter {
 	/**
-	 * Import Theme options data from a JSON file.
+	 * Import Theme Options data from a JSON file.
 	 *
 	 * @param array $import_data Array of arrays. Child array contains 'option_name' and 'file_path'.
 	 */

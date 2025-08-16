@@ -11,7 +11,7 @@ $pix_vc_column_params = array(
 
     array(
         "type" => "checkbox",
-        "heading" => __("Enable dark mode (Beta)", "pixfort-core"),
+        "heading" => __("Enable dark mode (Deprecated)", "pixfort-core"),
         "param_name" => "pix_dark_mode",
         "std" => "",
         "value" => array_flip(array(
@@ -25,9 +25,9 @@ $pix_vc_column_params = array(
         // 'description' 	=> __('Select the position of the image.', 'pixfort-core'),
         'admin_label'    => false,
         'value'            => array_flip(array(
-            'text-left'            => 'Left',
+            'text-left'            => 'Start',
             'text-center'        => 'Center',
-            'text-right'         => 'Right',
+            'text-right'         => 'End',
         )),
     ),
 
@@ -325,7 +325,7 @@ $pix_vc_column_params = array_merge(
             'heading' => __('Responsive options', 'pixfort-core'),
             'param_name' => 'responsive_css',
             'group' => __('Design Options', 'pixfort-core'),
-            "description" => __("Input responsive values to override Desktop settings.<br />Note: Tablet landscape preview in WPBakery uses the Desktop values.", "essentials-core"),
+            "description" => __("Input responsive values to override Desktop settings.<br />Note: Tablet landscape preview in WPBakery uses the Desktop values.", "pixfort-core"),
             'value'   => '{}'
         ),
     )

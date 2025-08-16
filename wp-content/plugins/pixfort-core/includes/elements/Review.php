@@ -16,8 +16,6 @@ class PixReview {
 			'image' 	=> '',
 			'rating' 	=> '',
 			'link' 	=> '',
-
-
 			'title' 	=> '',
 			'bold'		=> 'font-weight-bold',
 			'italic'		=> '',
@@ -43,44 +41,8 @@ class PixReview {
 			'animation' 	=> 'fade-in-up',
 			'delay' 	=> '500',
 			'slides' 	=> '',
-
-
 			'css' 	=> '',
 		), $attr));
-
-
-		$style_arr = array(
-			"" => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
-
-		$hover_effect_arr = array(
-			""       => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
-
-		$add_hover_effect_arr = array(
-			""       => "",
-			"1"       => "fly-sm",
-			"2"       => "fly",
-			"3"       => "fly-lg",
-			"4"       => "scale-sm",
-			"5"       => "scale",
-			"6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-			"8"       => "scale-inverse",
-			"9"       => "scale-inverse-lg",
-		);
 
 		$css_class = '';
 		if (function_exists('vc_shortcode_custom_css_class')) {
@@ -99,15 +61,9 @@ class PixReview {
 		array_push($item_classes, 'bg-' . $bg_color);
 		array_push($item_classes, $rounded_box);
 
-		if ($style) {
-			array_push($item_classes, $style_arr[$style]);
-		}
-		if ($hover_effect) {
-			array_push($item_classes, $hover_effect_arr[$hover_effect]);
-		}
-		if ($add_hover_effect) {
-			array_push($item_classes, $add_hover_effect_arr[$add_hover_effect]);
-		}
+
+		$effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
+        array_push($item_classes, $effectsClasses);
 
 		$n_custom_color = '';
 		if (!empty($name_color)) {
@@ -193,8 +149,14 @@ class PixReview {
 				$imgSrc = '<img class="img-fluid pix-fit-cover" alt="' . get_the_title() . '" src="' . $image . '"  />';
 			} else {
 				if (!empty($image['id'])) {
+					if ( is_int( $image['id'] ) ) {
+						$image['id'] = apply_filters( 'wpml_object_id', $image['id'], 'attachment', true );
+					}
 					$full_image_url = wp_get_attachment_image($image['id'], "pix-woocommerce-md", false, $attrs);
 				} else {
+					if ( is_int( $image ) ) {
+						$image = apply_filters( 'wpml_object_id', $image, 'attachment', true );
+					}
 					$full_image_url = wp_get_attachment_image($image, "pix-woocommerce-md", false, $attrs);
 				}
 				$imgSrc = $full_image_url;
@@ -202,9 +164,9 @@ class PixReview {
 		}
 		$title = empty($title) ? '' : $title;
 
-		$output .= '<div class="card2 p-3 ' . $item_class_names . ' ' . $css_class . '" ' . $i_style . '>';
+		$output .= '<div class="p-3 ' . $item_class_names . ' ' . $css_class . '" ' . $i_style . '>';
 		if (!empty($link)) $output .= '<a target="_blank" href="' . $link . '" title="' . $title . '">';
-		$output .= '<div class="blockquote2 mb-0 card-body text-center">';
+		$output .= '<div class="mb-0 card-body text-center">';
 		if ($imgSrc) {
 			$output .= '<div class="rounded-circle text-center mb-4 bg-dark-opacity-1 overflow-hidden d-inline-block position-relative pix-review-img">' . $imgSrc . '</div>';
 		}
@@ -237,4 +199,3 @@ class PixReview {
 		return $output;
 	}
 }
-

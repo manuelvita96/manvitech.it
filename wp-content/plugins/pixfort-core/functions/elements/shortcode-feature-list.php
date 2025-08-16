@@ -85,31 +85,6 @@ $features_list_params = array(
                   ),
             ),
 
-            // array(
-            //     "type" => "dropdown",
-            //     "heading" => __( "Use image or icon", "pixfort-core" ),
-            //     "param_name" => "media_type",
-            //     "std" => "icon",
-            //     "value" => array(
-            //         "Icon" => "icon",
-            //         "Duo tone icon" => "duo_icon",
-            //     ),
-            //     "group"	      => "Image / Icon",
-            // ),
-
-            // array(
-            //     'type'        => 'pix_icons_select',
-            //     'heading'  => 'Duo tone icons',
-            //     'param_name'  => 'pix_duo_icon',
-            //     "class" => "my_param_field",
-            //     'value'       => '0',
-            //     "group"	      => "Image / Icon",
-            //     "dependency" => array(
-            //         "element" => "media_type",
-            //         "value" => "duo_icon"
-            //     ),
-            // ),
-
             array (
                 'type' => 'pixfort_icons_picker',
                 'heading' => __( 'Line Icon', 'pixfort-core' ),

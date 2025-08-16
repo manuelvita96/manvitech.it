@@ -7,9 +7,9 @@ jQuery(window).on('elementor/frontend/init', () => {
         pixGlobalFunctionCaller();
         pix_main_slider($element);
         if(window.init_tilts){
-            init_tilts();
+            init_tilts($element);
         }  
-        pix_animation();
+        // pix_animation($element);
     };
 
     elementorFrontend.hooks.addAction(

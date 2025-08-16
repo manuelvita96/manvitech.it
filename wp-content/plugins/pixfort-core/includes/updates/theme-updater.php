@@ -67,7 +67,6 @@ class PixfortThemeUpdater {
             return json_decode( $remote );
         }
         // delete_transient('pix_updated_request');
-        // delete_transient('pix_updated_request');
         // delete_transient($this->cache_key);
         if(!get_transient('pix_updated_request')){
             set_transient('pix_updated_request', true, 10);
@@ -75,9 +74,14 @@ class PixfortThemeUpdater {
             $getArgs['headers'] = [
                 'timeout' => 10,
             ];
+
+            $key = get_option('envato_purchase_code_27889640');
+            if (defined('IS_PIXFORT_THEME')) {
+                $key = get_option('pixfort_license_key');
+            }
             $params = [
                 'domain' => site_url(),
-                'purchase_key' => get_option('envato_purchase_code_27889640'),
+                'purchase_key' => $key,
                 'item' => $this->id,
                 'current_version' => $this->version
             ];
@@ -87,21 +91,33 @@ class PixfortThemeUpdater {
                 $url_with_param,
                 $getArgs
             );
-
             if (
                 is_wp_error($remote)
                 || 200 !== wp_remote_retrieve_response_code($remote)
                 || empty(wp_remote_retrieve_body($remote))
             ) {
-                set_transient($this->cache_key, 'error', MINUTE_IN_SECONDS * 30);
-                return false;
+                $url = "https://hub.pixfort.net/updates/info";
+                $url_with_param = add_query_arg($params, $url);
+                $remote = wp_remote_get(
+                    $url_with_param,
+                    $getArgs
+                );
+
+                if (
+                    is_wp_error($remote)
+                    || 200 !== wp_remote_retrieve_response_code($remote)
+                    || empty(wp_remote_retrieve_body($remote))
+                ) {
+                    set_transient($this->cache_key, 'error', MINUTE_IN_SECONDS * 30);
+                    return false;
+                }
             }
 
             $payload = wp_remote_retrieve_body($remote);
             
             $remote = json_decode($payload);
             if ($remote && !empty($remote->success) && $remote->success) {
-                set_transient($this->cache_key, $payload, WEEK_IN_SECONDS * 3 );
+                set_transient($this->cache_key, $payload, WEEK_IN_SECONDS );
             } else {
                 set_transient($this->cache_key, $payload, DAY_IN_SECONDS);
             }
@@ -186,7 +202,7 @@ class PixfortThemeUpdater {
         $res['author'] = 'pixfort';
 
         $res['theme'] = $this->id; // The theme's slug
-        $res['url'] = 'https://essentials.pixfort.com/knowledge-base/changelog';
+        $res['url'] = \PixfortCore::instance()->adminCore->getParam('changelog_link');
 
 
         $remote = $this->request();

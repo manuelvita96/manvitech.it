@@ -42,10 +42,11 @@ class PixClientsSlider {
 
 		$css_class = '';
 		$classes = array();
-		if (function_exists('vc_shortcode_custom_css_class')) {
+		if (function_exists('vc_shortcode_custom_css_class') && defined('VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG')) {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
 		}
-		wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI . 'functions/css/elements/css/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
+		wp_enqueue_style('pixfort-clients-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/clients.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
+		wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 		wp_enqueue_script('pix-flickity-js');
 		$el_style = '';
 		if ($style == 'no-effect') {
@@ -98,6 +99,13 @@ class PixClientsSlider {
 			} else {
 				$autoplay_time = (int)$autoplay_time;
 			}
+			if(is_rtl()){
+				if($slider_effect == 'pix-circular-left'){
+					$slider_effect = 'pix-circular-right';
+				}else if($slider_effect == 'pix-circular-right'){
+					$slider_effect = 'pix-circular-left';
+				}
+			}
 			$slider_data = '';
 			$pix_id = "pix-slider-" . rand(1, 200000000);
 			$slider_opts = array(
@@ -120,9 +128,8 @@ class PixClientsSlider {
 			if (!$adaptiveheight) {
 				$cellClasses = 'd-flex align-items-center min-100';
 			}
-			// $output  .= '<div class="pix-slider-left clients pix-carousel-clients-12 pix-slider-effect-12 pix-slider-dots '.$slider_dots.' pix-slider-'.$slider_num.' py-52">';
 			$output  .= '<div class="' . $css_class . '">';
-			$output  .= '<div id="' . $pix_id . '" class="pix-main-slider clients pix-fix-x2 ' . $el_style . ' ' . $visible_overflow . ' ' . $slider_style . ' ' . $slider_effect . ' ' . $slider_scale . ' ' . $visible_y . ' pix-slider-' . $slider_num . ' pix-slider-dots ' . $dots_style . ' ' . $dots_align . '" ' . $slider_data . '>';
+			$output  .= '<div id="' . $pix_id . '" class="pix-main-slider clients ' . $el_style . ' ' . $visible_overflow . ' ' . $slider_style . ' ' . $slider_effect . ' ' . $slider_scale . ' ' . $visible_y . ' pix-slider-' . $slider_num . ' pix-slider-dots ' . $dots_style . ' ' . $dots_align . '" ' . $slider_data . '>';
 			foreach ($clients_arr as $key => $value) {
 				if (empty($value['title'])) {
 					$value['title'] = '';
@@ -142,29 +149,19 @@ class PixClientsSlider {
 				}
 
 				if (!empty($value['image'])) {
-					$imgSrcset = '';
-					$imgSizes = '';
-					if (is_string($value['image']) && substr($value['image'], 0, 4) === "http") {
-						$imgSrc = $value['image'];
-					} else {
-						if ($elementor) {
-							$img = wp_get_attachment_image_src($value['image']['id'], "full");
-							$imgSrcset = wp_get_attachment_image_srcset($value['image']['id']);
-							$imgSizes = wp_get_attachment_image_sizes($value['image']['id'], "full");
-						} else {
-							$img = wp_get_attachment_image_src($value['image'], "full");
-							$imgSrcset = wp_get_attachment_image_srcset($value['image']);
-							$imgSizes = wp_get_attachment_image_sizes($value['image'], "full");
-						}
-						$imgSrc = $img[0];
-					}
 					$title = '';
 					if (!empty($value['title'])) $title = $value['title'];
+					
 					$output .= '<span class="d-block">';
-					if (empty($imgSrcset)) {
-						$output .= '<img src="' . $imgSrc . '" class="scale-with-grid animate-in" alt="' . $title . '" data-anim-type="' . $animation . '" data-anim-delay="' . $delay . '">';
-					} else {
-						$output .= '<img src="' . $imgSrc . '" srcset="' . $imgSrcset . '" sizes="' . $imgSizes . '" class="scale-with-grid animate-in" alt="' . $title . '" data-anim-type="' . $animation . '" data-anim-delay="' . $delay . '">';
+					$imageOutput = \PixfortCore::instance()->coreFunctions->getDynamicImage($value['image'], 'full', [
+						'class' => 'scale-with-grid animate-in',
+						'alt' => $title,
+						'data-anim-type' => $animation,
+						'data-anim-delay' => $delay
+					], isset($value['image_dark']) ? $value['image_dark'] : null);
+					
+					if (!empty($imageOutput)) {
+						$output .= $imageOutput;
 					}
 					$output .= '</span>';
 				}
@@ -188,4 +185,3 @@ class PixClientsSlider {
 		return $output;
 	}
 }
-

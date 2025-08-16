@@ -23,7 +23,7 @@
 
 
 				var iframe = document.getElementById('vc_inline-frame');
-				var iframeDoc = iframe.contentDocument || iframeWin.document;
+				// var iframeDoc = iframe.contentDocument || iframeWin.document;
 
 
 	            this.pix_update();

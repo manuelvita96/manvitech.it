@@ -3,7 +3,7 @@
   "apiVersion": 3,
   "name": "pixfort-core/pix-small-search",
   "version": "0.1.0",
-  "title": "Pixfort Search",
+  "title": "pixfort Search",
   "category": "widgets",
   "icon": "search",
   "description": "Small search bar",

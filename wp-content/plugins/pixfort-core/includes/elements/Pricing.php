@@ -105,37 +105,6 @@ class PixPricing {
 			'btn_class' 				=> $btn_class,
         );
 
-		$style_arr = array(
-		   "" 		=> "",
-		   "1"      => "shadow-sm",
-		   "2"		=> "shadow",
-		   "3"      => "shadow-lg",
-		   "4"      => "shadow-inverse-sm",
-		   "5"      => "shadow-inverse",
-		   "6"      => "shadow-inverse-lg",
-		 );
-		 $hover_effect_arr = array(
-			""      => "",
-			"1"     => "shadow-hover-sm",
-			"2"     => "shadow-hover",
-			"3"     => "shadow-hover-lg",
-			"4"     => "shadow-inverse-hover-sm",
-			"5"     => "shadow-inverse-hover",
-			"6"     => "shadow-inverse-hover-lg",
-		 );
-		 $add_hover_effect_arr = array(
-			""      => "",
-			"1"     => "fly-sm",
-			"2"     => "fly",
-			"3"     => "fly-lg",
-			"4"     => "scale-sm",
-			"5"     => "scale",
-			"6"     => "scale-lg",
-			"7"     => "scale-inverse-sm",
-			"8"     => "scale-inverse",
-			"9"     => "scale-inverse-lg",
-		 );
-
 		$output = "";
 
 		$badge_attr = $attr;
@@ -183,20 +152,14 @@ class PixPricing {
 		array_push($box_classes, 'bg-'.$box_color);
 		if(!empty($box_color)&&$box_color=='custom'){
 			if(!empty($box_custom_color)){
-				$box_style = 'style="background:'.$box_custom_color.';"';
+				$box_style = 'style="background:'.$box_custom_color.';--pix-bg-color: '.$box_custom_color.';"';
 			}
 
 		}
 
-		if($style){
-			array_push($box_classes, $style_arr[$style]);
-		}
-		if($hover_effect){
-			array_push($box_classes, $hover_effect_arr[$hover_effect]);
-		}
-		if($add_hover_effect){
-			array_push($box_classes, $add_hover_effect_arr[$add_hover_effect]);
-		}
+		$effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
+		array_push($box_classes, $effectsClasses);
+
 		$top_box_classes = '';
 		if($is_elementor){
 			array_push($box_classes, $rounded_box);
@@ -206,10 +169,13 @@ class PixPricing {
 
 		$box_class_names = join( ' ', $box_classes );
 
-		if($pricing_content_align === 'text-center'){
-			$pricing_content_align .= ' align-items-center justify-content-center text-left';
-		} elseif ($pricing_content_align === 'text-right'){
-			$pricing_content_align .= ' align-items-end justify-content-end';
+		$pricing_features_align = $pricing_content_align;
+		if($pricing_features_align === 'text-center'){
+			$pricing_features_align .= ' align-items-center justify-content-center text-left';
+			$pricing_content_align .= ' align-items-center';
+		} elseif ($pricing_features_align === 'text-right'){
+			$pricing_features_align .= ' align-items-end justify-content-end';
+			$pricing_content_align .= ' align-items-end';
 		}
         if($table_style=='top-box') {
 			$output .= '<div class="card w-100 pix_pricing '.$extra_classes.' '.$pricing_padding.' '.$pricing_content_align.' '.$anim_class.' '.$css_class.'" '.$anim_type.' '.$anim_delay.'>';
@@ -248,8 +214,8 @@ class PixPricing {
 				}
 					$f_attr = $attr;
 					$f_attr['css'] = '';
-					$f_attr['features_content_align'] = $pricing_content_align;
-					$f_attr['animation'] = $pricing_content_align;
+					$f_attr['features_content_align'] = $pricing_features_align;
+					$f_attr['animation'] = $pricing_features_align;
 
 					$output .= \PixfortCore::instance()->elementsManager->renderElement('FeatureList', $f_attr );
 					

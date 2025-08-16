@@ -31,7 +31,7 @@ class PixMarquee {
 		if (function_exists('vc_shortcode_custom_css_class')) {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
 		}
-		wp_enqueue_style('pixfort-marquee-style', PIX_CORE_PLUGIN_URI.'functions/css/elements/css/marquee.min.css');
+		wp_enqueue_style('pixfort-marquee-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/marquee.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 
 		$c_color = '';
 		$c_custom_color = '';
@@ -57,7 +57,7 @@ class PixMarquee {
 		if ($content_size == 'custom') {
 			$content_tag = "div";
 		}
-		if(!empty($content_custom_size)){
+		if (!empty($content_custom_size)) {
 			$c_size_style = "font-size:" . $content_custom_size . ';';
 			$c_height_style = "height:" . $content_custom_size . ';';
 			$c_color .= ' pix-custom-text-size';
@@ -90,20 +90,20 @@ class PixMarquee {
 		if (!empty($speed)) {
 			$customStyle .= '#' . $element_id . ' .marquee__inner { animation-duration: ' . $speed . 's;}';
 		}
-		if (!empty($items_padding)&&$items_padding!=='') {
+		if (!empty($items_padding) && $items_padding !== '') {
 			$customStyle .= '#' . $element_id . ' .pix-marquee-item { padding: 0 ' . $items_padding . ';}';
 		}
 		if (!empty($customStyle)) {
-			wp_register_style('pix-marquee-handle', false);
-			wp_enqueue_style('pix-marquee-handle');
-			wp_add_inline_style('pix-marquee-handle', $customStyle);
+			\PixfortCore::instance()->elementsManager::pixAddInlineStyle( $customStyle );
 		}
 
 		$output = '';
+		$itemsInlineStyle = '';
 		if ($texts) {
 			$output = '<div id="' . $element_id . '" class="pix-marquee-element d-flex ' . esc_attr($css_class) . '" >';
 			$output .= '<div class="pix-marquee ' . $mainClasses . ' " ><div class="marquee__inner ' . $innerClasses . '" aria-hidden="true">';
 			foreach ($texts as $key => $value) {
+				
 				extract(shortcode_atts(array(
 					'item_type'		=> '',
 					'text'		=> '',
@@ -114,6 +114,7 @@ class PixMarquee {
 					'icon'		=> '',
 					'pix_duo_icon'		=> '',
 					'image'		=> '',
+					'image_dark'		=> '',
 					'image_size'		=> '',
 					'rounded_img'		=> '',
 					'style'		=> '',
@@ -122,14 +123,14 @@ class PixMarquee {
 					'link'			=> '',
 					'target'		=> '',
 				), $value));
-				
-				if(!empty($link)&&is_array($link)){
-					if(!empty($link['is_external'])){
+
+				if (!empty($link) && is_array($link)) {
+					if (!empty($link['is_external'])) {
 						$target = $link['is_external'];
 					}
 					$link = $link['url'];
 				}
-				if(!empty($target)) {
+				if (!empty($target)) {
 					$target = 'target="_blank"';
 				} else {
 					$target = '';
@@ -137,128 +138,76 @@ class PixMarquee {
 				if (!empty($link)) {
 					$output .= '<a href="' . $link . '" ' . $target . '>';
 				}
-				if(\PixfortCore::instance()->icons::$isEnabled) {
-					if (!empty($item_type)&&$item_type === "duo_icon") {
+					if (!empty($item_type) && $item_type === "duo_icon") {
 						$icon = $pix_duo_icon;
 					}
 					if (!empty($icon)) {
-						$output .= '<' . $content_tag . ' class="pix-marquee-item d-flex ' . $c_color . '" style="' . $c_custom_color . $c_size_style . $c_height_style . '">';
+						$output .= '<' . $content_tag . ' class="pix-marquee-item d-flex ' . $c_color . ' '. $display .'" style="' . $c_custom_color . $c_size_style . $c_height_style . '">';
 						$output .= \PixfortCore::instance()->icons->getIcon($icon);
 						$output .= '</' . $content_tag . '>';
 					}
-					
-				} else {
-					$icon = \PixfortCore::instance()->icons->verifyIconName($icon);
-					
-					if ($item_type == "icon") {
-						if (!empty($icon)) {
-							if(!str_contains($icon, 'pixicon') && !str_contains($icon, 'Line/') && !str_contains($icon, 'Solid/')) {
-								$pix_duo_icon = $icon;
-								$item_type = "duo_icon";
-							} elseif (!empty($icon)) {
-								$output .= '<' . $content_tag . ' class="pix-marquee-item ' . $c_color . '" style="' . $c_custom_color . $c_size_style . $c_height_style . '">';
-								$output .= '<div><i class="align-middle d-block ' . $icon . '"></i></div>';
-								$output .= '</' . $content_tag . '>';
-							}
-						}
-					}
-					if ($item_type == "duo_icon") {
-						$classes = array();
-						$class_names = join(' ', $classes);
-						if (!empty($pix_duo_icon)) {
-							$output .= '<' . $content_tag . ' class="pix-marquee-item d-flex ' . $c_color . ' ' . $class_names . '" style="' . $c_custom_color . $c_size_style . $c_height_style . '">';
-							$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $pix_duo_icon . '.svg');
-							$output .= '</' . $content_tag . '>';
-						}
-					} 
-				}
+			
 
-				
 				if ($item_type == "image") {
 					if (!empty($image)) {
 
-						$style_arr = array(
-							"" => "",
-							"1"       => "shadow-sm",
-							"2"       => "shadow",
-							"3"       => "shadow-lg",
-							"4"       => "shadow-inverse-sm",
-							"5"       => "shadow-inverse",
-							"6"       => "shadow-inverse-lg",
-						);
-				
-						$hover_effect_arr = array(
-							""       => "",
-							"1"       => "shadow-hover-sm",
-							"2"       => "shadow-hover",
-							"3"       => "shadow-hover-lg",
-							"4"       => "shadow-inverse-hover-sm",
-							"5"       => "shadow-inverse-hover",
-							"6"       => "shadow-inverse-hover-lg",
-						);
-				
-						$add_hover_effect_arr = array(
-							""       => "",
-							"1"       => "fly-sm",
-							"2"       => "fly",
-							"3"       => "fly-lg",
-							"4"       => "scale-sm",
-							"5"       => "scale",
-							"6"       => "scale-lg",
-							"7"       => "scale-inverse-sm",
-							"8"       => "scale-inverse",
-							"9"       => "scale-inverse-lg",
-						);
-						$classes = array();
-						if($style){
-							array_push($classes, $style_arr[$style]);
-						}
-						if($hover_effect){
-							array_push($classes, $hover_effect_arr[$hover_effect]);
-						}
-						if($add_hover_effect){
-							array_push($classes, $add_hover_effect_arr[$add_hover_effect]);
-						}
 						
-						$imgSrc = '';
-						$imgWidth = '';
-						$imgHeight = '';
-						$size_style = '';
-						$size = 'full';
+						$classes = [];
+					
+						$effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
+        				array_push($classes, $effectsClasses);
+
+						// $imgSrc = '';
+						// $imgWidth = '';
+						// $imgHeight = '';
+						// $size_style = '';
+						// $size = 'full';
 						if (!empty($image_size)) {
 							$image_size = (int) filter_var($image_size, FILTER_SANITIZE_NUMBER_INT);
+							array_push($classes, 'd-inline-block position-relative');
+							$customItemStyle = '';
 							if (!empty($rounded_img) && $rounded_img === 'rounded-circle') {
-								$size_style = 'width:' . $image_size . 'px;height:' . $image_size . 'px;display:inline-block;position:relative;';
-							}else{
-								$size_style = 'width:' . $image_size . 'px;height:auto;display:inline-block;position:relative;';
-							}
-							
-						}
-						if (!empty($rounded_img) && $rounded_img === 'rounded-circle') {
-							$size = "thumbnail";
-							if (!empty($image_size)) {
-								$size = array($image_size, $image_size);
-							}
-						}
-						if (is_string($image) && substr($image, 0, 4) === "http") {
-							$img = $image;
-							$imgSrc = $img;
-						} else {
-							if (!empty($image['id'])) {
-								$img = wp_get_attachment_image_src($image['id'], $size);
+								// $size_style = 'width:' . $image_size . 'px;height:' . $image_size . 'px;';
+								$customItemStyle = '.'.$element_id.'-'.$key.' img { width:' . $image_size . 'px;height:' . $image_size . 'px; }';
 							} else {
-								$img = wp_get_attachment_image_src($image, $size);
+								// $size_style = 'width:' . $image_size . 'px;height:auto;';
+								$customItemStyle = '.'.$element_id.'-'.$key.' img { width:' . $image_size . 'px;height:auto; }';
 							}
-							if (!empty($img[0])) $imgSrc = $img[0];
-							if (!empty($img[1]) && !empty($img[2])) {
-								$imgWidth = 'width="' . $img[1] . '"';
-								$imgHeight = 'height="' . $img[2] . '"';
-							}
+							\PixfortCore::instance()->elementsManager::pixAddInlineStyle( $customItemStyle );
+							$itemsInlineStyle .= $customItemStyle;
 						}
+						// if (!empty($rounded_img) && $rounded_img === 'rounded-circle') {
+						// 	// $size = "thumbnail";
+						// 	// if (!empty($image_size)) {
+						// 	// 	$size = array($image_size, $image_size);
+						// 	// }
+						// }
+						// if (is_string($image) && substr($image, 0, 4) === "http") {
+						// 	$img = $image;
+						// 	$imgSrc = $img;
+						// } else {
+						// 	if (!empty($image['id'])) {
+						// 		$img = wp_get_attachment_image_src($image['id'], $size);
+						// 	} else {
+						// 		$img = wp_get_attachment_image_src($image, $size);
+						// 	}
+						// 	if (!empty($img[0])) $imgSrc = $img[0];
+						// 	if (!empty($img[1]) && !empty($img[2])) {
+						// 		$imgWidth = 'width="' . $img[1] . '"';
+						// 		$imgHeight = 'height="' . $img[2] . '"';
+						// 	}
+						// }
 						array_push($classes, $rounded_img);
 						$class_names = join(' ', $classes);
-						$output .= '<' . $content_tag . ' class="pix-marquee-item ' . $c_color . ' ">';
-						$output .= '<img class="pix-fit-cover ' . $class_names . '" src="' . $imgSrc . '" ' . $imgWidth . ' ' . $imgHeight . ' style="' . $size_style . '" alt="">';
+						$output .= '<' . $content_tag . ' class="pix-marquee-item ' . $element_id.'-'.$key . ' '.  $c_color . '">';
+						// $output .= '<img class="pix-fit-cover ' . $class_names . '" src="' . $imgSrc . '" ' . $imgWidth . ' ' . $imgHeight . ' style="' . $size_style . '" alt="">';
+						$imageOutput = \PixfortCore::instance()->coreFunctions->getDynamicImage($image, 'full', [
+							'class' => 'pix-fit-cover ' . $class_names,
+							// 'style' => $size_style
+						], $image_dark);
+						if (!empty($imageOutput)) {
+							$output .= $imageOutput;
+						}
 						$output .= '</' . $content_tag . '>';
 					}
 				} elseif ($item_type === 'text') {
@@ -290,7 +239,7 @@ class PixMarquee {
 					}
 					if (!empty($bold)) array_push($classes, $bold);
 					if (!empty($italic)) array_push($classes, $italic);
-					if(!empty($display)) array_push($classes, $display );
+					if (!empty($display)) array_push($classes, $display);
 					if (!empty($heading_font)) {
 						array_push($classes, $heading_font);
 					} else {
@@ -303,11 +252,12 @@ class PixMarquee {
 					$output .= '</a>';
 				}
 			}
+			if (is_user_logged_in() || (defined('DOING_AJAX') && DOING_AJAX)) {
+				$output .= '<style>' . $itemsInlineStyle . '</style>';
+			}
 			$output .= '</div></div>';
 			$output .= '</div>';
 		}
 		return $output;
 	}
 }
-
-

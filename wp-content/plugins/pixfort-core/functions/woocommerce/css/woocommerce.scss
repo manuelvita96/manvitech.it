@@ -214,7 +214,7 @@ p.demo_store,
 				z-index: 9;
 				width: 36px;
 				height: 36px;
-				background: #fff;
+				background: var(--pix-dynamic-background, #fff);
 				text-indent: -9999px;
 				border-radius: 100%;
 				box-sizing: content-box;
@@ -224,7 +224,7 @@ p.demo_store,
 					display: block;
 					width: 10px;
 					height: 10px;
-					border: 2px solid #000;
+					border: 2px solid var(--pix-dynamic-heading, #000);
 					border-radius: 100%;
 					position: absolute;
 					top: 9px;
@@ -237,7 +237,7 @@ p.demo_store,
 					display: block;
 					width: 2px;
 					height: 8px;
-					background: #000;
+					background: var(--pix-dynamic-heading, #000);
 					border-radius: 6px;
 					position: absolute;
 					top: 19px;
@@ -857,7 +857,7 @@ p.demo_store,
 					border: 0;
 
 					.meta {
-						color: $subtext;
+						color: var(--pix-heading-default, $subtext);
 						font-size: 0.75em;
 					}
 
@@ -1400,12 +1400,13 @@ p.demo_store,
 			outline: 0;
 			line-height: normal;
 			border: 0px solid transparent;
-			background-color: white;
+			background-color: var(--pix-base-background, #fff);
 			box-shadow: 0 1px 3px 0 rgb(0 0 0 / 10%);
 			height: calc(2.7rem + 0rem);
 			padding: 0.5625rem 1.125rem;
 			font-size: 0.875rem;
 			border-radius: 0.25rem;
+			color: var(--pix-heading-default);
 		}
 
 		textarea {
@@ -2398,7 +2399,7 @@ p.demo_store,
 .select2-container--default .select2-selection--single {
 	.select2-selection__placeholder,
 	.select2-selection__rendered {
-		color: var(--text-body-default) !important;
+		color: var(--pix-body-default) !important;
 		font-weight: bold !important;
 		font-size: 14px;
 		padding-left: 18px !important;
@@ -2408,4 +2409,17 @@ p.demo_store,
 
 .select2-dropdown {
 	z-index: 9999991051 !important;
+}
+
+
+// RTL Fixes
+@media only screen and (min-width: 768px) {
+	.rtl.woocommerce #content div.product div.summary, .rtl.woocommerce div.product div.summary, .rtl.woocommerce-page #content div.product div.summary, .rtl.woocommerce-page div.product div.summary {
+		float: left !important;
+		width: 48% !important;
+	}
+	.rtl.woocommerce #content div.product div.images, .rtl.woocommerce div.product div.images, .rtl.woocommerce-page #content div.product div.images, .rtl.woocommerce-page div.product div.images {
+		float: right !important;
+		width: 48% !important;
+	}
 }

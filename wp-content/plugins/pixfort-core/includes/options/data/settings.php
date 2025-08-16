@@ -7,11 +7,11 @@ $pixfortBuilder->addOption(
 	'pix-heading-settings-logo',
 	[
 		'type'             => 'heading',
-		'label'         => 'Logo',
+		'label'         => __('Logo', 'pixfort-core'),
 		'tab'             => 'settings',
 		'icon'            => 'logo',
 		'linkText'            => __('Learn about website logo', 'pixfort-core'),
-		'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/how-to-add-website-logo/',
+		'linkHref'            => \PixfortCore::instance()->adminCore->getParam('docs_add_website_logo'),
 		'linkIcon'            => 'bookmark'
 	]
 );
@@ -22,6 +22,7 @@ $pixfortBuilder->addOption(
 		'label'         => __('Default Logo', 'pixfort-core'),
 		'default'         => '',
 		'tab'             => 'settings',
+		'dynamic'         => true,
 		// 'description'     => __('The main logo of your website on large screen devices.', 'pixfort-core') . '<br>' . __('You can customize the logo width and height from the Header builder.', 'pixfort-core'),
 		'description'     => __('Change the main logo of your website on large screen devices.', 'pixfort-core'),
 		'tooltipText'   => __('The logo will appear in the website header.', 'pixfort-core') . '<br>' . __('To display the logo image as retina, the uploaded image should have at least double the height of the logo set in the Header builder.', 'pixfort-core'),
@@ -36,6 +37,7 @@ $pixfortBuilder->addOption(
 		'label'         => __('Scroll Logo', 'pixfort-core'),
 		'default'         => '',
 		'tab'             => 'settings',
+		'dynamic'         => true,
 		// 'description'     => __('Replaces the default logo when scrolling with the sticky header enabled. Leave empty to display the default logo instead.', 'pixfort-core'),
 		'description'     => __('Leave empty to display the default logo instead.', 'pixfort-core'),
 		'tooltipText'   => __('Replaces the default logo when scrolling with the sticky header enabled. You can enable the sticky header option from the Header builder.', 'pixfort-core'),
@@ -50,6 +52,7 @@ $pixfortBuilder->addOption(
 		'label'         => __('Tablet & Mobile Logo', 'pixfort-core'),
 		'default'         => '',
 		'tab'             => 'settings',
+		'dynamic'         => true,
 		'description'     => __('Leave empty to display the default logo instead.', 'pixfort-core'),
 		'tooltipText'   => __('Logo displayed on tablet and mobile devices only. You can customize the width and height of the tablet & mobile logo from the Header builder.', 'pixfort-core'),
 		'showBorderTop'   => false,
@@ -101,7 +104,7 @@ $pixfortBuilder->addOption(
 	'pix-heading-settings-miscellaneous',
 	[
 		'type'             => 'heading',
-		'label'         => 'Miscellaneous',
+		'label'         => __('Miscellaneous', 'pixfort-core'),
 		'tab'             => 'settings',
 		'icon'            => 'bullets'
 	]
@@ -164,9 +167,9 @@ $pixfortBuilder->addOption(
 	[
 		'type' => 'select',
 		'label' => __('Website Background Color', 'pixfort-core'),
-		'options' => array_flip($bg_colors),
+		'options' => \PixfortCore::instance()->coreFunctions->getColorsArray(['bg' => true, 'transparent' => true]),
+		'groups' => true,
 		'tab'             => 'settings',
-		// 'description'     => __('The background color of the website (under the page background color).', 'pixfort-core'),
 		'tooltipText'   => __('The background color of the website (under the page background color). The website background color will appear mainly when the page padding option is enabled.', 'pixfort-core'),
 		'tooltipImage'   => PIX_CORE_PLUGIN_URI . '/includes/assets/core-options/tooltips/core-options-tooltip-website-bg-color.png',
 	]
@@ -204,7 +207,7 @@ $pixfortBuilder->addOption(
 		'type' => 'select',
 		'label' => __('Back to Top Button', 'pixfort-core'),
 		'tab'             => 'settings',
-		'tooltipText'     => __('A sticky button that appears when scrolling down the page and allows users to scroll back to the top of the page. <br/><br/> For detailed information about customizing the back to top button check this article from our knowledge base: ', 'pixfort-core') . '<br/><a target="_blank" href="https://essentials.pixfort.com/knowledge-base/customize-back-to-top-button/" target="_blank" class="text-primary font-semibold">https://essentials.pixfort.com/knowledge-base/customize-back-to-top-button/</a>',
+		'tooltipText'     => __('A sticky button that appears when scrolling down the page and allows users to scroll back to the top of the page. <br/><br/> For detailed information about customizing the back to top button check this article from our knowledge base: ', 'pixfort-core') . '<br/><a target="_blank" href="'.\PixfortCore::instance()->adminCore->getParam('docs_back_to_top').'" target="_blank" class="text-primary font-semibold">'.\PixfortCore::instance()->adminCore->getParam('docs_back_to_top').'</a>',
 		'tooltipImage'   => PIX_CORE_PLUGIN_URI . '/includes/assets/core-options/tooltips/core-options-tooltip-back-to-top.png',
 		'options' => [
 			"default"        => __('Default (bottom right)', 'pixfort-core'),

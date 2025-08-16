@@ -1,3 +1,74 @@
+// Dynamic gray colors
+$dynamic-gray-colors: (
+    'pix-dynamic-gray-950': $pix-dynamic-gray-950,
+    'pix-dynamic-gray-900': $pix-dynamic-gray-900,
+    'pix-dynamic-gray-800': $pix-dynamic-gray-800,
+    'pix-dynamic-gray-700': $pix-dynamic-gray-700,
+    'pix-dynamic-gray-600': $pix-dynamic-gray-600,
+    'pix-dynamic-gray-500': $pix-dynamic-gray-500,
+    'pix-dynamic-gray-400': $pix-dynamic-gray-400,
+    'pix-dynamic-gray-300': $pix-dynamic-gray-300,
+    'pix-dynamic-gray-200': $pix-dynamic-gray-200,
+    'pix-dynamic-gray-100': $pix-dynamic-gray-100,
+    'pix-dynamic-gray-50': $pix-dynamic-gray-50,
+    'pix-dynamic-background': $pix-dynamic-background,
+    'pix-dynamic-heading': $pix-dynamic-heading
+);
+
+:root {    
+    @each $color-name, $color-value in $dynamic-gray-colors {
+        @if variable-exists(#{$color-name}) {
+            --#{$color-name}: #{$color-value};
+        }
+    }
+    --pix-base-background: #fff;
+    --pix-dark-blur: rgba(29, 29, 31, 0.72);
+    --pix-light-blur: rgba(255,255,255,0.8);
+}
+
+.pix-base-background {
+    background-color: var(--pix-base-background);
+}
+[class^='btn-dynamic-'], [class*=' btn-dynamic-'], 
+[class^='btn-c-'], [class*=' btn-c-'] { 
+    @extend %base-btn-style;
+    color: var(--pix-btn-color) !important;
+    &:hover, 
+    &:focus,
+    &.focus {
+        color: color-mix(in srgb, transparent 30%, var(--pix-btn-color));
+    }
+}
+[class^='btn-outline-dynamic-'], [class*=' btn-outline-dynamic-'], 
+[class^='btn-outline-c-'], [class*=' btn-outline-c-'] { 
+    &:hover, 
+    &:focus,
+    &.focus {
+        color: var(--pix-btn-color);
+    }
+}
+@each $color-name, $color-value in $dynamic-gray-colors {
+    @if variable-exists(#{$color-name}) {
+        $class-name: str-slice($color-name, 5); // Remove "pix-" prefix (4 characters + 1)
+        .text-#{$class-name} {
+            color: var(--#{$color-name}) !important;
+        }
+        .bg-#{$class-name} {
+            --pix-bg-color: var(--#{$color-name});
+        }
+        .btn-#{$class-name}, .btn-line-#{$class-name}, .btn-outline-#{$class-name}, .btn-underline-#{$class-name}, .btn-blink-#{$class-name} {
+            --pix-btn-background: var(--#{$color-name});
+            --pix-btn-line-color: var(--#{$color-name});
+            --pix-btn-outline-color: var(--#{$color-name});
+            --pix-btn-underline-color: var(--#{$color-name});
+            --pix-btn-color: #{color-yiq-ld($color-value, $yiq-text-dark, $yiq-text-light, 90%)};
+            --pix-btn-blink-color: var(--#{$color-name});
+            --pix-btn-blink-color-hover: #{color-yiq-ld($color-value, $yiq-text-dark, $yiq-text-light, 90%)};
+        }
+    }
+}
+
+
 .btn-blink-gradient-primary {
     color: $gradient-primary-1;
     -webkit-background-clip: text;
@@ -18,7 +89,6 @@
 .text-gradient-primary {
     background-color: $primary;
     @if $middle-gradient == 'yes' {
-        // background: -webkit-gradient(linear-gradient($gradient-direction, $gradient-primary-1, $gradient-primary-middle, $gradient-primary-2)) fixed;
         background-image: -webkit-gradient(linear-gradient($gradient-direction, $gradient-primary-1, $gradient-primary-middle, $gradient-primary-2)) !important;
         background-image: linear-gradient($gradient-direction, $gradient-primary-1, $gradient-primary-middle, $gradient-primary-2) !important;
     } @else {
@@ -39,17 +109,9 @@
     span {
         backface-visibility: initial;
     }
-    svg:not(.pixfort-icon) {
-        path,
-        rect,
-        circle,
-        polygon {
-            fill: url(#svg-gradient-primary) !important;
-        }
-    }
-    i {
-        position: inherit !important;
-    }
+    // i {
+    //     position: inherit !important;
+    // }
     .pix-words-wrapper span {
         background-size: 100%;
         -webkit-box-decoration-break: clone;
@@ -62,7 +124,6 @@
         background-position: 0 0;
         background-repeat: repeat;
         @if $middle-gradient == 'yes' {
-            // background: -webkit-gradient(linear-gradient($gradient-direction, $gradient-primary-1, $gradient-primary-middle, $gradient-primary-2)) fixed;
             background-image: -webkit-gradient(linear-gradient($gradient-direction, $gradient-primary-1, $gradient-primary-middle, $gradient-primary-2)) !important;
             background-image: linear-gradient($gradient-direction, $gradient-primary-1, $gradient-primary-middle, $gradient-primary-2) !important;
         } @else {
@@ -147,22 +208,9 @@ svg {
         background: linear-gradient($gradient-direction, $gradient-primary-1, $gradient-primary-2) !important;
     }
     &:hover {
-        // @if $middle-gradient {
-        //     background: linear-gradient($gradient-direction, rgba($gradient-primary-1, 0.8), rgba($gradient-primary-middle, 0.8), rgba($gradient-primary-2, 0.8)) !important;
-        // } @else {
-        //     background: linear-gradient($gradient-direction, rgba($gradient-primary-1, 0.8), rgba($gradient-primary-2, 0.8)) !important;
-        // }
         opacity: 0.7;
     }
 }
-
-// .bg-gradient-primary-cover {
-//     @if $middle-gradient == 'yes' {
-//         background: linear-gradient($gradient-direction, $gradient-primary-1, $gradient-primary-middle, $gradient-primary-2) !important;
-//     } @else {
-//         background: linear-gradient($gradient-direction, $gradient-primary-1, $gradient-primary-2) !important;
-//     }
-// }
 
 ::-moz-selection {
     background: rgba($primary, 0.5); /* WebKit/Blink Browsers */
@@ -185,9 +233,10 @@ svg {
     }
 }
 
+.bg-dynamic-blur:before,
 .bg-dark-blur:before,
 .bg-light-blur:before {
-    content: '';
+    content: '' !important;
     transition: none;
     position: absolute;
     overflow: hidden;
@@ -195,49 +244,17 @@ svg {
     background: rgba(29, 29, 31, 0.72) !important;
     height: 100%;
     border-radius: inherit;
+    z-index: -1;
 }
 .bg-light-blur:not(.temp-hide):before,
+.bg-dynamic-blur:not(.temp-hide):before,
 .bg-dark-blur:not(.temp-hide):before { -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); }
+.bg-light-blur,
 .bg-light-blur,
 .bg-dark-blur { background: transparent !important; -webkit-backdrop-filter: initial !important; backdrop-filter: initial !important; }
 .bg-dark-blur:before { background: rgba(29, 29, 31, 0.72) !important; }
 .bg-light-blur:before { background: rgba(255,255,255,0.8) !important; }
-
-// .default-transition {
-//     transition: $transition-base;
-// }
-
-// .number,
-// .pix-words-wrapper,
-// .fly-sm, .fly, .fly-lg,
-// .scale-sm,
-// .scale,
-// .scale-lg,
-// .scale-inverse-sm,
-// .scale-inverse,
-// .scale-inverse-lg,
-// [data-anim-type="fade-in-up"],
-// [data-anim-type="fade-in-up-big"],
-// [data-anim-type="fade-in-down"],
-// [data-anim-type="fade-in-right"],
-// [data-anim-type="fade-in-right-big"],
-// [data-anim-type="fade-in-left"],
-// [data-anim-type="fade-in-left-big"],
-// [data-anim-type="pix-3d-in"],
-// [data-anim-type="pix-3d-right-in"],
-// [data-anim-type="pix-3d-left-in"],
-// [data-anim-type="pix-3d-up-in"],
-// [data-anim-type="pix-3d-down-in"],
-// [data-anim-type="pix-3d-right-in-big"],
-// [data-anim-type="pix-3d-left-in-big"],
-// [data-anim-type="pix-3d-up-in-big"],
-// [data-anim-type="pix-3d-down-in-big"] {
-//     &.text-gradient-primary:not(.text-custom-gradient),
-//     .text-gradient-primary:not(.text-custom-gradient),
-//     &.bg-gradient-primary:not(.text-custom-gradient),
-//     .bg-gradient-primary:not(.text-custom-gradient) {
-//         background-size: 200%;
-//         background-position: center top;
-//         background-attachment: scroll !important;
-//     }
-// }
+.bg-dynamic-blur:before { background: var(--pix-dynamic-blur) !important; }
+.elementor-element.bg-dynamic-blur:before, .elementor-element.bg-dark-blur:before, .elementor-element.bg-light-blur:before {
+    z-index: 0;
+}

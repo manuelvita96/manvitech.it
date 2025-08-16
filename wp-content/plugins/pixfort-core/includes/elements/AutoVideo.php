@@ -46,48 +46,13 @@ class PixAutoVideo {
 		}
 		$css_class .= ' ' . $el_class;
 
-		$style_arr = array(
-			"" => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
-
-		$hover_effect_arr = array(
-			""       => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
-
-		$add_hover_effect_arr = array(
-			""       => "",
-			"1"       => "fly-sm",
-			"2"       => "fly",
-			"3"       => "fly-lg",
-			"4"       => "scale-sm",
-			"5"       => "scale",
-			"6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-			"8"       => "scale-inverse",
-			"9"       => "scale-inverse-lg",
-		);
-
 		$output = '';
-		$width_attr = 'width="100%"';
+		// $width_attr = 'width="100%"';
+		$width_attr = '';
 		$height_attr = '';
 		$inline_style = '';
 		if (!empty($mp4_video)) $mp4_video = esc_url($mp4_video);
 		if (!empty($width)) {
-			// if (strpos($width, 'px') !== false) {
-			// 	$width_attr = 'width="'.intval($width).'"';
-			// }
 			if (strpos($width, '%') === false) {
 				$width_attr = 'width="' . intval($width) . '"';
 			}
@@ -96,23 +61,18 @@ class PixAutoVideo {
 			}
 			$inline_style .= 'max-width:100%;width:' . esc_attr($width) . ';';
 			if (empty($height)) {
-				$height_attr = 'height="auto"';
+				// $height_attr = 'height="auto"';
+				$height_attr = '';
 			}
 		}
 		if (!empty($height)) {
 			$height_attr = 'height="100%"';
-			// if (strpos($height, 'px') !== false) {
-			// 	$height_attr = 'height="'.intval($height).'"';
-			// }
 			if (strpos($height, 'px') !== false && strpos($height, '%') === false) {
 				$height_attr = 'height="' . intval($height) . '"';
 			}
-			// if (strpos($height, 'px') === false && strpos($height, '%') === false) {
-			// 	$height = intval($height) .'px';
-			// }
-			// $inline_style .= 'height:'.esc_attr( $height ).';';
 			if (empty($width)) {
-				$width_attr = 'width="auto"';
+				// $width_attr = 'width="auto"';
+				$width_attr = '';
 			}
 		}
 
@@ -122,6 +82,9 @@ class PixAutoVideo {
 				if (!empty($poster['id'])) {
 					$poster = $poster['id'];
 				}
+				if ( is_int( $poster ) ) {
+					$poster = apply_filters( 'wpml_object_id', $poster, 'attachment', true );
+				}
 				$img = wp_get_attachment_image_src($poster, "full");
 				if (!empty($img[0])) {
 					$imgSrc = $img[0];
@@ -129,28 +92,18 @@ class PixAutoVideo {
 				}
 			}
 
-			$classes = array();
+			$classes = [];
 			$anim_type = '';
 			$anim_delay = '';
 			array_push($classes, esc_attr($css_class));
 
-			if ($style) {
-				array_push($classes, $style_arr[$style]);
-			}
-			if ($hover_effect) {
-				array_push($classes, $hover_effect_arr[$hover_effect]);
-			}
-			if ($add_hover_effect) {
-				array_push($classes, $add_hover_effect_arr[$add_hover_effect]);
-			}
+			$effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
+			array_push($classes, $effectsClasses);
 
 			if (!empty($align)) {
 				array_push($classes, $align);
 			}
-
 			array_push($classes, 'd-inline-block');
-
-
 			$inline_style = 'style="' . $inline_style . '"';
 			$class_names = join(' ', $classes);
 			$containerClasses = '';
@@ -187,8 +140,6 @@ class PixAutoVideo {
 					$output .= '<div  ' . $inline_style . ' class="w-100 pix-h-auto ' . $pix_tilt_size . ' ' . $containerClasses . '">';
 				}
 				$output .= '<a  ' . $inline_style . ' href="' . $link . '" ' . $ntab . ' class="' . $class_names . ' ' . $rounded_img . '" ' . $anim_type . ' ' . $anim_delay . ' ' . $jarallax . ' aria-label="Auto video">';
-
-				// $output .= '<img class="card-img '.$rounded_img.' h-100" src="'.$imgSrc.'" alt="'. $alt .'" '.$inline_style.'/>';
 				$output .= '<video class="pix-video-bg-element d-block ' . $rounded_img . ' bg-video" ' . $width_attr . ' ' . $height_attr . ' preload="metadata" ' . $poster_tag . ' autoplay muted playsinline ' . $loop . '>
 							<source src="' . $mp4_video . '" type="video/mp4" />
 							</video>';
@@ -218,15 +169,11 @@ class PixAutoVideo {
 
 				$output .= '<div  ' . $inline_style . ' class="' . $class_names . ' ' . $rounded_img . '"  ' . $jarallax . '>';
 
-				$output .= '<video class="pix-video-bg-element d-block pix-bg-image2 ' . $rounded_img . ' bg-video" ' . $width_attr . ' ' . $height_attr . ' preload="metadata"  ' . $poster_tag . ' autoplay muted playsinline ' . $loop . '>
+				$output .= '<video class="pix-video-bg-element d-block ' . $rounded_img . ' bg-video" ' . $width_attr . ' ' . $height_attr . ' preload="metadata"  ' . $poster_tag . ' autoplay muted playsinline ' . $loop . '>
 							<source src="' . $mp4_video . '" type="video/mp4" />
 							Your browser does not support the video tag. 
 							</video>';
-
-
 				$output .= '</div>';
-
-
 				if (!empty($pix_tilt)) {
 					$output .= '</div>';
 				}

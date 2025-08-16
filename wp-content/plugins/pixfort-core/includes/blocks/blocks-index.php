@@ -5,24 +5,29 @@ if (! defined('ABSPATH')) {
 }
 
 /**
- * Registers the block using the metadata loaded from the `block.json` file.
- * Behind the scenes, it registers also all assets so they can be enqueued
- * through the block editor in the corresponding context.
+ * Registers all custom blocks for the theme.
  *
  * @see https://developer.wordpress.org/reference/functions/register_block_type/
  */
-
-
-
-function pixfort_core_pix_small_search_block_init() {
-    register_block_type(__DIR__ . '/search', [
-        // 'attributes'      => array(
-        //     'title' => array(
-        //         'type'    => 'string',
-        //         'default' => 'Search', // Default title
-        //     ),
-        // ),
-        // 'render_callback' => 'pixfort_core_render_search_block',
+function pixfort_core_register_blocks() {
+    // Register simple blocks with default settings
+    register_block_type(__DIR__ . '/search');
+    register_block_type(__DIR__ . '/recent-posts');
+    register_block_type(__DIR__ . '/promo-box');
+    register_block_type(__DIR__ . '/categories');
+    // Register the Social Links block
+    register_block_type(__DIR__ . '/social', [
+        'attributes' => [
+            'title' => [
+                'type' => 'string',
+                'default' => 'Follow Us'
+            ],
+            'social' => [
+                'type' => 'object',
+                'default' => (object) []
+            ]
+        ]
     ]);
 }
-add_action('init', 'pixfort_core_pix_small_search_block_init');
+add_action('init', 'pixfort_core_register_blocks');
+

@@ -7,7 +7,7 @@ class pix_small_search extends WP_Widget {
 			// Base ID of your widget
 			'pix_small_search',
 			// Widget name will appear in UI
-			__('PixFort Search', 'pixfort-core'),
+			__('pixfort Legacy Search', 'pixfort-core'),
 			// Widget description
 			[
 				'description' => __('Small search widget', 'pixfort-core'),
@@ -27,16 +27,22 @@ class pix_small_search extends WP_Widget {
 		}
 
 		$nonce = wp_create_nonce("search_nonce");
-		$link = admin_url('admin-ajax.php?action=pix_ajax_searcht&nonce=' . $nonce);
+		$link = admin_url('admin-ajax.php?action=pix_ajax_search&nonce=' . $nonce);
 		$search_data = 'data-search-link="' . $link . '"';
-
+		$homeUrl = home_url('/');
+		if(function_exists('pll_home_url')){
+			$homeUrl = pll_home_url();
+		}
 		// This is where you run the code and display the output
 		$placeholder = esc_attr__('Search for something', 'pixfort-core');
-		echo '<form class="pix-small-search pix-ajax-search-container position-relative bg-white shadow-sm rounded-lg pix-small-search" method="get" action="' . esc_url(home_url('/')) . '">
+		echo '<form class="pix-small-search pix-ajax-search-container position-relative shadow-sm rounded-lg pix-small-search" method="get" action="' . esc_url($homeUrl) . '">
                 <div class="d-flex">
                     <input type="search" class="form-control pix-ajax-search form-control-lg shadow-0 font-weight-bold text-body-default" name="s" autocomplete="off" placeholder="' . $placeholder . '" aria-label="Search" ' . $search_data . '>
-                    <button class="btn btn-search btn-white m-0 text-body-default" aria-label="Search" type="submit">' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/search.svg') . '</button>
-                </div>
+                    <button class="btn btn-search btn-white m-0 text-body-default" aria-label="Search" type="submit">' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/search.svg') . '</button>';
+		if (function_exists('pll_current_language')) {
+			echo '<input type="hidden" name="lang" value="' . esc_attr(pll_current_language()) . '">';
+		}
+		echo '</div>
             </form>';
 		echo $args['after_widget'];
 	}

@@ -42,50 +42,14 @@ if (!function_exists('pix_blog_item')) {
 
 			$query_blog->the_post();
 
-			$style_arr = array(
-				"" => "",
-				"1"       => "shadow-sm",
-				"2"       => "shadow",
-				"3"       => "shadow-lg",
-				"4"       => "shadow-inverse-sm",
-				"5"       => "shadow-inverse",
-				"6"       => "shadow-inverse-lg",
-			);
-
-			$hover_effect_arr = array(
-				""       => "",
-				"1"       => "shadow-hover-sm",
-				"2"       => "shadow-hover",
-				"3"       => "shadow-hover-lg",
-				"4"       => "shadow-inverse-hover-sm",
-				"5"       => "shadow-inverse-hover",
-				"6"       => "shadow-inverse-hover-lg",
-			);
-
-			$add_hover_effect_arr = array(
-				""       => "",
-				"1"       => "fly-sm",
-				"2"       => "fly",
-				"3"       => "fly-lg",
-				"4"       => "scale-sm",
-				"5"       => "scale",
-				"6"       => "scale-lg",
-				"7"       => "scale-inverse-sm",
-				"8"       => "scale-inverse",
-				"9"       => "scale-inverse-lg",
-			);
+			
 			$classes = array();
 
 			array_push($classes, $rounded_img);
-			if ($style) {
-				array_push($classes, $style_arr[$style]);
-			}
-			if ($hover_effect) {
-				array_push($classes, $hover_effect_arr[$hover_effect]);
-			}
-			if ($add_hover_effect) {
-				array_push($classes, $add_hover_effect_arr[$add_hover_effect]);
-			}
+			
+
+			$effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
+            array_push($classes, $effectsClasses);
 
 			$class_names = join(' ', $classes);
 
@@ -113,7 +77,7 @@ if (!function_exists('pix_blog_item')) {
 					$round = $rounded_img;
 				}
 				$attrs = array(
-					'class'	=> 'img-fluid ' . $round . ' card-img-top pix-fit-cover2',
+					'class'	=> 'img-fluid ' . $round . ' card-img-top',
 					'style'	=> 'height:200px;width:100%;object-fit: cover;',
 					'loading' => 'lazy',
 					'alt'	=> get_the_title()
@@ -138,7 +102,7 @@ if (!function_exists('pix_blog_item')) {
 					$padding1 = 'pl-1';
 					$margin1 = 'ml-1';
 					$margin2 = 'ml-2';
-					$readMoreIconClasses = 'm-1 align-middle pix-hover-right flip-icon-rtl';
+					$readMoreIconClasses = 'mr-1 align-middle pix-hover-right';
 					$custom_css = 'padding:5px 10px;line-height:12px;margin-left:3px;';
 					$tooltipPosition = 'left';
 				}  
@@ -213,15 +177,15 @@ if (!function_exists('pix_blog_item')) {
 							<a class="text-heading-default" href="' . get_permalink() . '"><h5 class="card-title mb-2 secondary-font font-weight-bold">' . get_the_title() . '</h5></a>';
 
 
-				$output .= '<a class="pix-post-meta-date text-sm mb-0 d-inline-block text-body-default svg-body-default" href="' . get_permalink() . '">';
+				$output .= '<a class="pix-post-meta-date pix-blog-post-text text-sm mb-0 d-inline-block text-body-default svg-body-default" href="' . get_permalink() . '">';
 				// $output .= '<img class="pr-2 align-middle2" src="'.PIX_CORE_PLUGIN_URI.'functions/images/blog/blog-post-date-icon.svg"/>';
 				$output .= '<span class="' . $padding1 . '">
 								' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/blog/blog-post-date-icon.svg') . '
 								</span>';
-				$output .= '<span class="text-body-default">' . get_the_date() . '</span>';
+				$output .= '<span class="text-body-default pix-blog-post-text">' . get_the_date() . '</span>';
 				$output .= '</a>';
 				if ($blog_size == 'lg') {
-					$output .= '<p class="card-text pix-pt-10 text-body-default">' . get_the_excerpt() . '</p>';
+					$output .= '<p class="card-text pix-pt-10 text-body-default pix-blog-post-text">' . get_the_excerpt() . '</p>';
 				}
 
 				$output .= '</div>
@@ -242,8 +206,8 @@ if (!function_exists('pix_blog_item')) {
 				}
 
 				if ($blog_size == 'lg' || $blog_size == 'md') {
-					$output .= '<div class="card-footer2 bg-gray-1 text-right d-flex align-items-center align-items-end2 w-100 pix-p-20 ' . $footer_classes . '" style="line-height:0;">
-									<div class="flex-fill2 pix-post-meta-author text-left ' . $padding1 . '">
+					$output .= '<div class="blog-card-meta-area card-footer2 bg-gray-1 text-right d-flex align-items-center w-100 pix-p-20 ' . $footer_classes . '" style="line-height:0;">
+									<div class="pix-post-meta-author text-left ' . $padding1 . '">
 										<span class="text-sm '.$margin2.'" data-toggle="tooltip" data-placement="'.$tooltipPosition.'" title="' . esc_attr__('By', 'pixfort-core') . ' ' . $author . '">
 											<span class="' . $padding1 . '">
 											' . $author_img . '
@@ -251,8 +215,8 @@ if (!function_exists('pix_blog_item')) {
 										</span>
 									</div>';
 					if (comments_open()) {
-						$output .= '<div class="pix-post-meta-comments flex-fill2 text-left ' . $padding1 . '">';
-						$output .= '<a href="' . $comment_link . '" class="text-xs '.$margin1.' text-body-default svg-body-default">
+						$output .= '<div class="pix-post-meta-comments text-left ' . $padding1 . '">';
+						$output .= '<a href="' . $comment_link . '" class="text-xs '.$margin1.' text-body-default svg-body-default pix-blog-post-text">
 												<span class="' . $padding1 . '">
 												' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/blog/blog-post-comments-icon.svg') . '
 												</span>
@@ -262,12 +226,16 @@ if (!function_exists('pix_blog_item')) {
 					}
 					$output .= $likes . '
 									<div class="flex-fill text-right">
-										<a href="' . get_permalink() . '" class="btn btn-sm p-0 mx-0 btn-link text-body-default svg-body-default font-weight-bold pix-hover-item">
+										<a href="' . get_permalink() . '" class="btn d-inline-flex align-items-center btn-sm p-0 mx-0 btn-link text-body-default svg-body-default font-weight-bold pix-hover-item pix-blog-post-text">
 											<span class="d-flex align-items-center">
-												<span class="align-bottom">' . esc_attr__('Read more', 'pixfort-core') . '</span>
-												<span class="' . $readMoreIconClasses . '">
-												' . pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/blog/blog-post-read-more-icon.svg') . '
-												</span>
+												<span class="d-flex">' . esc_attr__('Read more', 'pixfort-core') . '</span>
+												<span class="' . $readMoreIconClasses . '">';
+												if(is_rtl()){
+													$output .= \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-arrow-left-2', 24, 'text-18');
+												}else{
+													$output .= \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-arrow-right-2', 24, 'text-18');
+												}
+												$output .= '</span>
 											</span>
 										</a>
 									</div>

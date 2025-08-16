@@ -67,39 +67,6 @@ class PixShopCategory {
 		}
 		$css_class .= ' ' . $extra_classes;
 
-		$style_arr = array(
-			"" => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
-
-		$hover_effect_arr = array(
-			""       => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
-
-		$add_hover_effect_arr = array(
-			""       => "",
-			"1"       => "fly-sm",
-			"2"       => "fly",
-			"3"       => "fly-lg",
-			"4"       => "scale-sm",
-			"5"       => "scale",
-			"6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-			"8"       => "scale-inverse",
-			"9"       => "scale-inverse-lg",
-		);
-
 		$output = '';
 		$class_names = '';
 
@@ -120,21 +87,30 @@ class PixShopCategory {
 		}
 		$el_style = '';
 		if ($overlay_color == 'custom') {
-			$el_style = 'style="background:' . $overlay_custom_color . ';"';
+			$el_style = 'style="--pix-bg-color:' . $overlay_custom_color . ';"';
 		}
 
 		$imgSrcset = '';
+		$imgSrc = '';
 		if (is_string($image) && substr($image, 0, 4) === "http") {
 			$imgSrc = $image;
 		} else {
 			if (is_array($image) && !empty($image['id'])) {
+				if ( is_int( $image['id'] ) ) {
+					$image['id'] = apply_filters( 'wpml_object_id', $image['id'], 'attachment', true );
+				}
 				$img = wp_get_attachment_image_src($image['id'], "full");
 				$imgSrcset = wp_get_attachment_image_srcset($image['id']);
 			} else {
+				if ( is_int( $image ) ) {
+					$image = apply_filters( 'wpml_object_id', $image, 'attachment', true );
+				}
 				$img = wp_get_attachment_image_src($image, "pix-big");
 				$imgSrcset = wp_get_attachment_image_srcset($image);
 			}
-			$imgSrc = $img[0];
+			if(!empty($img[0])){
+				$imgSrc = $img[0];
+			}
 		}
 
 		$classes = array();
@@ -142,15 +118,8 @@ class PixShopCategory {
 		$anim_delay = '';
 		array_push($classes, esc_attr($css_class));
 
-		if ($style) {
-			array_push($classes, $style_arr[$style]);
-		}
-		if ($hover_effect) {
-			array_push($classes, $hover_effect_arr[$hover_effect]);
-		}
-		if ($add_hover_effect) {
-			array_push($classes, $add_hover_effect_arr[$add_hover_effect]);
-		}
+		$effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
+        array_push($classes, $effectsClasses);
 
 		if (!empty($align)) {
 			array_push($classes, $align);
@@ -233,20 +202,15 @@ class PixShopCategory {
 				if (empty($alt)) $alt = $card_title;
 
 				$output .= '<div class="pix-shop-category card w-100 h-100 bg-' . $overlay_color . ' pix-hover-item ' . $rounded_img . ' position-relative overflow-hidden ' . $class_names . '" ' . $el_style . ' ' . $jarallax . '>';
-				// if(pix_plugin_get_option('pix-disable-lazy-images', false)){
-				$output .= '<img srcset="' . $imgSrcset . '" src="' . $imgSrc . '" class="card-img pix-bg-image pix-img-scale ' . $overlay_opacity . ' ' . $rounded_img . ' ' . $hover_overlay_opacity . '" alt="' . $alt . '">';
-				// }else{
-				// 	$output .= '<img loading="lazy" src="'.PIX_IMG_PLACEHOLDER .'" data-srcset="'.$imgSrcset.'" data-src="'.$imgSrc.'" class="pix-lazy card-img pix-bg-image pix-img-scale '.$overlay_opacity.' '.$rounded_img.' '.$hover_overlay_opacity.'" alt="'.$alt.'">';
-				// }				
-				$output .= '<a href="' . $url . '" class="card-img-overlay2 d-inline-block w-100 pix-img-overlay pix-p-20">
+				$output .= '<img srcset="' . $imgSrcset . '" src="' . $imgSrc . '" class="card-img pix-bg-image pix-img-scale ' . $overlay_opacity . ' ' . $rounded_img . ' ' . $hover_overlay_opacity . '" alt="' . $alt . '">';		
+				$output .= '<a href="' . $url . '" class="d-inline-block w-100 pix-img-overlay pix-p-20">
 				  	<div class="badge bg-dark-opacity-3 ' . $count_classes . '" ' . $count_style . '>' . $cat_val->count . ' ' . $items_text . '</div>
 				    <h5 class="card-title ' . $title_classes . ' pix-my-10" ' . $title_style . '>' . $card_title . '</h5>';
-				// if (!empty($link_text)) $output .= '<span class="d-flex align-items-center ' . $link_classes . '" ' . $link_style . '><span>' . $link_text . '</span><i class="pixicon-angle-right pix-hover-right pix-hover-item pix-ml-10 text-20"></i></span>';
 				$arrowIcon = 'Line/pixfort-icon-arrow-right-2';
 				$hoverEffect = 'pix-hover-right';
 				if (is_rtl()) {
 					$arrowIcon = 'Line/pixfort-icon-arrow-left-2';
-					$hoverEffect = 'pix-hover-left';
+					// $hoverEffect = 'pix-hover-left';
 				}
 				if (!empty($link_text)) $output .= '<span class="d-flex align-items-center ' . $link_classes . '" ' . $link_style . '><span>' . $link_text . '</span>'. \PixfortCore::instance()->icons->getIcon($arrowIcon, 24, $hoverEffect.' pix-hover-item text-20') .'</span>';
 				$output .= '</a>

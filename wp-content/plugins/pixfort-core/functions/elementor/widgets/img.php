@@ -5,6 +5,20 @@ namespace Elementor;
 class Pix_Eor_Img extends Widget_Base {
 
 	public function __construct($data = [], $args = null) {
+		// Link migration code
+		$is_external = false;
+		if (!empty($data['settings'])) {
+			if (!empty($data['settings']['target']) && $data['settings']['target']) {
+				$is_external = true;
+			}
+			if (!empty($data['settings']['link']) && !is_array($data['settings']['link'])) {
+				$data['settings']['link'] = [
+					'url' => $data['settings']['link'],
+					'is_external' => $is_external,
+					'nofollow' => false,
+				];
+			}
+		}
 		parent::__construct($data, $args);
 	}
 
@@ -25,7 +39,7 @@ class Pix_Eor_Img extends Widget_Base {
 	}
 
 	public function get_help_url() {
-		return 'https://essentials.pixfort.com/knowledge-base/';
+		return \PixfortCore::instance()->adminCore->getParam('docs_link');
 	}
 
 	protected function register_controls() {
@@ -54,27 +68,84 @@ class Pix_Eor_Img extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'image',
-			[
-				'label' => __('Choose Image', 'pixfort-core'),
-				'type' => \Elementor\Controls_Manager::MEDIA,
-				'dynamic'     => array(
-					'active'  => true
-				),
-			]
-		);
+		
+		// if(\PixfortCore::instance()->styleFunctions && \PixfortCore::instance()->styleFunctions->darkModeEnabled) {
+		// 	$this->start_controls_tabs(
+		// 		'pix_img_tabs'
+		// 	);
+
+		// 	$this->start_controls_tab(
+		// 		'pix_img_light',
+		// 		[
+		// 			'label' => esc_html__('Light Image', 'pixfort-core'),
+		// 		]
+		// 	);
+		// 	$this->add_control(
+		// 		'image',
+		// 		[
+		// 			'label' => __('Choose Image', 'pixfort-core'),
+		// 			'type' => \Elementor\Controls_Manager::MEDIA,
+		// 			'dynamic'     => array(
+		// 				'active'  => true
+		// 			),
+		// 		]
+		// 	);
+		// 	$this->end_controls_tab();
+		// 	$this->start_controls_tab(
+		// 		'pix_img_dark',
+		// 		[
+		// 			'label' => esc_html__('Dark Image', 'pixfort-core'),
+		// 		]
+		// 	);
+		// 	$this->add_control(
+		// 		'image_dark',
+		// 		[
+		// 			'label' => __('Choose Image', 'pixfort-core'),
+		// 			'type' => \Elementor\Controls_Manager::MEDIA,
+		// 			'dynamic'     => array(
+		// 				'active'  => true
+		// 			),
+		// 			'description' => __('The dark image is optional, leave empty to use the light image', 'pixfort-core'),
+		// 		]
+		// 	);
+
+			
+		// 	$this->end_controls_tab();
+		// 	$this->end_controls_tabs();
+
+		// 	$this->add_control(
+		// 		'separator_img_dark_mode_tab',
+		// 		[
+		// 			'type' => Controls_Manager::DIVIDER,
+		// 			'style' => 'thick',
+		// 		]
+		// 	);
+			
+		// } else {
+		// 	$this->add_control(
+		// 		'image',
+		// 		[
+		// 			'label' => __('Choose Image', 'pixfort-core'),
+		// 			'type' => \Elementor\Controls_Manager::MEDIA,
+		// 			'dynamic'     => array(
+		// 				'active'  => true
+		// 			),
+		// 		]
+		// 	);
+		// }
+
+		getElementorDynamicImageControls($this, 'image', 'image_dark');
 
 		$this->add_control(
 			'alt',
 			[
-				'label' => __('Image alternative text', 'elementor'),
+				'label' => __('Image alternative text', 'pixfort-core'),
 				'label_block' => true,
 				'type' => Controls_Manager::TEXT,
 				'dynamic'     => array(
 					'active'  => true
 				),
-				'placeholder' => __('', 'elementor'),
+				'placeholder' => __('', 'pixfort-core'),
 				'default' => '',
 			]
 		);
@@ -115,41 +186,49 @@ class Pix_Eor_Img extends Widget_Base {
 		$this->add_control(
 			'width',
 			[
-				'label' => __('Width (Optional)', 'elementor'),
+				'label' => __('Width (Optional)', 'pixfort-core'),
 				'label_block' => true,
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __('input the value (with the unit: %, px,.. etc).', 'elementor'),
+				'placeholder' => __('input the value (with the unit: %, px,.. etc).', 'pixfort-core'),
 			]
 		);
 		$this->add_control(
 			'height',
 			[
-				'label' => __('Height (Optional)', 'elementor'),
+				'label' => __('Height (Optional)', 'pixfort-core'),
 				'label_block' => true,
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __('input the value (with the unit: %, px,.. etc).', 'elementor'),
+				'placeholder' => __('input the value (with the unit: %, px,.. etc).', 'pixfort-core'),
 			]
 		);
 		$this->add_control(
 			'link',
 			[
-				'label' => __('Link', 'elementor'),
+				'label' => __('Link', 'pixfort-core'),
 				'label_block' => true,
-				'type' => Controls_Manager::TEXT,
-				'placeholder' => __('', 'elementor'),
+				'type' => Controls_Manager::URL,
+				'default' => [
+					'url' => '',
+					'is_external' => false,
+					'nofollow' => false,
+				],
+				'dynamic'     => array(
+					'active'  => true
+				),
+				'placeholder' => __('', 'pixfort-core'),
 			]
 		);
-		$this->add_control(
-			'target',
-			[
-				'label' => __('Open in a new tab', 'pixfort-core'),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __('Yes', 'pixfort-core'),
-				'label_off' => __('No', 'pixfort-core'),
-				'return_value' => 'Yes',
-				// 'default' => '',
-			]
-		);
+		// $this->add_control(
+		// 	'target',
+		// 	[
+		// 		'label' => __('Open in a new tab', 'pixfort-core'),
+		// 		'type' => \Elementor\Controls_Manager::SWITCHER,
+		// 		'label_on' => __('Yes', 'pixfort-core'),
+		// 		'label_off' => __('No', 'pixfort-core'),
+		// 		'return_value' => 'Yes',
+		// 		// 'default' => '',
+		// 	]
+		// );
 
 		$this->add_control(
 			'pix_scale_in',
@@ -305,7 +384,7 @@ class Pix_Eor_Img extends Widget_Base {
 		$this->start_controls_section(
 			'section_style_image',
 			[
-				'label' => esc_html__('Advanced Image Options', 'elementor'),
+				'label' => esc_html__('Advanced Image Options', 'pixfort-core'),
 				'tab'   => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -313,7 +392,7 @@ class Pix_Eor_Img extends Widget_Base {
 		$this->add_responsive_control(
 			'advanced_width',
 			[
-				'label' => esc_html__('Width', 'elementor'),
+				'label' => esc_html__('Width', 'pixfort-core'),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'unit' => '%',
@@ -348,7 +427,7 @@ class Pix_Eor_Img extends Widget_Base {
 		$this->add_responsive_control(
 			'advanced_space',
 			[
-				'label' => esc_html__('Max Width', 'elementor'),
+				'label' => esc_html__('Max Width', 'pixfort-core'),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'unit' => '%',
@@ -383,7 +462,7 @@ class Pix_Eor_Img extends Widget_Base {
 		$this->add_responsive_control(
 			'advanced_height',
 			[
-				'label' => esc_html__('Height', 'elementor'),
+				'label' => esc_html__('Height', 'pixfort-core'),
 				'type' => Controls_Manager::SLIDER,
 				'default' => [
 					'unit' => 'px',
@@ -414,16 +493,16 @@ class Pix_Eor_Img extends Widget_Base {
 		$this->add_responsive_control(
 			'advanced_object-fit',
 			[
-				'label' => esc_html__('Object Fit', 'elementor'),
+				'label' => esc_html__('Object Fit', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'condition' => [
 					'advanced_height[size]!' => '',
 				],
 				'options' => [
-					'' => esc_html__('Default', 'elementor'),
-					'fill' => esc_html__('Fill', 'elementor'),
-					'cover' => esc_html__('Cover', 'elementor'),
-					'contain' => esc_html__('Contain', 'elementor'),
+					'' => esc_html__('Default', 'pixfort-core'),
+					'fill' => esc_html__('Fill', 'pixfort-core'),
+					'cover' => esc_html__('Cover', 'pixfort-core'),
+					'contain' => esc_html__('Contain', 'pixfort-core'),
 				],
 				'default' => '',
 				'selectors' => [
@@ -445,14 +524,14 @@ class Pix_Eor_Img extends Widget_Base {
 		$this->start_controls_tab(
 			'normal',
 			[
-				'label' => esc_html__('Normal', 'elementor'),
+				'label' => esc_html__('Normal', 'pixfort-core'),
 			]
 		);
 
 		$this->add_control(
 			'advanced_opacity',
 			[
-				'label' => esc_html__('Opacity', 'elementor'),
+				'label' => esc_html__('Opacity', 'pixfort-core'),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -480,14 +559,14 @@ class Pix_Eor_Img extends Widget_Base {
 		$this->start_controls_tab(
 			'hover',
 			[
-				'label' => esc_html__('Hover', 'elementor'),
+				'label' => esc_html__('Hover', 'pixfort-core'),
 			]
 		);
 
 		$this->add_control(
 			'advanced_opacity_hover',
 			[
-				'label' => esc_html__('Opacity', 'elementor'),
+				'label' => esc_html__('Opacity', 'pixfort-core'),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -513,7 +592,7 @@ class Pix_Eor_Img extends Widget_Base {
 		$this->add_control(
 			'advanced_background_hover_transition',
 			[
-				'label' => esc_html__('Transition Duration', 'elementor'),
+				'label' => esc_html__('Transition Duration', 'pixfort-core'),
 				'type' => Controls_Manager::SLIDER,
 				'range' => [
 					'px' => [
@@ -530,7 +609,7 @@ class Pix_Eor_Img extends Widget_Base {
 		$this->add_control(
 			'advanced_hover_animation',
 			[
-				'label' => esc_html__('Hover Animation', 'elementor'),
+				'label' => esc_html__('Hover Animation', 'pixfort-core'),
 				'type' => Controls_Manager::HOVER_ANIMATION,
 			]
 		);
@@ -551,7 +630,7 @@ class Pix_Eor_Img extends Widget_Base {
 		$this->add_responsive_control(
 			'advanced_image_border_radius',
 			[
-				'label' => esc_html__('Border Radius', 'elementor'),
+				'label' => esc_html__('Border Radius', 'pixfort-core'),
 				'type' => Controls_Manager::DIMENSIONS,
 				'size_units' => ['px', '%'],
 				'selectors' => [
@@ -576,7 +655,22 @@ class Pix_Eor_Img extends Widget_Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		echo \PixfortCore::instance()->elementsManager->renderElement('Img', $settings );
+		if (!empty($settings['link']) && is_array($settings['link'])) {
+			if (!empty($settings['link']['is_external'])) {
+				$settings['target'] = $settings['link']['is_external'];
+			}
+			if (!empty($settings['link']['nofollow'])) {
+				$settings['nofollow'] = $settings['link']['nofollow'];
+			}
+			if (!empty($settings['link']['custom_attributes'])) {
+				$settings['link_atts'] = $settings['link']['custom_attributes'];
+			}
+			$settings['link'] = $settings['link']['url'];
+		}
+		if (empty($settings['element_id'])) {
+			$settings['element_id'] = 'el-' . $this->get_id();
+		}
+		echo \PixfortCore::instance()->elementsManager->renderElement('Img', $settings);
 	}
 
 	public function get_script_depends() {

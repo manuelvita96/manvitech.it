@@ -1,12 +1,11 @@
 <?php
+
 namespace Elementor;
 
 class Pix_Eor_Search extends Widget_Base {
 
 	public function __construct($data = [], $args = null) {
 		parent::__construct($data, $args);
-
-		// wp_register_script( 'pix-search-handle', PIX_CORE_PLUGIN_URI.'functions/elementor/js/search.js', [ 'elementor-frontend' ], PIXFORT_PLUGIN_VERSION, true );
 	}
 
 	public function get_name() {
@@ -22,11 +21,11 @@ class Pix_Eor_Search extends Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'pixfort' ];
+		return ['pixfort'];
 	}
 
 	public function get_help_url() {
-		return 'https://essentials.pixfort.com/knowledge-base/';
+		return \PixfortCore::instance()->adminCore->getParam('docs_link');
 	}
 
 	protected function register_controls() {
@@ -36,14 +35,14 @@ class Pix_Eor_Search extends Widget_Base {
 		$this->start_controls_section(
 			'section_title',
 			[
-				'label' => __( 'General', 'pixfort-core' ),
+				'label' => __('General', 'pixfort-core'),
 			]
 		);
 
 		$this->add_control(
 			'animation',
 			[
-				'label' => __( 'Animation', 'pixfort-core' ),
+				'label' => __('Animation', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => pix_get_animations(true),
@@ -52,10 +51,10 @@ class Pix_Eor_Search extends Widget_Base {
 		$this->add_control(
 			'delay',
 			[
-				'label' => __( 'Animation delay (in miliseconds)', 'pixfort-core' ),
+				'label' => __('Animation delay (in miliseconds)', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '0', 'pixfort-core' ),
-				'placeholder' => __( '', 'pixfort-core' ),
+				'default' => __('0', 'pixfort-core'),
+				'placeholder' => __('', 'pixfort-core'),
 				'condition' => [
 					'animation!' => '',
 				],
@@ -65,7 +64,7 @@ class Pix_Eor_Search extends Widget_Base {
 		$this->add_control(
 			'search_div',
 			[
-				'label' => __( 'Field inside a container', 'pixfort-core' ),
+				'label' => __('Field inside a container', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => [
@@ -81,28 +80,24 @@ class Pix_Eor_Search extends Widget_Base {
 		$this->add_control(
 			'max_width',
 			[
-				'label' => __( 'Field max width', 'pixfort-core' ),
+				'label' => __('Field max width', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '', 'pixfort-core' ),
-				'placeholder' => __( 'Input the width with the unit (eg. 300px)', 'pixfort-core' ),
+				'default' => __('', 'pixfort-core'),
+				'placeholder' => __('Input the width with the unit (eg. 300px)', 'pixfort-core'),
 			]
 		);
 
 		$this->end_controls_section();
-
-
 	}
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		echo \PixfortCore::instance()->elementsManager->renderElement('Search', $settings );
+		echo \PixfortCore::instance()->elementsManager->renderElement('Search', $settings);
 	}
 
 
 	public function get_script_depends() {
-		if(is_user_logged_in()) return [ 'pix-global' ];
+		if (is_user_logged_in()) return ['pix-global'];
 		return [];
 	}
-
-
 }

@@ -32,18 +32,18 @@
 @import "hamburgers/hamburgers";
 
 @import "elements/keyframes";
-@import "elements/chart";
 @import "elements/fancy_box";
 @import "elements/animations";
-@import "elements/clients";
 @import "elements/search";
 @import "elements/dividers";
 @import "elements/megamenu";
 @import "elements/intro";
 @import "elements/headers";
-@import "elements/dark";
+@if variable-exists(invert_colors_css) {
+    @import "elements/dark";
+}
 @import "elements/masonry";
-@import "elements/sidebar";
+@import "components/menu";
 
 @import "wp/fixes";
 @import "wp/elements";

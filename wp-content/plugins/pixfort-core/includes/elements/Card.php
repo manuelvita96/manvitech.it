@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
+    exit; // Exit if accessed directly.
 }
 
 /* ---------------------------------------------------------------------------
@@ -9,46 +9,46 @@ if (!defined('ABSPATH')) {
 * --------------------------------------------------------------------------- */
 class PixCard {
 
-	function render($attr, $content = null) {
+    function render($attr, $content = null) {
         extract(shortcode_atts(array(
-            'title'     => '',
-            'text'         => '',
-            'image'     => '',
-            'link_text'     => '',
-            'link'     => '',
-            'target'     => '',
-            'layout'     => 'small',
-            'feature_image'     => '',
-            'style'         => '',
-            'hover_effect'         => '',
-            'add_hover_effect'         => '',
-            'animation'     => '',
-            'delay'     => '0',
-            'css'         => '',
-            'bold'        => 'font-weight-bold',
-            'italic'        => '',
+            'title'                 => '',
+            'text'                  => '',
+            'image'                 => '',
+            'link_text'             => '',
+            'link'                  => '',
+            'target'                => '',
+            'layout'                => 'small',
+            'feature_image'         => '',
+            'style'                 => '',
+            'hover_effect'          => '',
+            'add_hover_effect'      => '',
+            'animation'             => '',
+            'delay'                 => '0',
+            'css'                   => '',
+            'bold'                  => 'font-weight-bold',
+            'italic'                => '',
             'secondary_font'        => '',
-            'color'        => 'heading-default',
-            'custom_color'        => '',
-            'title_size'        => 'h6',
-            'title_custom_size'        => '',
-            'text_bold'        => '',
-            'text_italic'        => '',
-            'text_secondary_font'        => '',
-            'text_color'        => 'body-default',
-            'text_custom_color'        => '',
-            'text_size'        => '',
-            'link_bold'        => 'font-weight-bold',
-            'link_italic'        => '',
-            'link_secondary_font'        => '',
-            'link_color'        => 'heading-default',
-            'link_custom_color'        => '',
-            'link_size'        => '',
-            'rounded_img'        => 'rounded-lg',
-            'explicit_width_height'        => '',
-            'extra_classes'        => '',
-            'nofollow'        => '',
-            'link_atts'        => '',
+            'color'                 => 'heading-default',
+            'custom_color'          => '',
+            'title_size'            => 'h6',
+            'title_custom_size'     => '',
+            'text_bold'             => '',
+            'text_italic'           => '',
+            'text_secondary_font'   => '',
+            'text_color'            => 'body-default',
+            'text_custom_color'     => '',
+            'text_size'             => '',
+            'link_bold'             => 'font-weight-bold',
+            'link_italic'           => '',
+            'link_secondary_font'   => '',
+            'link_color'            => 'heading-default',
+            'link_custom_color'     => '',
+            'link_size'             => '',
+            'rounded_img'           => 'rounded-lg',
+            'explicit_width_height' => '',
+            'extra_classes'         => '',
+            'nofollow'              => '',
+            'link_atts'             => '',
         ), $attr));
 
         $css_class = '';
@@ -58,7 +58,7 @@ class PixCard {
             $text = pix_unescape_vc($text);
             $link_text = pix_unescape_vc($link_text);
         }
-        
+
         $custom_link_atts = '';
         if (!empty($link_atts)) {
             $l_atts = explode(",", $link_atts);
@@ -71,40 +71,7 @@ class PixCard {
             $custom_link_atts .= 'rel="nofollow"';
         }
 
-        $style_arr = array(
-            "" => "",
-            "1"       => "shadow-sm",
-            "2"       => "shadow",
-            "3"       => "shadow-lg",
-            "4"       => "shadow-inverse-sm",
-            "5"       => "shadow-inverse",
-            "6"       => "shadow-inverse-lg",
-        );
 
-        $hover_effect_arr = array(
-            ""       => "",
-            "1"       => "shadow-hover-sm",
-            "2"       => "shadow-hover",
-            "3"       => "shadow-hover-lg",
-            "4"       => "shadow-inverse-hover-sm",
-            "5"       => "shadow-inverse-hover",
-            "6"       => "shadow-inverse-hover-lg",
-        );
-
-        $add_hover_effect_arr = array(
-            ""       => "",
-            "1"       => "fly-sm",
-            "2"       => "fly",
-            "3"       => "fly-lg",
-            "4"       => "scale-sm",
-            "5"       => "scale",
-            "6"       => "scale-lg",
-            "7"       => "scale-inverse-sm",
-            "8"       => "scale-inverse",
-            "9"       => "scale-inverse-lg",
-        );
-
-        
         $css_class .= ' ' . $extra_classes;
         $classes = ' ';
         $classes .= esc_attr($css_class) . ' ';
@@ -146,15 +113,7 @@ class PixCard {
         }
         $title_style = 'style="' . $title_style . '"';
 
-        if ($style) {
-            $classes .= $style_arr[$style] . ' ';
-        }
-        if ($hover_effect) {
-            $classes .= $hover_effect_arr[$hover_effect] . ' ';
-        }
-        if ($add_hover_effect) {
-            $classes .= $add_hover_effect_arr[$add_hover_effect] . ' ';
-        }
+        $classes .= \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
 
         $anim_attrs = '';
         if (!empty($animation)) {
@@ -166,7 +125,9 @@ class PixCard {
         $heightVal = '';
         $widthVal = '';
 
-
+        // Define the icon based on text direction
+        $icon_direction = is_rtl() ? 'left-2' : 'right-2';
+        $icon_name = 'Line/pixfort-icon-arrow-' . $icon_direction;
 
         if ($layout == 'small') {
             $output .= '<a ' . $linkTarget . ' ' . $custom_link_atts . ' href="' . $link . '" class=" fly">';
@@ -179,6 +140,9 @@ class PixCard {
                     $imgSrc = $img;
                 } else {
                     if (!empty($image['id'])) {
+                        if ( is_int( $image['id'] ) ) {
+                            $image['id'] = apply_filters( 'wpml_object_id', $image['id'], 'attachment', true );
+                        }
                         $img = wp_get_attachment_image_src($image['id'], "full");
                         $imgSrcset = wp_get_attachment_image_srcset($image['id']);
                     } else {
@@ -195,19 +159,16 @@ class PixCard {
                     }
                 }
                 if (!empty($imgSrc)) {
-                    // if (pix_plugin_get_option('pix-disable-lazy-images', false)) {
-                        $output .= '<img ' . $heightVal . ' ' . $widthVal . ' srcset="' . $imgSrcset . '" src="' . $imgSrc . '" alt="' . $title . '">';
-                    // } else {
-                    //     $output .= '<img src="' . PIX_IMG_PLACEHOLDER . '" ' . $heightVal . ' ' . $widthVal . ' data-srcset="' . $imgSrcset . '" data-src="' . $imgSrc . '" class="pix-lazy" loading="lazy" alt="' . $title . '">';
-                    // }
+                    $output .= '<img ' . $heightVal . ' ' . $widthVal . ' srcset="' . $imgSrcset . '" src="' . $imgSrc . '" alt="' . $title . '">';
                 }
             }
             $output .= '<div class="pix-card-content bg-white">';
             $output .= '<div class="card-body">';
             $output .= '<div class="d-flex justify-content-between align-items-center ' . $title_classes . '">';
             $output .= '<' . $title_tag . ' ' . $title_style . ' class="card-title mb-0 ' . $title_classes . '">' . do_shortcode($title)  . '</' . $title_tag . '>';
-            // $output .= '<' . $title_tag . ' ' . $title_style . ' class="' . $icon_classes . ' pixicon-angle-right"></' . $title_tag . '>';
-            $output .= '<' . $title_tag . ' ' . $title_style . ' class="' . $icon_classes . '">'. \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-arrow-right-2') .'</' . $title_tag . '>';
+            $output .= '<' . $title_tag . ' ' . $title_style . ' class="' . $icon_classes . '">';
+            $output .= \PixfortCore::instance()->icons->getIcon($icon_name);
+            $output .= '</' . $title_tag . '>';
             $output .= '</div>';
             $output .= '</div>';
             $output .= '</div>';
@@ -225,6 +186,9 @@ class PixCard {
                     $imgSrc = $img;
                 } else {
                     if (!empty($image['id'])) {
+                        if ( is_int( $image['id'] ) ) {
+                            $image['id'] = apply_filters( 'wpml_object_id', $image['id'], 'attachment', true );
+                        }
                         $img = wp_get_attachment_image_src($image['id'], "full");
                         $imgSrcset = wp_get_attachment_image_srcset($image['id']);
                     } else {
@@ -240,11 +204,7 @@ class PixCard {
                 if (!empty($link)) {
                     $output .= '<a ' . $linkTarget . ' ' . $custom_link_atts . ' href="' . $link . '">';
                 }
-                // if (pix_plugin_get_option('pix-disable-lazy-images', false)) {
-                    $output .= '<img ' . $heightVal . ' ' . $widthVal . ' srcset="' . $imgSrcset . '" src="' . $imgSrc . '" class="img-fluid ' . $rounded_img . '" alt="' . $title . '">';
-                // } else {
-                //     $output .= '<img src="' . PIX_IMG_PLACEHOLDER . '" ' . $heightVal . ' ' . $widthVal . ' data-srcset="' . $imgSrcset . '" data-src="' . $imgSrc . '" class="pix-lazy img-fluid ' . $rounded_img . '" loading="lazy" alt="' . $title . '">';
-                // }
+                $output .= '<img ' . $heightVal . ' ' . $widthVal . ' srcset="' . $imgSrcset . '" src="' . $imgSrc . '" class="img-fluid ' . $rounded_img . '" alt="' . $title . '">';
 
                 if (!empty($link)) {
                     $output .= '</a>';
@@ -255,8 +215,7 @@ class PixCard {
             $output .= '<p class="card-text ' . $text_classes . '" ' . $text_style . '>' . do_shortcode($text) . '</p>';
             $output .= '</div>';
             $output .= '<div class="card-footer text-right">';
-            // $output .= '<a ' . $linkTarget . ' ' . $custom_link_atts . ' href="' . $link . '" ' . $link_style . ' class="d-flex align-items-center justify-content-end ' . $link_classes . '"><span class="d-inline-block">' . do_shortcode($link_text) . '</span> <i class="pixicon-angle-right ml-2"></i></a>';
-            $output .= '<a ' . $linkTarget . ' ' . $custom_link_atts . ' href="' . $link . '" '.$link_style.' class="d-flex align-items-center justify-content-end ' . $link_classes . '"><span class="d-inline-block">' . do_shortcode($link_text) . '</span> '. \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-arrow-right-2', 24, 'ml-1') .'</a>';
+            $output .= '<a ' . $linkTarget . ' ' . $custom_link_atts . ' href="' . $link . '" ' . $link_style . ' class="d-flex align-items-center justify-content-end ' . $link_classes . '"><span class="d-inline-block">' . do_shortcode($link_text) . '</span> ' . \PixfortCore::instance()->icons->getIcon($icon_name, 24, 'ml-1') . '</a>';
             $output .= '</div>';
             $output .= '</div>';
         }
@@ -270,13 +229,16 @@ class PixCard {
                     $imgSrc = $img;
                 } else {
                     if (!empty($image['id'])) {
+                        if ( is_int( $image['id'] ) ) {
+                            $image['id'] = apply_filters( 'wpml_object_id', $image['id'], 'attachment', true );
+                        }
                         $img = wp_get_attachment_image_src($image['id'], "full");
                         $imgSrcset = wp_get_attachment_image_srcset($image['id']);
                     } else {
                         $img = wp_get_attachment_image_src($image, "full");
                         $imgSrcset = wp_get_attachment_image_srcset($image);
                     }
-                    if(!empty($img[0])) {
+                    if (!empty($img[0])) {
                         $imgSrc = $img[0];
                     }
                     if (!empty($explicit_width_height)) {
@@ -287,13 +249,9 @@ class PixCard {
                 if (!empty($link)) {
                     $output .= '<a ' . $linkTarget . ' ' . $custom_link_atts . ' href="' . $link . '">';
                 }
-                if(!empty($imgSrc)) {
+                if (!empty($imgSrc)) {
                     $output .= '<img ' . $heightVal . ' ' . $widthVal . ' srcset="' . $imgSrcset . '" src="' . $imgSrc . '" alt="' . $title . '">';
                 }
-                // if (pix_plugin_get_option('pix-disable-lazy-images', false)) {
-                // } else {
-                //     $output .= '<img src="' . PIX_IMG_PLACEHOLDER . '" ' . $heightVal . ' ' . $widthVal . ' data-srcset="' . $imgSrcset . '" data-src="' . $imgSrc . '" class="pix-lazy" loading="lazy" alt="' . do_shortcode($title)  . '">';
-                // }
                 if (!empty($link)) {
                     $output .= '</a>';
                 }
@@ -304,8 +262,7 @@ class PixCard {
             $output .= '<p class="card-text ' . $text_classes . '" ' . $text_style . '>' . do_shortcode($text) . '</p>';
             $output .= '</div>';
             $output .= '<div class="card-footer text-right">';
-            // $output .= '<a ' . $linkTarget . ' ' . $custom_link_atts . ' href="' . $link . '" ' . $link_style . ' class="d-flex align-items-center justify-content-end ' . $link_classes . '"><span class="d-inline-block">' . do_shortcode($link_text) . '</span><i class="pixicon-angle-right ml-2"></i></a>';
-            $output .= '<a ' . $linkTarget . ' ' . $custom_link_atts . ' href="' . $link . '" ' . $link_style . ' class="d-flex align-items-center justify-content-end ' . $link_classes . '"><span class="d-inline-block">' . do_shortcode($link_text) . '</span>'.\PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-arrow-right-2', 24, 'ml-1').'</a>';
+            $output .= '<a ' . $linkTarget . ' ' . $custom_link_atts . ' href="' . $link . '" ' . $link_style . ' class="d-flex align-items-center justify-content-end ' . $link_classes . '"><span class="d-inline-block">' . do_shortcode($link_text) . '</span>' . \PixfortCore::instance()->icons->getIcon($icon_name, 24, 'ml-1') . '</a>';
             $output .= '</div>';
             $output .= '</div>';
             $output .= '</div>';
@@ -314,4 +271,3 @@ class PixCard {
         return $output;
     }
 }
-

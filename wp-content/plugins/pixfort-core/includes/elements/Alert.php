@@ -52,6 +52,7 @@ class PixAlert {
 		if (function_exists('vc_shortcode_custom_css_class')) {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
 		}
+		wp_enqueue_style('pixfort-alert-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/alert.min.css', false, PIXFORT_PLUGIN_VERSION);
 		array_push($classes, $css_class);
 		array_push($classes, $rounded_img);
 
@@ -70,39 +71,7 @@ class PixAlert {
 		if (!empty($secondary_font)) array_push($classes, $secondary_font);
 
 		if ($shadow === 'true') $shadow = "2";
-		$style_arr = array(
-			"none" => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
-
-		$hover_effect_arr = array(
-			""       => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
-
-		$add_hover_effect_arr = array(
-			""       => "",
-			"1"       => "fly-sm",
-			"2"       => "fly",
-			"3"       => "fly-lg",
-			"4"       => "scale-sm",
-			"5"       => "scale",
-			"6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-			"8"       => "scale-inverse",
-			"9"       => "scale-inverse-lg",
-		);
-
+		
 
 		$anim_attrs = '';
 		if (!empty($animation)) {
@@ -110,15 +79,9 @@ class PixAlert {
 			$anim_attrs = 'data-anim-delay="' . $delay . '" data-anim-type="' . $animation . '"';
 		}
 
-		if ($shadow) {
-			array_push($classes, $style_arr[$shadow]);
-		}
-		if ($hover_effect) {
-			array_push($classes, $hover_effect_arr[$hover_effect]);
-		}
-		if ($add_hover_effect) {
-			array_push($classes, $add_hover_effect_arr[$add_hover_effect]);
-		}
+		$effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($shadow, $hover_effect, $add_hover_effect);
+		array_push($classes, $effectsClasses);
+
 		$i_color = '';
 		$i_custom_color = '';
 		if (!empty($icon_color)) {
@@ -149,18 +112,26 @@ class PixAlert {
 			$circle = 'rounded-circle';
 		}
 		$icon_size_div = $icon_size;
-		$imgSrc = '';
+		$imgSrc = false;
 		if ($image) {
 			if (is_string($image) && substr($image, 0, 4) === "http") {
 				$img = $image;
 				$imgSrc = $img;
 			} else {
 				if (!empty($image['id'])) {
+					if ( is_int( $image['id'] ) ) {
+						$image['id'] = apply_filters( 'wpml_object_id', $image['id'], 'attachment', true );
+					}
 					$img = wp_get_attachment_image_src($image['id'], $size);
 				} else {
+					if ( is_int( $image ) ) {
+						$image = apply_filters( 'wpml_object_id', $image, 'attachment', true );
+					}
 					$img = wp_get_attachment_image_src($image, $size);
 				}
-				$imgSrc = $img[0];
+				if(!empty($img[0])) {
+					$imgSrc = $img[0];
+				}
 			}
 		}
 
@@ -209,33 +180,21 @@ class PixAlert {
 			$output .= '<div class="pix-alert-icon d-inline-flex align-items-center mb-2 mb-sm-0 order-2">';
 
 			if ($media_type == "icon" || $media_type == "duo_icon") {
-				if (\PixfortCore::instance()->icons::$isEnabled) {
-					if ($media_type == "duo_icon") {
-						$icon = $pix_duo_icon;
-					}
-					if (str_contains($icon, 'Duotone/')) {
-						$icon_size = $icon_size_div;
-					}
-					$output .= '<div class="d-inline-flex align-items-center position-relative text-center ' . $alertTitleMarginMedia . '" ' . 'style="font-size:' . $icon_size . 'px;">';
-					$output .= \PixfortCore::instance()->icons->getIcon($icon, $icon_size, $i_color);
-					$output .= '</div>';
-				} else {
-					if ($media_type == "icon") {
-						$output .= '<div class="' . $alertTitleMarginMedia . ' feature_img" style="position:relative;text-align:center;"><i style="display:inline-block;font-size:' . $icon_size . 'px;min-width:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle ' . $icon . '"></i></div>';
-					} else if ($media_type == "duo_icon") {
-						if (!empty($pix_duo_icon)) {
-							$output .= '<div class=" ' . $alertTitleMarginMedia . ' ' . $i_color . '" style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;">';
-							$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $pix_duo_icon . '.svg');
-							$output .= '</div>';
-						}
-					}
+				if ($media_type == "duo_icon") {
+					$icon = $pix_duo_icon;
 				}
+				if (str_contains($icon, 'Duotone/')) {
+					$icon_size = $icon_size_div;
+				}
+				$output .= '<div class="d-inline-flex align-items-center position-relative text-center ' . $alertTitleMarginMedia . '" ' . 'style="font-size:' . $icon_size . 'px;">';
+				$output .= \PixfortCore::instance()->icons->getIcon($icon, $icon_size, $i_color);
+				$output .= '</div>';
 			}
 
-			if ($media_type == "image") {
-				$output .= '<div class="feature_img ' . $alertTitleMarginMedia . ' d-inline-block position-relative" style="' . $size_style . '"><img style="' . $size_style . '" class="img-fluid2 pix-fit-cover ' . $circle . '" src="' . $imgSrc . '" alt="' . do_shortcode($title) . '"></div>';
+			if ($media_type == "image" && $imgSrc) {
+				$output .= '<div class="feature_img ' . $alertTitleMarginMedia . ' d-inline-block position-relative" style="' . $size_style . '"><img style="' . $size_style . '" class="pix-fit-cover ' . $circle . '" src="' . $imgSrc . '" alt="' . do_shortcode($title) . '"></div>';
 			} else if ($media_type == "char") {
-				$output .= '<div class="d-inline-block  ' . $alertTitleMarginMedia . '" ' . ' feature_img" style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="display:inline-block;font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle">' . $char . '</span></div>';
+				$output .= '<div class="d-inline-flex justify-content-center align-items-center  ' . $alertTitleMarginMedia . '" ' . ' feature_img" style="width:' . $icon_size_div . 'px;height:' . $icon_size_div . 'px;position:relative;line-height:' . $icon_size_div . 'px;text-align:center;"><span style="display:inline-block;font-size:' . $icon_size . 'px;line-height:' . $icon_size . 'px;' . $i_custom_color . '" class="' . $i_color . ' align-middle">' . $char . '</span></div>';
 			}
 			$output .= '</div>';
 		}

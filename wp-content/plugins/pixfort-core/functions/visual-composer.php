@@ -1,7 +1,6 @@
 <?php
 
 /**
- * Visual Composer functions
  *
  * @package pixfort-core
  * @author PixFort
@@ -9,23 +8,24 @@
  */
 
 
-function pix_set_vc_as_theme() {
-	// Setup VC to be part of a theme
-	if (function_exists('vc_set_as_theme')) {
-		vc_set_as_theme(true);
-	}
-	$child_dir = plugin_dir_path(dirname(__FILE__)) . 'functions/vc_templates';
-	// vc_set_shortcodes_templates_dir($parent_dir);
-	// Link your VC elements's folder
-	if (function_exists('vc_set_shortcodes_templates_dir')) {
-		vc_set_shortcodes_templates_dir($child_dir);
-	}
-	// Disable Instructional/Help Pointers
-	if (function_exists('vc_pointer_load')) {
-		remove_action('admin_enqueue_scripts', 'vc_pointer_load');
-	}
-}
-add_action('vc_before_init', 'pix_set_vc_as_theme');
+// function pix_set_vc_as_theme() {
+// 	// Setup VC to be part of a theme
+// 	if (function_exists('vc_set_as_theme')) {
+// 		vc_set_as_theme(true);
+// 	}
+// 	$child_dir = plugin_dir_path(dirname(__FILE__)) . 'functions/vc_templates';
+	
+// 	// vc_set_shortcodes_templates_dir($parent_dir);
+// 	// Link your VC elements's folder
+// 	if (function_exists('vc_set_shortcodes_templates_dir')) {
+// 		vc_set_shortcodes_templates_dir($child_dir);
+// 	}
+// 	// Disable Instructional/Help Pointers
+// 	if (function_exists('vc_pointer_load')) {
+// 		remove_action('admin_enqueue_scripts', 'vc_pointer_load');
+// 	}
+// }
+// add_action('vc_before_init', 'pix_set_vc_as_theme');
 
 // Prevent WP from adding <p> tags on all post types
 function disable_wp_auto_p($content) {
@@ -50,54 +50,27 @@ function disable_wp_auto_p($content) {
 }
 add_filter('the_content', 'disable_wp_auto_p', 0);
 
-// After VC Init
-add_action('vc_after_init', 'vc_after_init_actions');
-
-function vc_after_init_actions() {
-	// Enable VC by default on a list of Post Types
-	if (function_exists('vc_set_default_editor_post_types')) {
-		$list = array(
-			'page',
-			'post',
-			'pixfooter',
-			'portfolio',
-			'pixpopup', // add here your custom post types slug
-		);
-		vc_set_default_editor_post_types($list);
-	}
-}
-
-function pix_add_params_to_group($params, $group) {
-	if (!empty($group)) {
-		$res = array();
-		foreach ($params as $key => $value) {
-			$value['group'] = $group;
-			array_push($res, $value);
+if(!function_exists('pix_add_params_to_group')){
+	function pix_add_params_to_group($params, $group) {
+		if (!empty($group)) {
+			$res = array();
+			foreach ($params as $key => $value) {
+				$value['group'] = $group;
+				array_push($res, $value);
+			}
+			return $res;
 		}
-		return $res;
+		return $params;
 	}
-	return $params;
 }
 
-/* ---------------------------------------------------------------------------
-* Shortcodes | Image compatibility
-* --------------------------------------------------------------------------- */
-// if( ! function_exists( 'pix_vc_image' ) ){
-// 	function pix_vc_image( $image = false ){
-// 		if( $image && is_numeric( $image ) ){
-// 			$image = wp_get_attachment_image_src( $image, 'full' );
-// 			$image = $image[0];
-// 		}
-// 		return $image;
-// 	}
-// }
 
 /* ---------------------------------------------------------------------------
 * Shortcodes | Visual Composer Map:
 * --------------------------------------------------------------------------- */
-if (is_user_logged_in()) {
-	require_once('vc_templates/custom/main.php');
-}
+// if (is_user_logged_in()) {
+// 	require_once('vc_templates/custom/main.php');
+// }
 
 if (class_exists('PixfortHub')) {
 	$status = PixfortHub::checkValidation();
@@ -131,7 +104,6 @@ if (!function_exists('pix_vc_integration')) {
 			"Purple"				=> "purple",
 			"Orange"				=> "orange",
 			"Cyan"					=> "cyan",
-			// "Transparent"					=> "transparent",
 			"Gray 1"				=> "gray-1",
 			"Gray 2"				=> "gray-2",
 			"Gray 3"				=> "gray-3",
@@ -280,9 +252,7 @@ if (!function_exists('pix_vc_integration')) {
 			require_once('elements/shortcode-button.php');
 			require_once('elements/shortcode-blog.php');
 			require_once('elements/shortcode-blog-slider.php');
-			// if(defined('PIX_DEV')){
 			// require_once( 'elements/shortcode-breadcrumbs.php' );
-			// }
 			require_once('elements/shortcode-card.php');
 			// require_once( 'elements/shortcode-card-group.php' );
 			require_once('elements/shortcode-card-wide.php');
@@ -353,9 +323,9 @@ if (!function_exists('pix_vc_integration')) {
 					'heading' 		=> __('Content align', 'pixfort-core'),
 					'admin_label'	=> false,
 					'value'			=> array_flip(array(
-						'text-left'			=> 'Left',
+						'text-left'			=> 'Start',
 						'text-center'		=> 'Center',
-						'text-right' 		=> 'Right',
+						'text-right' 		=> 'End',
 					)),
 				),
 			));
@@ -393,32 +363,8 @@ if (!function_exists('pix_vc_integration')) {
 	}
 }
 
-// Function to override the default parameters
-// function override_custom_shortcode_defaults($data) {
-// 	echo '<pre>';
-// 	var_dump($data);
-// 	echo '</pre>';
-// 	if(\PixfortCore::instance()->icons::$isEnabled ) {
-// 		// Check if the data contains your custom shortcode
-// 		foreach ($data as &$element) {
-// 			if ($element['shortcode'] == 'pix_icon') {
-// 				// Override the default parameters here
-// 				$element['params']['icon_size'] = (int)$element['params']['icon_size']*2;
-// 			}
-// 		}
-//     }
-//     return $data;
-// }
-
-// // Hook the function into vc_load_default_templates
-// add_filter('vc_load_default_templates', 'override_custom_shortcode_defaults');
-
-
 function pix_vc_scripts_front() {
 	$isPixfortIcons = true;
-	if (!\PixfortCore::instance()->icons::$isEnabled) {
-		$isPixfortIcons = false;
-	}
 	$customIcons = [];
 	$customIcons = apply_filters( 'pixfort_custom_font_icons', $customIcons );
 	wp_enqueue_script('pixfort-admin-vc-icons', PIX_CORE_PLUGIN_URI . 'dist/main/wpbakery/wpbakery-icons-selector.js', ['jquery'], time(), true);
@@ -433,7 +379,10 @@ function pix_vc_scripts_front() {
 	wp_enqueue_style('spectrum-picker', PIX_CORE_PLUGIN_URI . '/functions/js/params/spectrum.min.css', false, PLUGIN_VERSION, 'all');
 	wp_enqueue_style('pix-gradient-picker', PIX_CORE_PLUGIN_URI . '/functions/js/params/grapick.min.css', false, PLUGIN_VERSION, 'all');
 	$icons_admin = pix_admin_icons();
-	$templates = pix_get_templates_thumbs();
+	$templates = [];
+	if(function_exists('pix_get_templates_wpb_thumbs')){
+		$templates = pix_get_templates_wpb_thumbs();
+	}
 	$translation_array = array(
 		'PIX_CORE_PLUGIN_URI' => PIX_CORE_PLUGIN_URI,
 		'PIX_ICONS_ADMIN' => $icons_admin,
@@ -449,9 +398,6 @@ add_action('vc_frontend_editor_render', 'pix_vc_scripts_front');
 
 function pix_vc_scripts_back() {
 	$isPixfortIcons = true;
-	if (!\PixfortCore::instance()->icons::$isEnabled) {
-		$isPixfortIcons = false;
-	}
 	$customIcons = [];
 	$customIcons = apply_filters( 'pixfort_custom_font_icons', $customIcons );
 	wp_enqueue_script('pixfort-admin-vc-icons', PIX_CORE_PLUGIN_URI . 'dist/main/wpbakery/wpbakery-icons-selector.js', ['jquery'], time(), true);
@@ -467,7 +413,10 @@ function pix_vc_scripts_back() {
 	wp_enqueue_style('spectrum-picker', PIX_CORE_PLUGIN_URI . '/functions/js/params/spectrum.min.css', false, PLUGIN_VERSION, 'all');
 	wp_enqueue_style('pix-gradient-picker', PIX_CORE_PLUGIN_URI . '/functions/js/params/grapick.min.css', false, PLUGIN_VERSION, 'all');
 	$icons_admin = pix_admin_icons();
-	$templates = pix_get_templates_thumbs();
+	$templates = [];
+	if(function_exists('pix_get_templates_wpb_thumbs')){
+		$templates = pix_get_templates_wpb_thumbs();
+	}
 	$translation_array = array(
 		'PIX_CORE_PLUGIN_URI' => PIX_CORE_PLUGIN_URI,
 		'PIX_ICONS_ADMIN' => $icons_admin,

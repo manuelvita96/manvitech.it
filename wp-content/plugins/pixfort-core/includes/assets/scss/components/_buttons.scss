@@ -6,7 +6,8 @@
 .btn {
     display: inline-block;
     font-weight: $btn-font-weight;
-    color: $body-color;
+    // color: var(--pix-btn-color, var(--pix-body-color));
+    color: var(--pix-body-color);
     text-align: center;
     vertical-align: middle;
     -webkit-user-select: none;
@@ -15,23 +16,18 @@
     background-color: transparent;
     border: $btn-border-width solid transparent;
     margin-right: 10px;
-    @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-line-height, $btn-border-radius);
+    // @include button-size($btn-padding-y, $btn-padding-x, $btn-font-size, $btn-line-height, $btn-border-radius);
+    @include button-size-v2($btn-padding-t, $btn-padding-r, $btn-padding-b, $btn-padding-l, $btn-font-size, $btn-line-height, $btn-border-radius);
     @include transition($btn-transition);
     line-break: normal;
-    @include hover {
-        color: $body-color;
-        text-decoration: none;
-    }
-    i {
-        position: relative;
-        vertical-align: middle !important;
-        font-weight: normal !important;
-    }
+    // @include hover {
+    //     // color: var(--pix-btn-color, var(--pix-body-color));
+    //     text-decoration: none;
+    // }
 
     &:focus,
     &.focus {
         outline: 0;
-        // box-shadow: $btn-focus-box-shadow;
     }
 
     &.no-padding {
@@ -54,7 +50,12 @@
     &:not(:disabled):not(.disabled) {
         cursor: pointer;
     }
-
+    &.btn-rounded {
+        border-radius: 9999px !important;
+        &:before {
+            border-radius: 9999px !important;
+        }
+    }
     &.btn-flat {
         position: relative;
         overflow: hidden;
@@ -67,14 +68,6 @@
             display: inline-block;
             height: 2px;
             background: rgba(0,0,0,0.2);
-        }
-    }
-    .pixfort-icon {
-        &.ml-2 {
-            margin-right: -0.25em;
-        }
-        &.mr-2 {
-            margin-left: -0.25em;
         }
     }
 }
@@ -92,17 +85,27 @@ fieldset:disabled a.btn {
 %base-btn-style {
     color: var(--pix-btn-color);
     @include box-shadow($btn-box-shadow);
-    text-shadow:0px;
-    // background-color: var(--pix-btn-bg);
-    // &:hover {
-    //     background-color: color-mix(in srgb, var(--pix-btn-bg) 92%, var(--text-black));
+    background-color: var(--pix-btn-background);
+    &:hover,
+    &:focus,
+    &.focus {
+        background-color: color-mix(in hsl increasing hue, var(--pix-btn-background) 90%, black 5%);
+    }
+    // &:not(:disabled):not(.disabled):not(.btn-custom-bg):active,
+    // &:not(:disabled):not(.disabled):not(.btn-custom-bg).active,
+    // .show > &.dropdown-toggle {
+    //     color: var(--btn-dropdown-color);
+    //     background-color: var(--btn-dropdown-bg) !important;
     // }
+
 }
 
 @each $color, $value in $theme-colors {
     .btn-#{$color} {
         @extend %base-btn-style;
         @include button-variant($value, $value, darken($value, 4%));
+        // @include button-variant-dynamic($color, $value, $value, darken($value, 4%));
+        
     }
 }
 .btn-primary-light {
@@ -133,33 +136,38 @@ fieldset:disabled a.btn {
 
 [class^='btn-outline-'], [class*=' btn-outline-'] { 
     color: var(--pix-btn-outline-color, $primary);
-    border: 2px solid var(--pix-btn-outline-color, $primary);
-    padding: calc(#{$btn-padding-y} - #{$btn-outline-border-width}) $btn-padding-x;
+    // border: 2px solid var(--pix-btn-outline-color, $primary);
+    // padding: calc(#{$btn-padding-y} - #{$btn-outline-border-width}) $btn-padding-x;
+    box-shadow: 0 0 0 2px var(--pix-btn-outline-color, $primary) inset !important;
     &:hover {
         background-color: var(--pix-btn-outline-color, $primary);
-        border-color: var(--pix-btn-outline-color, $primary) !important;
+        // border-color: var(--pix-btn-outline-color, $primary) !important;
     }
     &:focus,
     &.focus {
-        box-shadow: 0 0 0 .2rem var(--pix-btn-outline-color-opacity, rgba($primary, .5));
+        // box-shadow: 0 0 0 2px var(--pix-btn-outline-color, $primary) inset,
+        //             0 0 0 .2rem var(--pix-btn-outline-color-opacity, rgba($primary, .5)) !important;
+        box-shadow: 0 0 0 2px var(--pix-btn-outline-color, $primary) inset,
+                0 0 0 .2rem color-mix(in hsl increasing hue, var(--pix-btn-outline-color) 50%, transparent) !important;
     }
+    
     &.disabled,
     &:disabled {
         color: var(--pix-btn-outline-color, $primary);
         background-color: transparent;
     }
-    &.btn-xl {
-        padding: calc(#{$btn-padding-y-xl} - #{$btn-outline-border-width}) $btn-padding-x-xl !important;
-    }
-    &.btn-lg {
-        padding: calc(#{$btn-padding-y-lg} - #{$btn-outline-border-width}) $btn-padding-x-lg !important;
-    }
-    &.btn-md {
-        padding: calc(#{$btn-padding-y-md} - #{$btn-outline-border-width}) $btn-padding-x-md !important;
-    }
-    &.btn-sm {
-        padding: calc(#{$btn-padding-y-sm} - #{$btn-outline-border-width}) $btn-padding-x-sm !important;
-    }
+    // &.btn-xl {
+    //     padding: calc(#{$btn-padding-y-xl} - #{$btn-outline-border-width}) $btn-padding-x-xl !important;
+    // }
+    // &.btn-lg {
+    //     padding: calc(#{$btn-padding-y-lg} - #{$btn-outline-border-width}) $btn-padding-x-lg !important;
+    // }
+    // &.btn-md {
+    //     padding: calc(#{$btn-padding-y-md} - #{$btn-outline-border-width}) $btn-padding-x-md !important;
+    // }
+    // &.btn-sm {
+    //     padding: calc(#{$btn-padding-y-sm} - #{$btn-outline-border-width}) $btn-padding-x-sm !important;
+    // }
 }
 
 /*
@@ -182,7 +190,8 @@ fieldset:disabled a.btn {
     position: relative;
     &:before {
         content: " ";
-        box-shadow: 0 0 0 2px var(--pix-btn-line-color-opacity, rgba($primary, .5)) inset;
+        // box-shadow: 0 0 0 2px var(--pix-btn-line-color-opacity, rgba($primary, .5)) inset;
+        box-shadow: 0 0 0 2px color-mix(in hsl increasing hue, var(--pix-btn-line-color, $primary) 50%, transparent) inset;
         position: absolute;
         top: 0;
         left: 0;
@@ -198,7 +207,7 @@ fieldset:disabled a.btn {
     &:active {
         color: var(--pix-btn-line-color, $primary);
         border-color: var(--pix-btn-line-color, $primary);
-        box-shadow: 0 0 0 2px var(--pix-btn-line-color-opacity, rgba($primary, .5)) inset !important;
+        // box-shadow: 0 0 0 2px var(--pix-btn-line-color-opacity, rgba($primary, .5)) inset !important;
         background-color: transparent;
         opacity: 0.75;
     }
@@ -248,7 +257,7 @@ fieldset:disabled a.btn {
         box-sizing: border-box;
         display:block;
     }
-    @include hover {
+    &:hover {
         color: var(--pix-btn-underline-color, $primary);
         background-color: transparent;
         opacity: 0.75;
@@ -261,25 +270,18 @@ fieldset:disabled a.btn {
     &:focus,
     &:active {
         background: transparent;
-        color: var(--pix-btn-underline-color-opacity, rgba($primary, .75));
-        span:before {
-            background: var(--pix-btn-underline-color-opacity, rgba($primary, .75));
-        }
+        opacity: 0.75;
     }
-    &.disabled,
-    &:disabled {
-        color: var(--pix-btn-underline-color, $primary);
-        background-color: transparent;
-    }
-    &:not(:disabled):not(.disabled):active,
-    &:not(:disabled):not(.disabled).active,
+    &:active,
+    &.active,
     .show > &.dropdown-toggle {
         box-shadow: none;
         span:before {
             transform: scaleX(1);
-            background: var(--pix-btn-underline-color-opacity, rgba($primary, .75));
+            opacity: 0.75;
         }
     }
+
 }
 
 /*
@@ -290,6 +292,14 @@ fieldset:disabled a.btn {
         @include button-blink-variant($value);
     }
 }
+@each $color, $value in $opacity-values {
+    .btn-blink-dark-#{$color} {
+        @include button-blink-variant(rgba(darken(desaturate($primary, 85%), 55%), $value));
+    }
+    .btn-blink-light-#{$color} {
+        @include button-blink-variant(rgba(#fff, $value));
+    }
+  }
 .btn-blink-primary-light {
     @include button-blink-variant(lighten($primary, 20%));
 }
@@ -316,7 +326,7 @@ fieldset:disabled a.btn {
         transform-origin: right center;
         z-index: -1;
     }
-    @include hover {
+    &:hover {
         color: var(--pix-btn-blink-color-hover, #fff);
         background-color: transparent;
         opacity: 1;
@@ -357,13 +367,11 @@ fieldset:disabled a.btn {
     color: $link-color;
     @include hover {
         color: $link-hover-color;
-        -webkit-text-decoration: $link-hover-decoration;
-                text-decoration: $link-hover-decoration;
+        // text-decoration: $link-hover-decoration;
     }
     &:focus,
     &.focus {
-        -webkit-text-decoration: $link-hover-decoration;
-                text-decoration: $link-hover-decoration;
+        // text-decoration: $link-hover-decoration;
         box-shadow: none;
     }
     &:disabled,
@@ -379,19 +387,23 @@ fieldset:disabled a.btn {
 * Button Sizes
 */
 .btn-xl {
-    @include button-size($btn-padding-y-xl, $btn-padding-x-xl, $btn-font-size-xl, $btn-line-height-xl, $btn-border-radius-xl);
+    // @include button-size($btn-padding-y-xl, $btn-padding-x-xl, $btn-font-size-xl, $btn-line-height-xl, $btn-border-radius-xl);
+    @include button-size-v2($btn-padding-t-xl, $btn-padding-r-xl, $btn-padding-b-xl, $btn-padding-l-xl, $btn-font-size-xl, $btn-line-height-xl, $btn-border-radius-xl);
 }
 
 .btn-lg {
-    @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-line-height-lg, $btn-border-radius-lg);
+    // @include button-size($btn-padding-y-lg, $btn-padding-x-lg, $btn-font-size-lg, $btn-line-height-lg, $btn-border-radius-lg);
+    @include button-size-v2($btn-padding-t-lg, $btn-padding-r-lg, $btn-padding-b-lg, $btn-padding-l-lg, $btn-font-size-lg, $btn-line-height-lg, $btn-border-radius-lg);
 }
 
 .btn-md {
-    @include button-size($btn-padding-y-md, $btn-padding-x-md, $btn-font-size-md, $btn-line-height-md, $btn-border-radius-md);
+    // @include button-size($btn-padding-y-md, $btn-padding-x-md, $btn-font-size-md, $btn-line-height-md, $btn-border-radius-md);
+    @include button-size-v2($btn-padding-t-md, $btn-padding-r-md, $btn-padding-b-md, $btn-padding-l-md, $btn-font-size-md, $btn-line-height-md, $btn-border-radius-md);
 }
 
 .btn-sm {
-    @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-line-height-sm, $btn-border-radius-sm);
+    // @include button-size($btn-padding-y-sm, $btn-padding-x-sm, $btn-font-size-sm, $btn-line-height-sm, $btn-border-radius-sm);
+    @include button-size-v2($btn-padding-t-sm, $btn-padding-r-sm, $btn-padding-b-sm, $btn-padding-l-sm, $btn-font-size-sm, $btn-line-height-sm, $btn-border-radius-sm);
 }
 
 

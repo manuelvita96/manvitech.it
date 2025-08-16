@@ -7,9 +7,12 @@ class pix_promo_box extends WP_Widget {
             // Base ID of your widget
             'pix_promo_box',
             // Widget name will appear in UI
-            __('PixFort Promo Box', 'pixfort-core'),
+            __('pixfort Legacy Promo Box', 'pixfort-core'),
             // Widget description
-            array('description' => __('Promo Box widget', 'pixfort-core'),)
+            [
+                'description' => __('Promo Box widget', 'pixfort-core'),
+                'show_instance_in_rest' => true
+            ]
         );
     }
     // Creating widget front-end

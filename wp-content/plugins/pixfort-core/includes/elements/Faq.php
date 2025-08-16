@@ -113,60 +113,17 @@ class PixFaq {
 		$output .= '<div><div class="slide-in-container"><' . $title_tag . ' class="d-flex align-items-center mb-3 ' . $titleClasses . '" style="' . $t_custom_color . $t_size_style . '" data-anim-type="' . $animation . '" data-anim-delay="' . $delay . '">';
 
 		$margin10 = is_rtl() ? 'pix-ml-10' : 'pix-mr-10';
-		if(\PixfortCore::instance()->icons::$isEnabled) {
-			if ($media_type == "duo_icon") {
-				$icon = $pix_duo_icon;
-			}
-			$output .= '<span class="pix-faq-icon d-inline-flex align-items-center '.$margin10.' ' . $icon_class . '" style="' . $icon_style . '">';
-			$output .= \PixfortCore::instance()->icons->getIcon($icon);
-			$output .= '</span>';
-		} else {
-			/*
-			* Deprecated Icons 
-			*/
-			$icon = \PixfortCore::instance()->icons->verifyIconName($icon);
-			if ($media_type == "icon") {
-				if(!str_contains($icon, 'pixicon') && !str_contains($icon, 'Line/') && !str_contains($icon, 'Solid/')) {
-					$pix_duo_icon = $icon;
-					$media_type = "duo_icon";
-				} else {
-					if (!empty($icon)) {
-						$output .= '<i class="pix-faq-icon position-relative ' . $icon . ' pix-mr-10 ' . $icon_class . ' align-baseline" style="' . $icon_style . '"></i>';
-					}
-				}
-			}
-			if ($media_type == "duo_icon") {
-				if (!empty($pix_duo_icon)) {
-					$output .= '<span class="d-inline-block svg-242 pix-mr-10 ' . $icon_class . '" style="' . $icon_style . '">';
-					$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $pix_duo_icon . '.svg');
-					$output .= '</span>';
-				}
-			}
-			/*
-			* End of Deprecated Icons
-			*/
+		if ($media_type == "duo_icon") {
+			$icon = $pix_duo_icon;
 		}
-		// if (!empty($media_type)) {
-		// 	if ($media_type == 'duo_icon') {
-		// 		if (!empty($pix_duo_icon)) {
-		// 			$output .= '<span class="d-inline-block svg-242 pix-mr-10 ' . $icon_class . '" style="' . $icon_style . '">';
-		// 			$output .= pix_load_inline_svg(PIX_CORE_PLUGIN_DIR . '/functions/images/icons/' . $pix_duo_icon . '.svg');
-		// 			$output .= '</span>';
-		// 		}
-		// 	}
-		// 	if ($media_type == 'icon') {
-		// 		if (!empty($icon)) {
-		// 			$output .= '<i class="pix-faq-icon position-relative ' . $icon . ' pix-mr-10 ' . $icon_class . ' align-baseline" style="' . $icon_style . '"></i>';
-		// 		}
-		// 	}
-		// }
+		$output .= '<span class="pix-faq-icon d-inline-flex align-items-center '.$margin10.' ' . $icon_class . '" style="' . $icon_style . '">';
+		$output .= \PixfortCore::instance()->icons->getIcon($icon);
+		$output .= '</span>';
 		$output .= '<span class="' . $t_color . '">' . $title . '</span>';
 		$output .= '</' . $title_tag . '></div></div>';
-
 		if (!empty($content)) {
 			$output .= '<div class="slide-in-container d-inline-block w-100"><div class="' . $c_classes . ' ' . $content_size . ' ' . $contentClasses . '" data-anim-type="' . $content_animation . '" data-anim-delay="' . $content_delay . '" style="' . $c_custom_color . '">' . do_shortcode($content) . '</div></div>';
 		}
-
 		$output .= '</div>';
 
 		return $output;

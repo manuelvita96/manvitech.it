@@ -7,9 +7,12 @@ class pix_categories extends WP_Widget {
 			// Base ID of your widget
 			'pix_categories',
 			// Widget name will appear in UI
-			__('PixFort Categories', 'pixfort-core'),
+			__('pixfort Legacy Categories', 'pixfort-core'),
 			// Widget description
-			array('description' => __('Categories widget', 'pixfort-core'),)
+			[
+				'description' => __('Categories widget', 'pixfort-core'),
+				'show_instance_in_rest' => true
+			]
 		);
 	}
 	// Creating widget front-end

@@ -1,7 +1,7 @@
 <?php
 
 if (!defined('ABSPATH')) {
-	exit; // Exit if accessed directly.
+    exit; // Exit if accessed directly.
 }
 
 /* ---------------------------------------------------------------------------
@@ -9,7 +9,7 @@ if (!defined('ABSPATH')) {
 * --------------------------------------------------------------------------- */
 class PixPhotoBox {
 
-	function render($attr, $content = null) {
+    function render($attr, $content = null) {
         extract(shortcode_atts(array(
             'image'  => '',
             'title'  => '',
@@ -46,94 +46,63 @@ class PixPhotoBox {
             'css'         => '',
         ), $attr));
 
-
         $css_class = '';
         if (function_exists('vc_shortcode_custom_css_class')) {
             $css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
         }
-
-        $style_arr = array(
-            "" => "",
-            "1"       => "shadow-sm",
-            "2"       => "shadow",
-            "3"       => "shadow-lg",
-            "4"       => "shadow-inverse-sm",
-            "5"       => "shadow-inverse",
-            "6"       => "shadow-inverse-lg",
-        );
-
-        $hover_effect_arr = array(
-            ""       => "",
-            "1"       => "shadow-hover-sm",
-            "2"       => "shadow-hover",
-            "3"       => "shadow-hover-lg",
-            "4"       => "shadow-inverse-hover-sm",
-            "5"       => "shadow-inverse-hover",
-            "6"       => "shadow-inverse-hover-lg",
-        );
-
-        $add_hover_effect_arr = array(
-            ""       => "",
-            "1"       => "fly-sm",
-            "2"       => "fly",
-            "3"       => "fly-lg",
-            "4"       => "scale-sm",
-            "5"       => "scale",
-            "6"       => "scale-lg",
-            "7"       => "scale-inverse-sm",
-            "8"       => "scale-inverse",
-            "9"       => "scale-inverse-lg",
-        );
 
         $output = '';
         $class_names = '';
 
 
         $imgSrcset = '';
+        $imgSrc = '';
         if (is_string($image) && substr($image, 0, 4) === "http") {
             $img = $image;
             $imgSrc = $img;
         } else {
             if (!empty($image['id'])) {
+                if ( is_int( $image['id'] ) ) {
+                    $image['id'] = apply_filters( 'wpml_object_id', $image['id'], 'attachment', true );
+                }
                 $img = wp_get_attachment_image_src($image['id'], "full");
                 $imgSrcset = wp_get_attachment_image_srcset($image['id']);
             } else {
+                if ( is_int( $image ) ) {
+                    $image = apply_filters( 'wpml_object_id', $image, 'attachment', true );
+                }
                 $img = wp_get_attachment_image_src($image, "full");
                 $imgSrcset = wp_get_attachment_image_srcset($image);
             }
-            $imgSrc = $img[0];
+            if (!empty($img[0])) {
+                $imgSrc = $img[0];
+            }
         }
-        $classes = array();
+        $classes = [];
         array_push($classes, esc_attr($css_class));
 
-        if ($style) {
-            array_push($classes, $style_arr[$style]);
-        }
-        if ($hover_effect) {
-            array_push($classes, $hover_effect_arr[$hover_effect]);
-        }
-        if ($add_hover_effect) {
-            array_push($classes, $add_hover_effect_arr[$add_hover_effect]);
-        }
+        $effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
+		array_push($classes, $effectsClasses);
+
 
         if (!empty($align)) {
             array_push($classes, $align);
             array_push($classes, "w-100");
         }
-        $inline_style = '';
-        if (!empty($width)) {
-            $inline_style .= 'max-width:' . $width . ';';
-        } else {
-            if (!empty($height)) {
-                $inline_style .= 'width:auto;';
-            }
-        }
-        if (!empty($height)) {
-            $inline_style .= 'max-height:' . $height . ';';
-        } else {
-            $inline_style .= 'height:auto;';
-        }
-        array_push($classes, 'd-inline-block');
+        // $inline_style = '';
+        // if (!empty($width)) {
+        //     $inline_style .= 'max-width:' . $width . ';';
+        // } else {
+        //     if (!empty($height)) {
+        //         $inline_style .= 'width:auto;';
+        //     }
+        // }
+        // if (!empty($height)) {
+        //     $inline_style .= 'max-height:' . $height . ';';
+        // } else {
+        //     $inline_style .= 'height:auto;';
+        // }
+        array_push($classes, 'd-inline-flex');
 
 
 
@@ -160,7 +129,7 @@ class PixPhotoBox {
         $t_custom = 'style="' . $t_custom . '"';
 
 
-        $inline_style = 'style="' . $inline_style . '"';
+        // $inline_style = 'style="' . $inline_style . '"';
         $class_names = join(' ', $classes);
         $title_class_names = join(' ', $title_classes);
 
@@ -172,8 +141,6 @@ class PixPhotoBox {
         }
 
         $output = '';
-
-
 
 
 
@@ -208,27 +175,22 @@ class PixPhotoBox {
 
 
         $output .= '<div class="card w-100 h-100 bg-heading-default bg-transparent ' . $class_names . ' pix-hover-item ' . $rounded_img . ' position-relative overflow-hidden text-white" ' . $jarallax . '>';
-        // if (pix_plugin_get_option('pix-disable-lazy-images', false)) {
-            $output .= '<img srcset="' . $imgSrcset . '" src="' . $imgSrc . '" class="card-img pix-bg-image h-100 pix-img-scale pix-opacity-10 ' . $rounded_img . ' ' . $color_effect . '" alt="' . $title . '">';
-        // } else {
-        //     $output .= '<img src="' . PIX_IMG_PLACEHOLDER . '" data-srcset="' . $imgSrcset . '" data-src="' . $imgSrc . '" class="pix-lazy card-img pix-bg-image h-100 pix-img-scale pix-opacity-10 ' . $rounded_img . ' ' . $color_effect . '" loading="lazy" alt="' . $title . '">';
-        // }
+        $output .= '<img srcset="' . $imgSrcset . '" src="' . $imgSrc . '" class="card-img pix-bg-image h-100 pix-img-scale pix-opacity-10 ' . $rounded_img . ' ' . $color_effect . '" alt="' . $title . '">';
         if (!empty($link)) {
-            $output .= '<a href="' . $link . '" ' . $target_out . ' class="card-img-overlay2 d-inline-block w-100 pix-img-overlay pix-p-10 d-flex align-items-end" ' . $box_height . '>';
+            $output .= '<a href="' . $link . '" ' . $target_out . ' class="d-inline-block w-100 pix-img-overlay pix-p-10 d-flex align-items-end" ' . $box_height . '>';
         } else {
-            $output .= '<span class="card-img-overlay2 d-inline-block w-100 pix-img-overlay pix-p-10 d-flex align-items-end" ' . $box_height . '>';
+            $output .= '<span class="d-inline-block w-100 pix-img-overlay pix-p-10 d-flex align-items-end" ' . $box_height . '>';
         }
 
         $output .= '<div class="w-100">';
         if (!empty($title)) {
-            $output .= '<div class="card-content-box pix-p-20 ' . $rounded_img . ' w-100 shadow ' . $title_effect . ' bg-white d-flex justify-content-between align-items-center">';
+            $output .= '<div class="card-content-box pix-p-20 ' . $rounded_img . ' w-100 shadow ' . $title_effect . ' bg-dynamic-background d-flex justify-content-between align-items-center">';
             $output .= '<' . $t_tag . ' class="card-title ' . $title_class_names . '  text-' . $title_color . ' m-0 w-100" ' . $t_custom . '>' . $title . '</' . $t_tag . '>';
-            // $output .= '<' . $t_tag . ' class="pixicon-angle-right text-' . $title_color . ' font-weight-bold" ' . $t_custom . '></' . $t_tag . '>';
             $iconName = 'Line/pixfort-icon-arrow-right-2';
             if (is_rtl()) {
                 $iconName = 'Line/pixfort-icon-arrow-left-2';
             }
-            $output .= '<'.$t_tag.' class="d-inline-flex align-middle text-'.$title_color.'" '.$t_custom.'>'.\PixfortCore::instance()->icons->getIcon($iconName).'</'.$t_tag.'>';
+            $output .= '<' . $t_tag . ' class="d-inline-flex align-middle text-' . $title_color . '" ' . $t_custom . '>' . \PixfortCore::instance()->icons->getIcon($iconName) . '</' . $t_tag . '>';
             $output .= '</div>';
         }
 
@@ -256,5 +218,3 @@ class PixPhotoBox {
         return $output;
     }
 }
-
-

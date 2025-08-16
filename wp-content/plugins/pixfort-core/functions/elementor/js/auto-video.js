@@ -1,9 +1,9 @@
 jQuery(window).on('elementor/frontend/init', () => {
     const addHandler = ($element) => {
-        pix_animation();
+        // pix_animation($element);
         if(window.video_element) window.video_element();
         if(window.init_tilts){
-            init_tilts();
+            init_tilts($element);
         }  
         // $element.find('video').each(function (i, elem) {
         //     this.play();

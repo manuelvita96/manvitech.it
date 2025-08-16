@@ -1,6 +1,6 @@
 <?php
 /**
- * Class for the customizer importer used in the One Click Demo Import plugin.
+ * Class for the customizer importer
  *
  * Code is mostly from the Customizer Export/Import plugin.
  *

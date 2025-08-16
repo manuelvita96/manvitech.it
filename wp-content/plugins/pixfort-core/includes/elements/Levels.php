@@ -37,7 +37,7 @@ class PixLevels {
 		if(function_exists('vc_shortcode_custom_css_class')){
 		    $css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $css, ' ' ) );
 		}
-		wp_enqueue_style('pixfort-levels-style', PIX_CORE_PLUGIN_URI.'functions/css/elements/css/levels.min.css');
+		wp_enqueue_style('pixfort-levels-style', PIX_CORE_PLUGIN_URI.'includes/assets/css/elements/levels.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 		$levels = [];
 		if(is_array($items)){
 			$levels = $items;

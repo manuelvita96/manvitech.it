@@ -56,7 +56,7 @@ class PixImgSlider {
 		if (function_exists('vc_shortcode_custom_css_class')) {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
 		}
-		wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI . 'functions/css/elements/css/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
+		wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 		wp_enqueue_script('pix-flickity-js');
 		$elementor = false;
 		if (is_array($items)) {
@@ -65,57 +65,17 @@ class PixImgSlider {
 		} else {
 			$slides_arr = vc_param_group_parse_atts($items);
 		}
-		// $slides_arr = vc_param_group_parse_atts( $items );
 
-		$style_arr = array(
-			"" => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
-
-		$hover_effect_arr = array(
-			""       => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
-
-		$add_hover_effect_arr = array(
-			""       => "",
-			"1"       => "fly-sm",
-			"2"       => "fly",
-			"3"       => "fly-lg",
-			"4"       => "scale-sm",
-			"5"       => "scale",
-			"6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-			"8"       => "scale-inverse",
-			"9"       => "scale-inverse-lg",
-		);
 
 		$output = '';
-		$classes = array();
+		$classes = [];
 		$anim_type = '';
 		$anim_delay = '';
 
 		array_push($classes, esc_attr($css_class));
 
-		if ($style) {
-			array_push($classes, $style_arr[$style]);
-		}
-		if ($hover_effect) {
-			array_push($classes, $hover_effect_arr[$hover_effect]);
-		}
-		if ($add_hover_effect) {
-			array_push($classes, $add_hover_effect_arr[$add_hover_effect]);
-		}
+		$effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
+		array_push($classes, $effectsClasses);
 
 		if (!empty($align)) {
 			array_push($classes, $align);
@@ -144,6 +104,13 @@ class PixImgSlider {
 		} else {
 			$autoplay_time = (int)$autoplay_time;
 		}
+		if(is_rtl()){
+			if($slider_effect == 'pix-circular-left'){
+				$slider_effect = 'pix-circular-right';
+			}else if($slider_effect == 'pix-circular-right'){
+				$slider_effect = 'pix-circular-left';
+			}
+		}
 		$slider_data = '';
 		$pix_id = "pix-slider-" . rand(1, 200000000);
 		$slider_opts = array(
@@ -168,26 +135,28 @@ class PixImgSlider {
 			// $output  .= '<div class="main-carousel2 pix-slider2 pix-main-slider pix-slider-1 pix-fix-x pix-slider-dots '.$dots_style.'" '.$slider_data.'>';
 			$output  .= '<div id="' . $pix_id . '" class="pix-main-slider pix-fix-x ' . $visible_overflow . ' ' . $slider_style . ' ' . $slider_effect . ' ' . $slider_scale . ' ' . $visible_y . ' pix-slider-' . $slider_num . ' pix-slider-dots ' . $dots_style . ' ' . $dots_align . '" ' . $slider_data . '>';
 			foreach ($slides_arr as $key => $value) {
-
-
 				if (!empty($value['image'])) {
-					$imgSrcset = '';
-					$imgSizes = '';
+					$imgSrc = '';
 					if (is_string($value['image']) && substr($value['image'], 0, 4) === "http") {
 						$imgSrc = $value['image'];
 					} else {
 						if ($elementor) {
+							if ( is_int( $value['image']['id'] ) ) {
+								$value['image']['id'] = apply_filters( 'wpml_object_id', $value['image']['id'], 'attachment', true );
+							}
 							$img = wp_get_attachment_image_src($value['image']['id'], "full");
-							// $imgSrcset = wp_get_attachment_image_srcset($value['image']['id']);
-							// $imgSizes = wp_get_attachment_image_sizes($value['image']['id'], "full");
 						} else {
+							if ( is_int( $value['image'] ) ) {
+								$value['image'] = apply_filters( 'wpml_object_id', $value['image'], 'attachment', true );
+							}
 							$img = wp_get_attachment_image_src($value['image'], "full");
-							// $imgSrcset = wp_get_attachment_image_srcset($value['image']);
-							// $imgSizes = wp_get_attachment_image_sizes($value['image'], "full");
 						}
-						// $img = wp_get_attachment_image_src($value['image'], "full");
-						$imgSrc = $img[0];
+						if(!empty($img[0])){
+							$imgSrc = $img[0];
+						}
 					}
+					$img_width = isset($img[1]) ? $img[1] : '';
+					$img_height = isset($img[2]) ? $img[2] : '';
 					$output .= '<div class="carousel-cell">';
 					$output .= '<div class="slide-inner ' . $cellpadding . '">';
 					$output .= '<div class="pix-slider-effects">';
@@ -210,7 +179,7 @@ class PixImgSlider {
 							$output .= '<div class="' . $pix_tilt_size . '">';
 						}
 						$output .= '<a href="' . $value['link'] . '" ' . $ntab . ' class="' . $class_names . ' ' . $rounded_img . '" ' . $anim_type . ' ' . $anim_delay . ' ' . $jarallax . '>';
-						$output .= '<img class="card-img ' . $rounded_img . ' h-100" src="' . $imgSrc . '" alt="' . $value['alt'] . '" ' . $inline_style . '/>';
+						$output .= '<img class="card-img ' . $rounded_img . ' h-100" src="' . $imgSrc . '" alt="' . $value['alt'] . '" width="' . $img_width . '" height="' . $img_height . '" ' . $inline_style . '/>';
 						$output .= '</a>';
 						if (!empty($pix_tilt)) {
 							$output .= '</div>';
@@ -235,7 +204,7 @@ class PixImgSlider {
 						}
 
 						$output .= '<div class="' . $class_names . ' ' . $rounded_img . '"  ' . $jarallax . '>';
-						$output .= '<img class="card-img ' . $rounded_img . ' h-100" src="' . $imgSrc . '" alt="' . $value['alt'] . '" ' . $inline_style . '/>';
+						$output .= '<img class="card-img ' . $rounded_img . ' h-100" src="' . $imgSrc . '" alt="' . $value['alt'] . '" width="' . $img_width . '" height="' . $img_height . '" ' . $inline_style . '/>';
 						$output .= '</div>';
 
 						if (!empty($pix_tilt)) {

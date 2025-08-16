@@ -7,11 +7,11 @@
 		'pix-heading-sidebars',
 		[
 			'type'             => 'heading',
-			'label'         => 'Sidebars',
+			'label'         => __('Sidebars', 'pixfort-core'),
 			'tab'             => 'sidebars',
 			'icon'            => 'sidebar',
 			'linkText'            => __('Learn more about sidebars', 'pixfort-core'),
-			'linkHref'            => 'https://essentials.pixfort.com/knowledge-base/how-to-create-edit-sidebars/',
+			'linkHref'            => \PixfortCore::instance()->adminCore->getParam('docs_how_to_create_edit_sidebars'),
 			'linkIcon'            => 'bookmark'
 		]
 	);

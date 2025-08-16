@@ -5,9 +5,24 @@ namespace Elementor;
 class Pix_Eor_Team_Member extends Widget_Base {
 
 	public function __construct($data = [], $args = null) {
+		if (!empty($data['settings'])) {
+			if (!empty($data['settings']['items'])) {
+				foreach ($data['settings']['items'] as $key => $value) {
+					$is_external = true;
+					if (array_key_exists('target', $data['settings']['items'][$key])) {
+						$is_external = false;
+					}
+					if (!empty($data['settings']['items'][$key]['item_link']) && !is_array($data['settings']['items'][$key]['item_link'])) {
+						$data['settings']['items'][$key]['item_link'] = [
+							'url' => $data['settings']['items'][$key]['item_link'],
+							'is_external' => $is_external,
+							'nofollow' => false,
+						];
+					}
+				}
+			}
+		}
 		parent::__construct($data, $args);
-
-		// wp_register_script( 'pix-team-member-handle', PIX_CORE_PLUGIN_URI.'functions/elementor/js/team-member.js', [ 'elementor-frontend' ], PIXFORT_PLUGIN_VERSION, true );
 	}
 
 	public function get_name() {
@@ -27,59 +42,10 @@ class Pix_Eor_Team_Member extends Widget_Base {
 	}
 
 	public function get_help_url() {
-		return 'https://essentials.pixfort.com/knowledge-base/';
+		return \PixfortCore::instance()->adminCore->getParam('docs_link');
 	}
 
 	protected function register_controls() {
-
-
-
-		$colors = array(
-			"Body default"			=> "body-default",
-			"Heading default"		=> "heading-default",
-			"Primary"				=> "primary",
-			"Primary Gradient"		=> "gradient-primary",
-			"Secondary"				=> "secondary",
-			"White"					=> "white",
-			"Black"					=> "black",
-			"Green"					=> "green",
-			"Blue"					=> "blue",
-			"Red"					=> "red",
-			"Yellow"				=> "yellow",
-			"Brown"					=> "brown",
-			"Purple"				=> "purple",
-			"Orange"				=> "orange",
-			"Cyan"					=> "cyan",
-			// "Transparent"					=> "transparent",
-			"Gray 1"				=> "gray-1",
-			"Gray 2"				=> "gray-2",
-			"Gray 3"				=> "gray-3",
-			"Gray 4"				=> "gray-4",
-			"Gray 5"				=> "gray-5",
-			"Gray 6"				=> "gray-6",
-			"Gray 7"				=> "gray-7",
-			"Gray 8"				=> "gray-8",
-			"Gray 9"				=> "gray-9",
-			"Dark opacity 1"		=> "dark-opacity-1",
-			"Dark opacity 2"		=> "dark-opacity-2",
-			"Dark opacity 3"		=> "dark-opacity-3",
-			"Dark opacity 4"		=> "dark-opacity-4",
-			"Dark opacity 5"		=> "dark-opacity-5",
-			"Dark opacity 6"		=> "dark-opacity-6",
-			"Dark opacity 7"		=> "dark-opacity-7",
-			"Dark opacity 8"		=> "dark-opacity-8",
-			"Dark opacity 9"		=> "dark-opacity-9",
-			"Light opacity 1"		=> "light-opacity-1",
-			"Light opacity 2"		=> "light-opacity-2",
-			"Light opacity 3"		=> "light-opacity-3",
-			"Light opacity 4"		=> "light-opacity-4",
-			"Light opacity 5"		=> "light-opacity-5",
-			"Light opacity 6"		=> "light-opacity-6",
-			"Light opacity 7"		=> "light-opacity-7",
-			"Light opacity 8"		=> "light-opacity-8",
-			"Light opacity 9"		=> "light-opacity-9",
-			"Custom"				=> "custom"
-		);
 
 		$this->start_controls_section(
 			'section_title',
@@ -88,16 +54,17 @@ class Pix_Eor_Team_Member extends Widget_Base {
 			]
 		);
 
-		$this->add_control(
-			'image',
-			[
-				'label' => __('Image', 'pixfort-core'),
-				'dynamic'     => array(
-					'active'  => true
-				),
-				'type' => \Elementor\Controls_Manager::MEDIA,
-			]
-		);
+		// $this->add_control(
+		// 	'image',
+		// 	[
+		// 		'label' => __('Image', 'pixfort-core'),
+		// 		'dynamic'     => array(
+		// 			'active'  => true
+		// 		),
+		// 		'type' => \Elementor\Controls_Manager::MEDIA,
+		// 	]
+		// );
+		getElementorDynamicImageControls($this, 'image', 'image_dark');
 
 		$this->add_control(
 			'name',
@@ -140,62 +107,35 @@ class Pix_Eor_Team_Member extends Widget_Base {
 		);
 
 
-		
+
 
 		$repeater = new \Elementor\Repeater();
-		if(\PixfortCore::instance()->icons::$isEnabled) {
-			$repeater->add_control(
-				'icon', [
-					'label' => esc_html__('pixfort Icon', 'pixfort-core'),
-					'type' => \Elementor\CustomControl\PixfortIconSelector_Control::PixfortIconSelector,
-					'default' => '',
-				]
-			);
-		} else {
-			$fontiocns_opts = array();
-			$fontiocns_opts[''] = array('title' => 'None', 'url' => '');
-			if (function_exists('vc_iconpicker_type_pixicons')) {
-			$pixicons = vc_iconpicker_type_pixicons(array());
-			foreach ($pixicons as $key) {
-				$fontiocns_opts[array_keys($key)[0]] = array(
-					'title'	=> array_keys($key)[0],
-					'url'	=> array_keys($key)[0]
-				);
-			}
-			}
-			$repeater->add_control(
-				'icon',
-				[
-					'label' => esc_html__('Icon', 'pixfort-core'),
-					'type' => \Elementor\CustomControl\FonticonSelector_Control::FonticonSelector,
-					'options'	=> $fontiocns_opts,
-					'default' => '',
-				]
-			);
-		}
+		$repeater->add_control(
+			'icon',
+			[
+				'label' => esc_html__('pixfort Icon', 'pixfort-core'),
+				'type' => \Elementor\CustomControl\PixfortIconSelector_Control::PixfortIconSelector,
+				'default' => '',
+			]
+		);
 		
+
 		$repeater->add_control(
 			'item_link',
 			[
 				'label' => __('Icon Link', 'pixfort-core'),
-				'type' => Controls_Manager::TEXT,
-				'default' => __('', 'pixfort-core'),
-				'label_block' => true,
-			]
-		);
-		$repeater->add_control(
-			'target',
-			[
-				'label' => __('Open in a new tab', 'pixfort-core'),
-				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __('Yes', 'pixfort-core'),
-				'label_off' => __('No', 'pixfort-core'),
-				'return_value' => 'Yes',
-				'condition' => [
-					'item_link!' => '',
+				'type' => Controls_Manager::URL,
+				'default' => [
+					'url' => '',
+					'is_external' => false,
+					'nofollow' => true,
 				],
+				'dynamic'     => array(
+					'active'  => true
+				),
 			]
 		);
+
 
 		$repeater->add_control(
 			'has_color',
@@ -213,7 +153,7 @@ class Pix_Eor_Team_Member extends Widget_Base {
 			[
 				'label' => __('Icon color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(),
 				'default' => '',
 				'condition' => [
 					'has_color' => true,
@@ -237,6 +177,7 @@ class Pix_Eor_Team_Member extends Widget_Base {
 				'label' => __('Icons', 'pixfort-core'),
 				'type' => Controls_Manager::REPEATER,
 				'title_field' => '{{{ icon }}}',
+				'prevent_empty'	=> false,
 				'fields' => $repeater->get_controls()
 			]
 		);
@@ -247,7 +188,7 @@ class Pix_Eor_Team_Member extends Widget_Base {
 			[
 				'label' => __('Overlay color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(),
 				'default' => 'gradient-primary',
 			]
 		);
@@ -385,7 +326,7 @@ class Pix_Eor_Team_Member extends Widget_Base {
 			[
 				'label' => __('Name color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(),
 				'default' => 'white',
 			]
 		);
@@ -420,10 +361,10 @@ class Pix_Eor_Team_Member extends Widget_Base {
 		$this->add_control(
 			'name_custom_size',
 			[
-				'label' => __('Custom Name size', 'elementor'),
+				'label' => __('Custom Name size', 'pixfort-core'),
 				'label_block' => false,
 				'type' => Controls_Manager::TEXT,
-				'placeholder' => __('Enter custom Name size', 'elementor'),
+				'placeholder' => __('Enter custom Name size', 'pixfort-core'),
 				'default' => '',
 				'condition' => [
 					'name_size' => 'custom',
@@ -483,7 +424,7 @@ class Pix_Eor_Team_Member extends Widget_Base {
 			[
 				'label' => __('Title color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(),
 				'default' => 'light-opacity-6',
 			]
 		);
@@ -551,7 +492,7 @@ class Pix_Eor_Team_Member extends Widget_Base {
 			[
 				'label' => __('Description color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(),
 				'default' => 'body-default',
 
 			]
@@ -600,7 +541,7 @@ class Pix_Eor_Team_Member extends Widget_Base {
 			[
 				'label' => __('Icons color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(),
 				'default' => 'body-default',
 
 			]
@@ -728,7 +669,20 @@ class Pix_Eor_Team_Member extends Widget_Base {
 
 	protected function render() {
 		$settings = $this->get_settings_for_display();
-		echo \PixfortCore::instance()->elementsManager->renderElement('TeamMember', $settings );
+		if (!empty($settings)) {
+			if (!empty($settings['items'])) {
+				foreach ($settings['items'] as $key => $value) {
+					if (!empty($settings['items'][$key]['item_link']['is_external'])) {
+						$settings['items'][$key]['target'] = $settings['items'][$key]['item_link']['is_external'];
+					}
+					if (!empty($settings['items'][$key]['item_link']['custom_attributes'])) {
+						$settings['items'][$key]['link_atts'] = $settings['items'][$key]['item_link']['custom_attributes'];
+					}
+					$settings['items'][$key]['item_link'] = $settings['items'][$key]['item_link']['url'];
+				}
+			}
+		}
+		echo \PixfortCore::instance()->elementsManager->renderElement('TeamMember', $settings);
 	}
 
 	public function get_script_depends() {

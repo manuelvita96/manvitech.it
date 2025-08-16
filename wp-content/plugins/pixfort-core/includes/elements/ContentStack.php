@@ -41,6 +41,7 @@ if(function_exists('vc_shortcode_custom_css_class')){
 }
        $el_css_class = apply_filters( VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class( $el_css, ' ' ) );
 
+       wp_enqueue_style('pixfort-content-stack-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/content-stack.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 
        $style_arr = array(
           "" => "",
@@ -126,9 +127,15 @@ if(function_exists('vc_shortcode_custom_css_class')){
     				$imgSrc = $img;
     			}else{
                     if(is_array($value['image'])&&!empty($value['image']['id'])){
+                        if ( is_int( $value['image']['id'] ) ) {
+                            $value['image']['id'] = apply_filters( 'wpml_object_id', $value['image']['id'], 'attachment', true );
+                        }
                         $img = wp_get_attachment_image_src($value['image']['id'], "full");
                         $imgSrcset = wp_get_attachment_image_srcset($value['image']['id']);
                     }else{
+                        if ( is_int( $value['image'] ) ) {
+                            $value['image'] = apply_filters( 'wpml_object_id', $value['image'], 'attachment', true );
+                        }
                         $img = wp_get_attachment_image_src($value['image'], "full");
                         $imgSrcset = wp_get_attachment_image_srcset($value['image']);
                     }
@@ -225,13 +232,7 @@ if(function_exists('vc_shortcode_custom_css_class')){
                         $image_alt = get_post_meta($image_ID, '_wp_attachment_image_alt', TRUE);
                			$imgSrc = $img[0];
                     }
-
-                    // if(pix_plugin_get_option('pix-disable-lazy-images', false)){
-                        $output .= '<img srcset="'.$imgSrcset.'" src="'.$imgSrc.'" class="rounded-lg img-fluid " alt="'.$image_alt.'" >';
-                    // }else{
-                    //     $output .= '<img src="'.PIX_IMG_PLACEHOLDER .'" data-srcset="'.$imgSrcset.'" data-src="'.$imgSrc.'" loading="lazy" class="pix-lazy rounded-lg img-fluid " alt="'.$image_alt.'" >';
-                    // }
-                    
+                    $output .= '<img srcset="'.$imgSrcset.'" src="'.$imgSrc.'" class="rounded-lg img-fluid " alt="'.$image_alt.'" >';
                 }
 
                 $output .= '</div>';

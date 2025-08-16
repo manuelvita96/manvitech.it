@@ -1,4 +1,5 @@
 <?php
+
 namespace Elementor;
 
 class Pix_Eor_Clients_Carousel extends Widget_Base {
@@ -6,14 +7,14 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 	public function __construct($data = [], $args = null) {
 
 		// Link migration code
-		if(!empty($data['settings'])){
-			if(!empty($data['settings']['clients'])){
+		if (!empty($data['settings'])) {
+			if (!empty($data['settings']['clients'])) {
 				foreach ($data['settings']['clients'] as $key => $value) {
 					$is_external = true;
-					if( array_key_exists('target', $data['settings']['clients'][$key]) ){
+					if (array_key_exists('target', $data['settings']['clients'][$key])) {
 						$is_external = false;
 					}
-					if(!empty($data['settings']['clients'][$key]['link'])&&!is_array($data['settings']['clients'][$key]['link'])){
+					if (!empty($data['settings']['clients'][$key]['link']) && !is_array($data['settings']['clients'][$key]['link'])) {
 						$data['settings']['clients'][$key]['link'] = [
 							'url' => $data['settings']['clients'][$key]['link'],
 							'is_external' => $is_external,
@@ -23,10 +24,13 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 				}
 			}
 		}
-      parent::__construct($data, $args);
+		parent::__construct($data, $args);
 
-      if (is_user_logged_in()) wp_register_script( 'pix-clients-carousel-handle', PIX_CORE_PLUGIN_URI.'functions/elementor/js/clients-carousel.js', [ 'elementor-frontend' ], PIXFORT_PLUGIN_VERSION, true );
-   	}
+		if(is_user_logged_in()) {
+			wp_register_script('pix-clients-carousel-handle', PIX_CORE_PLUGIN_URI . 'functions/elementor/js/clients-carousel.js', ['elementor-frontend'], PIXFORT_PLUGIN_VERSION, true);
+			wp_enqueue_style('pixfort-clients-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/clients.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
+		}
+	}
 
 	public function get_name() {
 		return 'pix-clients-carousel';
@@ -41,11 +45,11 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 	}
 
 	public function get_categories() {
-		return [ 'pixfort' ];
+		return ['pixfort'];
 	}
 
 	public function get_help_url() {
-		return 'https://essentials.pixfort.com/knowledge-base/';
+		return \PixfortCore::instance()->adminCore->getParam('docs_link');
 	}
 
 	protected function register_controls() {
@@ -53,43 +57,47 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'section_title',
 			[
-				'label' => __( 'General', 'pixfort-core' ),
+				'label' => __('General', 'pixfort-core'),
 			]
 		);
 
 		$repeater = new \Elementor\Repeater();
+		// $repeater->add_control(
+		// 	'image',
+		// 	[
+		// 		'label' => __('Image', 'pixfort-core'),
+		// 		'type' => \Elementor\Controls_Manager::MEDIA,
+		// 	]
+		// );
+		getElementorDynamicImageControls($repeater, 'image', 'image_dark');
 		$repeater->add_control(
-			'image', [
-				'label' => __( 'Image', 'pixfort-core' ),
-				'type' => \Elementor\Controls_Manager::MEDIA,
-			]
-		);
-		$repeater->add_control(
-			'title', [
-				'label' => __( 'Title', 'pixfort-core' ),
+			'title',
+			[
+				'label' => __('Title', 'pixfort-core'),
 				'type' => Controls_Manager::TEXT,
-				'default' => __( '' , 'pixfort-core' ),
+				'default' => __('', 'pixfort-core'),
 				'label_block' => true,
 				'dynamic'     => array(
-                    'active'  => true
-                ),
+					'active'  => true
+				),
 			]
 		);
 		$repeater->add_control(
-			'link', [
-				'label' => __( 'Link', 'pixfort-core' ),
+			'link',
+			[
+				'label' => __('Link', 'pixfort-core'),
 				// 'type' => Controls_Manager::TEXT,
 				// 'default' => __( '' , 'pixfort-core' ),
 				'type' => Controls_Manager::URL,
-				'placeholder' => __( 'Link', 'elementor' ),
+				'placeholder' => __('Link', 'pixfort-core'),
 				'default' => [
 					'url' => '',
 					'is_external' => false,
 					'nofollow' => true,
 				],
 				'dynamic'     => array(
-                    'active'  => true
-                ),
+					'active'  => true
+				),
 			]
 		);
 		// $repeater->add_control(
@@ -105,7 +113,7 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'clients',
 			[
-				'label' => __( 'Clients', 'pixfort-core' ),
+				'label' => __('Clients', 'pixfort-core'),
 				'type' => Controls_Manager::REPEATER,
 				'title_field' => '{{{ title }}}',
 				'fields' => $repeater->get_controls()
@@ -115,42 +123,42 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'add_hover_effect',
 			[
-				'label' => __( 'Hover Animation', 'pixfort-core' ),
+				'label' => __('Hover Animation', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => [
 					""       => "None",
-			        "1"       => "Fly Small",
-			        "2"       => "Fly Medium",
-			        "3"       => "Fly Large",
-			        "4"       => "Scale Small",
-			        "5"       => "Scale Medium",
-			        "6"       => "Scale Large",
-			        "7"       => "Scale Inverse Small",
-			        "8"       => "Scale Inverse Medium",
-			        "9"       => "Scale Inverse Large",
+					"1"       => "Fly Small",
+					"2"       => "Fly Medium",
+					"3"       => "Fly Large",
+					"4"       => "Scale Small",
+					"5"       => "Scale Medium",
+					"6"       => "Scale Large",
+					"7"       => "Scale Inverse Small",
+					"8"       => "Scale Inverse Medium",
+					"9"       => "Scale Inverse Large",
 				],
 			]
 		);
 		$this->add_control(
 			'style',
 			[
-				'label' => __( 'Additional hover effect', 'pixfort-core' ),
+				'label' => __('Additional hover effect', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'pix-box',
 				'options' => [
 					'pix-box'			=> 'Fade others + Box',
-                    'client'			=> 'Fade others',
-                    // 'nobox' 	=> 'Without boxes',
-                    // 'fly' 	    => 'Fly',
-                    'no-effect' 	    => 'No effect',
+					'client'			=> 'Fade others',
+					// 'nobox' 	=> 'Without boxes',
+					// 'fly' 	    => 'Fly',
+					'no-effect' 	    => 'No effect',
 				],
 			]
 		);
 		$this->add_control(
 			'animation',
 			[
-				'label' => __( 'Animation', 'pixfort-core' ),
+				'label' => __('Animation', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => pix_get_animations(true),
@@ -159,10 +167,10 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'delay',
 			[
-				'label' => __( 'Animation delay (in miliseconds)', 'pixfort-core' ),
+				'label' => __('Animation delay (in miliseconds)', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '0', 'pixfort-core' ),
-				'placeholder' => __( 'Type your title here', 'pixfort-core' ),
+				'default' => __('0', 'pixfort-core'),
+				'placeholder' => __('Type your title here', 'pixfort-core'),
 				'condition' => [
 					'animation!' => '',
 				],
@@ -171,12 +179,12 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'delay_items',
 			[
-				'label' => __( 'Add delay between items', 'pixfort-core' ),
+				'label' => __('Add delay between items', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => array_flip(array(
 					''			=> 'No',
-  	              'yes'			=> 'Yes',
+					'yes'			=> 'Yes',
 				)),
 				'condition' => [
 					'animation!' => '',
@@ -190,7 +198,7 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->start_controls_section(
 			'section_advanced',
 			[
-				'label' => __( 'Advanced', 'pixfort-core' ),
+				'label' => __('Advanced', 'pixfort-core'),
 				'tab' => Controls_Manager::TAB_STYLE,
 			]
 		);
@@ -199,46 +207,46 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'slider_num',
 			[
-				'label' => __( 'Slides per page', 'pixfort-core' ),
+				'label' => __('Slides per page', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 3,
 				'options' => [
 					1 	=> "1",
-                    2 	=> "2",
-                    3 	=> "3",
-                    4 	=> "4",
-                    5 	=> "5",
-                    6 	=> "6",
+					2 	=> "2",
+					3 	=> "3",
+					4 	=> "4",
+					5 	=> "5",
+					6 	=> "6",
 				],
 			]
 		);
 		$this->add_control(
 			'slider_style',
 			[
-				'label' => __( 'Slides style', 'pixfort-core' ),
+				'label' => __('Slides style', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'pix-style-standard',
 				'options' => [
-					'pix-style-standard'        => __('Standard','pixfort-core'),
-                    'pix-one-active'         	=> __('One active item','pixfort-core'),
-                    'pix-opacity-slider'        => __('Faded items','pixfort-core'),
+					'pix-style-standard'        => __('Standard', 'pixfort-core'),
+					'pix-one-active'         	=> __('One active item', 'pixfort-core'),
+					'pix-opacity-slider'        => __('Faded items', 'pixfort-core'),
 				],
 			]
 		);
 		$this->add_control(
 			'slider_effect',
 			[
-				'label' => __( 'Slides effect', 'pixfort-core' ),
+				'label' => __('Slides effect', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'pix-effect-standard',
 				'options' => array_flip(
 					array(
-	                    __('Standard','pixfort-core') 	                => 'pix-effect-standard',
-	                    __('Circular effect','pixfort-core') 	        => 'pix-circular-slider',
-	                    __('Circular Left only','pixfort-core') 	        => 'pix-circular-left',
-	                    __('Circular Right only','pixfort-core') 	    => 'pix-circular-right',
-	                     __('Fade out','pixfort-core') 	                => 'pix-fade-out-effect',
-	                )
+						__('Standard', 'pixfort-core') 	                => 'pix-effect-standard',
+						__('Circular effect', 'pixfort-core') 	        => 'pix-circular-slider',
+						__('Circular Start Only', 'pixfort-core') 	        => 'pix-circular-left',
+						__('Circular End Only', 'pixfort-core') 	    => 'pix-circular-right',
+						__('Fade out', 'pixfort-core') 	                => 'pix-fade-out-effect',
+					)
 				),
 			]
 		);
@@ -246,10 +254,10 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'prevnextbuttons',
 			[
-				'label' => __( 'Show navigation buttons', 'pixfort-core' ),
+				'label' => __('Show navigation buttons', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'pixfort-core' ),
-				'label_off' => __( 'No', 'pixfort-core' ),
+				'label_on' => __('Yes', 'pixfort-core'),
+				'label_off' => __('No', 'pixfort-core'),
 				'return_value' => 'true',
 				'default' => 'true',
 
@@ -258,10 +266,10 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'pagedots',
 			[
-				'label' => __( 'Dots', 'pixfort-core' ),
+				'label' => __('Dots', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'pixfort-core' ),
-				'label_off' => __( 'No', 'pixfort-core' ),
+				'label_on' => __('Yes', 'pixfort-core'),
+				'label_off' => __('No', 'pixfort-core'),
 				'return_value' => 'true',
 				'default' => 'true',
 
@@ -270,7 +278,7 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'dots_style',
 			[
-				'label' => __( 'Dots style', 'pixfort-core' ),
+				'label' => __('Dots style', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => [
@@ -278,14 +286,14 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 					'light-dots' 	=> 'Light',
 				],
 				'condition' => [
-					'pagedots' => true,
+					'pagedots' => 'true',
 				],
 			]
 		);
 		$this->add_control(
 			'dots_align',
 			[
-				'label' => __( 'Dots style', 'pixfort-core' ),
+				'label' => __('Dots style', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => '',
 				'options' => [
@@ -294,17 +302,17 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 					'pix-dots-right' 	=> 'Right',
 				],
 				'condition' => [
-					'pagedots' => true,
+					'pagedots' => 'true',
 				],
 			]
 		);
 		$this->add_control(
 			'freescroll',
 			[
-				'label' => __( 'Free Scroll', 'pixfort-core' ),
+				'label' => __('Free Scroll', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'pixfort-core' ),
-				'label_off' => __( 'No', 'pixfort-core' ),
+				'label_on' => __('Yes', 'pixfort-core'),
+				'label_off' => __('No', 'pixfort-core'),
 				'return_value' => true,
 				'default' => false,
 
@@ -313,7 +321,7 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'cellalign',
 			[
-				'label' => __( 'Main cell Align', 'pixfort-core' ),
+				'label' => __('Main cell Align', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'center',
 				'options' => [
@@ -326,10 +334,10 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'slider_scale',
 			[
-				'label' => __( 'Scale main item', 'pixfort-core' ),
+				'label' => __('Scale main item', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'pixfort-core' ),
-				'label_off' => __( 'No', 'pixfort-core' ),
+				'label_on' => __('Yes', 'pixfort-core'),
+				'label_off' => __('No', 'pixfort-core'),
 				'return_value' => 'pix-slider-scale',
 				'default' => '',
 			]
@@ -337,7 +345,7 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'cellpadding',
 			[
-				'label' => __( 'Cells padding', 'pixfort-core' ),
+				'label' => __('Cells padding', 'pixfort-core'),
 				'type' => Controls_Manager::SELECT,
 				'default' => 'pix-p-10',
 				'options' => [
@@ -358,10 +366,10 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'autoplay',
 			[
-				'label' => __( 'Autoplay', 'pixfort-core' ),
+				'label' => __('Autoplay', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'pixfort-core' ),
-				'label_off' => __( 'No', 'pixfort-core' ),
+				'label_on' => __('Yes', 'pixfort-core'),
+				'label_off' => __('No', 'pixfort-core'),
 				'return_value' => 'true',
 				'default' => '',
 			]
@@ -369,10 +377,10 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'autoplay_time',
 			[
-				'label' => __( 'Autoplay time', 'pixfort-core' ),
+				'label' => __('Autoplay time', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'default' => __( '1500', 'pixfort-core' ),
-				'placeholder' => __( 'Type your title here', 'pixfort-core' ),
+				'default' => __('1500', 'pixfort-core'),
+				'placeholder' => __('Type your title here', 'pixfort-core'),
 				// 'condition' => [
 				// 	'autoplay' => true,
 				// ],
@@ -381,10 +389,10 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'adaptiveheight',
 			[
-				'label' => __( 'Adaptive height', 'pixfort-core' ),
+				'label' => __('Adaptive height', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'pixfort-core' ),
-				'label_off' => __( 'No', 'pixfort-core' ),
+				'label_on' => __('Yes', 'pixfort-core'),
+				'label_off' => __('No', 'pixfort-core'),
 				'return_value' => 'true',
 				'default' => 'true',
 			]
@@ -392,10 +400,10 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'righttoleft',
 			[
-				'label' => __( 'Right to Left', 'pixfort-core' ),
+				'label' => __('Right to Left', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'pixfort-core' ),
-				'label_off' => __( 'No', 'pixfort-core' ),
+				'label_on' => __('Yes', 'pixfort-core'),
+				'label_off' => __('No', 'pixfort-core'),
 				'return_value' => 'true',
 				'default' => '',
 			]
@@ -403,10 +411,10 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'slider_wrap',
 			[
-				'label' => __( 'Wrap slides', 'pixfort-core' ),
+				'label' => __('Wrap slides', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'pixfort-core' ),
-				'label_off' => __( 'No', 'pixfort-core' ),
+				'label_on' => __('Yes', 'pixfort-core'),
+				'label_off' => __('No', 'pixfort-core'),
 				'return_value' => 'true',
 				'default' => 'true',
 			]
@@ -414,10 +422,10 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'visible_y',
 			[
-				'label' => __( 'Increase vertical view', 'pixfort-core' ),
+				'label' => __('Increase vertical view', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'pixfort-core' ),
-				'label_off' => __( 'No', 'pixfort-core' ),
+				'label_on' => __('Yes', 'pixfort-core'),
+				'label_off' => __('No', 'pixfort-core'),
 				'return_value' => 'pix-overflow-y-visible',
 				'default' => '',
 			]
@@ -425,45 +433,40 @@ class Pix_Eor_Clients_Carousel extends Widget_Base {
 		$this->add_control(
 			'visible_overflow',
 			[
-				'label' => __( 'Visible overflow', 'pixfort-core' ),
+				'label' => __('Visible overflow', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __( 'Yes', 'pixfort-core' ),
-				'label_off' => __( 'No', 'pixfort-core' ),
+				'label_on' => __('Yes', 'pixfort-core'),
+				'label_off' => __('No', 'pixfort-core'),
 				'return_value' => 'pix-overflow-all-visible',
 				'default' => '',
 			]
 		);
 
 		$this->end_controls_section();
-
-
 	}
 
 	protected function render() {
-        $settings = $this->get_settings_for_display();
-		if(!empty($settings)){
-			if(!empty($settings['clients'])){
+		$settings = $this->get_settings_for_display();
+		if (!empty($settings)) {
+			if (!empty($settings['clients'])) {
 				foreach ($settings['clients'] as $key => $value) {
-					if(!empty($settings['clients'][$key]['link']['is_external'])){
+					if (!empty($settings['clients'][$key]['link']['is_external'])) {
 						$settings['clients'][$key]['target'] = $settings['clients'][$key]['link']['is_external'];
 					}
-					if(!empty($settings['clients'][$key]['link']['custom_attributes'])){
+					if (!empty($settings['clients'][$key]['link']['custom_attributes'])) {
 						$settings['clients'][$key]['link_atts'] = $settings['clients'][$key]['link']['custom_attributes'];
 					}
 					$settings['clients'][$key]['link'] = $settings['clients'][$key]['link']['url'];
-					
 				}
 			}
 		}
-		echo \PixfortCore::instance()->elementsManager->renderElement('ClientsSlider', $settings );
+		echo \PixfortCore::instance()->elementsManager->renderElement('ClientsSlider', $settings);
 	}
 
 
 
 	public function get_script_depends() {
-		if(is_user_logged_in()) return [ 'pix-global', 'pix-clients-carousel-handle' ];
-  		return [];
-	  }
-
-
+		if (is_user_logged_in()) return ['pix-global', 'pix-clients-carousel-handle'];
+		return [];
+	}
 }

@@ -156,18 +156,6 @@ vc_map(array(
                 "value" => "icon"
             ),
         ),
-        // array(
-        //     'type'        => 'pix_icons_select',
-        //     'heading'  => 'Duo tone icons',
-        //     'param_name'  => 'pix_duo_icon',
-        //     "class" => "my_param_field",
-        //     'value'       => '0',
-        //     "group"	      => "Advanced",
-        //     "dependency" => array(
-        //         "element" => "media_type",
-        //         "value" => "duo_icon"
-        //     ),
-        // ),
 
         array (
             'param_name' 	=> 'icon_color',

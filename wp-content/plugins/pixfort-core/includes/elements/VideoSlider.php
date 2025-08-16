@@ -49,7 +49,7 @@ class PixVideoSlider {
 			'css' 		=> '',
 		), $attr));
 
-		wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI . 'functions/css/elements/css/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
+		wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 		wp_enqueue_script('pix-flickity-js');
 		$slides_arr = [];
 		if (is_array($items)) {
@@ -66,6 +66,13 @@ class PixVideoSlider {
 				$autoplay_time = false;
 			} else {
 				$autoplay_time = (int)$autoplay_time;
+			}
+			if(is_rtl()){
+				if($slider_effect == 'pix-circular-left'){
+					$slider_effect = 'pix-circular-right';
+				}else if($slider_effect == 'pix-circular-right'){
+					$slider_effect = 'pix-circular-left';
+				}
 			}
 			$slider_data = '';
 			$pix_id = 'pix-slider-' . rand(1, 200000000);
@@ -85,8 +92,7 @@ class PixVideoSlider {
 			$slider_data = json_encode($slider_opts);
 			$slider_data = 'data-flickity=\'' . $slider_data . '\'';
 			if ($visible_overflow == 'pix-overflow-all-visible') $visible_y = '';
-
-			$output  .= '<div id="' . $pix_id . '" class="pix-main-slider pix-fix-x2 ' . $visible_overflow . ' ' . $slider_style . ' ' . $slider_effect . ' ' . $slider_scale . ' ' . $visible_y . ' pix-slider-' . $slider_num . ' pix-slider-dots ' . $dots_style . ' ' . $dots_align . '" ' . $slider_data . '>';
+			$output  .= '<div id="' . $pix_id . '" class="pix-main-slider ' . $visible_overflow . ' ' . $slider_style . ' ' . $slider_effect . ' ' . $slider_scale . ' ' . $visible_y . ' pix-slider-' . $slider_num . ' pix-slider-dots ' . $dots_style . ' ' . $dots_align . '" ' . $slider_data . '>';
 			foreach ($slides_arr as $key => $value) {
 				$output .= '<div class="carousel-cell">';
 				$output .= '<div class="slide-inner ' . $cellpadding . '">';
@@ -108,4 +114,3 @@ class PixVideoSlider {
 		return $output;
 	}
 }
-

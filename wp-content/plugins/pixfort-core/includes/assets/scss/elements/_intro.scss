@@ -4,7 +4,6 @@
         width: 100%;
         display: inline-block;
     }
-    // overflow: hidden;
     .pix-intro-img {
         position: absolute;
         opacity: 0.9999;
@@ -22,13 +21,7 @@
             height: 100%;
             -o-object-fit: cover;
                object-fit: cover;
-            // transition: opacity 4.5s cubic-bezier(0.165, 0.84, 0.44, 1), transform 3s cubic-bezier(0.165, 0.84, 0.44, 1);
-            // transform: scale(1.4);
             z-index: 10;
-            // background-position: center;
-            // &.animated:not(.animation-done) {
-            //     transform: none !important;
-            // }
             //     transition: opacity 4.5s cubic-bezier(0.165, 0.84, 0.44, 1), transform 3.5s cubic-bezier(0.165, 0.84, 0.44, 1) !important;
             //     margin-top: initial !important;
             //     &.animated {
@@ -52,21 +45,16 @@
             //     margin-top: 0px !important;
             // }
         }
-        // .jarallax-container:not(.is-loaded) {
-        //     opacity: 0;
-        // }
-        // .pix-intro-scale {
-            transform: scale(1.4);
-            transition: transform 3.5s cubic-bezier(0.165, 0.84, 0.44, 1);
-            transform-origin: center;
-            -o-object-fit: cover;
-               object-fit: cover;
-            -o-object-position: center;
-               object-position: center;
-            &.animated {
-                transform: none;
-            }
-        // }
+        transform: scale(1.4);
+        transition: transform 3.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transform-origin: center;
+        -o-object-fit: cover;
+            object-fit: cover;
+        -o-object-position: center;
+            object-position: center;
+        &.animated {
+            transform: none;
+        }
     }
     .pix-intro-video {
         position: absolute;
@@ -79,7 +67,7 @@
         opacity: 0;
         transition: opacity 4.5s cubic-bezier(0.165, 0.84, 0.44, 1), transform 3.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         &.animated {
-            transform: scale(1);
+            transform: none;
             opacity: 0.5;
             transition: opacity 4.5s cubic-bezier(0.165, 0.84, 0.44, 1), transform 3.5s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
@@ -100,11 +88,8 @@
 }
 .pix-main-intro.pix-intro-1 {
     float: left;
+    backface-visibility: hidden;
 }
-// .pix-is-safari .pix-main-intro.pix-intro-1 {
-//     float: initial;
-//     display: block;
-// }
 body:not(.pix-padding-style) .pix-intro-1 .pix-intro-img img {
     left:0 !important;
 }

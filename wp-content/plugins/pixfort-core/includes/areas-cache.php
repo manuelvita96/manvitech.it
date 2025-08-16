@@ -85,6 +85,92 @@ class AreasCache {
 				}
 			}
 		}
+
+
+		// $templates_posts = get_posts([
+		// 	'post_type' => 'pixfort_template',
+		// 	'post_status' => 'publish',
+		// 	'fields' => 'ids',
+		// 	'meta_key' => 'template-condition',
+		// 	'numberposts' => -1
+		// ]);
+		// foreach ($templates_posts as $post_id) {
+		// 	$conditions = get_post_meta($post_id, 'template-condition', true);
+		// 	$conditions = json_decode($conditions);
+		// 	if ($conditions) {
+		// 		foreach ($conditions as $key => $condition) {
+		// 			$this->conditions['template'][$post_id][$key] = [
+		// 				'include'   => $condition->include === 'include' ? true : false,
+		// 				'general'   => $condition->general
+		// 			];
+		// 			if (!empty($condition->nestedValue)) {
+		// 				$this->conditions['template'][$post_id][$key]['nestedValue'] = $condition->nestedValue;
+		// 			}
+		// 			if (!empty($condition->subIDValue)) {
+		// 				$this->conditions['template'][$post_id][$key]['subIDValue'] = $condition->subIDValue;
+		// 			}
+		// 		}
+		// 	}
+		// }
+
+		/*
+		 * Header
+		 */
+		$header_posts = get_posts([
+			'post_type' => 'pixheader',
+			'post_status' => 'publish',
+			'fields' => 'ids',
+			'meta_key' => 'header-condition',
+			'numberposts' => -1
+		]);
+		foreach ($header_posts as $post_id) {
+			$conditions = get_post_meta($post_id, 'header-condition', true);
+			$conditions = json_decode($conditions);
+			if ($conditions) {
+				foreach ($conditions as $key => $condition) {
+					$this->conditions['header'][$post_id][$key] = [
+						'include'   => $condition->include === 'include' ? true : false,
+						'general'   => $condition->general
+					];
+					if (!empty($condition->nestedValue)) {
+						$this->conditions['header'][$post_id][$key]['nestedValue'] = $condition->nestedValue;
+					}
+					if (!empty($condition->subIDValue)) {
+						$this->conditions['header'][$post_id][$key]['subIDValue'] = $condition->subIDValue;
+					}
+				}
+			}
+		}
+
+		/*
+		 * Footer
+		 */
+		$footer_posts = get_posts([
+			'post_type' => 'pixfooter',
+			'post_status' => 'publish',
+			'fields' => 'ids',
+			'meta_key' => 'footer-condition',
+			'numberposts' => -1
+		]);
+		foreach ($footer_posts as $post_id) {
+			$conditions = get_post_meta($post_id, 'footer-condition', true);
+			$conditions = json_decode($conditions);
+			if ($conditions) {
+				foreach ($conditions as $key => $condition) {
+					$this->conditions['footer'][$post_id][$key] = [
+						'include'   => $condition->include === 'include' ? true : false,
+						'general'   => $condition->general
+					];
+					if (!empty($condition->nestedValue)) {
+						$this->conditions['footer'][$post_id][$key]['nestedValue'] = $condition->nestedValue;
+					}
+					if (!empty($condition->subIDValue)) {
+						$this->conditions['footer'][$post_id][$key]['subIDValue'] = $condition->subIDValue;
+					}
+				}
+			}
+		}
+
 		update_option(self::OPTION_NAME, $this->conditions);
 		return $this;
 	}

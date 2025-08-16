@@ -12,7 +12,7 @@ class PixBlogSlider {
 	public function __construct() {
 		include_once('extras/blog-functions.php');
 	}
-	
+
 	function render($attr, $content = null) {
 		extract(shortcode_atts(array(
 			'title'							=> '',
@@ -76,7 +76,7 @@ class PixBlogSlider {
 		if (function_exists('vc_shortcode_custom_css_class')) {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
 		}
-		wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI.'functions/css/elements/css/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
+		wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 		wp_enqueue_script('pix-flickity-js');
 		$divider_out = '';
 		if ($bottom_divider_select && $bottom_divider_select != '' && $bottom_divider_select != '0' && $bottom_divider_select != 'dynamic') {
@@ -140,6 +140,13 @@ class PixBlogSlider {
 		} else {
 			$autoplay_time = (int)$autoplay_time;
 		}
+		if(is_rtl()){
+			if($slider_effect == 'pix-circular-left'){
+				$slider_effect = 'pix-circular-right';
+			}else if($slider_effect == 'pix-circular-right'){
+				$slider_effect = 'pix-circular-left';
+			}
+		}
 		$slider_data = '';
 		$pix_id = "pix-slider-" . rand(1, 200000000);
 		$slider_opts = array(
@@ -153,14 +160,20 @@ class PixBlogSlider {
 			"cellAlign" 			=> $cellalign,
 			"contain"				=> true,
 			"slider_effect"			=> $slider_effect,
+			"arrowShape"			=> 'M83.7718595,45.4606514 L31.388145,45.4606514 L54.2737785,23.1973134 C56.1027533,21.4180712 56.1027533,18.4982892 54.2737785,16.719047 C52.4448037,14.9398048 49.4903059,14.9398048 47.6613311,16.719047 L16.7563465,46.7836776 C14.9273717,48.5629198 14.9273717,51.4370802 16.7563465,53.2163224 L47.6613311,83.280953 C49.4903059,85.0601952 52.4448037,85.0601952 54.2737785,83.280953 C56.1027533,81.5017108 56.1027533,78.6275504 54.2737785,76.8483082 L31.388145,54.5849702 L83.7718595,54.5849702 C86.3511829,54.5849702 88.4615385,52.5319985 88.4615385,50.0228108 C88.4615385,47.5136231 86.3511829,45.4606514 83.7718595,45.4606514 Z',
 			"pix_id"				=>  '#' . $pix_id,
 		);
 		$slider_data = json_encode($slider_opts);
 		$slider_data = 'data-flickity=\'' . $slider_data . '\'';
 		if ($visible_overflow == 'pix-overflow-all-visible') $visible_y = '';
 
-		$output  .= '<div class="' . $css_class . ' ' . $blog_dark_mode . '">';
-		$output  .= '<div id="' . $pix_id . '" class="pix-main-slider pix-fix-x2 ' . $visible_overflow . ' ' . $slider_style . ' ' . $slider_effect . ' ' . $slider_scale . ' ' . $visible_y . ' pix-slider-' . $slider_num . ' pix-slider-dots ' . $dots_style . ' ' . $dots_align . '" ' . $slider_data . '>';
+		$dark_mode_class = '';
+		if(!empty($blog_dark_mode)){
+			$dark_mode_class = 'pix-invert-colors';
+		}
+
+		$output  .= '<div class="' . $css_class . ' ' . $dark_mode_class . '">';
+		$output  .= '<div id="' . $pix_id . '" class="pix-main-slider ' . $visible_overflow . ' ' . $slider_style . ' ' . $slider_effect . ' ' . $slider_scale . ' ' . $visible_y . ' pix-slider-' . $slider_num . ' pix-slider-dots ' . $dots_style . ' ' . $dots_align . '" ' . $slider_data . '>';
 		while ($query_blog->have_posts()) {
 			$output .= '<div class="carousel-cell">';
 			$output .= '<div class="slide-inner ' . $cellpadding . '">';
@@ -179,4 +192,3 @@ class PixBlogSlider {
 		return $output;
 	}
 }
-

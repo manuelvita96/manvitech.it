@@ -37,7 +37,7 @@ class PixHeading {
 			'html_tag' 	=> '',
 			'css' 	=> '0',
 		), $attr));
-		
+
 		if (empty($title)) {
 			return '';
 		}
@@ -47,43 +47,26 @@ class PixHeading {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
 			$title = pix_unescape_vc($title);
 		}
-		
+
 		$t_custom_color = '';
 		if (!empty($title_color)) {
 			if ($title_color != 'custom') {
 				array_push($classes, 'text-' . $title_color);
 			} else {
-				$t_custom_color .= 'color:' . $title_custom_color . ' !important;';
+				if(!empty($title_custom_color)){
+					$t_custom_color .= 'color:' . $title_custom_color . ' !important;';
+				}
 			}
 		}
 
-		$imgSrc = '';
-		if (!empty($image)) {
-			if (is_string($image) && substr($image, 0, 4) === "http") {
-				$img = $image;
-				$imgSrc = $img;
-				array_push($classes, 'text-gradient-primary text-bg-img');
-			} else {
-				if (is_array($image)) {
-					if (!empty($image['id'])) {
-						$img = wp_get_attachment_image_src($image['id'], "full");
-						array_push($classes, 'text-gradient-primary text-bg-img');
-						if (!empty($img[0])) $imgSrc = $img[0];
-					}
-				} else {
-					$img = wp_get_attachment_image_src($image, "full");
-					array_push($classes, 'text-gradient-primary text-bg-img');
-					if (!empty($img[0])) $imgSrc = $img[0];
-				}
-			}
-			if (!empty($imgSrc)) {
-				$t_custom_color .= 'background-image:url(' . $imgSrc . ') !important;';
-			}
+		$imageData = \PixfortCore::instance()->coreFunctions->getImageSrc($image);
+		if (!empty($imageData['url'])) {
+			array_push($classes, 'text-gradient-primary text-bg-img');
+			$t_custom_color .= 'background-image:url(' . $imageData['url'] . ') !important;';
 		}
 		if (!empty($padding_title)) {
 			$t_custom_color .= 'padding-top:' . $padding_title . ';';
 		}
-
 		if (!empty($bold)) array_push($classes, $bold);
 		if (!empty($italic)) array_push($classes, $italic);
 		if (!empty($secondary_font)) array_push($classes, $secondary_font);
@@ -105,14 +88,14 @@ class PixHeading {
 		$title_tag = $title_size;
 		$t_size_style = '';
 		array_push($classes, $title_size);
-		if(!empty($html_tag)&&$html_tag!=='default'){
+		if (!empty($html_tag) && $html_tag !== 'default') {
 			$title_tag = $html_tag;
 		} else {
 			if ($title_size == 'custom') {
 				$title_tag = "div";
 			}
 		}
-		
+
 		if (!empty($title_custom_size)) {
 			$t_size_style = "font-size:" . $title_custom_size . ';';
 		}
@@ -135,7 +118,6 @@ class PixHeading {
 			}
 			$output .= '<div class="d-inline-block" ' . $custom_style . '>';
 		}
-		// $output .= '<div><div class="slide-in-container2"><' . $title_tag . ' class="' . $class_names . ' heading-text el-title_custom_color mb-12" style="' . $t_custom_color . $t_size_style . '" data-anim-type="' . $animation . '" data-anim-delay="' . $delay . '">' . do_shortcode($title) . '</' . $title_tag . '></div></div>';
 		$output .= '<' . $title_tag . ' class="' . $class_names . ' heading-text el-title_custom_color mb-12" style="' . $t_custom_color . $t_size_style . '" data-anim-type="' . $animation . '" data-anim-delay="' . $delay . '">' . do_shortcode($title) . '</' . $title_tag . '>';
 		if (!empty($content)) {
 			$output .= '<div class="w-100"><div class="mb-0 ' . $c_color . ' ' . $content_size . ' animate-in" data-anim-type="' . $animation . '" data-anim-delay="' . $delay . '" style="' . $c_custom_color . '">' . do_shortcode($content) . '</div></div>';
@@ -148,5 +130,3 @@ class PixHeading {
 		return $output;
 	}
 }
-
-

@@ -8,9 +8,12 @@ class pix_social extends WP_Widget {
 			// Base ID of your widget
 			'pix_social',
 			// Widget name will appear in UI
-			__('PixFort Social Links', 'pixfort-core'),
+			__('pixfort Legacy Social Links', 'pixfort-core'),
 			// Widget description
-			array('description' => __('Social Links widget', 'pixfort-core'),)
+			[
+				'description' => __('Social Links widget', 'pixfort-core'),
+				'show_instance_in_rest' => true
+			]
 		);
 	}
 
@@ -79,7 +82,7 @@ class pix_social extends WP_Widget {
 
 		foreach ($social as $social => $value) {
 			if (!empty($instance[$social]) && apply_filters('widget_title', $instance[$social])) {
-				echo '<a href="' . apply_filters('widget_title', $instance[$social]) . '" class="d-inline-block bg-white pix-mr-10 mb-2 shadow-sm fly-sm shadow-hover-sm text-body-default" title="' . $value['title'] . '"><span class="d-flex h-100 align-items-center justify-content-center">';
+				echo '<a href="' . apply_filters('widget_title', $instance[$social]) . '" class="d-inline-block pix-base-background pix-mr-10 mb-2 shadow-sm fly-sm shadow-hover-sm text-body-default" title="' . $value['title'] . '"><span class="d-flex h-100 align-items-center justify-content-center">';
 				echo \PixfortCore::instance()->icons->getIcon($value['icon'], 24, '', '', true);
 				echo '</a>';
 			}

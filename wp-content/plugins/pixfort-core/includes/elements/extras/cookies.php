@@ -1,4 +1,15 @@
 <?php
+
+if(!function_exists('pix_pll__')){
+	function pix_pll__($string = '') {
+		if (function_exists('pll__')) {
+			return pll__($string);
+		} else {
+			return do_shortcode($string);
+		}
+	}
+}
+
 $policy_link = '';
 $policy_popup = '';
 $policy_target = '';
@@ -32,7 +43,7 @@ if (!empty(pix_plugin_get_option('cookie-img')) && pix_plugin_get_option('cookie
 }
 ?>
 <div class="pix-cookie-banner position-fixed">
-	<div class="pix-cookie-inner pix-px-10 pix-py-5 rounded-xl shadow-lg pix-mb-20 bg-white fly-sm shadow-hover-lg animate-in" data-anim-type="fade-in-up" data-anim-delay="1000">
+	<div class="pix-cookie-inner pix-px-10 pix-py-5 rounded-xl shadow-lg pix-mb-20 bg-white dark:bg-gray-9 fly-sm shadow-hover-lg animate-in" data-anim-type="fade-in-up" data-anim-delay="1000">
 		<div class="d-sm-flex align-items-center">
 			<img class="pix-cookie-img <?php echo is_rtl() ? 'ml-1 ml-sm-2' : 'mr-1 mr-sm-2'; ?>" width="30" height="30" src="<?php echo esc_url($cookie_img); ?>" alt="cookie" />
 			<span class="text-body-default font-weight-bold text-sm">
@@ -57,7 +68,7 @@ if (!empty(pix_plugin_get_option('cookie-img')) && pix_plugin_get_option('cookie
 					?>
 				</a>
 			</span>
-			<a href="#" data-link="<?php echo esc_url($close_link); ?>" class="pix-cookies-close text-20 line-height-0 <?php echo is_rtl() ? 'mr-2' : 'ml-2'; ?> d-flex align-items-center justify-content-center text-gray-4"><span class="screen-reader-text sr-only"><?php echo esc_attr__('Close', 'essentials'); ?></span>
+			<a href="#" data-link="<?php echo esc_url($close_link); ?>" class="pix-cookies-close text-20 line-height-0 <?php echo is_rtl() ? 'mr-2' : 'ml-2'; ?> d-flex align-items-center justify-content-center text-gray-4"><span class="screen-reader-text sr-only"><?php echo esc_attr__('Close', 'pixfort-core'); ?></span>
 			<?php echo \PixfortCore::instance()->icons->getIcon('Line/pixfort-icon-cross-circle-1'); ?>
 		</a>
 		</div>

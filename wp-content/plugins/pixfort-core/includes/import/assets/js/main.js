@@ -17,7 +17,7 @@ jQuery( function ( $ ) {
 
 		// Prepare data for the AJAX call
 		var data = new FormData();
-		data.append( 'action', 'ocdi_import_demo_data' );
+		data.append( 'action', 'pix_import_demo_data' );
 		data.append( 'security', ocdi.ajax_nonce );
 		data.append( 'selected', $( '#ocdi__demo-import-files' ).val() );
 		if ( $('#ocdi__content-file-upload').length ) {
@@ -212,7 +212,7 @@ jQuery( function ( $ ) {
 
 		// Prepare data for the AJAX call
 		var data = new FormData();
-		data.append( 'action', 'ocdi_import_demo_data' );
+		data.append( 'action', 'pix_import_demo_data' );
 		data.append( 'security', ocdi.ajax_nonce );
 		data.append( 'selected', selectedImportID );
 		data.append( 'filter', JSON.stringify(filter) );

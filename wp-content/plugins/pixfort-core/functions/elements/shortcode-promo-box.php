@@ -281,7 +281,7 @@ vc_map( array (
            array (
                'param_name' 	=> 'overlay_color',
                'type' 			=> 'dropdown',
-               'heading' 		=> __('Hover overlay color', 'pixfort-core'),
+               'heading' 		=> __('Overlay Color', 'pixfort-core'),
                'admin_label'	=> false,
                'group'         => 'Advanced',
                'value' 		=> $colors,

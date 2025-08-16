@@ -25,7 +25,6 @@ class PixPortfolio {
 			'order' 			=> 'DESC',
 			'filters' 			=> 0,
 			'filters_align' 			=> 'center',
-
 			'rounded_img' 			=> 'rounded-lg',
 			'pagination'		=> '',
 			'post_type'		=> 'portfolio',
@@ -190,7 +189,7 @@ function pix_portfolio_nav($filters_align, $filter_light, $category, $taxonomies
 	}
 	$all = esc_attr__('All', 'pixfort-core');
 	$output = '<div class="col-12 pix-pb-50 text-'.$filters_align.' '.$filter_light.' pix-portfolio-nav">';
-		$output .= '<a href="#" data-category="*" class="portfolio_filter is-checked btn btn-link btn-colored-shadow"><strong>'.$all.'</strong></a>';
+		$output .= '<a href="#" data-category="*" class="portfolio_filter is-checked btn btn-link"><strong>'.$all.'</strong></a>';
 		$termArgs = array();
 		$termArgs = apply_filters( 'pixfort_custom_portfolio_nav_args', $termArgs );
 		foreach ($taxonomies as $value) {
@@ -198,10 +197,10 @@ function pix_portfolio_nav($filters_align, $filter_light, $category, $taxonomies
 				foreach( $portfolio_categories as $category ){
 					if($category_arr){
 						if(in_array($category->slug, $category_arr)){
-							$output .= '<a href="#" data-category=".category-'. $category->slug .'" class="portfolio_filter btn btn-link btn-colored-shadow"><strong>'. $category->name .'</strong></a>';
+							$output .= '<a href="#" data-category=".category-'. $category->slug .'" class="portfolio_filter btn btn-link"><strong>'. $category->name .'</strong></a>';
 						}
 					}else{
-						$output .= '<a href="#" data-category=".category-'. $category->slug .'" class="portfolio_filter btn btn-link btn-colored-shadow"><strong>'. $category->name .'</strong></a>';
+						$output .= '<a href="#" data-category=".category-'. $category->slug .'" class="portfolio_filter btn btn-link"><strong>'. $category->name .'</strong></a>';
 					}
 	
 				}
@@ -214,8 +213,6 @@ function pix_portfolio_nav($filters_align, $filter_light, $category, $taxonomies
 
 
 function pix_pagination($the_query){
-	// if(!$the_query) $the_query = get_queried_object();
-
 	$paged = 1;
 	if(is_front_page()) {
 		$paged = (get_query_var('page')) ? get_query_var('page') : 1;
@@ -241,7 +238,6 @@ function pix_pagination($the_query){
            'end_size'     => 2,
            'mid_size'     => 1,
            'prev_next'    => true,
-        //    'prev_text'    => '<span class="d-sm-flex justify-content-center align-items-center"><i class="pixicon-angle-left align-self-center"></i></span>',
            'prev_text'    => '<span class="d-sm-flex justify-content-center align-items-center">'.\PixfortCore::instance()->icons->getIcon($prevIcon).'</span>',
            'next_text'    => '<span class="d-sm-flex justify-content-center align-items-center">'.\PixfortCore::instance()->icons->getIcon($nextIcon).'</span>',
            'add_args'     => false,

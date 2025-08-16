@@ -12,16 +12,16 @@ class PixSection {
 		add_action('elementor/frontend/container/before_render', array($this, 'before_render'), 1);
 		add_action('elementor/frontend/column/before_render', array($this, 'render_dividers'), 1);
 		add_action('elementor/frontend/container/before_render', array($this, 'render_dividers'), 1);
-		if(version_compare(ELEMENTOR_VERSION, '3.19.0', '<') ){
-			if ( \Elementor\Plugin::$instance->experiments->is_feature_active( 'e_dom_optimization' ) ) {
+		if (version_compare(ELEMENTOR_VERSION, '3.19.0', '<')) {
+			if (\Elementor\Plugin::$instance->experiments->is_feature_active('e_dom_optimization')) {
 				add_action('elementor/frontend/section/before_render', array($this, 'before_render_divider'), 1);
-				add_action('elementor/frontend/section/after_render', array($this, 'after_render_divider'), 1);	
+				add_action('elementor/frontend/section/after_render', array($this, 'after_render_divider'), 1);
 			} else {
 				add_action('elementor/frontend/section/before_render', array($this, 'render_dividers'), 1);
 			}
 		} else {
 			add_action('elementor/frontend/section/before_render', array($this, 'before_render_divider'), 1);
-			add_action('elementor/frontend/section/after_render', array($this, 'after_render_divider'), 1);	
+			add_action('elementor/frontend/section/after_render', array($this, 'after_render_divider'), 1);
 		}
 		// add_action('elementor/frontend/section/before_render', array($this, 'render_dividers'), 1);
 
@@ -34,71 +34,8 @@ class PixSection {
 
 	public function register_controls($element) {
 
-		if ( ! is_object( $element ) ) return;
-		
-		$bg_colors = array(
-			"None" 					=> '',
-			"Primary"				=> "primary",
-			"Primary Light"			=> "primary-light",
-			"Primary Gradient"		=> "gradient-primary",
-			"Primary Gradient Light"		=> "gradient-primary-light",
-			"Secondary"				=> "secondary",
-			"Secondary Light"		=> "secondary-light",
-			"White"					=> "white",
-			"Black"					=> "black",
-			"Green"					=> "green",
-			"Green Light"			=> "green-light",
-			"Blue"					=> "blue",
-			"Blue Light"			=> "blue-light",
-			"Red"					=> "red",
-			"Red Light"				=> "red-light",
-			"Yellow"				=> "yellow",
-			"Yellow Light"			=> "yellow-light",
-			"Brown"					=> "brown",
-			"Brown Light"			=> "brown-light",
-			"Purple"				=> "purple",
-			"Purple Light"			=> "purple-light",
-			"Orange"				=> "orange",
-			"Orange Light"			=> "orange-light",
-			"Cyan"					=> "cyan",
-			"Cyan Light"			=> "cyan-light",
-			"Gray 1"				=> "gray-1",
-			"Gray 2"				=> "gray-2",
-			"Gray 3"				=> "gray-3",
-			"Gray 4"				=> "gray-4",
-			"Gray 5"				=> "gray-5",
-			"Gray 6"				=> "gray-6",
-			"Gray 7"				=> "gray-7",
-			"Gray 8"				=> "gray-8",
-			"Gray 9"				=> "gray-9",
-			"Dark opacity 1"		=> "dark-opacity-1",
-			"Dark opacity 2"		=> "dark-opacity-2",
-			"Dark opacity 3"		=> "dark-opacity-3",
-			"Dark opacity 4"		=> "dark-opacity-4",
-			"Dark opacity 5"		=> "dark-opacity-5",
-			"Dark opacity 6"		=> "dark-opacity-6",
-			"Dark opacity 7"		=> "dark-opacity-7",
-			"Dark opacity 8"		=> "dark-opacity-8",
-			"Dark opacity 9"		=> "dark-opacity-9",
-			"Light opacity 1"		=> "light-opacity-1",
-			"Light opacity 2"		=> "light-opacity-2",
-			"Light opacity 3"		=> "light-opacity-3",
-			"Light opacity 4"		=> "light-opacity-4",
-			"Light opacity 5"		=> "light-opacity-5",
-			"Light opacity 6"		=> "light-opacity-6",
-			"Light opacity 7"		=> "light-opacity-7",
-			"Light opacity 8"		=> "light-opacity-8",
-			"Light opacity 9"		=> "light-opacity-9",
-			"Custom Gradient" 		=> 'custom-gradient'
-		);
-		// echo '<pre>';
-		// var_dump($element->get_raw_data()['isInner']);
-		// echo '</pre>';
-		// die();
-		// $test = 'firas';
-		// if(!empty($element->get_raw_data()['isInner'])){
-		// 	$test = 'firasInnnnnn';
-		// }
+		if (! is_object($element)) return;
+
 		$elType = $element->get_title();
 		$isColumn = false;
 		$hide_in_top = true;
@@ -121,9 +58,9 @@ class PixSection {
 			$element->add_control(
 				'pix_section_name',
 				[
-					'label' => $elType . ' ' . __('Name', 'elementor'),
+					'label' => $elType . ' ' . __('Name', 'pixfort-core'),
 					'type' => Controls_Manager::TEXT,
-					'placeholder' => __('Enter section name', 'elementor'),
+					'placeholder' => __('Enter section name', 'pixfort-core'),
 					'default' => '',
 					'dynamic'     => array(
 						'active'  => true
@@ -139,12 +76,11 @@ class PixSection {
 			[
 				'label' => __('Background Overlay color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::SELECT,
-				'options' => array_flip($bg_colors),
+				'groups' => \PixfortCore::instance()->coreFunctions->getColorsArray(['bg' => true, 'defaultColors' => false, 'lightBasicText' => true, 'defaultValue' => ['' => __('None', 'pixfort-core')], 'advancedValues' => ['custom-gradient' => __('Custom Gradient', 'pixfort-core')] ]),
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}}:not(.elementor-column):before, {{WRAPPER}}.elementor-inner-column:before' => 'border: unset;border-radius: inherit;background: var(--text-{{VALUE}}) !important; content: \' \';position: absolute;width: 100%;height: 100%;top: 0;left: 0;pointer-events: none;z-index: 0;',
-					// '{{WRAPPER}}.elementor-inner-column:before' => 'border: unset;border-radius: inherit;background: var(--text-{{VALUE}}) !important; content: \' \';position: absolute;width: 100%;height: 100%;top: 0;left: 0;pointer-events: none;z-index: 0;',
-					'{{WRAPPER}} .elementor-background-video-container' => 'z-index: -1;'
+					'{{WRAPPER}}:not(.elementor-column):before, {{WRAPPER}}.elementor-inner-column:before' => 'border: unset;border-radius: inherit;background: var(--pix-{{VALUE}}) !important; content: \' \';position: absolute;width: 100%;height: 100%;top: 0;left: 0;pointer-events: none;z-index: 0;',
+					'{{WRAPPER}} .elementor-background-video-container, {{WRAPPER}} .elementor-background-slideshow' => 'z-index: -1;'
 				],
 			]
 		);
@@ -162,7 +98,7 @@ class PixSection {
 				'selectors' => [
 					'{{WRAPPER}}:not(.elementor-column):before, {{WRAPPER}}.elementor-inner-column:before' => 'border: unset;border-radius: inherit;background: {{VALUE}} !important; content: \' \';position: absolute;width: 100%;height: 100%;top: 0;left: 0;pointer-events: none;z-index: 0;',
 					// '{{WRAPPER}}.elementor-inner-column:before' => 'border: unset;border-radius: inherit;background: {{VALUE}} !important; content: \' \';position: absolute;width: 100%;height: 100%;top: 0;left: 0;pointer-events: none;z-index: 0;',
-					'{{WRAPPER}} .elementor-background-video-container' => 'z-index: -1;'
+					'{{WRAPPER}} .elementor-background-video-container, {{WRAPPER}} .elementor-background-slideshow' => 'z-index: -1;'
 				],
 
 			]
@@ -170,7 +106,7 @@ class PixSection {
 		$element->add_responsive_control(
 			'pix_overlay_opacity',
 			[
-				'label' => __('Overlay opacity', 'elementor'),
+				'label' => __('Overlay opacity', 'pixfort-core'),
 				'type' => Controls_Manager::TEXT,
 				'condition' => [
 					'pix_overlay_color!' => '',
@@ -186,7 +122,7 @@ class PixSection {
 		$element->add_responsive_control(
 			'pix_overlay_over',
 			[
-				'label' => __('Display overlay over content', 'elementor'),
+				'label' => __('Display overlay over content', 'pixfort-core'),
 				'type' => Controls_Manager::CHOOSE,
 				'options' => [
 					'0' => [
@@ -496,6 +432,111 @@ class PixSection {
 				]
 			);
 
+			if (defined('IS_PIXFORT_THEME') || ( defined('PIXFORT_THEME_SLUG') && PIXFORT_THEME_SLUG === 'acquire') ) {
+				$element->add_control(
+					'pix_fade_mask',
+					[
+						'label' => __('Fade mask', 'pixfort-core'),
+						'type' => \Elementor\Controls_Manager::SWITCHER,
+					]
+				);
+				$element->add_responsive_control(
+					'pix_fade_mask_sides',
+					[
+						'label' => __('Mask Sides', 'pixfort-core'),
+						'type' => Controls_Manager::SELECT,
+						'default' => '0',
+						'options' => array(
+							"0"       => "Two Sides",
+							"1"       => "One Side"
+						),
+						'condition' => [
+							'pix_fade_mask' => 'yes',
+						],
+						'selectors' => [
+							'{{WRAPPER}}' => '--pix-fade-mask-sides: {{VALUE}};',
+						],
+					]
+				);
+				$element->add_responsive_control(
+					'pix_fade_mask_value',
+					[
+						'label' => __('Fade value', 'pixfort-core'),
+						'type' => \Elementor\Controls_Manager::SLIDER,
+						'default' => [
+							'size' => 20,
+							'unit' => '%',
+						],
+						'size_units' => ['px', '%'],
+						'range' => [
+							'%' => [
+								'min' => 0,
+								'max' => 50,
+							],
+							'px' => [
+								'min' => 0,
+								'max' => 400,
+								'step' => 1,
+							],
+						],
+						'selectors' => [
+							'{{WRAPPER}}' => '-webkit-mask-image: linear-gradient(var(--pix-mask-roation, 90deg),rgba(0,0,0,var(--pix-mask-alpha, 1)) 0,#fff {{SIZE}}{{UNIT}},#fff calc(100% - {{SIZE}}{{UNIT}}),rgba(0,0,0,max(var(--pix-mask-alpha, 1), var(--pix-fade-mask-sides, 0))) 100%);mask-image: linear-gradient(var(--pix-mask-roation, 90deg),rgba(0,0,0,var(--pix-mask-alpha, 1)) 0,#fff {{SIZE}}{{UNIT}},#fff calc(100% - {{SIZE}}{{UNIT}}),rgba(0,0,0,max(var(--pix-mask-alpha, 1), var(--pix-fade-mask-sides, 0))) 100%);',
+						],
+						'condition' => [
+							'pix_fade_mask' => 'yes',
+						],
+					]
+				);
+				$element->add_responsive_control(
+					'pix_fade_mask_alpha',
+					[
+						'label' => __('Mask alpha', 'your-text-domain'),
+						'type' => \Elementor\Controls_Manager::SLIDER,
+						'size_units' => ['deg'],
+						'range' => [
+							'%' => [
+								'min' => 0,
+								'max' => 1,
+								'step' => 0.05,
+							],
+						],
+						'default' => [
+							'unit' => '%',
+							'size' => 0,
+						],
+						'selectors' => [
+							'{{WRAPPER}}' => '--pix-mask-alpha: {{SIZE}};',
+						],
+						'condition' => [
+							'pix_fade_mask' => 'yes',
+						],
+					]
+				);
+				$element->add_responsive_control(
+					'pix_fade_mask_rotation',
+					[
+						'label' => __('Mask Rotation Degree', 'your-text-domain'),
+						'type' => \Elementor\Controls_Manager::SLIDER,
+						'size_units' => ['deg'],
+						'range' => [
+							'deg' => [
+								'min' => 0,
+								'max' => 360,
+							],
+						],
+						'default' => [
+							'unit' => 'deg',
+							'size' => 90,
+						],
+						'selectors' => [
+							'{{WRAPPER}}' => '--pix-mask-roation: {{SIZE}}{{UNIT}};',
+						],
+						'condition' => [
+							'pix_fade_mask' => 'yes',
+						],
+					]
+				);
+			}
 		}
 
 
@@ -548,7 +589,7 @@ class PixSection {
 		$element->start_controls_section(
 			'section_top_dividers',
 			[
-				'label' => __('<img class="pix-elementor-section-logo" src="' . PIX_CORE_PLUGIN_URI . 'functions/images/pixfort-logo.svg" /> Top Dividers', 'elementor'),
+				'label' => __('<img class="pix-elementor-section-logo" src="' . PIX_CORE_PLUGIN_URI . 'functions/images/pixfort-logo.svg" /> Top Dividers', 'pixfort-core'),
 				'tab' => Controls_Manager::TAB_LAYOUT
 			]
 		);
@@ -705,7 +746,7 @@ class PixSection {
 			]
 		);
 
-		
+
 
 
 		// Top layers tabs
@@ -764,6 +805,25 @@ class PixSection {
 				],
 			]
 		);
+		if(PixfortCore::instance()->getThemeParam('dynamic_colors')) {
+			$element->add_control(
+				't_1_opacity',
+				[
+					'label' => esc_html__( 'Opacity', 'textdomain' ),
+					'type' => \Elementor\Controls_Manager::SLIDER,
+					'range' => [
+						'px' => [
+							'min' => 0,
+							'max' => 1,
+							'step' => 0.01,
+						],
+					],
+					'selectors' => [
+						'{{WRAPPER}} > .pix-top-divider .pix-divider-layer-1' => 'opacity: {{SIZE}} !important;'
+					],
+				]
+			);
+		}
 		$element->add_control(
 			't_1_animation',
 			[
@@ -839,6 +899,25 @@ class PixSection {
 				],
 			]
 		);
+		if(PixfortCore::instance()->getThemeParam('dynamic_colors')) {
+			$element->add_control(
+				't_2_opacity',
+				[
+					'label' => esc_html__( 'Opacity', 'textdomain' ),
+					'type' => \Elementor\Controls_Manager::SLIDER,
+					'range' => [
+						'px' => [
+							'min' => 0,
+							'max' => 1,
+							'step' => 0.01,
+						],
+					],
+					'selectors' => [
+						'{{WRAPPER}} > .pix-top-divider .pix-divider-layer-2' => 'opacity: {{SIZE}} !important;'
+					],
+				]
+			);
+		}
 		$element->add_control(
 			't_2_animation',
 			[
@@ -913,6 +992,25 @@ class PixSection {
 				],
 			]
 		);
+		if(PixfortCore::instance()->getThemeParam('dynamic_colors')) {
+			$element->add_control(
+				't_3_opacity',
+				[
+					'label' => esc_html__( 'Opacity', 'textdomain' ),
+					'type' => \Elementor\Controls_Manager::SLIDER,
+					'range' => [
+						'px' => [
+							'min' => 0,
+							'max' => 1,
+							'step' => 0.01,
+						],
+					],
+					'selectors' => [
+						'{{WRAPPER}} > .pix-top-divider .pix-divider-layer-3' => 'opacity: {{SIZE}} !important;'
+					],
+				]
+			);
+		}
 		$element->add_control(
 			't_3_animation',
 			[
@@ -942,7 +1040,7 @@ class PixSection {
 
 		$element->end_controls_tab();
 		$element->end_controls_tabs();
-		
+
 
 
 
@@ -955,7 +1053,7 @@ class PixSection {
 		$element->start_controls_section(
 			'section_bottom_dividers',
 			[
-				'label' => __('<img class="pix-elementor-section-logo" src="' . PIX_CORE_PLUGIN_URI . 'functions/images/pixfort-logo.svg" /> Bottom Dividers', 'elementor'),
+				'label' => __('<img class="pix-elementor-section-logo" src="' . PIX_CORE_PLUGIN_URI . 'functions/images/pixfort-logo.svg" /> Bottom Dividers', 'pixfort-core'),
 				'tab' => Controls_Manager::TAB_LAYOUT
 			]
 		);
@@ -1074,8 +1172,8 @@ class PixSection {
 					'0' => 'auto'
 				],
 				'selectors' => [
-					'{{WRAPPER}} .pix-divider.pix-bottom-divider svg' => 'height: {{VALUE}} !important;',
-					'{{WRAPPER}}.pix-divider.pix-bottom-divider svg' => 'height: {{VALUE}} !important;'
+					'{{WRAPPER}} .pix-divider.pix-bottom-divider svg' => 'height: {{VALUE}} !important;max-height: {{VALUE}} !important;',
+					'{{WRAPPER}}.pix-divider.pix-bottom-divider svg' => 'height: {{VALUE}} !important;max-height: {{VALUE}} !important;'
 				],
 				'condition' => [
 					'bottom_divider_select' => array("1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26")
@@ -1143,6 +1241,28 @@ class PixSection {
 				],
 			]
 		);
+		if(PixfortCore::instance()->getThemeParam('dynamic_colors')) {
+			$element->add_control(
+				'b_1_opacity',
+				[
+					'label' => esc_html__( 'Opacity', 'textdomain' ),
+					'type' => \Elementor\Controls_Manager::SLIDER,
+					'range' => [
+						'px' => [
+							'min' => 0,
+							'max' => 1,
+							'step' => 0.01,
+						],
+					],
+					// 'default' => [
+					// 	'size' => 1,
+					// ],
+					'selectors' => [
+						'{{WRAPPER}} > .pix-bottom-divider .pix-divider-layer-1' => 'opacity: {{SIZE}} !important;'
+					],
+				]
+			);
+		}
 		$element->add_control(
 			'b_1_animation',
 			[
@@ -1203,6 +1323,9 @@ class PixSection {
 				'label' => __('Layer 2 color', 'pixfort-core'),
 				'type' => \Elementor\Controls_Manager::COLOR,
 				'default' => 'rgba(255,255,255,0.6)',
+				// 'selectors' => [
+				// 	'{{WRAPPER}} > .pix-bottom-divider .pix-divider-layer-2' => 'fill: {{VALUE}} !important;',
+				// ],
 				// 'condition' => [
 				// 	'icon_color' => 'custom',
 				// ],
@@ -1219,6 +1342,28 @@ class PixSection {
 				],
 			]
 		);
+		if(PixfortCore::instance()->getThemeParam('dynamic_colors')) {
+			$element->add_control(
+				'b_2_opacity',
+				[
+					'label' => esc_html__( 'Opacity', 'textdomain' ),
+					'type' => \Elementor\Controls_Manager::SLIDER,
+					'range' => [
+						'px' => [
+							'min' => 0,
+							'max' => 1,
+							'step' => 0.01,
+						],
+					],
+					// 'default' => [
+					// 	'size' => 1,
+					// ],
+					'selectors' => [
+						'{{WRAPPER}} > .pix-bottom-divider .pix-divider-layer-2' => 'opacity: {{SIZE}} !important;'
+					],
+				]
+			);
+		}
 		$element->add_control(
 			'b_2_animation',
 			[
@@ -1292,6 +1437,28 @@ class PixSection {
 				],
 			]
 		);
+		if(PixfortCore::instance()->getThemeParam('dynamic_colors')) {
+			$element->add_control(
+				'b_3_opacity',
+				[
+					'label' => esc_html__( 'Opacity', 'textdomain' ),
+					'type' => \Elementor\Controls_Manager::SLIDER,
+					'range' => [
+						'px' => [
+							'min' => 0,
+							'max' => 1,
+							'step' => 0.01,
+						],
+					],
+					// 'default' => [
+					// 	'size' => 1,
+					// ],
+					'selectors' => [
+						'{{WRAPPER}} > .pix-bottom-divider .pix-divider-layer-3' => 'opacity: {{SIZE}} !important;'
+					],
+				]
+			);
+		}
 		$element->add_control(
 			'b_3_animation',
 			[
@@ -1325,7 +1492,6 @@ class PixSection {
 
 	public function before_render($element) {
 		$settings = $element->get_settings();
-
 		if (!empty($settings['pix_elementor_effect_hover']) && $settings['pix_elementor_effect_hover'] !== 'none') {
 			$element->add_render_attribute('_wrapper', ['class' => 'pix-base-transition']);
 		}
@@ -1337,11 +1503,10 @@ class PixSection {
 		// 	$out = \PixfortCore::instance()->elementsManager->renderElement('Dividers', $settings );
 		// 	$element->add_render_attribute('_wrapper', ['data-pix-dividers' => $out]);
 		// }
-		
-		if (!empty($settings['pix_sticky_top'])&&$settings['pix_sticky_top']) {
+		if (!empty($settings['pix_sticky_top']) && $settings['pix_sticky_top']) {
 			$element->add_render_attribute('_wrapper', ['class' => 'sticky-top pix-sticky-top-adjust']);
 		}
-		if (!empty($settings['pix_scale_in'])&&$settings['pix_scale_in']!=='none') {
+		if (!empty($settings['pix_scale_in']) && $settings['pix_scale_in'] !== 'none') {
 			$element->add_render_attribute('_wrapper', ['class' => $settings['pix_scale_in']]);
 		}
 		if (!empty($settings['pix_animation'])) {
@@ -1360,29 +1525,29 @@ class PixSection {
 		if (!empty($settings['bottom_divider_select']) || !empty($settings['top_divider_select'])) {
 			// echo \PixfortCore::instance()->elementsManager->renderElement('Dividers', $settings );
 			$element->add_render_attribute('_wrapper', [
-				'data-pix-dividers' => \PixfortCore::instance()->elementsManager->renderElement('Dividers', $settings )
+				'data-pix-dividers' => \PixfortCore::instance()->elementsManager->renderElement('Dividers', $settings)
 			]);
-			wp_enqueue_script( 'pix-global-dividers-handle' );
+			wp_enqueue_script('pix-global-dividers-handle');
 		}
 	}
 	public function before_render_divider($element) {
 		$settings = $element->get_settings();
 		if (!empty($settings['bottom_divider_select']) || !empty($settings['top_divider_select'])) {
 			$extra = $this->pix_get_responsive_classes($settings);
-			$extra .= 'elementor-element elementor-element-'.$element->get_id();
+			$extra .= 'elementor-element elementor-element-' . $element->get_id();
 			if (!empty($settings['stretch_section'])) {
 				$extra .= ' pix-stretch-divider';
 			}
 			$settings['extra_classes'] = $extra;
 			$element->add_render_attribute('_wrapper', ['class' => 'pix-elementor-divider']);
-			if($settings['top_divider_select']==='dynamic'||$settings['bottom_divider_select']==='dynamic') {
+			if ($settings['top_divider_select'] === 'dynamic' || $settings['bottom_divider_select'] === 'dynamic') {
 				$element->add_render_attribute('_wrapper', [
-					'data-pix-dividers' => \PixfortCore::instance()->elementsManager->renderElement('Dividers', $settings )
+					'data-pix-dividers' => \PixfortCore::instance()->elementsManager->renderElement('Dividers', $settings)
 				]);
-				wp_enqueue_script( 'pix-global-dividers-handle' );
+				wp_enqueue_script('pix-global-dividers-handle');
 			} else {
 				$settings['bottom_divider_select'] = false;
-				echo \PixfortCore::instance()->elementsManager->renderElement('Dividers', $settings );
+				echo \PixfortCore::instance()->elementsManager->renderElement('Dividers', $settings);
 			}
 		}
 	}
@@ -1390,28 +1555,28 @@ class PixSection {
 		$settings = $element->get_settings();
 		if (!empty($settings['bottom_divider_select'])) {
 			$extra = $this->pix_get_responsive_classes($settings);
-			$extra .= 'elementor-element elementor-element-'.$element->get_id();
+			$extra .= 'elementor-element elementor-element-' . $element->get_id();
 			if (!empty($settings['stretch_section'])) {
 				$extra .= ' pix-stretch-divider';
 			}
 			$settings['extra_classes'] = $extra;
 			$settings['top_divider_select'] = false;
-			if($settings['bottom_divider_select']!=='dynamic')  {
-				echo \PixfortCore::instance()->elementsManager->renderElement('Dividers', $settings );
+			if ($settings['bottom_divider_select'] !== 'dynamic') {
+				echo \PixfortCore::instance()->elementsManager->renderElement('Dividers', $settings);
 			} else {
 				$element->add_render_attribute('_wrapper', [
-					'data-pix-dividers' => \PixfortCore::instance()->elementsManager->renderElement('Dividers', $settings )
+					'data-pix-dividers' => \PixfortCore::instance()->elementsManager->renderElement('Dividers', $settings)
 				]);
-				wp_enqueue_script( 'pix-global-dividers-handle' );
+				wp_enqueue_script('pix-global-dividers-handle');
 			}
 		}
 	}
 
-	public function pix_get_responsive_classes($settings){
+	public function pix_get_responsive_classes($settings) {
 		$out = '';
-		if(!empty($settings['hide_desktop'])) $out .= ' elementor-hidden-desktop';
-		if(!empty($settings['hide_tablet'])) $out .= ' elementor-hidden-tablet';
-		if(!empty($settings['hide_mobile'])) $out .= ' elementor-hidden-mobile';
+		if (!empty($settings['hide_desktop'])) $out .= ' elementor-hidden-desktop';
+		if (!empty($settings['hide_tablet'])) $out .= ' elementor-hidden-tablet';
+		if (!empty($settings['hide_mobile'])) $out .= ' elementor-hidden-mobile';
 		return $out;
 	}
 }

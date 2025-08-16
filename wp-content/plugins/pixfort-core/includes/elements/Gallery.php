@@ -38,56 +38,17 @@ class PixGallery {
 		}
         wp_enqueue_style( 'pix-lightbox-css' );
         $output = '';
-
-        $style_arr = array(
-           ""        => "",
-           "1"       => "shadow-sm",
-           "2"       => "shadow",
-           "3"       => "shadow-lg",
-           "4"       => "shadow-inverse-sm",
-           "5"       => "shadow-inverse",
-           "6"       => "shadow-inverse-lg",
-         );
-
-         $hover_effect_arr = array(
-            ""        => "",
-            "1"       => "shadow-hover-sm",
-            "2"       => "shadow-hover",
-            "3"       => "shadow-hover-lg",
-            "4"       => "shadow-inverse-hover-sm",
-            "5"       => "shadow-inverse-hover",
-            "6"       => "shadow-inverse-hover-lg",
-         );
-
-         $add_hover_effect_arr = array(
-            ""        => "",
-            "1"       => "fly-sm",
-            "2"       => "fly",
-            "3"       => "fly-lg",
-            "4"       => "scale-sm",
-            "5"       => "scale",
-            "6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-            "8"       => "scale-inverse",
-            "9"       => "scale-inverse-lg",
-         );
-
+        
         array_push($classes, esc_attr( $css ));
 
-        if($style){
-            array_push($classes, $style_arr[$style]);
-        }
-        if($hover_effect){
-            array_push($classes, $hover_effect_arr[$hover_effect]);
-        }
-        
         if(!empty($pix_tilt)){
             array_push($classes, $pix_tilt_size);
-        } else {
-            if($add_hover_effect){
-                array_push($classes, $add_hover_effect_arr[$add_hover_effect]);
-            }
-        }
+            $add_hover_effect = '';
+        } 
+
+        $effectsClasses = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
+		array_push($classes, $effectsClasses);
+        
         $elementor = false;
 		$items_arr = array();
 		if(is_array($items)){
@@ -131,7 +92,7 @@ class PixGallery {
         $title_class_names = join( ' ', $title_classes );
 
         if(!empty($items_arr)){
-            wp_enqueue_style( 'pixfort-masonry-style', PIX_CORE_PLUGIN_URI.'functions/css/elements/css/masonry.min.css', false, PIXFORT_PLUGIN_VERSION);
+            wp_enqueue_style( 'pixfort-masonry-style', PIX_CORE_PLUGIN_URI.'includes/assets/css/elements/masonry.min.css', false, PIXFORT_PLUGIN_VERSION);
             wp_enqueue_script('pix-flickity-js');
             $output .= '<div class="pix-lightbox">';
                     $output .= '<div class="pix_masonry '.$pix_style.' '.$pix_columns.'" style="width:100%">';
@@ -164,13 +125,15 @@ class PixGallery {
         						$imgSrc = $image;
         					}else{
         						if($elementor){
+                                    if ( is_int( $image['id'] ) ) {
+                                        $image['id'] = apply_filters( 'wpml_object_id', $image['id'], 'attachment', true );
+                                    }
         							$img = wp_get_attachment_image_src($image['id'], "full");
-        							// $imgSrcset = wp_get_attachment_image_srcset($image['id']);
-        							// $imgSizes = wp_get_attachment_image_sizes($image['id'], "full");
         						}else{
+                                    if ( is_int( $image ) ) {
+                                        $image = apply_filters( 'wpml_object_id', $image, 'attachment', true );
+                                    }
         							$img = wp_get_attachment_image_src($image, "full");
-        							// $imgSrcset = wp_get_attachment_image_srcset($image);
-        							// $imgSizes = wp_get_attachment_image_sizes($image, "full");
         						}
                                 if(!empty($img[0])){
                                     $imgSrc = $img[0];
@@ -219,14 +182,13 @@ class PixGallery {
                                     $output .= '<img class="card-img '.$color_effect.' '.$rounded_img.' '.$img_classes.'" src="'.$imgSrc.'" '.$imgWidth.' '.$imgHeight.' alt="'.$desc.'" />';
                                     $output .= '<div class="card-img-overlay d-flex align-items-end pix-p-10">';
                                     if(!empty($title)){
-                                        $output .= '<div class="card-content-box pix-p-20 '.$rounded_img.' w-100 shadow '.$title_effect.' bg-white d-flex justify-content-between align-items-center">';
+                                        $output .= '<div class="card-content-box pix-p-20 '.$rounded_img.' w-100 shadow '.$title_effect.' bg-dynamic-background d-flex justify-content-between align-items-center">';
                                             $output .= '<div class="card-title '.$title_class_names.'  text-'.$title_color.' m-0 w-100" '.$t_custom.'>'.$title.'</div>';
 											if(!empty($enable_link)){
-	                                            $output .= '<div class="m-0 '.$title_class_names.'  text-'.$title_color.'">'.pix_load_inline_svg(PIX_CORE_PLUGIN_DIR.'/functions/images/open_in_new.svg').'</div>';
+	                                            $output .= '<div class="m-0 '.$title_class_names.'  text-'.$title_color.'">'.pix_load_inline_svg(PIX_CORE_PLUGIN_DIR.'/includes/assets/images/open_in_new.svg').'</div>';
 											}else{
-												$output .= '<div class="m-0 '.$title_class_names.'  text-'.$title_color.'">'.pix_load_inline_svg(PIX_CORE_PLUGIN_DIR.'/functions/images/fullscreen.svg').'</div>';
+												$output .= '<div class="m-0 '.$title_class_names.'  text-'.$title_color.'">'.pix_load_inline_svg(PIX_CORE_PLUGIN_DIR.'/includes/assets/images/fullscreen.svg').'</div>';
 											}
-
                                         $output .= '</div>';
                                     }
                                     $output .= '</div>';

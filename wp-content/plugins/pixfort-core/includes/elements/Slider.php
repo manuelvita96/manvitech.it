@@ -53,12 +53,12 @@ class PixSlider {
 		$css_class = '';
 		if (function_exists('vc_shortcode_custom_css_class')) {
 			$css_class = apply_filters(VC_SHORTCODE_CUSTOM_CSS_FILTER_TAG, vc_shortcode_custom_css_class($css, ' '));
-			wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI.'functions/css/elements/css/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 		}
+		wp_enqueue_style('pixfort-carousel-style', PIX_CORE_PLUGIN_URI . 'includes/assets/css/elements/carousel-2.min.css', false, PIXFORT_PLUGIN_VERSION, 'all');
 		wp_enqueue_script('pix-flickity-js');
 
 		$elementor = false;
-		$slides_arr = array();
+		$slides_arr = [];
 		if (is_array($items)) {
 			$slides_arr = $items;
 			$elementor = true;
@@ -73,65 +73,20 @@ class PixSlider {
 			$slider_header_placeholder = '<div class="pix-main-intro-placeholder"></div>';
 		}
 
-
-		$style_arr = array(
-			"" => "",
-			"1"       => "shadow-sm",
-			"2"       => "shadow",
-			"3"       => "shadow-lg",
-			"4"       => "shadow-inverse-sm",
-			"5"       => "shadow-inverse",
-			"6"       => "shadow-inverse-lg",
-		);
-
-		$hover_effect_arr = array(
-			""       => "",
-			"1"       => "shadow-hover-sm",
-			"2"       => "shadow-hover",
-			"3"       => "shadow-hover-lg",
-			"4"       => "shadow-inverse-hover-sm",
-			"5"       => "shadow-inverse-hover",
-			"6"       => "shadow-inverse-hover-lg",
-		);
-
-		$add_hover_effect_arr = array(
-			""       => "",
-			"1"       => "fly-sm",
-			"2"       => "fly",
-			"3"       => "fly-lg",
-			"4"       => "scale-sm",
-			"5"       => "scale",
-			"6"       => "scale-lg",
-			"7"       => "scale-inverse-sm",
-			"8"       => "scale-inverse",
-			"9"       => "scale-inverse-lg",
-		);
-
 		$output = '';
-		$classes = array();
-		$effect_classes = array();
+		$classes = [];
 		$anim_type = '';
 		$anim_delay = '';
 
 		array_push($classes, esc_attr($css_class));
 
-		if ($style) {
-			array_push($effect_classes, $style_arr[$style]);
-		}
-		if ($hover_effect) {
-			array_push($effect_classes, $hover_effect_arr[$hover_effect]);
-		}
-		if ($add_hover_effect) {
-			array_push($effect_classes, $add_hover_effect_arr[$add_hover_effect]);
-		}
+		$effect_class_names = \PixfortCore::instance()->coreFunctions->getEffectsClasses($style, $hover_effect, $add_hover_effect);
 
 		$t_classes = array();
 		// $t_custom_color = '';
 		if (!empty($title_color)) {
 			if ($title_color != 'custom') {
 				array_push($t_classes, 'text-' . $title_color);
-			} else {
-				// $t_custom_color = 'color:' . $title_custom_color . ';';
 			}
 		}
 
@@ -139,13 +94,6 @@ class PixSlider {
 		if (!empty($italic)) array_push($t_classes, $italic);
 		if (!empty($secondary_font)) array_push($t_classes, $secondary_font);
 		array_push($t_classes, 'mb-0');
-
-		$title_tag = $title_size;
-		$t_size_style = '';
-		if ($title_size == 'custom') {
-			$title_tag = "h2";
-			$t_size_style = "font-size:" . $title_custom_size . ';';
-		}
 
 		$t_class_names = join(' ', $t_classes);
 
@@ -171,11 +119,11 @@ class PixSlider {
 
 		$inline_style = 'style="' . $inline_style . '"';
 		$class_names = join(' ', $classes);
-		$effect_class_names = join(' ', $effect_classes);
+		
 
 		$el_style = '';
 		if ($overlay_color == 'custom') {
-			$el_style = 'style="background:' . $overlay_custom_color . ';"';
+			$el_style = 'style="--pix-bg-color:' . $overlay_custom_color . ';"';
 		}
 
 		$nav_class = 'bg-black';
@@ -208,7 +156,7 @@ class PixSlider {
 				$autoplay_time = (int)$autoplay_time;
 			}
 			$slider_data = '';
-			$pix_id = "pix-slider-" . rand(1, 200000000);
+			$pix_id = 'pix-slider-' . substr(md5(json_encode($slides_arr)), 0, 8);
 			$slider_opts = array(
 				"autoPlay"			=> $autoplay_time,
 				"wrapAround"			=> true,
@@ -228,21 +176,20 @@ class PixSlider {
 			$slider_data = 'data-flickity=\'' . $slider_data . '\'';
 
 			$rowClasses = 'pix-py-200';
-			if(!empty($custom_min_height)){
+			if (!empty($custom_min_height)) {
 				$rowClasses = 'd-flex align-items-center';
-				if(!$elementor)  {
-					$style = '#'. $pix_id . ' .slider-content-row { min-height: '.$custom_min_height.' !important; }';
-					$handle = 'el-'.$pix_id;
-					wp_register_style( $handle, false );
-					wp_enqueue_style( $handle );
-					wp_add_inline_style( $handle, $style );
+				if (!$elementor) {
+					$style = '#' . $pix_id . ' .slider-content-row { min-height: ' . $custom_min_height . ' !important; }';
+					$handle = 'el-' . $pix_id;
+					wp_register_style($handle, false);
+					wp_enqueue_style($handle);
+					wp_add_inline_style($handle, $style);
 				}
 			}
 
 
 			$output .= '<div class="pix-slider-div ' . $class_names . ' ' . $out_class . '" ' . $anim_type . ' ' . $anim_delay . ' >';
 			$output .= '<div id="' . $pix_id . '" class="pix-slider ' . $top_class . ' bg-' . $overlay_color . ' pix-slider-full no-dots" ' . $el_style . ' ' . $slider_data . '>';
-			// $output  .= '<div id="'.$pix_id.'" class="pix-main-slider '.$top_class.' pix-fix-x pix-with-nav bg-'.$overlay_color.' '.$visible_overflow.' '.$visible_y.' pix-slider-full no-dots " '.$el_style.' '.$slider_data.'>';
 
 			$c_delay = 400;
 			foreach ($slides_arr as $key => $value) {
@@ -258,10 +205,16 @@ class PixSlider {
 						$img_sm = $value['image'];
 					} else {
 						if (is_array($value['image']) && !empty($value['image']['id'])) {
+							if ( is_int( $value['image']['id'] ) ) {
+								$value['image']['id'] = apply_filters( 'wpml_object_id', $value['image']['id'], 'attachment', true );
+							}
 							$img = wp_get_attachment_image_src($value['image']['id'], "full");
 							$imgSrcset = wp_get_attachment_image_srcset($value['image']['id']);
 							$img_sm = wp_get_attachment_image_src($value['image']['id'], "full");
 						} else {
+							if ( is_int( $value['image'] ) ) {
+								$value['image'] = apply_filters( 'wpml_object_id', $value['image'], 'attachment', true );
+							}
 							$img = wp_get_attachment_image_src($value['image'], "full");
 							$imgSrcset = wp_get_attachment_image_srcset($value['image']);
 							$img_sm = wp_get_attachment_image_src($value['image'], "full");
@@ -276,19 +229,20 @@ class PixSlider {
 
 					$output .= '<div class="carousel-cell p-0">
 							            <div class="pix-intro-1 d-inline-block w-100" >
-							                <div class="pix-intro-img jarallax-slider2 w-100" data-jarallax2 data-speed="0.4" ><img class="jarallax-img2 ' . $overlay_opacity . ' pix-fit-cover w-100" src="' . $imgSrc . '" data-srcset="' . $imgSrcset . '" alt="" /></div>
+							                <div class="pix-intro-img w-100" data-speed="0.4" ><img class="' . $overlay_opacity . ' pix-fit-cover w-100" src="' . $imgSrc . '" data-srcset="' . $imgSrcset . '" alt="" /></div>
 							                <div class="container">
-							                    <div class="slider-content-row  row-eq-height align-items-center '.$rowClasses.'" >
-													' . $slider_header_placeholder . '
+							                    <div class="slider-content-row  row-eq-height align-items-center ' . $rowClasses . '" >
+													
 							                        <div class="col-12 ' . $columns_align_size . ' pix-py-50 pix-px-40 d-md-flex">
+														
 							                            <div class="w-100 ' . $align . '">';
+					$output .= $slider_header_placeholder;
 					if (!empty($value['link']) && empty($value['btn_text'])) {
 						$target = '';
 						if (!empty($value['target'])) $target = 'target="_blank"';
 						$output .= '<a href="' . $value['link'] . '" ' . $target . '>';
 					}
 					if (!empty($value['title'])) {
-						// $output .= '<' . $title_tag . ' class="pix-sliding-headline ' . $t_class_names . ' animate-in" data-anim-type="fade-in-up" data-anim-delay="1000" style="' . $t_custom_color . $t_size_style . '">' . do_shortcode($value['title']) . '</' . $title_tag . '>';
 						$output .= \PixfortCore::instance()->elementsManager->renderElement('SlidingText', [
 							'position'  => 'inherit',
 							'size'  => $title_size,
@@ -298,18 +252,18 @@ class PixSlider {
 							'text_color'  => $title_color,
 							'text_custom_color'  => $title_custom_color,
 							'custom_font_size'  => $title_custom_size,
-							'delay'  => "1000",
+							'delay'  => "400",
 							'remove_mb'  => true
-						],  do_shortcode($value['title']) );
+						],  do_shortcode($value['title']));
 					}
 					if (!empty($value['text'])) {
-						$output .= '<p class="' . $content_size . ' pix-mt-10 ' . $c_color . ' ' . $content_size . ' animate-in" data-anim-type="fade-in" data-anim-delay="1300" style="' . $c_custom_color . '">';
+						$output .= '<p class="' . $content_size . ' pix-mt-10 ' . $c_color . ' ' . $content_size . ' animate-in" data-anim-type="fade-in" data-anim-delay="700" style="' . $c_custom_color . '">';
 						$output .= do_shortcode($value['text']);
 						$output .= '</p>';
 					}
 					if (!empty($value['btn_text'])) {
 						$attr['btn_text'] = $value['btn_text'];
-						if(!empty($value['link'])) $attr['btn_link'] = $value['link'];
+						if (!empty($value['link'])) $attr['btn_link'] = $value['link'];
 						if (!empty($value['btn_popup_id'])) {
 							$attr['btn_popup_id'] = $value['btn_popup_id'];
 						} else {
@@ -317,7 +271,7 @@ class PixSlider {
 						}
 						$attr['css'] = '';
 						if (!empty($value['target'])) $attr['btn_target'] = $value['target'];
-						$output .= '<div class="pix-pt-10">' . \PixfortCore::instance()->elementsManager->renderElement('Button', $attr ) . '</div>';
+						$output .= '<div class="pix-pt-10">' . \PixfortCore::instance()->elementsManager->renderElement('Button', $attr) . '</div>';
 					}
 					if (!empty($value['link']) && empty($value['btn_text'])) {
 						$output .= '</a>';
@@ -359,7 +313,7 @@ class PixSlider {
 				if ($nav_style == 'circles') {
 					$output .= '<div class="container"><div class="row"><div class="col-12 px-0">';
 				}
-				$output .= '<div class="pix-slider-nav-full ' . $nav_class . '  bg-gradient-primary2 animate-in" data-anim-type="fade-in" data-anim-delay="200" data-nav-align="' . $nav_align . '" data-slider="#' . $pix_id . '" ' . $el_style . '>';
+				$output .= '<div class="pix-slider-nav-full ' . $nav_class . ' animate-in" data-anim-type="fade-in" data-anim-delay="200" data-nav-align="' . $nav_align . '" data-slider="#' . $pix_id . '" ' . $el_style . '>';
 				$output .= $navigation;
 				$output .= '</div>';
 				if ($nav_style == 'circles') {
@@ -378,4 +332,3 @@ class PixSlider {
 		return $output;
 	}
 }
-

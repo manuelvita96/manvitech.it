@@ -62,7 +62,7 @@ vc_map(array(
 					array(
 						'param_name'    => 'btn_text',
 						'type'          => 'textfield',
-						'heading'       => __('Button text', 'pixfort-core'),
+						'heading'       => __('Button Text', 'pixfort-core'),
 						'description'   => __('Leave empty to apply the link on the title.', 'pixfort-core'),
 						'admin_label'   => true,
 					),

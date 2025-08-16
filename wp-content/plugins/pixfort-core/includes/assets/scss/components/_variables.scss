@@ -25,6 +25,34 @@ $gray-800: #343a40 !default;
 $gray-900: #212529 !default;
 $black:    #000 !default;
 
+@if variable-exists(color-gray-1) {
+  $gray-100: $color-gray-1;
+}
+@if variable-exists(color-gray-2) {
+  $gray-200: $color-gray-2;
+}
+@if variable-exists(color-gray-3) {
+  $gray-300: $color-gray-3;
+}
+@if variable-exists(color-gray-4) {
+  $gray-400: $color-gray-4;
+}
+@if variable-exists(color-gray-5) {
+  $gray-500: $color-gray-5;
+}
+@if variable-exists(color-gray-6) {
+  $gray-600: $color-gray-6;
+}
+@if variable-exists(color-gray-7) {
+  $gray-700: $color-gray-7;
+}
+@if variable-exists(color-gray-8) {
+  $gray-800: $color-gray-8;
+}
+@if variable-exists(color-gray-9) {
+  $gray-900: $color-gray-9;
+}
+
 $grays: () !default;
 // stylelint-disable-next-line scss/dollar-variable-default
 $grays: map-merge(
@@ -129,12 +157,6 @@ $theme-colors: map-merge(
   (
     "primary":    $primary,
     "secondary":  $secondary,
-    // "success":    $success,
-    // "info":       $info,
-    // "warning":    $warning,
-    // "danger":     $danger,
-    // "light":      $light,
-    // "dark":       $dark,
     "green":      $green,
     "cyan":       $cyan,
     "yellow":     $yellow,
@@ -144,7 +166,6 @@ $theme-colors: map-merge(
     "brown":      $brown,
     "purple":     $purple,
     "white":      $white,
-    // "gray":       $gray-500,
     "black":      $black
   ),
   $theme-colors
@@ -207,7 +228,7 @@ $dark-body-color:   rgba(darken(desaturate($primary, 75%), 5%),0.9) !default;
 @if variable-exists(customBreakpoint) {
     $mainMobileBreakpoint:    $customBreakpoint !default;
 } @else {
-    $mainMobileBreakpoint: 992px;
+    $mainMobileBreakpoint: 1024px;
 }
 
 $grid-breakpoints: () !default;
@@ -273,10 +294,7 @@ $fade-move:                 1rem !default;
 $component-active-color:      $white !default;
 $component-active-bg:         $primary !default;
 
-$caret-width:                 .3em !default;
-
 $transition-base:             all .4s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
-// $transition-fade:             opacity .15s linear !default;
 $transition-collapse:         height .35s ease !default;
 
 
@@ -402,9 +420,7 @@ $breadcrumb-item-padding:           .25rem !default;
 $breadcrumb-margin-bottom:          1rem !default;
 
 $breadcrumb-bg:                     $gray-100 !default;
-$breadcrumb-divider-color:          $gray-300 !default;
 $breadcrumb-active-color:           $gray-600 !default;
-$breadcrumb-divider:                quote("|") !default;
 
 $breadcrumb-border-radius:          4px !default;
 
@@ -422,10 +438,8 @@ $dropdown-item-padding-x:           1.8rem !default;
 // Style anchor elements.
 
 $link-color:                              #333 !default;
-$link-decoration:                         none !default;
 $link-hover-color:                        darken($link-color, 15%) !default;
 $link-hover-decoration:                   none !default;
-$emphasized-link-hover-darken-percentage: 15% !default;
 
 // Spacing
 //
@@ -451,9 +465,7 @@ $spacings: map-merge(
     120: 120px,
     130: 130px,
     150: 150px,
-    200: 200px,
-    // 300: 300px,
-    // 400: 400px
+    200: 200px
   ),
   $spacings
 );
@@ -463,22 +475,6 @@ $yiq-contrasted-threshold:  220 !default;
 // Customize the light and dark text colors for use in our YIQ color contrast function.
 $yiq-text-dark:             $gray-900 !default;
 $yiq-text-light:            $white !default;
-
-
-// Options
-//
-// Quickly modify global styling by enabling or disabling optional features.
-
-$enable-caret:                                true !default;
-$enable-rounded:                              true !default;
-$enable-shadows:                              true !default;
-$enable-gradients:                            false !default;
-$enable-transitions:                          true !default;
-$enable-prefers-reduced-motion-media-query:   true !default;
-$enable-hover-media-query:                    false !default; // Deprecated, no longer affects any compiled CSS
-$enable-grid-classes:                         true !default;
-$enable-print-styles:                         true !default;
-$enable-validation-icons:                     true !default;
 
 
 // Buttons + Forms
@@ -522,26 +518,56 @@ $input-btn-border-width:      0rem !default;
 
 $btn-padding-y:               $input-btn-padding-y !default;
 $btn-padding-x:               $input-btn-padding-x !default;
+
+$btn-padding-t: $btn-padding-y !default;
+$btn-padding-r: $btn-padding-x !default;
+$btn-padding-b: $btn-padding-y !default;
+$btn-padding-l: $btn-padding-x !default;
+
 $btn-font-size:               $input-btn-font-size !default;
 $btn-line-height:             $input-btn-line-height !default;
 
 $btn-padding-y-sm:            $input-btn-padding-y-sm !default;
 $btn-padding-x-sm:            $input-btn-padding-x-sm !default;
+
+$btn-padding-t-sm: $btn-padding-y-sm !default;
+$btn-padding-r-sm: $btn-padding-x-sm !default;
+$btn-padding-b-sm: $btn-padding-y-sm !default;
+$btn-padding-l-sm: $btn-padding-x-sm !default;
+
 $btn-font-size-sm:            $input-btn-font-size-sm !default;
 $btn-line-height-sm:          $input-btn-line-height-sm !default;
 
 $btn-padding-y-md:            $input-btn-padding-y-md !default;
 $btn-padding-x-md:            $input-btn-padding-x-md !default;
+
+$btn-padding-t-md: $btn-padding-y-md !default;
+$btn-padding-r-md: $btn-padding-x-md !default;
+$btn-padding-b-md: $btn-padding-y-md !default;
+$btn-padding-l-md: $btn-padding-x-md !default;
+
 $btn-font-size-md:            $input-btn-font-size-md !default;
 $btn-line-height-md:          $input-btn-line-height-md !default;
 
 $btn-padding-y-lg:            $input-btn-padding-y-lg !default;
 $btn-padding-x-lg:            $input-btn-padding-x-lg !default;
+
+$btn-padding-t-lg: $btn-padding-y-lg !default;
+$btn-padding-r-lg: $btn-padding-x-lg !default;
+$btn-padding-b-lg: $btn-padding-y-lg !default;
+$btn-padding-l-lg: $btn-padding-x-lg !default;
+
 $btn-font-size-lg:            $input-btn-font-size-lg !default;
 $btn-line-height-lg:          $input-btn-line-height-lg !default;
 
 $btn-padding-y-xl:            $input-btn-padding-y-xl !default;
 $btn-padding-x-xl:            $input-btn-padding-x-xl !default;
+
+$btn-padding-t-xl: $btn-padding-y-xl !default;
+$btn-padding-r-xl: $btn-padding-x-xl !default;
+$btn-padding-b-xl: $btn-padding-y-xl !default;
+$btn-padding-l-xl: $btn-padding-x-xl !default;
+
 $btn-font-size-xl:            $input-btn-font-size-xl !default;
 $btn-line-height-xl:          $input-btn-line-height-xl !default;
 
@@ -667,7 +693,6 @@ $custom-control-gutter:                 .5rem !default;
 $custom-control-spacer-x:               1rem !default;
 
 $custom-control-indicator-size:         1rem !default;
-$custom-control-indicator-bg:           $input-bg !default;
 
 $custom-control-indicator-bg-size:      50% 50% !default;
 $custom-control-indicator-box-shadow:   $input-box-shadow !default;
@@ -707,84 +732,8 @@ $custom-switch-width:                           $custom-control-indicator-size *
 $custom-switch-indicator-border-radius:         $custom-control-indicator-size / 2 !default;
 $custom-switch-indicator-size:                  calc(#{$custom-control-indicator-size} - #{$custom-control-indicator-border-width * 4}) !default;
 
-$custom-select-padding-y:           $input-btn-padding-y !default;
-$custom-select-padding-x:           $input-btn-padding-x !default;
-$custom-select-font-size:           $input-font-size !default;
-$custom-select-height:              $input-height !default;
-$custom-select-indicator-padding:   1rem !default; // Extra padding to account for the presence of the background-image based indicator
-$custom-select-font-weight:         $input-font-weight !default;
-$custom-select-line-height:         $input-line-height !default;
-$custom-select-color:               $input-color !default;
-$custom-select-disabled-color:      $gray-600 !default;
-$custom-select-bg:                  $input-bg !default;
-$custom-select-disabled-bg:         $gray-200 !default;
-$custom-select-bg-size:             8px 10px !default; // In pixels because image dimensions
-$custom-select-indicator-color:     $gray-800 !default;
-$custom-select-indicator:           str-replace(url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 4 5'%3e%3cpath fill='#{$custom-select-indicator-color}' d='M2 0L0 2h4zm0 5L0 3h4z'/%3e%3c/svg%3e"), "#", "%23") !default;
-$custom-select-background:          $custom-select-indicator no-repeat right $custom-select-padding-x center / $custom-select-bg-size !default; // Used so we can have multiple background elements (e.g., arrow and feedback icon)
 
-$custom-select-feedback-icon-padding-right: $input-height-inner * 3 / 4 + $custom-select-padding-x + $custom-select-indicator-padding !default;
-$custom-select-feedback-icon-position:      center right ($custom-select-padding-x + $custom-select-indicator-padding) !default;
-$custom-select-feedback-icon-size:          ($input-height-inner / 2) ($input-height-inner / 2) !default;
 
-$custom-select-border-width:        $input-border-width !default;
-$custom-select-border-color:        $input-border-color !default;
-$custom-select-border-radius:       $border-radius !default;
-$custom-select-box-shadow:          inset 0 1px 2px rgba($black, .075) !default;
-
-$custom-select-focus-border-color:  $input-focus-border-color !default;
-$custom-select-focus-width:         $input-focus-width !default;
-$custom-select-focus-box-shadow:    0 0 0 $custom-select-focus-width rgba($custom-select-focus-border-color, .5) !default;
-
-$custom-select-padding-y-sm:        $input-padding-y-sm !default;
-$custom-select-padding-x-sm:        $input-padding-x-sm !default;
-$custom-select-font-size-sm:        $input-font-size-sm !default;
-$custom-select-height-sm:           $input-height-sm !default;
-
-$custom-select-padding-y-lg:        $input-padding-y-lg !default;
-$custom-select-padding-x-lg:        $input-padding-x-lg !default;
-$custom-select-font-size-lg:        $input-font-size-lg !default;
-$custom-select-height-lg:           $input-height-lg !default;
-
-$custom-range-track-width:          100% !default;
-$custom-range-track-height:         .5rem !default;
-$custom-range-track-cursor:         pointer !default;
-$custom-range-track-bg:             $gray-300 !default;
-$custom-range-track-border-radius:  1rem !default;
-$custom-range-track-box-shadow:     inset 0 .25rem .25rem rgba($black, .1) !default;
-
-$custom-range-thumb-width:                   1rem !default;
-$custom-range-thumb-height:                  $custom-range-thumb-width !default;
-$custom-range-thumb-bg:                      $component-active-bg !default;
-$custom-range-thumb-border:                  0 !default;
-$custom-range-thumb-border-radius:           1rem !default;
-$custom-range-thumb-box-shadow:              0 .1rem .25rem rgba($black, .1) !default;
-$custom-range-thumb-focus-box-shadow:        0 0 0 1px $body-bg, $input-focus-box-shadow !default;
-$custom-range-thumb-focus-box-shadow-width:  $input-focus-width !default; // For focus box shadow issue in IE/Edge
-$custom-range-thumb-active-bg:               lighten($component-active-bg, 35%) !default;
-$custom-range-thumb-disabled-bg:             $gray-500 !default;
-
-$custom-file-height:                $input-height !default;
-$custom-file-height-inner:          $input-height-inner !default;
-$custom-file-focus-border-color:    $input-focus-border-color !default;
-$custom-file-focus-box-shadow:      $input-focus-box-shadow !default;
-$custom-file-disabled-bg:           $input-disabled-bg !default;
-
-$custom-file-padding-y:             $input-padding-y !default;
-$custom-file-padding-x:             $input-padding-x !default;
-$custom-file-line-height:           $input-line-height !default;
-$custom-file-font-weight:           $input-font-weight !default;
-$custom-file-color:                 $input-color !default;
-$custom-file-bg:                    $input-bg !default;
-$custom-file-border-width:          $input-border-width !default;
-$custom-file-border-color:          $input-border-color !default;
-$custom-file-border-radius:         $input-border-radius !default;
-$custom-file-box-shadow:            $input-box-shadow !default;
-$custom-file-button-color:          $custom-file-color !default;
-$custom-file-button-bg:             $input-group-addon-bg !default;
-$custom-file-text: (
-  en: "Browse"
-) !default;
 // Form validation
 
 $form-feedback-margin-top:          $form-text-margin-top !default;
@@ -799,39 +748,36 @@ $form-feedback-icon-invalid:        str-replace(url("data:image/svg+xml,%3csvg x
 
 
 
-
-// Tooltips
-
-$tooltip-font-size:                 $font-size-sm !default;
-$tooltip-max-width:                 200px !default;
-$tooltip-color:                     $white !default;
-$tooltip-bg:                        $black !default;
-$tooltip-border-radius:             $border-radius !default;
-$tooltip-opacity:                   .9 !default;
-$tooltip-padding-y:                 .25rem !default;
-$tooltip-padding-x:                 .5rem !default;
-$tooltip-margin:                    0 !default;
-
-$tooltip-arrow-width:               .8rem !default;
-$tooltip-arrow-height:              .4rem !default;
-$tooltip-arrow-color:               $tooltip-bg !default;
-
-// Form tooltips must come after regular tooltips
-$form-feedback-tooltip-padding-y:     $tooltip-padding-y !default;
-$form-feedback-tooltip-padding-x:     $tooltip-padding-x !default;
-$form-feedback-tooltip-font-size:     $tooltip-font-size !default;
-$form-feedback-tooltip-line-height:   $line-height-base !default;
-$form-feedback-tooltip-opacity:       $tooltip-opacity !default;
-$form-feedback-tooltip-border-radius: $tooltip-border-radius !default;
-
-// Modals
-
-$modal-backdrop-bg:                 $black !default;
-$modal-backdrop-opacity:            .7 !default;
-
-$modal-fade-transform:              translate(0, 5px) scale(1.1) !default;
-$modal-show-transform:              none !default;
-$modal-transition:                  all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) !default;
-
 // Tabs
 $nav-pills-border-radius:           $border-radius !default;
+
+// Dynamic gray colors - Default values
+// These variables are dynamically set by PHP but need defaults to prevent compilation errors
+$pix-dynamic-gray-950: #09090B !default;
+$pix-dynamic-gray-900: #18181B !default;
+$pix-dynamic-gray-800: #27272A !default;
+$pix-dynamic-gray-700: #3F3F46 !default;
+$pix-dynamic-gray-600: #52525B !default;
+$pix-dynamic-gray-500: #71717A !default;
+$pix-dynamic-gray-400: #A1A1AA !default;
+$pix-dynamic-gray-300: #D4D4D8 !default;
+$pix-dynamic-gray-200: #E4E4E7 !default;
+$pix-dynamic-gray-100: #F4F4F5 !default;
+$pix-dynamic-gray-50: #FAFAFA !default;
+$pix-dynamic-background: #FFFFFF !default;
+$pix-dynamic-heading: #000000 !default;
+
+// Dynamic gray colors for dark mode - Default values
+$pix-dynamic-gray-950-dark: #FAFAFA !default;
+$pix-dynamic-gray-900-dark: #F4F4F5 !default;
+$pix-dynamic-gray-800-dark: #E4E4E7 !default;
+$pix-dynamic-gray-700-dark: #D4D4D8 !default;
+$pix-dynamic-gray-600-dark: #A1A1AA !default;
+$pix-dynamic-gray-500-dark: #71717A !default;
+$pix-dynamic-gray-400-dark: #52525B !default;
+$pix-dynamic-gray-300-dark: #3F3F46 !default;
+$pix-dynamic-gray-200-dark: #27272A !default;
+$pix-dynamic-gray-100-dark: #18181B !default;
+$pix-dynamic-gray-50-dark: #18181B !default;
+$pix-dynamic-background-dark: #000000 !default;
+$pix-dynamic-heading-dark: #FFFFFF !default;

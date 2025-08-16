@@ -2,38 +2,49 @@
 
 @mixin bg-variant($parent, $color) {
     #{$parent} {
-        background-color: $color !important;
+        --pix-bg-color: #{$color};
+        // background-color: $color !important;
+        // background-color: var(--pix-bg-color) !important;
     }
-    a#{$parent},
-    button#{$parent} {
-        @include hover {
-            background-color: darken($color, 10%) !important;
-        }
-    }
-    svg g#{$parent},
-    svg path#{$parent},
-    svg polygon#{$parent},
-    svg ellipse#{$parent} {
-        fill: $color !important;
+    // a#{$parent},
+    // button#{$parent} {
+    //     &:hover {
+    //         // background-color: darken($color, 10%) !important;
+    //         background-color: color-mix(in hsl increasing hue, var(--pix-bg-color) 90%, black 20%) !important;
+    //     }
+    // }
+    // svg #{$parent}{
+    // // svg g#{$parent},
+    // // svg path#{$parent},
+    // // svg polygon#{$parent},
+    // // svg ellipse#{$parent} {
+    //     // fill: $color !important;
+    //     fill: var(--pix-bg-color) !important;
+    // }
+}
+@mixin bg-dynamic-variant($parent, $name, $color) {
+    #{$parent} {
+        --pix-bg-color: var(--pix-#{$name}, #{$color});
     }
 }
 
-@mixin bg-gradient-variant($parent, $color) {
-    #{$parent} {
-        background: $color linear-gradient(180deg, mix($body-bg, $color, 15%), $color) repeat-x !important;
-    }
-}
+// @mixin bg-gradient-variant($parent, $color) {
+//     #{$parent} {
+//         background: $color linear-gradient(180deg, mix($body-bg, $color, 15%), $color) repeat-x !important;
+//     }
+// }
 
 @mixin bg-transparent-variant($parent, $color, $opacity) {
     #{$parent} {
-        background-color: rgba($color, $opacity) !important;
+        --pix-bg-color: #{rgba($color, $opacity)};
+        // background-color: rgba($color, $opacity) !important;
     }
-    a#{$parent},
-    button#{$parent} {
-        @include hover {
-            background-color: darken(rgba($color, $opacity), 20%) !important;
-        }
-    }
+    // a#{$parent},
+    // button#{$parent} {
+    //     @include hover {
+    //         background-color: darken(rgba($color, $opacity), 20%) !important;
+    //     }
+    // }
     // svg g#{$parent},
     // svg g#{$parent} path,
     // svg g#{$parent} ellipse,
@@ -44,7 +55,18 @@
     //     fill: rgba($color, $opacity) !important;
     // }
 
-    svg #{$parent} {
-        fill: rgba($color, $opacity) !important;
-    }
+    // svg #{$parent} {
+    //     fill: rgba($color, $opacity) !important;
+    // }
 }
+
+@mixin bg-transparent-dark-variant($parent, $color, $opacity) {
+    $opacity100: $opacity * 100%;
+    #{$parent} {
+        
+        --pix-bg-color: color-mix(in srgb, var(--pix-primary-muted) $opacity100, transparent) !important;
+        // background-color: rgba($color, $opacity) !important;
+    }
+    
+}
+
